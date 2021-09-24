@@ -1,4 +1,4 @@
-package model;
+package com.example.trainingapp.model;
 
 import java.util.List;
 

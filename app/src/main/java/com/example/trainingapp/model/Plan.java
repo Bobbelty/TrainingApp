@@ -1,4 +1,4 @@
-package model;
+package com.example.trainingapp.model;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ class Plan {
 
     void deleteWorkout(String workoutName) {
         for (Workout w: workouts) {
-            if (w.getName() == workoutName) { // sus?
+            if (w.getName().equals(workoutName)) { // sus?
                 workouts.remove(w);
             }
         }
