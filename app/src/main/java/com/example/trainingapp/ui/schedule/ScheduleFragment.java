@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.dashboard;
+package com.example.trainingapp.ui.schedule;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,24 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.trainingapp.R;
-import com.example.trainingapp.databinding.FragmentDashboardBinding;
+import com.example.trainingapp.databinding.FragmentScheduleBinding;
 
-public class DashboardFragment extends Fragment {
+public class ScheduleFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
-    private FragmentDashboardBinding binding;
+    private ScheduleViewModel scheduleViewModel;
+    private FragmentScheduleBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        scheduleViewModel =
+                new ViewModelProvider(this).get(ScheduleViewModel.class);
 
-        binding = FragmentDashboardBinding.inflate(inflater, container, false);
+        binding = FragmentScheduleBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textDashboard;
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textSchedule;
+        scheduleViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
