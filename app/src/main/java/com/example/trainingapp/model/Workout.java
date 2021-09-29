@@ -14,4 +14,5 @@ public class Workout {
     public String getName() {
         return workoutName;
     }
+
 }

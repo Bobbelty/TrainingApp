@@ -8,60 +8,68 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentScheduleBinding;
+import com.example.trainingapp.model.Exercise;
+import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.model.Workout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ScheduleFragment extends Fragment {
 
     private ScheduleViewModel scheduleViewModel;
+
+    // objects to test on
     private FragmentScheduleBinding binding;
-    private Spinner dropdown;
+    private List<Integer> testlistEx = new ArrayList<>();
+    private List<Exercise> testlistWorkout = new ArrayList<>();
+    private List<Workout> testList123 = new ArrayList<>();
+    private List<Plan> testPlans = new ArrayList<>();
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
 
-        scheduleViewModel =
-                new ViewModelProvider(this).get(ScheduleViewModel.class);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_dropdown, container, false);
 
-        binding = FragmentScheduleBinding.inflate(inflater, container, false);
+        initSpinner(v);
+        //init recyclerview
 
-        // pretty cool stuff so it works
-        View root = inflater.inflate(R.layout.activity_main, container, false);
-
-        final TextView textView = binding.textSchedule;
-
-        /*scheduleViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });*/
-        dropdown = root.findViewById(R.id.spinner_dropdown);
-        init_spinnerDropdown();
-        return root;
+        return v;
     }
+    private void initSpinner(View v) {
 
-    // initiates items in dropdown menu based on users workout schedule
-    private void init_spinnerDropdown() {
-        String[] items = new String[]{"item1", "item2", "item3"};
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items);
+        // setting up test objects
+        testlistEx.add(1);
+        System.out.print("Funkar hit");
+        testlistEx.add(3);
 
+        Exercise benchpress = new Exercise("benchpress", testlistEx);
+        testlistWorkout.add(benchpress);
+
+        Workout chestday = new Workout("chestday", testlistWorkout);
+        testList123.add(chestday);
+
+        Plan deff = new Plan("deff", testList123);
+
+        testPlans.add(deff);
+        testPlans.add(deff);
+
+        Spinner dropdown = (Spinner) v.findViewById(R.id.spinner_dropdown);
+        ArrayAdapter<Plan> adapter = new ArrayAdapter<Plan>(this.getActivity(), android.R.layout.simple_spinner_item, testPlans);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         dropdown.setAdapter(adapter);
 
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                //System.out.println(adapterView.getItemAtPosition(position));
-                //((TextView) adapterView.getChildAt(0)).setTextColor(Color.WHITE);
+                //System.out.println(testPlans.get(position).getWorkouts().get(0).getName()); works
             }
 
             @Override
@@ -69,8 +77,8 @@ public class ScheduleFragment extends Fragment {
 
             }
         });
-
     }
+
 
     @Override
     public void onDestroyView() {

@@ -2,10 +2,18 @@ package com.example.trainingapp.model;
 
 import java.util.List;
 
-class Plan {
+public class Plan {
     // Make sure not able to send null values from GUI
     private String planName; // test with and without final, best to use final if possible
     private List<Workout> workouts; // test with and without final, best to use final if possible
+
+    public String getPlanName() {
+        return planName;
+    }
+
+    public List<Workout> getWorkouts() {
+        return workouts;
+    }
 
     public Plan(String planName, List<Workout> workouts) {
         this.planName = planName;
@@ -29,5 +37,9 @@ class Plan {
                 workouts.set(i, changedWorkout);
             }
         }
+    }
+    @Override
+    public String toString() {
+        return planName;
     }
 }

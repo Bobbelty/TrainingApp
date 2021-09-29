@@ -5,11 +5,11 @@ import java.util.List;
 public class Exercise {
 
     String exerciseName;
-    List<Integer> sets;
+    List<Integer> reps;
 
-    public Exercise(String exerciseName, List<Integer> sets) {
+    public Exercise(String exerciseName, List<Integer> reps) {
         this.exerciseName = exerciseName;
-        this.sets = sets;
+        this.reps = reps;
     }
 //PLS WORK!
     //123dummycomment
