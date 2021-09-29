@@ -15,10 +15,39 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentHomeBinding;
 
+/**
+ * HomeFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.home.xml
+ *
+ * @author Valdemar Vålvik and Victor Hui
+ */
+
 public class HomeFragment extends Fragment {
 
+    /**
+     * Instance of HomeViewModel to enable communication and displaying of the correct elements.
+     */
+
     private HomeViewModel homeViewModel;
+
+    /**
+     * Instance of the binding-class for fragment_home.xml. Allows for access of all the root views
+     * ID's.
+     */
+
     private FragmentHomeBinding binding;
+
+    /**
+     * onCreateView creates and returns the view hierarchy associated with the fragment.
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     * The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     * This value may be null.
+     * @param savedInstanceState  If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     *
+     * @return Return the View for the fragment's UI, or null.
+     */
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -37,6 +66,11 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
+
+    /**
+     * onDestroyView is called when the view previously created by onCreateView has been detached from the fragment.
+     * The next time the fragment needs to be displayed, a new view will be created.
+     */
 
     @Override
     public void onDestroyView() {
