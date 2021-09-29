@@ -1,16 +1,16 @@
-package com.example.trainingapp.ui.schedule;
+package com.example.trainingapp.ui.history;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ScheduleViewModel extends ViewModel {
+public class HistoryViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ScheduleViewModel() {
+    public HistoryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is schedule fragment");
+        mText.setValue("This is history fragment");
     }
 
     public LiveData<String> getText() {
