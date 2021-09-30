@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.workout;
+package com.example.trainingapp.ui.history;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -12,27 +12,24 @@ import androidx.lifecycle.ViewModel;
  * @author Valdemar Vålvik and Victor Hui
  */
 
-public class WorkoutViewModel extends ViewModel {
+public class HistoryViewModel extends ViewModel {
 
     /**
      * Variable for textView
      */
-
     private MutableLiveData<String> mText;
 
     /**
      * Class constructor
      */
-
-    public WorkoutViewModel() {
+    public HistoryViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is workout fragment");
+        mText.setValue("This is history fragment");
     }
 
     /**
      * @return reference of mText variable
      */
-
     public LiveData<String> getText() {
         return mText;
     }
