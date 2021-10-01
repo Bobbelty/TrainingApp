@@ -1,6 +1,5 @@
 package com.example.trainingapp.ui.schedule;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Spinner;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
@@ -34,22 +32,19 @@ public class ScheduleFragment extends Fragment {
     private List<Exercise> testlistWorkout = new ArrayList<>();
     private List<Workout> testList123 = new ArrayList<>();
     private List<Plan> testPlans = new ArrayList<>();
+    Plan plan;
+
+    String[] name = {"Hej1", "hej2", "Hej3"};
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        /*View childView1, childView2;
-        inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        childView1 = inflater.inflate(R.layout.fragment_dropdown, null);
-        childView2 = inflater.inflate(R.layout.fragment_schedule_recyclerview, null);
-        container.addView(childView1);
-        container.addView(childView2);*/
 
-        View v = inflater.inflate(R.layout.fragment_dropdown, container, false);
-        container.addView(inflater.inflate(R.layout.fragment_schedule_recyclerview, null));
 
+        //View v = inflater.inflate(R.layout.fragment_schedule_recyclerview, container, false);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_schedule,container,false);
         initObjects();
 
         initSpinner(v);
@@ -58,13 +53,13 @@ public class ScheduleFragment extends Fragment {
         return v;
     }
     private void initRecyclerView(View v) {
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerview_list);
-        recyclerView.setHasFixedSize(true);
-        //recyclerView.setLayoutManager(new LinearLayoutManager((v.getContext())); recyclerView.setAdapter(new ListAdapter()));
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.schedule_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerView.setAdapter(new RecyclerViewAdapter(plan));
     }
     private void initSpinner(View v) {
 
-        Spinner dropdown = (Spinner) v.findViewById(R.id.spinner_dropdown);
+        Spinner dropdown = (Spinner) v.findViewById(R.id.schedule_spinner_dropdown);
         ArrayAdapter<Plan> adapter = new ArrayAdapter<Plan>(this.getActivity(), android.R.layout.simple_spinner_item, testPlans);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         dropdown.setAdapter(adapter);
@@ -100,6 +95,7 @@ public class ScheduleFragment extends Fragment {
 
         testPlans.add(deff);
         testPlans.add(bulk);
+        plan = bulk;
     }
 
     @Override

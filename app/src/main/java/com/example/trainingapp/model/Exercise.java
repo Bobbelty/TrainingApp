@@ -11,7 +11,8 @@ public class Exercise {
         this.exerciseName = exerciseName;
         this.reps = reps;
     }
-//PLS WORK!
-    //123dummycomment
-    //further testing
+    @Override
+    public String toString() {
+        return exerciseName;
+    }
 }
