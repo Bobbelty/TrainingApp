@@ -4,17 +4,29 @@ import java.util.List;
 
 public class PlanBuilder {
 
-    private Plan createEmptyPlan(String name, List<Workout> workoutList){
-        return PlanFactory.createPlan(name, workoutList);
+    private Plan createEmptyPlan(String name){
+        return PlanFactory.createPlan(name);
     }
 
-    private Workout createEmptyWorkout(String workoutName, List<Exercise> exerciseList) {
-        return WorkoutFactory.createWorkout(workoutName,exerciseList);
+    private Workout createEmptyWorkout(String workoutName) {
+        return WorkoutFactory.createWorkout(workoutName);
     }
 
-    private Exercise createExercise(String exerciseName, List<Integer> sets) {
-        return ExerciseFactory.createExercise(exerciseName, sets);
+    private Exercise createExercise(String exerciseName) {
+        return ExerciseFactory.createExercise(exerciseName);
     }
 
+    public void addWorkoutToPlan(Plan plan, String name) {
+        Workout workout = createEmptyWorkout(name);
+        plan.addWorkout(workout);
+    }
 
+    public void removeWorkoutFromPlan(Plan plan, Workout workout) {
+        plan.removeWorkout(workout);
+    }
+
+    public void addExerciseToWorkout(Workout workout,String name) {
+        Exercise exercise = createExercise(name);
+        workout.addExercise(exercise);
+    }
 }

@@ -1,17 +1,26 @@
 package com.example.trainingapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Workout {
 
     private String workoutName; // testa med och utan final, kör helst final
-    private List<Exercise> exercises; // testa med och utan final, kör helst final
+    private List<Exercise> exercises = new ArrayList<>(); // testa med och utan final, kör helst final
+    private static AtomicInteger nextId = new AtomicInteger();
+    private int id;
 
-    public Workout(String workoutName, List<Exercise> exercises) {
+    public Workout(String workoutName) {
+        id = nextId.incrementAndGet();
         this.workoutName = workoutName;
-        this.exercises = exercises;
     }
+
     public String getName() {
         return workoutName;
+    }
+
+    public void addExercise(Exercise exercise) {
+    exercises.add(exercise);
     }
 }

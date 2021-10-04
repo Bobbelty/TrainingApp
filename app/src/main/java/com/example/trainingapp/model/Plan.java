@@ -1,33 +1,32 @@
 package com.example.trainingapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-class Plan {
+public class Plan {
     // Make sure not able to send null values from GUI
     private String planName; // test with and without final, best to use final if possible
-    private List<Workout> workouts; // test with and without final, best to use final if possible
+    private List<Workout> workouts = new ArrayList<>(); // test with and without final, best to use final if possible
 
-    public Plan(String planName, List<Workout> workouts) {
+    private static AtomicInteger nextId = new AtomicInteger();
+    private int id;
+
+    public Plan(String planName) {
+        id = nextId.incrementAndGet();
         this.planName = planName;
-        this.workouts = workouts;
     }
 
-    void deleteWorkout(String workoutName) {
-        for (Workout w: workouts) {
-            if (w.getName().equals(workoutName)) { // sus?
-                workouts.remove(w);
-            }
-        }
+    void removeWorkout(Workout workout) {
+        workouts.remove(workout);
     }
+
     void addWorkout(Workout workout) {
         workouts.add(workout); // not sus
     }
     // method for changing workout?
-    void changeWorkout(Workout changedWorkout, String oldWorkoutName) {
-        for (int i = 0; i < workouts.size(); i++) {
-            if (workouts.get(i).getName() == oldWorkoutName) {
-                workouts.set(i, changedWorkout);
-            }
-        }
+
+    public int getId() {
+        return id;
     }
 }
