@@ -10,16 +10,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/btnEditExercise"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Button" />
+
         <TextView
             android:id="@+id/lblWorkoutName"
-            android:layout_width="300dp"
-            android:layout_height="75dp"
+            android:layout_width="203dp"
+            android:layout_height="45dp"
             android:text="TextView" />
 
         <ListView
             android:id="@+id/lbxExercises"
             android:layout_width="409dp"
-            android:layout_height="300dp" />
+            android:layout_height="50dp"
+            android:translationY="50dp" />
 
     </androidx.cardview.widget.CardView>
 

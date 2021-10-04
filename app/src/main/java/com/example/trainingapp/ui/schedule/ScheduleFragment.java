@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,34 +30,43 @@ public class ScheduleFragment extends Fragment {
 
     // objects to test on
     private FragmentScheduleBinding binding;
-    private List<Integer> testlistEx = new ArrayList<>();
-    private List<Exercise> testlistWorkout = new ArrayList<>();
-    private List<Workout> testList123 = new ArrayList<>();
+    private List<Integer> listOfSetsLegpress = new ArrayList<>();
+    private Exercise legpress;
+    private List<Exercise> listOfExercisesLegday = new ArrayList<>();
+    private Workout legday;
+    private List<Workout> listOfWorkoutsLegday = new ArrayList<>();
+
+    private List<Integer> listOfSetsBench = new ArrayList<>();
+    private Exercise benchpress;
+    private List<Exercise> listOfExercisesChestday = new ArrayList<>();
+    private Workout chestday;
+    private List<Workout> listOfWorkoutsChestday = new ArrayList<>();
+
+
     private List<Plan> testPlans = new ArrayList<>();
-    Plan plan;
 
-    String[] name = {"Hej1", "hej2", "Hej3"};
-
+    Plan plan; // plan should be the first plan in the database (SavedPlans)
+    RecyclerViewAdapter recyclerViewAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
-
-        //View v = inflater.inflate(R.layout.fragment_schedule_recyclerview, container, false);
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_schedule,container,false);
+
         initObjects();
 
-        initSpinner(v);
         initRecyclerView(v);
+        initSpinner(v);
 
         return v;
     }
+
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.schedule_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerView.setAdapter(new RecyclerViewAdapter(plan));
+        recyclerViewAdapter = new RecyclerViewAdapter(plan);
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
     private void initSpinner(View v) {
 
@@ -67,7 +78,12 @@ public class ScheduleFragment extends Fragment {
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-                //System.out.println(testPlans.get(position).getWorkouts().get(0).getName()); works
+
+                plan = testPlans.get(position);
+
+                // sets new plan and notifies the adapter of the change
+                recyclerViewAdapter.setNewPlan(plan);
+                recyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -78,24 +94,41 @@ public class ScheduleFragment extends Fragment {
     }
     //initiates test objects
     private void initObjects() {
+        /*private FragmentScheduleBinding binding;
+        private List<Integer> listOfSetsLegpress = new ArrayList<>();
+        private List<Exercise> listOfExercisesLegday = new ArrayList<>();
+        private List<Workout> listOfWorkoutsLegday = new ArrayList<>();
+
+        private List<Integer> listOfSetsBench = new ArrayList<>();
+        private List<Exercise> listOfExercisesChestday = new ArrayList<>();
+        private List<Workout> listOfWorkoutsChestday = new ArrayList<>();*/
         // setting up test objects
-        testlistEx.add(1);
-        System.out.print("Funkar hit");
-        testlistEx.add(3);
+        listOfSetsLegpress.add(5); // 5 reps 1 time
+        listOfSetsBench.add(3); // 3 reps 1 time
 
-        Exercise benchpress = new Exercise("benchpress", testlistEx);
-        testlistWorkout.add(benchpress);
+        legpress = new Exercise("legpress", listOfSetsLegpress);
+        benchpress = new Exercise("benchpress", listOfSetsBench);
 
-        Workout chestday = new Workout("chestday", testlistWorkout);
-        testList123.add(chestday);
+        listOfExercisesLegday.add(legpress);
+        listOfExercisesChestday.add(benchpress);
 
-        Plan deff = new Plan("deff", testList123);
-        testList123.add(chestday);
-        Plan bulk = new Plan("bulk", testList123);
+        legday = new Workout("legday", listOfExercisesLegday);
+        chestday = new Workout("chestday", listOfExercisesChestday);
 
-        testPlans.add(deff);
-        testPlans.add(bulk);
-        plan = bulk;
+        listOfWorkoutsLegday.add(legday);
+        listOfWorkoutsLegday.add(chestday);
+
+        listOfWorkoutsChestday.add(chestday);
+        listOfWorkoutsChestday.add(legday);
+
+        Plan plan1 = new Plan("summer workout", listOfWorkoutsLegday);
+        Plan plan2 = new Plan("winter workout", listOfWorkoutsChestday);
+
+        testPlans.add(plan1);
+        testPlans.add(plan2);
+        plan = plan1;
+
+
     }
 
     @Override

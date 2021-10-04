@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,9 +20,13 @@ import com.example.trainingapp.model.Plan;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ListViewHolder> {
 
 
-    Plan plan;
+    private Plan plan;
 
     public RecyclerViewAdapter(Plan plan) {
+        this.plan = plan;
+    }
+
+    public void setNewPlan(Plan plan) {
         this.plan = plan;
     }
 
@@ -38,6 +43,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.lblWorkoutName.setText(plan.getWorkouts().get(position).getName());
         // set list views
+        holder.btnEditExercise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick (View v) {
+                // should move user to edit page
+            }
+        });
     }
     @Override
     public int getItemCount() {
@@ -47,14 +58,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
         //change name, make private maybe final
-        TextView lblWorkoutName;
-        ListView lbxExercises;
+        private final TextView lblWorkoutName;
+        private final ListView lbxExercises;
+        private final Button btnEditExercise;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 
             lblWorkoutName = itemView.findViewById(R.id.lblWorkoutName);
             lbxExercises = itemView.findViewById(R.id.lbxExercises);
+            btnEditExercise = itemView.findViewById(R.id.btnEditExercise);
+
         }
     }
 }
