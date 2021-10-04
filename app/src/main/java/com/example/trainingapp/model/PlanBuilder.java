@@ -1,9 +1,11 @@
 package com.example.trainingapp.model;
 
+import com.example.trainingapp.mockDataBase.MockDataBase;
+
 import java.util.List;
 
 public class PlanBuilder {
-
+    private MockDataBase mockDatabase;
     private Plan createEmptyPlan(String name){
         return PlanFactory.createPlan(name);
     }
@@ -29,4 +31,6 @@ public class PlanBuilder {
         Exercise exercise = createExercise(name);
         workout.addExercise(exercise);
     }
+
+
 }
