@@ -7,12 +7,11 @@ public class Exercise {
 
     String exerciseName;
     List<Integer> sets;
-    private static AtomicInteger nextId = new AtomicInteger();
-    private int id;
+
     private int exerciseId;
 
-    public Exercise(String exerciseName) {
-        id = nextId.incrementAndGet();
+    public Exercise(String exerciseName, int exerciseId) {
+        this.exerciseId = exerciseId;
 
         this.exerciseName = exerciseName;
     }

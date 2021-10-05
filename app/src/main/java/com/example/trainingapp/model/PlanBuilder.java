@@ -6,6 +6,10 @@ import java.util.List;
 
 public class PlanBuilder {
     private MockDataBase mockDatabase;
+
+    public void addPlanToDatabase(String planName){
+        mockDatabase.addPlan(createEmptyPlan(planName));
+    }
     private Plan createEmptyPlan(String name){
         return PlanFactory.createPlan(name);
     }
@@ -14,8 +18,8 @@ public class PlanBuilder {
         return WorkoutFactory.createWorkout(workoutName);
     }
 
-    private Exercise createExercise(String exerciseName) {
-        return ExerciseFactory.createExercise(exerciseName);
+    private Exercise createExercise(String exerciseName, int exerciseId) {
+        return ExerciseFactory.createExercise(exerciseName, exerciseId);
     }
 
     public void addWorkoutToPlan(Plan plan, String name) {
@@ -27,8 +31,9 @@ public class PlanBuilder {
         plan.removeWorkout(workout);
     }
 
-    public void addExerciseToWorkout(Workout workout,String name) {
-        Exercise exercise = createExercise(name);
+    public void addExerciseToWorkout(Workout workout, String exerciseName) {
+        int exerciseId = mockDatabase.getExerciseIdFromMap(exerciseName);
+        Exercise exercise = createExercise(exerciseName, exerciseId);
         workout.addExercise(exercise);
     }
 
