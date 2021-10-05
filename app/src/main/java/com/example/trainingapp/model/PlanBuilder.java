@@ -10,6 +10,7 @@ public class PlanBuilder {
     public void addPlanToDatabase(String planName){
         mockDatabase.addPlan(createEmptyPlan(planName));
     }
+
     private Plan createEmptyPlan(String name){
         return PlanFactory.createPlan(name);
     }

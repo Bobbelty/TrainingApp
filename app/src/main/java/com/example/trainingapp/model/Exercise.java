@@ -19,6 +19,13 @@ public class Exercise {
     public void addReps(Integer rep){
         sets.add(rep);
     }
+    public String getName(){
+        return exerciseName;
+    }
+
+    public int getId(){
+        return exerciseId;
+    }
 
 
 //PLS WORK!

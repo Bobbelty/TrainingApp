@@ -23,4 +23,7 @@ public class Workout {
     public void addExercise(Exercise exercise) {
     exercises.add(exercise);
     }
+    public List<Exercise> getExerciseList(){
+        return exercises;
+    }
 }
