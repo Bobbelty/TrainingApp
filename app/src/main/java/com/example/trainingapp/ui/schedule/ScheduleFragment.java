@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,13 +40,14 @@ public class ScheduleFragment extends Fragment {
 
     private ScheduleViewModel scheduleViewModel;
 
-    // objects to test on
     /**
      * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
      * ID's.
      */
 
     private FragmentScheduleBinding binding;
+
+    // objects to test on
     private List<Integer> listOfSetsLegpress = new ArrayList<>();
     private Exercise legpress;
     private List<Exercise> listOfExercisesLegday = new ArrayList<>();
@@ -64,12 +66,6 @@ public class ScheduleFragment extends Fragment {
     Plan plan; // plan should be the first plan in the database (SavedPlans)
     RecyclerViewAdapter recyclerViewAdapter;
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_schedule,container,false);
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -82,11 +78,11 @@ public class ScheduleFragment extends Fragment {
      *
      * @return Return the View for the fragment's UI, or null.
      */
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        scheduleViewModel =
-                new ViewModelProvider(this).get(ScheduleViewModel.class);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_schedule,container,false);
 
         initObjects();
 
@@ -128,14 +124,6 @@ public class ScheduleFragment extends Fragment {
     }
     //initiates test objects
     private void initObjects() {
-        /*private FragmentScheduleBinding binding;
-        private List<Integer> listOfSetsLegpress = new ArrayList<>();
-        private List<Exercise> listOfExercisesLegday = new ArrayList<>();
-        private List<Workout> listOfWorkoutsLegday = new ArrayList<>();
-
-        private List<Integer> listOfSetsBench = new ArrayList<>();
-        private List<Exercise> listOfExercisesChestday = new ArrayList<>();
-        private List<Workout> listOfWorkoutsChestday = new ArrayList<>();*/
         // setting up test objects
         listOfSetsLegpress.add(5); // 5 reps 1 time
         listOfSetsBench.add(3); // 3 reps 1 time
