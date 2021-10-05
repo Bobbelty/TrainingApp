@@ -1,6 +1,4 @@
-package com.example.trainingapp.ui.schedule;
-
-import android.widget.Spinner;
+package com.example.trainingapp.ui.show_schedule;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

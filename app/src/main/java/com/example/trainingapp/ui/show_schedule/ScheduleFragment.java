@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.schedule;
+package com.example.trainingapp.ui.show_schedule;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,13 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,14 +35,14 @@ public class ScheduleFragment extends Fragment {
      * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
      */
 
-    private ScheduleViewModel scheduleViewModel;
+    private ScheduleViewModel scheduleViewModel; // could possibly delete this
 
     /**
      * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
      * ID's.
      */
 
-    private FragmentScheduleBinding binding;
+    private FragmentScheduleBinding binding; //
 
     // objects to test on
     private List<Integer> listOfSetsLegpress = new ArrayList<>();
@@ -85,7 +82,6 @@ public class ScheduleFragment extends Fragment {
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_schedule,container,false);
 
         initObjects();
-
         initRecyclerView(v);
         initSpinner(v);
 

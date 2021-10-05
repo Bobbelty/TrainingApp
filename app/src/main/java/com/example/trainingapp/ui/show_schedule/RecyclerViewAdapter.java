@@ -1,21 +1,21 @@
-package com.example.trainingapp.ui.schedule;
+package com.example.trainingapp.ui.show_schedule;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.trainingapp.MainActivity;
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.ui.edit_schedule.EditScheduleFragment;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ListViewHolder> {
 
@@ -46,9 +46,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.btnEditExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
+                Fragment fragment = new EditScheduleFragment();
+
                 // should move user to edit page
             }
         });
+    }
+    public void changeFragment(Fragment fragment) {
+
     }
     @Override
     public int getItemCount() {
