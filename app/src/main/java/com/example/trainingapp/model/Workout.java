@@ -11,7 +11,12 @@ public class Workout {
         this.workoutName = workoutName;
         this.exercises = exercises;
     }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
     public String getName() {
         return workoutName;
     }
+
 }
