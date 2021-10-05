@@ -1,66 +1,79 @@
 package com.example.trainingapp.ui.history;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.example.trainingapp.R;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.trainingapp.databinding.FragmentHistoryBinding;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link HistoryFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * HistoryFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.history.xml
+ *
+ * @author Valdemar Vålvik and Victor Hui
  */
+
 public class HistoryFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    /**
+     * Instance of HistoryViewModel to enable communication and displaying of the correct elements.
+     */
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private HistoryViewModel historyViewModel;
 
-    public HistoryFragment() {
-        // Required empty public constructor
+    /**
+     * Instance of the binding-class for fragment_history.xml. Allows for access of all the root views
+     * ID's.
+     */
+
+    private FragmentHistoryBinding binding;
+
+    /**
+     * onCreateView creates and returns the view hierarchy associated with the fragment.
+     *
+     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
+     * The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     * This value may be null.
+     * @param savedInstanceState  If non-null, this fragment is being re-constructed from a previous saved state as given here.
+     *
+     * @return Return the View for the fragment's UI, or null.
+     */
+
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             ViewGroup container, Bundle savedInstanceState) {
+        historyViewModel =
+                new ViewModelProvider(this).get(HistoryViewModel.class);
+
+        binding = FragmentHistoryBinding.inflate(inflater, container, false);
+        View root = binding.getRoot();
+
+        final TextView textView = binding.textHistory;
+        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable String s) {
+                textView.setText(s);
+            }
+        });
+        return root;
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment navigation_history.
+     * onDestroyView is called when the view previously created by onCreateView has been detached from the fragment.
+     * The next time the fragment needs to be displayed, a new view will be created.
      */
-    // TODO: Rename and change types and number of parameters
-    public static HistoryFragment newInstance(String param1, String param2) {
-        HistoryFragment fragment = new HistoryFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false);
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }
