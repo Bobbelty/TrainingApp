@@ -4,7 +4,7 @@ import com.example.trainingapp.mockDataBase.MockDataBase;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-//class name very bad sorry
+
 public class ExerciseIdHandler {
     private MockDataBase mockDatabase = new MockDataBase();
 

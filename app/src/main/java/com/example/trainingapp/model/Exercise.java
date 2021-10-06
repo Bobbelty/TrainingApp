@@ -1,5 +1,6 @@
 package com.example.trainingapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -12,12 +13,15 @@ public class Exercise {
      * Name of the exercise
      */
     String exerciseName;
+<<<<<<< HEAD
 
     /**
      * List of reps for each set. Each element of the list is the nr of reps and the size of the
      * list is the nr of sets. Ex [12, 12, 12] means 3 sets of 12
      */
-    List<Integer> sets;
+
+    List<Integer> sets = new ArrayList<>();
+>>>>>>> a9905d6cb7b8ff6d6d0d1478a628db60570defb0
 
     /**
      * An exercise contains an id to make it possible for PB-recording purposes
@@ -30,8 +34,28 @@ public class Exercise {
         this.exerciseName = exerciseName;
     }
 
+    public List<Integer> getReps(){
+        return sets;
+    }
+
     public void addReps(Integer rep){
         sets.add(rep);
+    }
+
+    public void removeReps(int index){
+        sets.remove(index);
+
+    }
+
+
+
+
+    public String getName(){
+        return exerciseName;
+    }
+
+    public int getId(){
+        return exerciseId;
     }
 
 
