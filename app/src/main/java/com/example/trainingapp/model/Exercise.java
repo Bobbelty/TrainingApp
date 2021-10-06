@@ -13,7 +13,7 @@ public class Exercise {
      * Name of the exercise
      */
     String exerciseName;
-<<<<<<< HEAD
+
 
     /**
      * List of reps for each set. Each element of the list is the nr of reps and the size of the
@@ -21,7 +21,7 @@ public class Exercise {
      */
 
     List<Integer> sets = new ArrayList<>();
->>>>>>> a9905d6cb7b8ff6d6d0d1478a628db60570defb0
+
 
     /**
      * An exercise contains an id to make it possible for PB-recording purposes
