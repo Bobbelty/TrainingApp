@@ -38,5 +38,9 @@ public class PlanBuilder {
         workout.addExercise(exercise);
     }
 
+    public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
+        workout.removeExercise(exercise);
+    }
+
 
 }

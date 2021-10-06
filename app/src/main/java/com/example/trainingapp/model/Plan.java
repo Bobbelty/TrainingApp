@@ -17,6 +17,10 @@ public class Plan {
         this.planName = planName;
     }
 
+    public List<Workout> getWorkoutList(){
+        return workouts;
+    }
+
     void removeWorkout(Workout workout) {
         workouts.remove(workout);
     }

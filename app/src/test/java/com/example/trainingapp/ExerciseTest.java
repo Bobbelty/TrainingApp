@@ -10,7 +10,7 @@ public class ExerciseTest {
      * test if getName() works correctly.
      */
     @Test
-    public void testGetNameCorrect(){
+    public void testGetName(){
         Exercise exercise = new Exercise("test", 123);
         assertEquals("test", exercise.getName());
     }
@@ -19,9 +19,22 @@ public class ExerciseTest {
      * test if getId() works correctly.
      */
     @Test
-    public void testGetIdCorrect(){
+    public void testGetId(){
         Exercise exercise = new Exercise("test", 123);
         assertEquals(123, exercise.getId());
     }
+
+    @Test
+    public void testAddReps(){
+        int testRep1 = 1;
+        int testRep2 = 2;
+        Exercise exercise = new Exercise("test", 123);
+        exercise.addReps(testRep1);
+        exercise.addReps(testRep2);
+        assertEquals(testRep2, (int) exercise.getReps().get(1));
+    }
+
+
+
 
 }
