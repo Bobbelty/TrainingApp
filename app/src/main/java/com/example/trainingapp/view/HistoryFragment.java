@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.home;
+package com.example.trainingapp.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,30 +12,30 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.trainingapp.R;
-import com.example.trainingapp.databinding.FragmentHomeBinding;
+import com.example.trainingapp.databinding.FragmentHistoryBinding;
+import com.example.trainingapp.viewModel.HistoryViewModel;
 
 /**
- * HomeFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
- * fragment.home.xml
+ * HistoryFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.history.xml
  *
  * @author Valdemar Vålvik and Victor Hui
  */
 
-public class HomeFragment extends Fragment {
+public class HistoryFragment extends Fragment {
 
     /**
-     * Instance of HomeViewModel to enable communication and displaying of the correct elements.
+     * Instance of HistoryViewModel to enable communication and displaying of the correct elements.
      */
 
-    private HomeViewModel homeViewModel;
+    private HistoryViewModel historyViewModel;
 
     /**
-     * Instance of the binding-class for fragment_home.xml. Allows for access of all the root views
+     * Instance of the binding-class for fragment_history.xml. Allows for access of all the root views
      * ID's.
      */
 
-    private FragmentHomeBinding binding;
+    private FragmentHistoryBinding binding;
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -51,14 +51,14 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                new ViewModelProvider(this).get(HomeViewModel.class);
+        historyViewModel =
+                new ViewModelProvider(this).get(HistoryViewModel.class);
 
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentHistoryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textHistory;
+        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

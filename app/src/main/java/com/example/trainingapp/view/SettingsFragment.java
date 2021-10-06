@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.schedule;
+package com.example.trainingapp.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,29 +12,30 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.trainingapp.databinding.FragmentScheduleBinding;
+import com.example.trainingapp.databinding.FragmentSettingsBinding;
+import com.example.trainingapp.viewModel.SettingsViewModel;
 
 /**
- * ScheduleFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
- * fragment.schedule.xml
+ * SettingsFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.settings.xml
  *
  * @author Valdemar Vålvik and Victor Hui
  */
 
-public class ScheduleFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
     /**
-     * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
+     * Instance of SettingsViewModel to enable communication and displaying of the correct elements.
      */
 
-    private ScheduleViewModel scheduleViewModel;
+    private SettingsViewModel settingsViewModel;
 
     /**
-     * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
+     * Instance of the binding-class for fragment_settings.xml. Allows for access of all the root views
      * ID's.
      */
 
-    private FragmentScheduleBinding binding;
+    private FragmentSettingsBinding binding;
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -50,14 +51,14 @@ public class ScheduleFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        scheduleViewModel =
-                new ViewModelProvider(this).get(ScheduleViewModel.class);
+        settingsViewModel =
+                new ViewModelProvider(this).get(SettingsViewModel.class);
 
-        binding = FragmentScheduleBinding.inflate(inflater, container, false);
+        binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSchedule;
-        scheduleViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textSettings;
+        settingsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -4,29 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * A class for building a workoutplan that contains zero or more workouts.
+ *
+ * @author ...
+ */
 public class Plan {
-    // Make sure not able to send null values from GUI
-    private String planName; // test with and without final, best to use final if possible
-    private List<Workout> workouts = new ArrayList<>(); // test with and without final, best to use final if possible
 
-    private static AtomicInteger nextId = new AtomicInteger();
-    private int id;
+    /**
+     * Variable for holding the plan name
+     */
+    private String planName; // Make sure not able to send null values from GUI
 
+    /**
+     * The list containing all the workouts in the plan
+     */
+    private List<Workout> workouts = new ArrayList<>();
+
+    /**
+     * Class constructor setting planName
+     *
+     * @param planName name of plan
+     */
     public Plan(String planName) {
-        id = nextId.incrementAndGet();
         this.planName = planName;
     }
 
+    /**
+     * Method for removing a workoutobject from the list of workouts
+     *
+     * @param workout workoutobject to be removed from list
+     */
     void removeWorkout(Workout workout) {
         workouts.remove(workout);
     }
 
-    void addWorkout(Workout workout) {
-        workouts.add(workout); // not sus
-    }
-    // method for changing workout?
-
-    public int getId() {
-        return id;
+    /**
+     * Method for adding a workoutobject to the list of workouts
+     *
+     * @param workout workoutobject to add to list
+     */
+    public void addWorkout(Workout workout) {
+        workouts.add(workout);
     }
 }

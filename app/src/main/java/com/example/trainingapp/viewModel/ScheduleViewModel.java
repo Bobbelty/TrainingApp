@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.schedule;
+package com.example.trainingapp.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel;
  * @author Valdemar Vålvik and Victor Hui
  */
 
-public class ScheduleViewModel extends ViewModel {
+public class ScheduleViewModel extends TrainingAppModelViewModel {
 
     /**
      * Variable for textView

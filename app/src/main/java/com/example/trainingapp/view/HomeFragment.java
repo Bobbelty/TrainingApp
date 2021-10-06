@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.settings;
+package com.example.trainingapp.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,29 +12,30 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.trainingapp.databinding.FragmentSettingsBinding;
+import com.example.trainingapp.databinding.FragmentHomeBinding;
+import com.example.trainingapp.viewModel.HomeViewModel;
 
 /**
- * SettingsFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
- * fragment.settings.xml
+ * HomeFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.home.xml
  *
  * @author Valdemar Vålvik and Victor Hui
  */
 
-public class SettingsFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
     /**
-     * Instance of SettingsViewModel to enable communication and displaying of the correct elements.
+     * Instance of HomeViewModel to enable communication and displaying of the correct elements.
      */
 
-    private SettingsViewModel settingsViewModel;
+    private HomeViewModel homeViewModel;
 
     /**
-     * Instance of the binding-class for fragment_settings.xml. Allows for access of all the root views
+     * Instance of the binding-class for fragment_home.xml. Allows for access of all the root views
      * ID's.
      */
 
-    private FragmentSettingsBinding binding;
+    private FragmentHomeBinding binding;
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -50,14 +51,14 @@ public class SettingsFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        settingsViewModel =
-                new ViewModelProvider(this).get(SettingsViewModel.class);
+        homeViewModel =
+                new ViewModelProvider(this).get(HomeViewModel.class);
 
-        binding = FragmentSettingsBinding.inflate(inflater, container, false);
+        binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSettings;
-        settingsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textHome;
+        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

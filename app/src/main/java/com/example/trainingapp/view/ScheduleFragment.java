@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.workout;
+package com.example.trainingapp.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,29 +12,30 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.trainingapp.databinding.FragmentWorkoutBinding;
+import com.example.trainingapp.databinding.FragmentScheduleBinding;
+import com.example.trainingapp.viewModel.ScheduleViewModel;
 
 /**
- * WorkoutFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
- * fragment.workout.xml
+ * ScheduleFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.schedule.xml
  *
  * @author Valdemar Vålvik and Victor Hui
  */
 
-public class WorkoutFragment extends Fragment {
+public class ScheduleFragment extends Fragment {
 
     /**
-     * Instance of WorkoutViewModel to enable communication and displaying of the correct elements.
+     * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
      */
 
-    private WorkoutViewModel workoutViewModel;
+    private ScheduleViewModel scheduleViewModel;
 
     /**
-     * Instance of the binding-class for fragment_workout.xml. Allows for access of all the root views
+     * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
      * ID's.
      */
 
-    private FragmentWorkoutBinding binding;
+    private FragmentScheduleBinding binding;
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -50,14 +51,14 @@ public class WorkoutFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        workoutViewModel =
-                new ViewModelProvider(this).get(WorkoutViewModel.class);
+        scheduleViewModel =
+                new ViewModelProvider(this).get(ScheduleViewModel.class);
 
-        binding = FragmentWorkoutBinding.inflate(inflater, container, false);
+        binding = FragmentScheduleBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textWorkout;
-        workoutViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final TextView textView = binding.textSchedule;
+        scheduleViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

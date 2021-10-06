@@ -2,28 +2,15 @@ package com.example.trainingapp.model;
 
 import com.example.trainingapp.mockDataBase.MockDataBase;
 
-import java.util.List;
-
 public class PlanBuilder {
     private MockDataBase mockDatabase;
 
     public void addPlanToDatabase(String planName){
-        mockDatabase.addPlan(createEmptyPlan(planName));
-    }
-    private Plan createEmptyPlan(String name){
-        return PlanFactory.createPlan(name);
-    }
-
-    private Workout createEmptyWorkout(String workoutName) {
-        return WorkoutFactory.createWorkout(workoutName);
-    }
-
-    private Exercise createExercise(String exerciseName, int exerciseId) {
-        return ExerciseFactory.createExercise(exerciseName, exerciseId);
+        mockDatabase.addPlan(WorkoutPlanFactory.createPlan(planName));
     }
 
     public void addWorkoutToPlan(Plan plan, String name) {
-        Workout workout = createEmptyWorkout(name);
+        Workout workout = WorkoutPlanFactory.createWorkout(name);
         plan.addWorkout(workout);
     }
 
@@ -33,9 +20,7 @@ public class PlanBuilder {
 
     public void addExerciseToWorkout(Workout workout, String exerciseName) {
         int exerciseId = mockDatabase.getExerciseIdFromMap(exerciseName);
-        Exercise exercise = createExercise(exerciseName, exerciseId);
+        Exercise exercise = WorkoutPlanFactory.createExercise(exerciseName, exerciseId);
         workout.addExercise(exercise);
     }
-
-
 }
