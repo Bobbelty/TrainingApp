@@ -30,21 +30,21 @@ public class Plan {
         this.planName = planName;
     }
 
-<<<<<<< HEAD
+
     /**
      * Method for removing a workoutobject from the list of workouts
      *
      * @param workout workoutobject to be removed from list
      */
-=======
+    void removeWorkout(Workout workout) {
+        workouts.remove(workout);
+    }
+
+
     public List<Workout> getWorkoutList(){
         return workouts;
     }
 
->>>>>>> a9905d6cb7b8ff6d6d0d1478a628db60570defb0
-    void removeWorkout(Workout workout) {
-        workouts.remove(workout);
-    }
 
     /**
      * Method for adding a workoutobject to the list of workouts
