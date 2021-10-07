@@ -40,7 +40,10 @@ public class Plan {
         workouts.remove(workout);
     }
 
-
+    /**
+     * Method for getting the list Workouts that Plan contains
+     * @return The list of Workouts that Plan contains
+     */
     public List<Workout> getWorkoutList(){
         return workouts;
     }

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * A class for buidling a workout. A workout contains zero or more exercises. Workouts are a part of a plan.
+ * A class for building a workout. A workout contains zero or more exercises. Workouts are a part of a plan.
  *
  * @author ...
  */
@@ -33,14 +33,14 @@ public class Workout {
     /**
      * Returns the name of the workout
      *
-     * @return workouts name
+     * @return Name of the workout
      */
     public String getName() {
         return workoutName;
     }
 
     /**
-     * Method for adding an exerciseobject to the list of exercises
+     * Method for adding an exerciseObject to the list of exercises
      *
      * @param exercise object to add to list
      */

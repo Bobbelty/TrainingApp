@@ -24,7 +24,8 @@ public class Exercise {
 
 
     /**
-     * An exercise contains an id to make it possible for PB-recording purposes
+     * An exercise contains an id to make it possible for PB-recording purposes. For example
+     * all Bench Press exercises will have the same id.
      */
     private int exerciseId;
 
@@ -34,32 +35,50 @@ public class Exercise {
         this.exerciseName = exerciseName;
     }
 
+    /**
+     * Returns the list of sets.
+     * @return list of sets
+     */
+
     public List<Integer> getReps(){
         return sets;
     }
 
-    public void addReps(Integer rep){
+    /**
+     * Method for adding a new set to the exercises' list of sets
+     * @param rep Amount of reps that the new set contains
+     */
+
+    public void addSet(Integer rep){
         sets.add(rep);
     }
 
-    public void removeReps(int index){
+    /**
+     * Method for removing a set from the exercises' list of sets
+     * @param index The index of the set that you want to remove
+     */
+
+    public void removeSet(int index){
         sets.remove(index);
 
     }
 
-
-
-
+    /**
+     * Method for getting the name of the exercise
+     * @return The name of the exercise
+     */
     public String getName(){
         return exerciseName;
     }
 
-    public int getId(){
+    /**
+     * Method for getting the exerciseId of the exercise
+     * @return The exerciseId of the exercise
+     */
+    public int getExerciseId(){
         return exerciseId;
     }
 
 
-//PLS WORK!
-    //123dummycomment
-    //further testing
+
 }

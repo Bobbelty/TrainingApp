@@ -21,7 +21,7 @@ public class ExerciseTest {
     @Test
     public void testGetId(){
         Exercise exercise = new Exercise("test", 123);
-        assertEquals(123, exercise.getId());
+        assertEquals(123, exercise.getExerciseId());
     }
 
     @Test
@@ -29,8 +29,8 @@ public class ExerciseTest {
         int testRep1 = 1;
         int testRep2 = 2;
         Exercise exercise = new Exercise("test", 123);
-        exercise.addReps(testRep1);
-        exercise.addReps(testRep2);
+        exercise.addSet(testRep1);
+        exercise.addSet(testRep2);
         assertEquals(testRep2, (int) exercise.getReps().get(1));
     }
 
