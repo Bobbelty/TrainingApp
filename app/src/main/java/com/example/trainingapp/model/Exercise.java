@@ -29,7 +29,12 @@ public class Exercise {
      */
     private int exerciseId;
 
-    
+    /**
+     * Class constructor setting exerciseName and exerciseId
+     *
+     * @param exerciseName name of exercise
+     * @param exerciseId Id of exercise
+     */
     public Exercise(String exerciseName, int exerciseId) {
         this.exerciseId = exerciseId;
         this.exerciseName = exerciseName;
