@@ -20,9 +20,13 @@ public class PlanBuilder {
     }
 
     public void addExerciseToWorkout(Workout workout, String exerciseName) {
-        int exerciseId = mockDatabase.getExerciseIdFromMap(exerciseName);
-        Exercise exercise = WorkoutPlanFactory.createExercise(exerciseName, exerciseId);
-        workout.addExercise(exercise);
+        try{
+            int exerciseId = mockDatabase.getExerciseIdFromMap(exerciseName);
+            Exercise exercise = WorkoutPlanFactory.createExercise(exerciseName, exerciseId);
+            workout.addExercise(exercise);
+        } catch (ExerciseIdNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 
