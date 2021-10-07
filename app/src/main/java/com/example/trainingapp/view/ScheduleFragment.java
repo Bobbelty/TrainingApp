@@ -4,16 +4,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.Spinner;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentScheduleBinding;
+import com.example.trainingapp.model.Exercise;
+import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.model.Workout;
+import com.example.trainingapp.view.Adapter.ScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.ScheduleViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ScheduleFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
@@ -28,14 +38,33 @@ public class ScheduleFragment extends Fragment {
      * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
      */
 
-    private ScheduleViewModel scheduleViewModel;
+    private ScheduleViewModel scheduleViewModel; // could possibly delete this
 
     /**
      * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
      * ID's.
      */
 
-    private FragmentScheduleBinding binding;
+    private FragmentScheduleBinding binding; //
+
+    // objects to test on
+    // private List<Integer> listOfSetsLegpress = new ArrayList<>();
+    //private List<Exercise> listOfExercisesLegday = new ArrayList<>();
+    //private List<Workout> listOfWorkoutsLegday = new ArrayList<>();
+    //private List<Integer> listOfSetsBench = new ArrayList<>();
+    //private List<Exercise> listOfExercisesChestday = new ArrayList<>();
+    //private List<Workout> listOfWorkoutsChestday = new ArrayList<>();
+
+    private Exercise legpress;
+    private Workout legday;
+    private Exercise benchpress;
+    private Workout chestday;
+
+    private List<Plan> testPlans = new ArrayList<>();
+
+    Plan plan; // plan should be the first plan in the database (SavedPlans)
+    ScheduleRecyclerViewAdapter recyclerViewAdapter;
+
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -48,23 +77,96 @@ public class ScheduleFragment extends Fragment {
      *
      * @return Return the View for the fragment's UI, or null.
      */
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        scheduleViewModel =
-                new ViewModelProvider(this).get(ScheduleViewModel.class);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_schedule,container,false);
 
-        binding = FragmentScheduleBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        initObjects();
+        initRecyclerView(v);
+        initSpinner(v);
 
-        final TextView textView = binding.textSchedule;
-        scheduleViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        return v;
+    }
+
+    private void initRecyclerView(View v) {
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.schedule_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        //FrameLayout fl = (FrameLayout) v.findViewById(R.id.fragment_container);
+        recyclerViewAdapter = new ScheduleRecyclerViewAdapter(plan, this.getContext());
+        recyclerView.setAdapter(recyclerViewAdapter);
+    }
+    private void initSpinner(View v) {
+
+        Spinner dropdown = (Spinner) v.findViewById(R.id.schedule_spinner_dropdown);
+        ArrayAdapter<Plan> adapter = new ArrayAdapter<Plan>(this.getActivity(), android.R.layout.simple_spinner_item, testPlans);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        dropdown.setAdapter(adapter);
+
+        dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+
+                plan = testPlans.get(position);
+
+                // sets new plan and notifies the adapter of the change
+                recyclerViewAdapter.setNewPlan(plan);
+                //user.setActivePlan(plan);
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
-        return root;
+    }
+    //initiates test objects
+    private void initObjects() {
+        // setting up test objects
+
+        /*
+        listOfSetsLegpress.add(5); // 5 reps 1 time
+        listOfSetsBench.add(3); // 3 reps 1 time
+         */
+
+        legpress = new Exercise("legpress", 123);
+        legpress.addSet(5);
+        benchpress = new Exercise("benchpress", 231);
+        benchpress.addSet(3);
+
+        /*
+        listOfExercisesLegday.add(legpress);
+        listOfExercisesChestday.add(benchpress);
+         */
+
+        legday = new Workout("legday");
+        legday.addExercise(legpress);
+        chestday = new Workout("chestday");
+        chestday.addExercise(benchpress);
+
+
+        /*
+        listOfWorkoutsLegday.add(legday);
+        listOfWorkoutsLegday.add(chestday);
+
+        listOfWorkoutsChestday.add(chestday);
+        listOfWorkoutsChestday.add(legday);
+         */
+
+        Plan plan1 = new Plan("summer workout");
+        plan1.addWorkout(legday);
+        plan1.addWorkout(chestday);
+        Plan plan2 = new Plan("winter workout");
+        plan2.addWorkout(chestday);
+        plan1.addWorkout(legday);
+
+        testPlans.add(plan1);
+        testPlans.add(plan2);
+        plan = plan1;
+
+
     }
 
     /**

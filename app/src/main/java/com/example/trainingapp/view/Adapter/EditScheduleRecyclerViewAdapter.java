@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.edit_schedule;
+package com.example.trainingapp.view.Adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +41,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
 
     @Override
     public int getItemCount() {
-        return selectedWorkout.getExercises().size();
+        return selectedWorkout.getExerciseList().size();
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder{

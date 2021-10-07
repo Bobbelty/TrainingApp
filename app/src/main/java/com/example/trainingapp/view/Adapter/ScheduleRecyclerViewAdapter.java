@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.show_schedule;
+package com.example.trainingapp.view.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,20 +6,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.TestActivity;
+import com.example.trainingapp.view.TestActivity;
 import com.example.trainingapp.model.Plan;
-import com.example.trainingapp.ui.edit_schedule.EditScheduleFragment;
 
 public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder> {
 
@@ -47,7 +42,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
 
-        holder.lblWorkoutName.setText(plan.getWorkouts().get(position).getName());
+        holder.lblWorkoutName.setText(plan.getWorkoutList().get(position).getName());
         // set list views
         holder.btnEditExercise.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +56,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
 
     @Override
     public int getItemCount() {
-        return plan.getWorkouts().size();
+        return plan.getWorkoutList().size();
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder{

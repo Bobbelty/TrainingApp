@@ -7,9 +7,10 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_view"
-        android:name="com.example.trainingapp.ui.edit_schedule.EditScheduleFragment"
+        android:name="com.example.trainingapp.view.EditScheduleFragment"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/lblSelectedWorkout"

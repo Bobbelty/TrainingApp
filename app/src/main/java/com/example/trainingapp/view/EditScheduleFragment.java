@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.edit_schedule;
+package com.example.trainingapp.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.Workout;
-import com.example.trainingapp.ui.show_schedule.ScheduleRecyclerViewAdapter;
 
 public class EditScheduleFragment extends Fragment {
 

@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TestActivity"
+            android:name=".view.TestActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
