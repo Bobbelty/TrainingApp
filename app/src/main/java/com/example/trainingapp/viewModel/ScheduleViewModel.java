@@ -12,13 +12,15 @@ import androidx.lifecycle.ViewModel;
  * @author Valdemar Vålvik and Victor Hui
  */
 
-public class ScheduleViewModel extends TrainingAppModelViewModel {
+public class ScheduleViewModel extends TrainingAppModelViewModel{
 
     /**
      * Variable for textView
      */
 
     private MutableLiveData<String> mText;
+
+    // Create an ArrayAdapter using the string array and a default spinner layout
 
     /**
      * Class constructor

@@ -1,17 +1,11 @@
-package com.example.trainingapp;
+package com.example.trainingapp.view;
 
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.example.trainingapp.databinding.ActivityMainBinding;
-import com.example.trainingapp.ui.edit_schedule.EditScheduleFragment;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.trainingapp.R;
+import com.example.trainingapp.view.EditScheduleFragment;
 
 public class TestActivity extends AppCompatActivity {
 
