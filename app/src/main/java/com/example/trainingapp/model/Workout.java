@@ -48,10 +48,20 @@ public class Workout {
         exercises.add(exercise);
     }
 
+    /**
+     * Returns the list of exercises
+     *
+     * @return the list of exercises that Workout contains
+     */
     public List<Exercise> getExerciseList(){
         return exercises;
     }
 
+    /**
+     * Method for removing an exerciseObject from the list of exercises
+     *
+     * @param exercise object to remove from the list
+     */
     public void removeExercise(Exercise exercise) {
         exercises.remove(exercise);
     }
