@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+
 /**
  * A class for building a workoutplan that contains zero or more workouts.
  *
@@ -56,5 +57,9 @@ public class Plan {
      */
     public void addWorkout(Workout workout) {
         workouts.add(workout);
+    }
+    @Override
+    public String toString() {
+        return planName;
     }
 }

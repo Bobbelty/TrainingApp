@@ -3,14 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Admin/Documents/GitHub/TrainingApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.19583333333333333" />
-        <entry key="..\:/Users/Admin/Documents/GitHub/TrainingApp/app/src/main/res/layout/activity_main.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/Admin/Documents/GitHub/TrainingApp/app/src/main/res/layout/fragment_history.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/Admin/Documents/GitHub/TrainingApp/app/src/main/res/layout/fragment_home.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/Admin/Documents/GitHub/TrainingApp/app/src/main/res/layout/fragment_schedule.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/Admin/Documents/GitHub/TrainingApp/app/src/main/res/layout/fragment_settings.xml" value="0.14130434782608695" />
-        <entry key="..\:/Users/Admin/Documents/GitHub/TrainingApp/app/src/main/res/layout/fragment_workout.xml" value="0.14130434782608695" />
+        <entry key="app/src/main/res/layout/fragment_dropdown.xml" value="0.2164855072463768" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1864123145548987" />
+        <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.2164855072463768" />
+        <entry key="app/src/main/res/layout/fragment_schedule_list_item.xml" value="0.2744345336709179" />
+        <entry key="app/src/main/res/layout/fragment_schedule_recyclerview.xml" value="0.37063203303182557" />
       </map>
     </option>
   </component>

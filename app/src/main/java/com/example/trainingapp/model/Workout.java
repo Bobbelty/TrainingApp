@@ -30,6 +30,7 @@ public class Workout {
         this.workoutName = workoutName;
     }
 
+
     /**
      * Returns the name of the workout
      *
@@ -65,4 +66,5 @@ public class Workout {
     public void removeExercise(Exercise exercise) {
         exercises.remove(exercise);
     }
+
 }
