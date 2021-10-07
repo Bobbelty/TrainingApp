@@ -8,13 +8,19 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.model.Workout;
+import com.example.trainingapp.ui.show_schedule.ScheduleRecyclerViewAdapter;
 
 public class EditScheduleFragment extends Fragment {
 
-    Plan activePlan;
+    //Plan activePlan;
+    Workout selecterWorkout;
+    TextView titleText;
+
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -36,13 +42,23 @@ public class EditScheduleFragment extends Fragment {
 
 
         initTitleText(v);
-
+        //initRecyclerView(v);
         return v;
     }
 
+    private void initRecyclerView(View v) {
+        
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        //recyclerViewAdapter = new EditScheduleRecyclerViewAdapter();
+        //recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
     private void initTitleText(View v) {
-        TextView lblTitleText = v.findViewById(R.id.btnEditExercise);
-        lblTitleText.setText(activePlan.getPlanName());
+        titleText = v.findViewById(R.id.lblSelectedWorkout);
+        //titleText.setText(activePlan.getPlanName());
+        titleText.setText("hej");
     }
 
 }

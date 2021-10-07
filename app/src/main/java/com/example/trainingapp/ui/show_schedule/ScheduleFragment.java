@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.Nullable;
@@ -61,7 +62,7 @@ public class ScheduleFragment extends Fragment {
     private List<Plan> testPlans = new ArrayList<>();
 
     Plan plan; // plan should be the first plan in the database (SavedPlans)
-    RecyclerViewAdapter recyclerViewAdapter;
+    ScheduleRecyclerViewAdapter recyclerViewAdapter;
 
 
     /**
@@ -91,7 +92,8 @@ public class ScheduleFragment extends Fragment {
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.schedule_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerViewAdapter = new RecyclerViewAdapter(plan);
+        //FrameLayout fl = (FrameLayout) v.findViewById(R.id.fragment_container);
+        recyclerViewAdapter = new ScheduleRecyclerViewAdapter(plan, this.getContext());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
     private void initSpinner(View v) {
@@ -109,6 +111,7 @@ public class ScheduleFragment extends Fragment {
 
                 // sets new plan and notifies the adapter of the change
                 recyclerViewAdapter.setNewPlan(plan);
+                //user.setActivePlan(plan);
                 recyclerViewAdapter.notifyDataSetChanged();
             }
 
