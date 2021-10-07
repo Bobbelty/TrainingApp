@@ -1,42 +1,62 @@
 package com.example.trainingapp.model;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
+
+/**
+ * A class for building a workoutplan that contains zero or more workouts.
+ *
+ * @author ...
+ */
 public class Plan {
-    // Make sure not able to send null values from GUI
-    private String planName; // test with and without final, best to use final if possible
-    private List<Workout> workouts; // test with and without final, best to use final if possible
 
-    public String getPlanName() {
-        return planName;
+    /**
+     * Variable for holding the plan name
+     */
+    private String planName; // Make sure not able to send null values from GUI
+
+    /**
+     * The list containing all the workouts in the plan
+     */
+    private List<Workout> workouts = new ArrayList<>();
+
+    /**
+     * Class constructor setting planName
+     *
+     * @param planName name of plan
+     */
+    public Plan(String planName) {
+        this.planName = planName;
     }
 
-    public List<Workout> getWorkouts() {
+
+    /**
+     * Method for removing a workoutobject from the list of workouts
+     *
+     * @param workout workoutobject to be removed from list
+     */
+    void removeWorkout(Workout workout) {
+        workouts.remove(workout);
+    }
+
+    /**
+     * Method for getting the list Workouts that Plan contains
+     * @return The list of Workouts that Plan contains
+     */
+    public List<Workout> getWorkoutList(){
         return workouts;
     }
 
-    public Plan(String planName, List<Workout> workouts) {
-        this.planName = planName;
-        this.workouts = workouts;
-    }
 
-    void deleteWorkout(String workoutName) {
-        for (Workout w: workouts) {
-            if (w.getName().equals(workoutName)) { // sus?
-                workouts.remove(w);
-            }
-        }
-    }
-    void addWorkout(Workout workout) {
-        workouts.add(workout); // not sus
-    }
-    // method for changing workout?
-    void changeWorkout(Workout changedWorkout, String oldWorkoutName) {
-        for (int i = 0; i < workouts.size(); i++) {
-            if (workouts.get(i).getName() == oldWorkoutName) {
-                workouts.set(i, changedWorkout);
-            }
-        }
+    /**
+     * Method for adding a workoutobject to the list of workouts
+     *
+     * @param workout workoutobject to add to list
+     */
+    public void addWorkout(Workout workout) {
+        workouts.add(workout);
     }
     @Override
     public String toString() {

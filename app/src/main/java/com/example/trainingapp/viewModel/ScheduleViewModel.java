@@ -1,4 +1,4 @@
-package com.example.trainingapp.ui.settings;
+package com.example.trainingapp.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel;
  * @author Valdemar Vålvik and Victor Hui
  */
 
-public class SettingsViewModel extends ViewModel {
+public class ScheduleViewModel extends TrainingAppModelViewModel {
 
     /**
      * Variable for textView
@@ -24,9 +24,9 @@ public class SettingsViewModel extends ViewModel {
      * Class constructor
      */
 
-    public SettingsViewModel() {
+    public ScheduleViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is settings fragment");
+        mText.setValue("This is schedule fragment");
     }
 
     /**
