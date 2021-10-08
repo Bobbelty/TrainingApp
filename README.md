@@ -13,5 +13,5 @@ This is the official Training App by AEY Investment Group
    and press "Create virtual device..." in bottom left corner. Follow the wizard. 
    Recommended device is Pixel XL.
    
-4. Profit
+4. Profit!
 
