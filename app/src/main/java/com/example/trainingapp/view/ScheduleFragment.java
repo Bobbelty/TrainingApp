@@ -160,7 +160,7 @@ public class ScheduleFragment extends Fragment {
         plan1.addWorkout(chestday);
         Plan plan2 = new Plan("winter workout");
         plan2.addWorkout(chestday);
-        plan1.addWorkout(legday);
+        plan2.addWorkout(legday);
 
         testPlans.add(plan1);
         testPlans.add(plan2);

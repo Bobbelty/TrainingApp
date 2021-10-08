@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.view.EditScheduleFragment;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -17,12 +16,12 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState == null) {
+        /*if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
-                    .add(R.id.container_view, EditScheduleFragment.class, null)
+                    .add(R.id.edit_container_view, EditScheduleFragment.class, null)
                     .commit();
-        }
+        }*/
 
         /*
         binding = ActivityMainBinding.inflate(getLayoutInflater());
