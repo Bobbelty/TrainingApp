@@ -2,32 +2,27 @@ package com.example.trainingapp.model;
 
 import com.example.trainingapp.mockDataBase.MockDataBase;
 
+import java.util.List;
+
 /**
  * Class for handling the objects in the application using a MockDatabase
  */
 public class PlanBuilder {
 
     /**
-     * PlanBuilder uses a MockDatabase to store plans, workouts and exercises
-     * during runtime
-     */
-    private MockDataBase mockDatabase;
-
-    /**
-     * Method for adding a plan to the mockDatabase
+     * Returns a new Plan-object
      *
      * @param planName the name of the plan
      */
-    //look at later
-    public void addPlanToDatabase(String planName){
-        mockDatabase.addPlan(WorkoutPlanFactory.createPlan(planName));
+    public Plan createNewPlan(String planName){
+        return WorkoutPlanFactory.createPlan(planName);
     }
 
     /**
      * Method for adding a workout to a plan
      *
      * @param plan the reference to the plan object
-     * @param name the name of the workout
+     * @param name the name of the Workout-object that gets added to the Plan
      */
     public void addWorkoutToPlan(Plan plan, String name) {
         Workout workout = WorkoutPlanFactory.createWorkout(name);
@@ -50,14 +45,9 @@ public class PlanBuilder {
      * @param workout the reference to the workout object
      * @param exerciseName the name of the exercise
      */
-    public void addExerciseToWorkout(Workout workout, String exerciseName) {
-        try{
-            int exerciseId = mockDatabase.getExerciseIdFromMap(exerciseName);
-            Exercise exercise = WorkoutPlanFactory.createExercise(exerciseName, exerciseId);
-            workout.addExercise(exercise);
-        } catch (ExerciseIdNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void addExerciseToWorkout(Workout workout, String exerciseName, int exerciseID) {
+        Exercise exercise = WorkoutPlanFactory.createExercise(exerciseName, exerciseID);
+        workout.addExercise(exercise);
     }
 
 
@@ -70,7 +60,4 @@ public class PlanBuilder {
     public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
         workout.removeExercise(exercise);
     }
-
-
-
 }

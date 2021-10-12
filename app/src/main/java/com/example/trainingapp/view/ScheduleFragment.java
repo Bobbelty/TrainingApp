@@ -38,7 +38,7 @@ public class ScheduleFragment extends Fragment {
      * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
      */
 
-    private ScheduleViewModel scheduleViewModel; // could possibly delete this
+    private ScheduleViewModel scheduleViewModel = new ScheduleViewModel(); // could possibly delete this
 
     /**
      * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
@@ -48,12 +48,6 @@ public class ScheduleFragment extends Fragment {
     private FragmentScheduleBinding binding; //
 
     // objects to test on
-
-
-    private Exercise legpress;
-    private Workout legday;
-    private Exercise benchpress;
-    private Workout chestday;
 
     private List<Plan> testPlans = new ArrayList<>();
 
@@ -120,36 +114,8 @@ public class ScheduleFragment extends Fragment {
     //initiates test objects
     private void initObjects() {
         // setting up test objects
-
-
-
-        legpress = new Exercise("legpress", 123);
-        legpress.addSet(5);
-        benchpress = new Exercise("benchpress", 231);
-        benchpress.addSet(3);
-
-
-
-        legday = new Workout("legday");
-        legday.addExercise(legpress);
-        chestday = new Workout("chestday");
-        chestday.addExercise(benchpress);
-
-
-
-
-        Plan plan1 = new Plan("summer workout");
-        plan1.addWorkout(legday);
-        plan1.addWorkout(chestday);
-        Plan plan2 = new Plan("winter workout");
-        plan2.addWorkout(chestday);
-        plan2.addWorkout(legday);
-
-        testPlans.add(plan1);
-        testPlans.add(plan2);
-        plan = plan1;
-
-
+        testPlans = scheduleViewModel.getTrainingAppModel().getMockData();
+        plan = testPlans.get(0);
     }
 
     /**
