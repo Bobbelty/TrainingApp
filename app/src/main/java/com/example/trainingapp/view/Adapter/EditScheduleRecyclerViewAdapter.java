@@ -1,5 +1,6 @@
 package com.example.trainingapp.view.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,8 +33,10 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
 
-        holder.lblExercise.setText("Övning 1");
-        holder.etbxNoOfSets.setText("5");
+        // temporary values, should get from database later
+        holder.lblExercise.setText(selectedWorkout.getExerciseList().get(position).getName());
+        System.out.println(selectedWorkout.getExerciseList().get(position).getReps().size());
+        //holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getReps().size());
         holder.etbxReps.setText("10");
 
         // Either savebutton to save data to database or event from edit text boxes
