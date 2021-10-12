@@ -1,5 +1,7 @@
 package com.example.trainingapp.model;
 
+import java.util.List;
+
 /**
  * The TrainingApp-class purpose is to act as a facade of the model towards the ViewModels.
  * It contains method for communication with the database. Furthermore it can access the model
@@ -9,6 +11,9 @@ public class TrainingAppFacade {
     private User user = new User();
 
 
+    public List<Plan> getSavedPlans(){
+        return user.getSavedPlans();
+    }
     public void createNewPlan(String planName){
         user.createNewPlan(planName);
     }

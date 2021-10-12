@@ -114,7 +114,7 @@ public class ScheduleFragment extends Fragment {
     //initiates test objects
     private void initObjects() {
         // setting up test objects
-        testPlans = scheduleViewModel.getTrainingAppModel().getMockData();
+        testPlans = scheduleViewModel.getTrainingAppModel().getSavedPlans();
         plan = testPlans.get(0);
     }
 
