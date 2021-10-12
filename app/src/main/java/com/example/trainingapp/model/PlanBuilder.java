@@ -22,10 +22,10 @@ public class PlanBuilder {
      * Method for adding a workout to a plan
      *
      * @param plan the reference to the plan object
-     * @param name the name of the Workout-object that gets added to the Plan
+     * @param workoutName the name of the Workout-object that gets added to the Plan
      */
-    public void addWorkoutToPlan(Plan plan, String name) {
-        Workout workout = WorkoutPlanFactory.createWorkout(name);
+    public void addWorkoutToPlan(Plan plan, String workoutName) {
+        Workout workout = WorkoutPlanFactory.createWorkout(workoutName);
         plan.addWorkout(workout);
     }
 

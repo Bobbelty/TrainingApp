@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MockDataBase {
+public class MockDataBase implements IDatabase {
     List<Plan> planList = new ArrayList<>();
     List<Workout> completedWorkouts = new ArrayList<>();
 
