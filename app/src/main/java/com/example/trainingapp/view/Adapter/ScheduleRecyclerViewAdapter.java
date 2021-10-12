@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.view.TestActivity;
+import com.example.trainingapp.view.EditScheduleActivity;
 import com.example.trainingapp.model.Plan;
 
 public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder> {
@@ -48,7 +48,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
             @Override
             public void onClick (View v) {
                 // send over plan.getWorkouts().get(position) via TextActivity
-                Intent openActivity = new Intent(context, TestActivity.class);
+                Intent openActivity = new Intent(context, EditScheduleActivity.class);
                 context.startActivity(openActivity);
             }
         });

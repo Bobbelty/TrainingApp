@@ -11,10 +11,13 @@ import java.util.List;
 
 public class MockDataBase implements IDatabase {
     List<Plan> planList = new ArrayList<>();
+    List<Workout> completedWorkouts = new ArrayList<>();
+
     /*It's possible to iterate through a hashMap, so this HashMap can be used for both
     storing savedExercises and getting the savedExercises for display purposes.*/
 
     HashMap<String, Integer> ExerciseIdMap = new HashMap<>();
+    HashMap<Integer, Integer> currentPBs = new HashMap<>();
 
 
     public MockDataBase(){
@@ -113,5 +116,19 @@ public class MockDataBase implements IDatabase {
 
     public List<Plan> getPlanList(){
         return planList;
+    }
+
+    public List<Workout> getCompletedWorkouts() {
+        return completedWorkouts;
+    }
+
+    public void addToCompletedWorkouts(Workout workout) {completedWorkouts.add(workout);}
+
+    public HashMap<Integer, Integer> getCurrentPBs() {
+        return currentPBs;
+    }
+
+    public void addToCurrentPBs(Integer exerciseId, Integer newWeight) {
+        currentPBs.put(exerciseId, newWeight);
     }
 }
