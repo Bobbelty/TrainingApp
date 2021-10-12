@@ -2,12 +2,12 @@ package com.example.trainingapp.viewModel;
 
 import androidx.lifecycle.ViewModel;
 
-import com.example.trainingapp.model.TrainingApp;
+import com.example.trainingapp.model.TrainingAppFacade;
 
 public abstract class TrainingAppModelViewModel extends ViewModel {
-    private static final TrainingApp trainingAppModel = new TrainingApp();
+    private static final TrainingAppFacade trainingAppModel = new TrainingAppFacade();
 
-    protected final TrainingApp getInstanceOfTrainingModel(){
+    protected final TrainingAppFacade getInstanceOfTrainingModel(){
         return trainingAppModel;
     }
 }

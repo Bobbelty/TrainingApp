@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MockDataBase {
+public class MockDataBase implements IDatabase {
     List<Plan> planList = new ArrayList<>();
     /*It's possible to iterate through a hashMap, so this HashMap can be used for both
     storing savedExercises and getting the savedExercises for display purposes.*/
