@@ -66,5 +66,4 @@ public class Workout {
     public void removeExercise(Exercise exercise) {
         exercises.remove(exercise);
     }
-
 }

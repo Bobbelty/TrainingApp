@@ -1,5 +1,6 @@
 package com.example.trainingapp.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -38,7 +40,7 @@ public class ScheduleFragment extends Fragment {
      * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
      */
 
-    private ScheduleViewModel scheduleViewModel = new ScheduleViewModel(); // could possibly delete this
+    private ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
 
     /**
      * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
@@ -96,9 +98,7 @@ public class ScheduleFragment extends Fragment {
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
-
                 plan = testPlans.get(position);
-
                 // sets new plan and notifies the adapter of the change
                 recyclerViewAdapter.setNewPlan(plan);
                 //user.setActivePlan(plan);
@@ -116,7 +116,7 @@ public class ScheduleFragment extends Fragment {
         // setting up test objects
 
         testPlans = scheduleViewModel.getTrainingAppModel().getMockData();
-        plan = testPlans.get(0);
+        plan = testPlans.get(0); // get active plan instead
 
     }
 

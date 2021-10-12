@@ -18,6 +18,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
 
     private Workout selectedWorkout;
 
+
     public EditScheduleRecyclerViewAdapter(Workout selectedWorkout) {
         this.selectedWorkout = selectedWorkout;
     }
@@ -33,11 +34,9 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
 
-        // temporary values, should get from database later
         holder.lblExercise.setText(selectedWorkout.getExerciseList().get(position).getName());
-        System.out.println(selectedWorkout.getExerciseList().get(position).getReps().size());
-        //holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getReps().size());
-        holder.etbxReps.setText("10");
+        holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
+        holder.etbxReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfReps() + "");
 
         // Either savebutton to save data to database or event from edit text boxes
     }

@@ -10,7 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MockDataBase {
+
+    Plan activePlan = null;
     List<Plan> planList = new ArrayList<>();
+
     /*It's possible to iterate through a hashMap, so this HashMap can be used for both
     storing savedExercises and getting the savedExercises for display purposes.*/
 
@@ -28,23 +31,17 @@ public class MockDataBase {
         Exercise exampleExercise3 = new Exercise("Squats", 125);
         Exercise exampleExercise4 = new Exercise("Leg press", 126);
 
-        exampleExercise1.addSet(12);
-        exampleExercise1.addSet(12);
-        exampleExercise1.addSet(12);
+        exampleExercise1.setNumberOfSets(4);
+        exampleExercise1.setNumberOfReps(8);
 
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
+        exampleExercise2.setNumberOfSets(5);
+        exampleExercise2.setNumberOfReps(10);
 
-        exampleExercise3.addSet(12);
-        exampleExercise3.addSet(12);
-        exampleExercise3.addSet(12);
+        exampleExercise3.setNumberOfSets(4);
+        exampleExercise3.setNumberOfReps(4);
 
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
+        exampleExercise4.setNumberOfSets(6);
+        exampleExercise4.setNumberOfReps(12);
 
         exampleWorkout1.addExercise(exampleExercise1);
         exampleWorkout1.addExercise(exampleExercise2);
@@ -64,23 +61,17 @@ public class MockDataBase {
         exampleExercise1 = new Exercise("Squats", 125);
         exampleExercise2 = new Exercise("Leg press", 126);
 
-        exampleExercise1.addSet(12);
-        exampleExercise1.addSet(12);
-        exampleExercise1.addSet(12);
+        exampleExercise1.setNumberOfSets(4);
+        exampleExercise1.setNumberOfReps(8);
 
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
+        exampleExercise2.setNumberOfSets(5);
+        exampleExercise2.setNumberOfReps(10);
 
-        exampleExercise3.addSet(12);
-        exampleExercise3.addSet(12);
-        exampleExercise3.addSet(12);
+        exampleExercise3.setNumberOfSets(4);
+        exampleExercise3.setNumberOfReps(4);
 
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
+        exampleExercise4.setNumberOfSets(6);
+        exampleExercise4.setNumberOfReps(12);
 
         exampleWorkout1.addExercise(exampleExercise1);
         exampleWorkout1.addExercise(exampleExercise2);
@@ -114,4 +105,5 @@ public class MockDataBase {
     public List<Plan> getPlanList(){
         return planList;
     }
+
 }

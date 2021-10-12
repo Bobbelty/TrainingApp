@@ -12,16 +12,16 @@ public class Exercise {
     /**
      * Name of the exercise
      */
-    String exerciseName;
-
+    private String exerciseName;
 
     /**
-     * List of reps for each set. Each element of the list is the nr of reps and the size of the
-     * list is the nr of sets. Ex [12, 12, 12] means 3 sets of 12
+     * Number of sets for the exercise
      */
-
-    List<Integer> sets = new ArrayList<>();
-
+    private int numberOfSets;
+    /**
+     * Number of reps for the exercise
+     */
+    private int numberOfReps;
 
     /**
      * An exercise contains an id to make it possible for PB-recording purposes. For example
@@ -41,33 +41,36 @@ public class Exercise {
     }
 
     /**
-     * Returns the list of sets.
-     * @return list of sets
+     * Method to get the number of sets of the exercise
+     * @param numberOfReps
      */
-
-    public List<Integer> getReps(){
-        return sets;
+    public int getNumberOfSets() {
+        return numberOfSets;
     }
 
     /**
-     * Method for adding a new set to the exercises' list of sets
-     * @param rep Amount of reps that the new set contains
+     * Method to set the number of set of the exercise
+     * @param numberOfReps
      */
-
-    public void addSet(Integer rep){
-        sets.add(rep);
+    public void setNumberOfSets(int numberOfSets) {
+        this.numberOfSets = numberOfSets;
     }
 
     /**
-     * Method for removing a set from the exercises' list of sets
-     * @param index The index of the set that you want to remove
+     * Method to get the number of reps of the exercise
+     * @param numberOfReps
      */
-
-    public void removeSet(int index){
-        sets.remove(index);
-
+    public int getNumberOfReps() {
+        return numberOfReps;
     }
 
+    /**
+     * Method to change the number of reps of the exercise
+     * @param numberOfReps
+     */
+    public void setNumberOfReps(int numberOfReps) {
+        this.numberOfReps = numberOfReps;
+    }
     /**
      * Method for getting the name of the exercise
      * @return The name of the exercise
