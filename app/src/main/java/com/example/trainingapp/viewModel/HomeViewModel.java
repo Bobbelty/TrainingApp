@@ -36,4 +36,6 @@ public class HomeViewModel extends TrainingAppModelViewModel {
     public LiveData<String> getText() {
         return mText;
     }
+
+
 }

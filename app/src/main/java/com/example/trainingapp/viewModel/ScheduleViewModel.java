@@ -4,6 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.model.TrainingApp;
+
+import java.util.List;
+
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data
  * objects from the model in such a way that objects are easily managed and presented.
@@ -19,6 +24,7 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
      */
 
     private MutableLiveData<String> mText;
+    private TrainingApp trainingAppModel;
 
     // Create an ArrayAdapter using the string array and a default spinner layout
 
@@ -29,6 +35,8 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     public ScheduleViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is schedule fragment");
+
+        trainingAppModel = getInstanceOfTrainingModel();
     }
 
     /**
@@ -37,5 +45,9 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
 
     public LiveData<String> getText() {
         return mText;
+    }
+
+    public TrainingApp getTrainingAppModel(){
+        return trainingAppModel;
     }
 }

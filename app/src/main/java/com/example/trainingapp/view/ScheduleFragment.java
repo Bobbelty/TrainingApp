@@ -38,7 +38,7 @@ public class ScheduleFragment extends Fragment {
      * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
      */
 
-    private ScheduleViewModel scheduleViewModel; // could possibly delete this
+    private ScheduleViewModel scheduleViewModel = new ScheduleViewModel(); // could possibly delete this
 
     /**
      * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
@@ -48,17 +48,6 @@ public class ScheduleFragment extends Fragment {
     private FragmentScheduleBinding binding; //
 
     // objects to test on
-    // private List<Integer> listOfSetsLegpress = new ArrayList<>();
-    //private List<Exercise> listOfExercisesLegday = new ArrayList<>();
-    //private List<Workout> listOfWorkoutsLegday = new ArrayList<>();
-    //private List<Integer> listOfSetsBench = new ArrayList<>();
-    //private List<Exercise> listOfExercisesChestday = new ArrayList<>();
-    //private List<Workout> listOfWorkoutsChestday = new ArrayList<>();
-
-    private Exercise legpress;
-    private Workout legday;
-    private Exercise benchpress;
-    private Workout chestday;
 
     private List<Plan> testPlans = new ArrayList<>();
 
@@ -100,7 +89,7 @@ public class ScheduleFragment extends Fragment {
     private void initSpinner(View v) {
 
         Spinner dropdown = (Spinner) v.findViewById(R.id.schedule_spinner_dropdown);
-        ArrayAdapter<Plan> adapter = new ArrayAdapter<Plan>(this.getActivity(), android.R.layout.simple_spinner_item, testPlans);
+        ArrayAdapter<Plan> adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, testPlans);
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         dropdown.setAdapter(adapter);
 
@@ -126,46 +115,8 @@ public class ScheduleFragment extends Fragment {
     private void initObjects() {
         // setting up test objects
 
-        /*
-        listOfSetsLegpress.add(5); // 5 reps 1 time
-        listOfSetsBench.add(3); // 3 reps 1 time
-         */
-
-        legpress = new Exercise("legpress", 123);
-        legpress.addSet(5);
-        benchpress = new Exercise("benchpress", 231);
-        benchpress.addSet(3);
-
-        /*
-        listOfExercisesLegday.add(legpress);
-        listOfExercisesChestday.add(benchpress);
-         */
-
-        legday = new Workout("legday");
-        legday.addExercise(legpress);
-        chestday = new Workout("chestday");
-        chestday.addExercise(benchpress);
-
-
-        /*
-        listOfWorkoutsLegday.add(legday);
-        listOfWorkoutsLegday.add(chestday);
-
-        listOfWorkoutsChestday.add(chestday);
-        listOfWorkoutsChestday.add(legday);
-         */
-
-        Plan plan1 = new Plan("summer workout");
-        plan1.addWorkout(legday);
-        plan1.addWorkout(chestday);
-        Plan plan2 = new Plan("winter workout");
-        plan2.addWorkout(chestday);
-        plan2.addWorkout(legday);
-
-        testPlans.add(plan1);
-        testPlans.add(plan2);
-        plan = plan1;
-
+        testPlans = scheduleViewModel.getTrainingAppModel().getMockData();
+        plan = testPlans.get(0);
 
     }
 
