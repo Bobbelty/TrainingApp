@@ -1,9 +1,5 @@
 package com.example.trainingapp.model;
 
-import com.example.trainingapp.mockDataBase.MockDataBase;
-
-import java.util.List;
-
 /**
  * Class for handling the objects in the application using a MockDatabase
  */
@@ -15,7 +11,7 @@ public class PlanBuilder {
      * @param planName the name of the plan
      */
     public Plan createNewPlan(String planName){
-        return WorkoutPlanFactory.createPlan(planName);
+        return PlanComponentFactory.createPlan(planName);
     }
 
     /**
@@ -25,7 +21,7 @@ public class PlanBuilder {
      * @param workoutName the name of the Workout-object that gets added to the Plan
      */
     public void addWorkoutToPlan(Plan plan, String workoutName) {
-        Workout workout = WorkoutPlanFactory.createWorkout(workoutName);
+        Workout workout = PlanComponentFactory.createWorkout(workoutName);
         plan.addWorkout(workout);
     }
 
@@ -46,7 +42,7 @@ public class PlanBuilder {
      * @param exerciseName the name of the exercise
      */
     public void addExerciseToWorkout(Workout workout, String exerciseName, int exerciseID) {
-        Exercise exercise = WorkoutPlanFactory.createExercise(exerciseName, exerciseID);
+        Exercise exercise = PlanComponentFactory.createExercise(exerciseName, exerciseID);
         workout.addExercise(exercise);
     }
 

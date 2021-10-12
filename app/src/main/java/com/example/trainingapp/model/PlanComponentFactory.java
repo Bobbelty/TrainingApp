@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Class providing static methods for creating resources
  */
-public class WorkoutPlanFactory {
+public class PlanComponentFactory {
 
     /**
      * Method for creating a new plan
