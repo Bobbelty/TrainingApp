@@ -11,5 +11,6 @@ public interface IDatabase {
     void addPlan(Plan newPlan);
 
     int getExerciseIdFromMap(String exerciseName) throws ExerciseIdNotFoundException;
+
     void addExerciseIdToMap(String key, Integer exerciseId);
 }

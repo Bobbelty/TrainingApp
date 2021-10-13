@@ -73,7 +73,7 @@ public class EditScheduleFragment extends Fragment {
     }
     private void initObjects() {
         // setting up test objects
-        testPlans = editScheduleViewModel.getTrainingAppModel().getMockData();
+        testPlans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
         plan = testPlans.get(0); // get active plan instead
     }
 }

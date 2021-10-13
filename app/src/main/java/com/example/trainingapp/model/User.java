@@ -14,12 +14,12 @@ public class User {
     private final ExerciseIdHandler exerciseIdHandler = new ExerciseIdHandler();
 
     /**
-     * PlanBuilder-object for access to the model
+     * PlanBuilder-object for access to the modelcomponents (Exercise, Workout, Plan)
      */
     private final PlanBuilder planBuilder = new PlanBuilder();
 
     /**
-     * TrainingApp uses a MockDatabase to store plans, workouts and exercises
+     * User uses a MockDatabase to store plans, workouts and exercises
      * during runtime
      */
     private final IDatabase mockDataBase = new MockDataBase();
