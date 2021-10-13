@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.trainingapp.model.TrainingApp;
+import com.example.trainingapp.model.TrainingAppFacade;
 import com.example.trainingapp.model.Workout;
 
 /**
@@ -22,7 +22,7 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
      */
 
     private MutableLiveData<String> mText;
-    private TrainingApp trainingAppModel;
+    private TrainingAppFacade trainingAppModel;
     private Workout selectedWorkout;
 
     private static EditScheduleViewModel instance = null;
@@ -49,7 +49,7 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
         return mText;
     }
 
-    public TrainingApp getTrainingAppModel(){
+    public TrainingAppFacade getTrainingAppModel(){
         return trainingAppModel;
     }
     public static EditScheduleViewModel getInstance() {

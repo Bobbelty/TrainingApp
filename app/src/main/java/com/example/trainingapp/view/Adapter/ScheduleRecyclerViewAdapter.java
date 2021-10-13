@@ -18,7 +18,7 @@ import com.example.trainingapp.view.EditScheduleActivity;
 import com.example.trainingapp.model.Plan;
 import com.example.trainingapp.viewModel.EditScheduleViewModel;
 
-public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder> {
+public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder>  {
 
 
     private Plan plan;
