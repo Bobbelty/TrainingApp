@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
 public class MockDataBase implements IDatabase {
     List<Plan> planList = new ArrayList<>();
     List<Workout> completedWorkouts = new ArrayList<>();
@@ -31,23 +32,17 @@ public class MockDataBase implements IDatabase {
         Exercise exampleExercise3 = new Exercise("Squats", 125);
         Exercise exampleExercise4 = new Exercise("Leg press", 126);
 
-        exampleExercise1.addSet(12);
-        exampleExercise1.addSet(12);
-        exampleExercise1.addSet(12);
+        exampleExercise1.setNumberOfSets(4);
+        exampleExercise1.setNumberOfReps(8);
 
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
+        exampleExercise2.setNumberOfSets(5);
+        exampleExercise2.setNumberOfReps(10);
 
-        exampleExercise3.addSet(12);
-        exampleExercise3.addSet(12);
-        exampleExercise3.addSet(12);
+        exampleExercise3.setNumberOfSets(4);
+        exampleExercise3.setNumberOfReps(4);
 
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
+        exampleExercise4.setNumberOfSets(6);
+        exampleExercise4.setNumberOfReps(12);
 
         exampleWorkout1.addExercise(exampleExercise1);
         exampleWorkout1.addExercise(exampleExercise2);
@@ -67,23 +62,17 @@ public class MockDataBase implements IDatabase {
         exampleExercise1 = new Exercise("Squats", 125);
         exampleExercise2 = new Exercise("Leg press", 126);
 
-        exampleExercise1.addSet(12);
-        exampleExercise1.addSet(12);
-        exampleExercise1.addSet(12);
+        exampleExercise1.setNumberOfSets(4);
+        exampleExercise1.setNumberOfReps(8);
 
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
-        exampleExercise2.addSet(5);
+        exampleExercise2.setNumberOfSets(5);
+        exampleExercise2.setNumberOfReps(10);
 
-        exampleExercise3.addSet(12);
-        exampleExercise3.addSet(12);
-        exampleExercise3.addSet(12);
+        exampleExercise3.setNumberOfSets(4);
+        exampleExercise3.setNumberOfReps(4);
 
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
-        exampleExercise4.addSet(5);
+        exampleExercise4.setNumberOfSets(6);
+        exampleExercise4.setNumberOfReps(12);
 
         exampleWorkout1.addExercise(exampleExercise1);
         exampleWorkout1.addExercise(exampleExercise2);

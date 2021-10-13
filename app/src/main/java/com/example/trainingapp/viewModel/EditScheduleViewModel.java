@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.trainingapp.model.TrainingApp;
+import com.example.trainingapp.model.Workout;
+
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data
  * objects from the model in such a way that objects are easily managed and presented.
@@ -19,6 +22,10 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
      */
 
     private MutableLiveData<String> mText;
+    private TrainingApp trainingAppModel;
+    private Workout selectedWorkout;
+
+    private static EditScheduleViewModel instance = null;
 
     // Create an ArrayAdapter using the string array and a default spinner layout
 
@@ -26,9 +33,12 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
      * Class constructor
      */
 
-    public EditScheduleViewModel() {
+    private EditScheduleViewModel() {
+
         mText = new MutableLiveData<>();
         mText.setValue("This is schedule fragment");
+
+        trainingAppModel = getInstanceOfTrainingModel();
     }
 
     /**
@@ -37,5 +47,25 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
 
     public LiveData<String> getText() {
         return mText;
+    }
+
+    public TrainingApp getTrainingAppModel(){
+        return trainingAppModel;
+    }
+    public static EditScheduleViewModel getInstance() {
+        if (instance == null) {
+            instance = new EditScheduleViewModel();
+            return instance;
+        }
+        else {
+            return instance;
+        }
+    }
+
+    public Workout getSelectedWorkout() {
+        return selectedWorkout;
+    }
+    public void setSelectedWorkout(Workout selectedWorkout) {
+        this.selectedWorkout = selectedWorkout;
     }
 }
