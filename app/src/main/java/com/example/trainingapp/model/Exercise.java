@@ -42,7 +42,6 @@ public class Exercise {
 
     /**
      * Method to get the number of sets of the exercise
-     * @param numberOfReps
      */
     public int getNumberOfSets() {
         return numberOfSets;
@@ -50,7 +49,7 @@ public class Exercise {
 
     /**
      * Method to set the number of set of the exercise
-     * @param numberOfReps
+     * @param numberOfSets
      */
     public void setNumberOfSets(int numberOfSets) {
         this.numberOfSets = numberOfSets;
@@ -58,7 +57,6 @@ public class Exercise {
 
     /**
      * Method to get the number of reps of the exercise
-     * @param numberOfReps
      */
     public int getNumberOfReps() {
         return numberOfReps;

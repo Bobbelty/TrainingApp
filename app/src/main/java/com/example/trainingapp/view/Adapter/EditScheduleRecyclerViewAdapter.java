@@ -1,6 +1,8 @@
 package com.example.trainingapp.view.Adapter;
 
-import android.content.Context;
+import android.annotation.SuppressLint;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,12 +34,56 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ListViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.lblExercise.setText(selectedWorkout.getExerciseList().get(position).getName());
         holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
-        holder.etbxReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfReps() + "");
+        holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfReps() + "");
 
+        holder.etbxNoOfSets.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if(holder.etbxNoOfSets.getText().equals("")) {
+                    holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
+                }
+                else {
+                    selectedWorkout.getExerciseList().get(position).setNumberOfSets(Integer.parseInt(holder.etbxNoOfSets.getText().toString()));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+        holder.etbxNoOfReps.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                if(holder.etbxNoOfReps.getText().equals("")) {
+                    holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfReps() + "");
+                }
+                else {
+                    selectedWorkout.getExerciseList().get(position).setNumberOfReps(Integer.parseInt(holder.etbxNoOfReps.getText().toString()));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
         // Either savebutton to save data to database or event from edit text boxes
     }
 
@@ -51,14 +97,14 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
         //change name, make private maybe final
         private final TextView lblExercise;
         private final EditText etbxNoOfSets;
-        private final EditText etbxReps;
+        private final EditText etbxNoOfReps;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 
             lblExercise = itemView.findViewById(R.id.lblExercise);
             etbxNoOfSets = itemView.findViewById(R.id.etbxNoOfSets);
-            etbxReps = itemView.findViewById(R.id.etbxReps);
+            etbxNoOfReps = itemView.findViewById(R.id.etbxNoOfReps);
 
         }
     }

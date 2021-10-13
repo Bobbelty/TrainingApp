@@ -34,7 +34,7 @@
             android:translationY="12dp" />
 
         <EditText
-            android:id="@+id/etbxReps"
+            android:id="@+id/etbxNoOfReps"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
