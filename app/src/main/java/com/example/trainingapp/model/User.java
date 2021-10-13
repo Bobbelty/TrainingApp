@@ -1,15 +1,17 @@
 package com.example.trainingapp.model;
 
+import com.example.trainingapp.mockDataBase.IDatabase;
 import com.example.trainingapp.mockDataBase.MockDataBase;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * The TrainingApp-class purpose is to act as a facade of the model towards the ViewModels.
- * It contains method for communication with the database. Furthermore it can access the model
- * through a PlanBuilder-object.
- */
-public class TrainingApp {
+
+public class User {
+    /**
+     * ExerciseIdHandler-object for creating new exerciseId:s
+     */
+    private final ExerciseIdHandler exerciseIdHandler = new ExerciseIdHandler();
 
     /**
      * PlanBuilder-object for access to the model
@@ -20,15 +22,30 @@ public class TrainingApp {
      * TrainingApp uses a MockDatabase to store plans, workouts and exercises
      * during runtime
      */
-    private final MockDataBase mockDataBase = new MockDataBase();
+    private final IDatabase mockDataBase = new MockDataBase();
+
+    /**
+     * nextId used for generating unique id:S
+     */
+    private static AtomicInteger nextId = new AtomicInteger();
 
     /**
      * Method for returning a list of the stored plans from the database
      *
      * @return list of plans from database
      */
-    public List<Plan> getMockData(){
+    public List<Plan> getSavedPlans(){
         return mockDataBase.getPlanList();
+    }
+
+
+    /**
+     * Returns a new Plan-object
+     *
+     * @param planName the name of the plan
+     */
+    public void createNewPlan(String planName){
+        mockDataBase.addPlan(planBuilder.createNewPlan(planName));
     }
 
     /**
@@ -39,15 +56,6 @@ public class TrainingApp {
      */
     public void addWorkoutToPlan(Plan plan, String name){
         planBuilder.addWorkoutToPlan(plan, name);
-    }
-
-    /**
-     * Returns a new Plan-object
-     *
-     * @param planName the name of the plan
-     */
-    public void createNewPlan(String planName){
-        mockDataBase.addPlan(planBuilder.createNewPlan(planName));
     }
 
     /**
@@ -83,5 +91,16 @@ public class TrainingApp {
      */
     public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
         planBuilder.removeExerciseFromWorkout(workout, exercise);
+    }
+
+    /**
+     * Method for creating a new exercise(not in a workout, just for purposes of storing
+     * it in database). Also connects an exerciseId to the exercise.
+     * @param exerciseIdName The exercise name that the exerciseId corresponds to
+     */
+
+    public void createAndSaveNewExerciseToDatabase(String exerciseIdName){
+        int id = nextId.getAndIncrement();
+        mockDataBase.addExerciseIdToMap(exerciseIdName, id);
     }
 }
