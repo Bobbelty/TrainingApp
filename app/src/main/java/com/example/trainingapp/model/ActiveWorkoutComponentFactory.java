@@ -7,6 +7,8 @@ package com.example.trainingapp.model;
  */
 public class ActiveWorkoutComponentFactory {
 
+    public static ActiveWorkout createActiveWorkout(String name){return new ActiveWorkout(name);}
 
+    public static ActiveExercise createActiveExercise(String name, int id){return new ActiveExercise(name, id);}
 
 }
