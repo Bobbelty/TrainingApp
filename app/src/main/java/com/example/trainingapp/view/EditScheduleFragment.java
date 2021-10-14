@@ -57,6 +57,11 @@ public class EditScheduleFragment extends Fragment {
         return v;
     }
 
+    /**
+     * initRecyclerView initiates the recyclerView and sets its adapter.
+     *
+     * @param v the current view used in the application.
+     */
     private void initRecyclerView(View v) {
 
         //selectedWorkout
@@ -67,10 +72,19 @@ public class EditScheduleFragment extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
+    /**
+     * initTitleText initiates the title text label.
+     *
+     * @param v the current view used in the application
+     */
     private void initTitleText(View v) {
         titleText = v.findViewById(R.id.lblSelectedWorkout);
         titleText.setText(selectedWorkout.getName());
     }
+
+    /**
+     * initObjects gets the saved plans, used for testing and initial demo/presentation.
+     */
     private void initObjects() {
         // setting up test objects
         testPlans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
