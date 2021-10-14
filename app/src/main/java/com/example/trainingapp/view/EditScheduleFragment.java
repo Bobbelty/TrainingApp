@@ -58,7 +58,7 @@ public class EditScheduleFragment extends Fragment {
         initRecyclerView(v);
 
 
-        //initButton(v);
+        initButton(v);
         return v;
     }
     private void initButton(View v) {
@@ -66,7 +66,7 @@ public class EditScheduleFragment extends Fragment {
         btnDeleteWorkout = v.findViewById(R.id.btnDeleteWorkout);
         btnDeleteWorkout.setText("test");
 
-        /*btnDeleteWorkout.setOnClickListener(new View.OnClickListener() {
+        btnDeleteWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 List<Plan> plans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
@@ -84,7 +84,7 @@ public class EditScheduleFragment extends Fragment {
                 testPlans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
                 // better to call to ScheduleViewModel to do this
             }
-        });*/
+        });
     }
     private void initRecyclerView(View v) {
 
