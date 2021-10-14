@@ -1,5 +1,6 @@
 package com.example.trainingapp.mockDataBase;
 
+import com.example.trainingapp.model.ActiveWorkout;
 import com.example.trainingapp.model.Exercise;
 import com.example.trainingapp.model.ExerciseIdNotFoundException;
 import com.example.trainingapp.model.Plan;
@@ -12,7 +13,8 @@ import java.util.List;
 
 public class MockDataBase implements IDatabase {
     List<Plan> planList = new ArrayList<>();
-    List<Workout> completedWorkouts = new ArrayList<>();
+    List<ActiveWorkout> completedWorkouts = new ArrayList<>();
+    ActiveWorkout activeWorkout;
 
     /*It's possible to iterate through a hashMap, so this HashMap can be used for both
     storing savedExercises and getting the savedExercises for display purposes.*/
@@ -107,11 +109,11 @@ public class MockDataBase implements IDatabase {
         return planList;
     }
 
-    public List<Workout> getCompletedWorkouts() {
+    public List<ActiveWorkout> getCompletedWorkouts() {
         return completedWorkouts;
     }
 
-    public void addToCompletedWorkouts(Workout workout) {completedWorkouts.add(workout);}
+    public void addToCompletedWorkouts(ActiveWorkout workout) {completedWorkouts.add(workout);}
 
     public HashMap<Integer, Integer> getCurrentPBs() {
         return currentPBs;

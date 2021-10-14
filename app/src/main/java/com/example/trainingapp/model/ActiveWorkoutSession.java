@@ -7,6 +7,9 @@ import java.util.Calendar;
  */
 public class ActiveWorkoutSession {
 
-
+    public ActiveWorkout convertWorkoutToActiveWorkout(Workout workout){
+        ActiveWorkout activeWorkout = new ActiveWorkout(workout.getName());
+        return activeWorkout;
+    }
 
 }

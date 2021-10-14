@@ -21,7 +21,7 @@ public class ActiveWorkout {
     /**
      * List containing all the exercises in the workout
      */
-    private List<Exercise> exercises = new ArrayList<>();
+    private List<ActiveExercise> exercises = new ArrayList<>();
 
     /**
      * The time for the active workout, used for history
@@ -51,7 +51,7 @@ public class ActiveWorkout {
      *
      * @param exercise object to add to list
      */
-    public void addExercise(Exercise exercise) {
+    public void addExercise(ActiveExercise exercise) {
         exercises.add(exercise);
     }
 
@@ -60,7 +60,7 @@ public class ActiveWorkout {
      *
      * @return the list of exercises that Workout contains
      */
-    public List<Exercise> getExerciseList(){
+    public List<ActiveExercise> getExerciseList(){
         return exercises;
     }
 
