@@ -50,51 +50,30 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                 notifyDataSetChanged();
             }
         });
-        holder.etbxNoOfSets.addTextChangedListener(new TextWatcher() {
+        holder.etbxNoOfSets.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(holder.etbxNoOfSets.getText().equals("")) {
+            public void onFocusChange(View view, boolean b) {
+                String txt = holder.etbxNoOfSets.getText().toString();
+                if(txt.equals("")) {
                     holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
                     selectedWorkout.getExerciseList().get(position).setNumberOfSets(Integer.parseInt(holder.etbxNoOfSets.getText().toString()));
                 }
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
         });
-        holder.etbxNoOfReps.addTextChangedListener(new TextWatcher() {
-
+        holder.etbxNoOfReps.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if(holder.etbxNoOfReps.getText().equals("")) {
-                    holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfReps() + "");
+            public void onFocusChange(View view, boolean b) {
+                String txt = holder.etbxNoOfReps.getText().toString();
+                if(txt.equals("")) {
+                    holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
                     selectedWorkout.getExerciseList().get(position).setNumberOfReps(Integer.parseInt(holder.etbxNoOfReps.getText().toString()));
                 }
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
         });
-        // Either savebutton to save data to database or event from edit text boxes
     }
 
     @Override
