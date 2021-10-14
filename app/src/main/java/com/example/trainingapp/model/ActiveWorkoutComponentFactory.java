@@ -9,6 +9,7 @@ public class ActiveWorkoutComponentFactory {
 
     public static ActiveWorkout createActiveWorkout(String name){return new ActiveWorkout(name);}
 
-    public static ActiveExercise createActiveExercise(String name, int id){return new ActiveExercise(name, id);}
+    public static ActiveExercise createActiveExercise(String name, int id, int reps, int sets)
+        {return new ActiveExercise(name, id, reps, sets);}
 
 }

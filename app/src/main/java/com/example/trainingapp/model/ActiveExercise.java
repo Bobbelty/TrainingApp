@@ -40,9 +40,12 @@ public class ActiveExercise {
      * @param exerciseName name of exercise
      * @param exerciseId Id of exercise
      */
-    public ActiveExercise(String exerciseName, int exerciseId) {
+    public ActiveExercise(String exerciseName, int exerciseId, int numberOfReps, int numberOfSets) {
         this.exerciseId = exerciseId;
         this.exerciseName = exerciseName;
+        this.numberOfReps = numberOfReps;
+        this.numberOfSets = numberOfSets;
+        this.weight = 0;
     }
 
     /**
