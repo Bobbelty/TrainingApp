@@ -85,7 +85,7 @@ public class ScheduleFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.schedule_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         //FrameLayout fl = (FrameLayout) v.findViewById(R.id.fragment_container);
-        recyclerViewAdapter = new ScheduleRecyclerViewAdapter(plan, this.getContext());
+        recyclerViewAdapter = new ScheduleRecyclerViewAdapter(plan, this.getContext(), this.getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
     private void initSpinner(View v) {

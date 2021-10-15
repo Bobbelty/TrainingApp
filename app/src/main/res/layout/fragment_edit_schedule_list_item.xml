@@ -13,16 +13,6 @@
         app:cardBackgroundColor="#393939">
 
         <TextView
-            android:id="@+id/lblExercise"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:translationX="10dp"
-            android:translationY="12dp" />
-
-        <TextView
             android:id="@+id/lblX"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -32,6 +22,17 @@
             android:textSize="16sp"
             android:translationX="-90dp"
             android:translationY="12dp" />
+
+        <EditText
+            android:id="@+id/etbxExerciseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textColor="#FFFFFF"
+            android:textSize="22sp"
+            android:translationX="10dp" />
 
         <EditText
             android:id="@+id/etbxNoOfReps"

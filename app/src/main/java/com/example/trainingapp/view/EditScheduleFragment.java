@@ -2,9 +2,9 @@ package com.example.trainingapp.view;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -25,8 +25,8 @@ public class EditScheduleFragment extends Fragment {
 
     //Plan activePlan;
     private Workout selectedWorkout;
-    private TextView titleText;
-    private Button btnDeleteWorkout;
+    private TextView lblTitleText;
+    private TextView btnDeleteWorkout;
     private EditScheduleRecyclerViewAdapter recyclerViewAdapter;
     private EditScheduleViewModel editScheduleViewModel = EditScheduleViewModel.getInstance();
 
@@ -52,53 +52,38 @@ public class EditScheduleFragment extends Fragment {
         // activePlan = user.getActivePlan();
         initObjects();
         selectedWorkout = editScheduleViewModel.getSelectedWorkout();
-        btnDeleteWorkout = v.findViewById(R.id.btnDeleteWorkout);
-        btnDeleteWorkout.setText("test");
         initTitleText(v);
         initRecyclerView(v);
-
-
-        initButton(v);
+        initDeleteWorkoutButton(v, recyclerViewAdapter);
         return v;
     }
-    private void initButton(View v) {
-
+    private void initDeleteWorkoutButton(View v, EditScheduleRecyclerViewAdapter recyclerViewAdapter) {
         btnDeleteWorkout = v.findViewById(R.id.btnDeleteWorkout);
-        btnDeleteWorkout.setText("test");
-
+        btnDeleteWorkout.setText("Delete");
         btnDeleteWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                List<Plan> plans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
-                for (int i = 0; i < plans.size(); i++) {
-                    if (plans.get(i).equals(testPlans)) {
-                        System.out.println(editScheduleViewModel.getTrainingAppModel().getSavedPlans().get(i).getWorkoutList().toString());
-                        for (int k = 0; k < plans.get(i).getWorkoutList().size(); k++) {
-                            if (plans.get(i).getWorkoutList().get(k).equals(selectedWorkout)) {
-                                plans.get(i).getWorkoutList().remove(k);
-                                System.out.println(editScheduleViewModel.getTrainingAppModel().getSavedPlans().get(i).getWorkoutList().toString());
-                            }
-                        }
-                    }
-                }
-                testPlans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
-                // better to call to ScheduleViewModel to do this
+                EditScheduleViewModel.getInstance().removeWorkout(editScheduleViewModel.getSelectedPlan(), selectedWorkout);
+                recyclerViewAdapter.notifyDataSetChanged();
             }
         });
     }
+
     private void initRecyclerView(View v) {
 
         //selectedWorkout
+
+
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        recyclerViewAdapter = new EditScheduleRecyclerViewAdapter(selectedWorkout);
+        recyclerViewAdapter = new EditScheduleRecyclerViewAdapter(this.getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
     private void initTitleText(View v) {
-        titleText = v.findViewById(R.id.lblSelectedWorkout);
-        titleText.setText(selectedWorkout.getName());
+        lblTitleText = v.findViewById(R.id.lblSelectedWorkout);
+        lblTitleText.setText(selectedWorkout.getName());
     }
     private void initObjects() {
         // setting up test objects
