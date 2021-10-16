@@ -8,18 +8,23 @@ import static org.junit.Assert.*;
 
 public class WorkoutTest {
 
+
     @Test
-    public void testGetNameCorrect(){
-        Workout workout = new Workout("test");
-        assertEquals("test", workout.getName());
+    public void testAddingExercise(){
+        Workout workout = new Workout("testWorkout");
+        Exercise dummyExercise = new Exercise("dummyExcercise",123);
+        workout.addExercise(dummyExercise);
+        assertEquals(1, workout.getExerciseList().size());
+
     }
 
     @Test
-    public void testAddExerciseIsCorrect(){
-        Workout workout = new Workout("test");
-        Exercise dummyExercise = new Exercise("testexcercise",123);
+    public void testRemovingExercise(){
+        Workout workout = new Workout("testWorkout");
+        Exercise dummyExercise = new Exercise("dummyExcercise",123);
         workout.addExercise(dummyExercise);
-        assertFalse(workout.getExerciseList().isEmpty());
+        workout.removeExercise(dummyExercise);
+        assertTrue(workout.getExerciseList().isEmpty());
 
     }
 
