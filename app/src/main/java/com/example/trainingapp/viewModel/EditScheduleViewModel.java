@@ -10,6 +10,7 @@ import com.example.trainingapp.model.Exercise;
 import com.example.trainingapp.model.Plan;
 import com.example.trainingapp.model.TrainingAppFacade;
 import com.example.trainingapp.model.Workout;
+import com.example.trainingapp.view.Adapter.EditScheduleRecyclerViewAdapter;
 
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data
@@ -45,16 +46,9 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
 
         trainingAppModel = getInstanceOfTrainingModel();
     }
-    // Removes from list & returns if successfull removal, usually not best practice for a method to do 2 things but okay/needed in this instance
-    public boolean onClickRemoveExercise(Plan selectedPlan, Workout selectedWorkout, int position) {
+
+    public void onClickRemoveExercise(Plan selectedPlan, Workout selectedWorkout, int position) {
         getTrainingAppModel().removeExerciseFromWorkout(selectedWorkout, selectedWorkout.getExerciseList().get(position));
-        if (selectedWorkout.getExerciseList().size() == 0) {
-            getTrainingAppModel().removeWorkoutFromPlan(selectedPlan, selectedWorkout);
-            return true;
-        }
-        else {
-            return false;
-        }
     }
     public void removeWorkout(Plan selectedPlan, Workout selectedWorkout) {
         getTrainingAppModel().removeWorkoutFromPlan(selectedPlan, selectedWorkout);
@@ -101,5 +95,4 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
     public void setSelectedPlan(Plan selectedPlan) {
         this.selectedPlan = selectedPlan;
     }
-
 }

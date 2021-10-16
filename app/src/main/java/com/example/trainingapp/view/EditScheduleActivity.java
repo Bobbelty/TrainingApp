@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainingapp.R;
+import com.example.trainingapp.databinding.ActivityMainBinding;
 
 public class EditScheduleActivity extends AppCompatActivity {
 
@@ -15,7 +16,5 @@ public class EditScheduleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
 }

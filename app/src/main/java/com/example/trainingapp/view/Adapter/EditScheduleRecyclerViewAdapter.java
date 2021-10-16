@@ -35,7 +35,6 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     private Plan selectedPlan;
     private EditScheduleViewModel editScheduleViewModel = EditScheduleViewModel.getInstance();
 
-
     public EditScheduleRecyclerViewAdapter(Activity activity) {
         this.selectedWorkout = editScheduleViewModel.getSelectedWorkout();
         this.activity = activity;
@@ -45,13 +44,13 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         return new ListViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_edit_schedule_list_item, parent, false));
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
+
 
         holder.etbxExerciseName.setText(selectedWorkout.getExerciseList().get(position).getName());
         holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
@@ -60,8 +59,9 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
         holder.btnDeleteExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                if (EditScheduleViewModel.getInstance().onClickRemoveExercise(selectedPlan, selectedWorkout, position)) activity.finish();
-                notifyDataSetChanged();
+                EditScheduleViewModel.getInstance().onClickRemoveExercise(selectedPlan, selectedWorkout, position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, getItemCount());
             }
         });
         holder.etbxNoOfSets.setOnFocusChangeListener(new View.OnFocusChangeListener() {
