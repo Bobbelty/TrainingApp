@@ -2,12 +2,14 @@ package com.example.trainingapp.model;
 
 import com.example.trainingapp.mockDataBase.IDatabase;
 import com.example.trainingapp.mockDataBase.MockDataBase;
-
+import com.example.trainingapp.model.ActiveWorkoutSession;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class User {
+
+    private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
     /**
      * ExerciseIdHandler-object for creating new exerciseId:s
      */
@@ -103,4 +105,9 @@ public class User {
         int id = nextId.getAndIncrement();
         mockDataBase.addExerciseIdToMap(exerciseIdName, id);
     }
+
+    public void createAndSaveActiveWorkoutToDatabase(Workout workout){
+
+    }
+
 }
