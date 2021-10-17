@@ -12,4 +12,7 @@ public class ActiveWorkoutComponentFactory {
     public static ActiveExercise createActiveExercise(String name, int id, int reps, int sets)
         {return new ActiveExercise(name, id, reps, sets);}
 
+    public static ActiveExercise createActiveExercise(Exercise exercise){
+        return new ActiveExercise(exercise);
+    }
 }

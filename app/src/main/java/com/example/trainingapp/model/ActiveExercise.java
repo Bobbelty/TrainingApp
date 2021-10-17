@@ -48,6 +48,14 @@ public class ActiveExercise {
         this.weight = 0;
     }
 
+    public ActiveExercise(Exercise exercise){
+        this.exerciseName = exercise.getName();
+        this.exerciseId = exercise.getExerciseId();
+        this.numberOfReps = exercise.getNumberOfReps();
+        this.numberOfSets = exercise.getNumberOfSets();
+        this.weight = 0;
+    }
+
     /**
      * Method to get the number of sets of the exercise
      */
