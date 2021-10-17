@@ -1,7 +1,5 @@
 package com.example.trainingapp.view;
 
-import java.util.List;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,8 +22,8 @@ import com.example.trainingapp.view.Adapter.HistoryRecyclerViewAdapter;
 import com.example.trainingapp.view.Adapter.ScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
-
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * HistoryFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
@@ -52,9 +48,6 @@ public class HistoryFragment extends Fragment {
     private FragmentHistoryBinding binding;
 
     private List<ActiveWorkout> testWorkouts = new ArrayList<>();
-
-    ActiveWorkout activeWorkout;
-    HistoryRecyclerViewAdapter recyclerViewAdapter;
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -82,7 +75,7 @@ public class HistoryFragment extends Fragment {
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.history_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerViewAdapter = new HistoryRecyclerViewAdapter(testWorkouts, this.getContext());
+        recyclerViewAdapter = new HistoryRecyclerViewAdapter(ActiveWorkout, this.getContext());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
