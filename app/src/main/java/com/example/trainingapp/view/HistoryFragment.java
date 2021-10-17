@@ -11,9 +11,19 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentHistoryBinding;
+import com.example.trainingapp.model.ActiveWorkout;
+import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.view.Adapter.HistoryRecyclerViewAdapter;
+import com.example.trainingapp.view.Adapter.ScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.HistoryViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * HistoryFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
@@ -37,6 +47,8 @@ public class HistoryFragment extends Fragment {
 
     private FragmentHistoryBinding binding;
 
+    private List<ActiveWorkout> testWorkouts = new ArrayList<>();
+
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
      *
@@ -49,22 +61,22 @@ public class HistoryFragment extends Fragment {
      * @return Return the View for the fragment's UI, or null.
      */
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        historyViewModel =
-                new ViewModelProvider(this).get(HistoryViewModel.class);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        binding = FragmentHistoryBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_history,container,false);
 
-        final TextView textView = binding.textHistory;
-        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        initRecyclerView(v);
+
+        return v;
+    }
+
+    private void initRecyclerView(View v) {
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.history_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerViewAdapter = new HistoryRecyclerViewAdapter(ActiveWorkout, this.getContext());
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
 
     /**
