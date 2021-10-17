@@ -30,9 +30,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         this.context = context;
     }
 
-    public void setNewPlan(Plan plan) {
-        this.plan = plan;
-    }
+    public void setNewPlan(Plan plan) { this.plan = plan; }
 
     @NonNull
     @Override
