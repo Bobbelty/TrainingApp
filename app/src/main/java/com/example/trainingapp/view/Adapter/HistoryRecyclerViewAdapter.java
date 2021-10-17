@@ -7,8 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -18,10 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.ActiveWorkout;
-import com.example.trainingapp.model.Plan;
-import com.example.trainingapp.model.Workout;
 import com.example.trainingapp.view.EditScheduleActivity;
-import com.example.trainingapp.viewModel.EditScheduleViewModel;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
 public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecyclerViewAdapter.ListViewHolder>{
@@ -53,7 +48,7 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
         holder.btnExercises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                editScheduleViewModel.setSelectedWorkout(plan.getWorkoutList().get(position));
+                ExerciseHistoryRecyclerViewAdapter.setSelectedActiveWorkout(plan.getWorkoutList().get(position));
 
                 Intent openActivity = new Intent(context, EditScheduleActivity.class);
                 context.startActivity(openActivity);
