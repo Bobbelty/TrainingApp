@@ -15,13 +15,14 @@ public class ActiveExercise {
     private String exerciseName;
 
     /**
-     * Number of sets for the exercise
+     * List of reps. Ex 12 + 12 + 8 -> 3 sets with different amount of repetitions.
      */
-    private int numberOfSets;
+    private List<Integer> listOfReps;
+
     /**
-     * Number of reps for the exercise
+     * This is a list of the weight used in each set. Default value is zero.
      */
-    private int numberOfReps;
+    private List<Integer> listOfWeights;
 
     /**
      * An exercise contains an id to make it possible for PB-recording purposes. For example
@@ -30,63 +31,66 @@ public class ActiveExercise {
     private int exerciseId;
 
     /**
-     * Amount of weight for the activeExercise
+     * Class constructor. Responsible for converting an exercise to an active exercise.
+     * @param exercise The exercise-object to be converted.
      */
-    private int weight;
-
-    /**
-     * Class constructor setting exerciseName and exerciseId
-     *
-     * @param exerciseName name of exercise
-     * @param exerciseId Id of exercise
-     */
-    public ActiveExercise(String exerciseName, int exerciseId, int numberOfReps, int numberOfSets) {
-        this.exerciseId = exerciseId;
-        this.exerciseName = exerciseName;
-        this.numberOfReps = numberOfReps;
-        this.numberOfSets = numberOfSets;
-        this.weight = 0;
-    }
-
     public ActiveExercise(Exercise exercise){
         this.exerciseName = exercise.getName();
         this.exerciseId = exercise.getExerciseId();
-        this.numberOfReps = exercise.getNumberOfReps();
-        this.numberOfSets = exercise.getNumberOfSets();
-        this.weight = 0;
+        convertRepsSetsToList(exercise.getNumberOfReps(), exercise.getNumberOfSets());
+        createListOfWeights(listOfReps);
     }
 
     /**
-     * Method to get the number of sets of the exercise
+     * This method converts the format of reps/sets from int reps x int sets to a list of
+     * reps and size of list is the number of sets.
+     *
+     * @param reps value of each startvalue in list
+     * @param sets size of list
      */
-    public int getNumberOfSets() {
-        return numberOfSets;
+    private void convertRepsSetsToList(int reps, int sets){
+        for(int i = 0; i < sets; i++){
+            listOfReps.add(reps);
+        }
     }
 
     /**
-     * Method to set the number of set of the exercise
-     * @param numberOfSets
+     * Method for creating a list of weights that corresponds to the list of reps.
+     * The size of the weightlist must be the same as the size of the replist. Default value
+     * is zero.
+     *
+     * @param listOfReps Used to know the necessary size of the weightlist
      */
-    public void setNumberOfSets(int numberOfSets) {
-        this.numberOfSets = numberOfSets;
+    private void createListOfWeights(List<Integer> listOfReps){
+        for(int i = 0; i < listOfReps.size(); i++){
+            listOfWeights.add(0);
+        }
     }
 
-    /**
-     * Method to get the number of reps of the exercise
-     */
-    public int getNumberOfReps() {
-        return numberOfReps;
+    public List<Integer> getListOfReps() {
+        return listOfReps;
     }
 
-    /**
-     * Method to change the number of reps of the exercise
-     * @param numberOfReps
-     */
-    public void setNumberOfReps(int numberOfReps) {
-        this.numberOfReps = numberOfReps;
+    public List<Integer> getListOfWeights() {
+        return listOfWeights;
     }
+
+    public void changeRepInList(int index, int change){
+        listOfReps.set(index, change);
+    }
+
+    public void changeWeightInList(int index, int change){
+        listOfWeights.set(index, change);
+    }
+
+    public void addSetToList(int amountOfReps){
+        listOfReps.add(amountOfReps);
+        listOfWeights.add(0);
+    }
+
     /**
      * Method for getting the name of the exercise
+     *
      * @return The name of the exercise
      */
     public String getName(){
@@ -95,19 +99,13 @@ public class ActiveExercise {
 
     /**
      * Method for getting the exerciseId of the exercise
+     *
      * @return The exerciseId of the exercise
      */
     public int getExerciseId(){
         return exerciseId;
     }
 
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
 
 
 
