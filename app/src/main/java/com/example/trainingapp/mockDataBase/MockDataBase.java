@@ -24,7 +24,12 @@ public class MockDataBase implements IDatabase {
     public MockDataBase(){
 
         Plan examplePlan1 = new Plan("Summer");
-        Workout exampleWorkout1 = new Workout("Breast and shoulders");
+        Workout exampleWorkout1 = new Workout("Chest and shoulders");
+        Workout presetWorkout = new Workout("New workout");
+
+        addExerciseIdToMap("Bench Press", 123);
+        addExerciseIdToMap("New exercise", 000);
+        Exercise presetExercise = new Exercise("New exercise", 000);
         Exercise exampleExercise1 = new Exercise("Bench Press", 123);
         Exercise exampleExercise2 = new Exercise("Military Press", 124);
 

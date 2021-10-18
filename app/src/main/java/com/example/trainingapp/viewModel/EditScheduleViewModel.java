@@ -62,6 +62,9 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
     public void setNewExerciseName(int position, EditText etbxExerciseName) {
         selectedWorkout.getExerciseList().get(position).setName(etbxExerciseName.getText().toString());
     }
+    public void setNewWorkoutName(EditText etbxWorkoutName) {
+        selectedWorkout.setWorkoutName(etbxWorkoutName.getText().toString());
+    }
     /**
      * @return reference of mText variable
      */

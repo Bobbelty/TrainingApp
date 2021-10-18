@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -52,9 +53,9 @@ public class ScheduleFragment extends Fragment {
     // objects to test on
 
     private List<Plan> testPlans = new ArrayList<>();
-
-    Plan plan; // plan should be the first plan in the database (SavedPlans)
-    ScheduleRecyclerViewAdapter recyclerViewAdapter;
+    private Button btnAddWorkout;
+    private Plan plan; // plan should be the first plan in the database (SavedPlans)
+    private ScheduleRecyclerViewAdapter recyclerViewAdapter;
 
 
     /**
@@ -77,8 +78,22 @@ public class ScheduleFragment extends Fragment {
         initObjects();
         initRecyclerView(v);
         initSpinner(v);
+        initAddWorkoutButton(v);
 
         return v;
+    }
+
+    private void initAddWorkoutButton(View v) {
+        Button btnAddWorkout = v.findViewById(R.id.btnAddWorkout);
+        btnAddWorkout.setText("Add workout");
+
+        btnAddWorkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                scheduleViewModel.getTrainingAppModel().addWorkoutToPlan(plan, "New workout");
+                recyclerViewAdapter.notifyDataSetChanged();
+            }
+        });
     }
 
     private void initRecyclerView(View v) {
