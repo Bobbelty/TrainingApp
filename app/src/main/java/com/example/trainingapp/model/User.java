@@ -40,6 +40,8 @@ public class User {
         return mockDataBase.getPlanList();
     }
 
+    public List<ActiveWorkout> getCompletedPlans() {return mockDatabase.get}
+
 
     /**
      * Returns a new Plan-object

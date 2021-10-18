@@ -23,6 +23,8 @@ public class TrainingAppFacade {
         return user.getSavedPlans();
     }
 
+    public List<ActiveWorkout> getCompletedWorkouts(){return user.get}
+
     /**
      * Method for creating a new Plan-object.
      *

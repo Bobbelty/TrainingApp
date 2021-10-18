@@ -1,6 +1,9 @@
 package com.example.trainingapp.model;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 /**
  * Class handling logic for ActiveExercise and ActiveWorkout
@@ -25,6 +28,9 @@ public class ActiveWorkoutSession {
     }
 
     public void setCurrentDate (ActiveWorkout activeWorkout){
-        activeWorkout.setCurrentTime(Calendar.getInstance().getTime());
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        String workoutDate = dateFormat.format(date);
+        activeWorkout.setCurrentTime(workoutDate);
     }
 }

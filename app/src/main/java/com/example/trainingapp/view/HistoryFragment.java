@@ -86,6 +86,10 @@ public class HistoryFragment extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
+    private void initObjects() {
+        testActiveWorkouts = historyViewModel.getTrainingAppModel().getSavedPlans();
+    }
+
     /**
      * onDestroyView is called when the view previously created by onCreateView has been detached from the fragment.
      * The next time the fragment needs to be displayed, a new view will be created.

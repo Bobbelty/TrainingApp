@@ -1,5 +1,6 @@
 package com.example.trainingapp.mockDataBase;
 
+import com.example.trainingapp.model.ActiveExercise;
 import com.example.trainingapp.model.ActiveWorkout;
 import com.example.trainingapp.model.Exercise;
 import com.example.trainingapp.model.ExerciseIdNotFoundException;
@@ -24,6 +25,9 @@ public class MockDataBase implements IDatabase {
 
 
     public MockDataBase(){
+
+        ActiveWorkout activeWorkout1 = new ActiveWorkout("Breast and shoulders");
+        ActiveWorkout activeWorkout2 = new ActiveWorkout("Legs");
 
         Plan examplePlan1 = new Plan("Summer");
         Workout exampleWorkout1 = new Workout("Breast and shoulders");

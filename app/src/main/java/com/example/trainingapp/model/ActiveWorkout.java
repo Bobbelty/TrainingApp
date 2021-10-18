@@ -26,7 +26,7 @@ public class ActiveWorkout {
     /**
      * The time for the active workout, used for history
      */
-    private Date currentTime;
+    private String currentTime;
 
     /**
      * Class constructor setting workoutName
@@ -78,7 +78,7 @@ public class ActiveWorkout {
      *
      * @return the date of the active workout
      */
-    public Date getCurrentTime() {
+    public String getCurrentTime() {
         return currentTime;
     }
 
@@ -86,7 +86,7 @@ public class ActiveWorkout {
      * Returns the list of exercises
      * @param currentTime
      */
-    public void setCurrentTime(Date currentTime) {
+    public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
     }
 }

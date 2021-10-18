@@ -3,6 +3,7 @@ package com.example.trainingapp.view.Adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.ActiveWorkout;
 import com.example.trainingapp.view.EditScheduleActivity;
+import com.example.trainingapp.view.ExerciseHistoryActivity;
+import com.example.trainingapp.viewModel.ExerciseHistoryViewModel;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
 public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecyclerViewAdapter.ListViewHolder>{
@@ -24,7 +27,7 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
     private List<ActiveWorkout> completedWorkouts;
     private Context context;
     private ActiveWorkout selectedActiveWorkout;
-    private HistoryViewModel historyViewModel = HistoryViewModel.getInstance();
+    private ExerciseHistoryViewModel exerciseHistoryViewModel = ExerciseHistoryViewModel.getInstance();
 
     public HistoryRecyclerViewAdapter(List<ActiveWorkout> completedWorkouts, Context context) {
         this.completedWorkouts = completedWorkouts;
@@ -42,15 +45,16 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
     @Override
     public void onBindViewHolder(@NonNull HistoryRecyclerViewAdapter.ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.lblActiveWorkoutName.setText(.getWorkoutList().get(position).getName());
-        holder.lblActiveWorkoutDate.setText(.getWorkoutList().get(position).getCurrentDate()))
+
+        holder.lblActiveWorkoutName.setText(completedWorkouts.get(position).getName());
+        holder.lblActiveWorkoutDate.setText(completedWorkouts.get(position).getCurrentTime());
         // set list views
         holder.btnExercises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                ExerciseHistoryRecyclerViewAdapter.setSelectedActiveWorkout(plan.getWorkoutList().get(position));
+                exerciseHistoryViewModel.setSelectedWorkout(completedWorkouts.get(position));
 
-                Intent openActivity = new Intent(context, EditScheduleActivity.class);
+                Intent openActivity = new Intent(context, ExerciseHistoryActivity.class);
                 context.startActivity(openActivity);
 
             }
