@@ -30,7 +30,7 @@ public class ExerciseHistoryFragment extends Fragment {
 
     private ActiveWorkout selectedActiveWorkout;
     private ExerciseHistoryRecyclerViewAdapter recyclerViewAdapter;
-    private ExerciseHistoryViewModel editScheduleViewModel = ExerciseHistoryViewModel.getInstance();
+    private ExerciseHistoryViewModel exerciseHistoryViewModel = ExerciseHistoryViewModel.getInstance();
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -48,7 +48,7 @@ public class ExerciseHistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_exercise_history,container,false);
-        selectedActiveWorkout = ExerciseHistoryViewModel.getInstance().getSelectedWorkout();
+        selectedActiveWorkout = exerciseHistoryViewModel.getSelectedWorkout();
 
         return v;
     }
@@ -58,7 +58,7 @@ public class ExerciseHistoryFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.exercise_history_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        recyclerViewAdapter = new ExerciseHistoryRecyclerViewAdapter(selectedActiveWorkout);
+        recyclerViewAdapter = new ExerciseHistoryRecyclerViewAdapter(this.getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 

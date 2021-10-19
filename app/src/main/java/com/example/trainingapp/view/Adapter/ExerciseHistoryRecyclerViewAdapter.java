@@ -1,6 +1,7 @@
 package com.example.trainingapp.view.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.ActiveWorkout;
+import com.example.trainingapp.model.Exercise;
+import com.example.trainingapp.viewModel.ExerciseHistoryViewModel;
 
 public class ExerciseHistoryRecyclerViewAdapter extends RecyclerView.Adapter<ExerciseHistoryRecyclerViewAdapter.ListViewHolder> {
 
     private ActiveWorkout selectedActiveWorkout;
+    private Activity activity;
+    private ExerciseHistoryViewModel exerciseHistoryViewModel = ExerciseHistoryViewModel.getInstance();
 
-    public ExerciseHistoryRecyclerViewAdapter(ActiveWorkout selectedActiveWorkout){
-        this.selectedActiveWorkout = selectedActiveWorkout;
+    public ExerciseHistoryRecyclerViewAdapter(Activity activity){
+        this.activity = activity;
+        this.selectedActiveWorkout = exerciseHistoryViewModel.getSelectedWorkout();
     }
 
     @NonNull

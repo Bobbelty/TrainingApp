@@ -1,6 +1,7 @@
 package com.example.trainingapp.view.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Layout;
@@ -26,11 +27,13 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
     private List<ActiveWorkout> completedWorkouts;
     private Context context;
+    private Activity activity;
     private ActiveWorkout selectedActiveWorkout;
     private ExerciseHistoryViewModel exerciseHistoryViewModel = ExerciseHistoryViewModel.getInstance();
 
-    public HistoryRecyclerViewAdapter(List<ActiveWorkout> completedWorkouts, Context context) {
+    public HistoryRecyclerViewAdapter(List<ActiveWorkout> completedWorkouts, Activity activity, Context context) {
         this.completedWorkouts = completedWorkouts;
+        this.activity = activity;
         this.context = context;
     }
 
