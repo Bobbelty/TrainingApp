@@ -51,7 +51,7 @@ public class HistoryFragment extends Fragment {
 
     private FragmentHistoryBinding binding;
 
-    private List<ActiveWorkout> testWorkouts = new ArrayList<>();
+    private List<ActiveWorkout> testActiveWorkouts = new ArrayList<>();
 
     ActiveWorkout activeWorkout;
     HistoryRecyclerViewAdapter recyclerViewAdapter;
@@ -74,6 +74,7 @@ public class HistoryFragment extends Fragment {
 
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_history,container,false);
 
+        initObjects();
         initRecyclerView(v);
 
         return v;
@@ -82,12 +83,12 @@ public class HistoryFragment extends Fragment {
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.history_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerViewAdapter = new HistoryRecyclerViewAdapter(testWorkouts, this.getContext());
+        recyclerViewAdapter = new HistoryRecyclerViewAdapter(testActiveWorkouts);
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
     private void initObjects() {
-        testActiveWorkouts = historyViewModel.getTrainingAppModel().getSavedPlans();
+        testActiveWorkouts = historyViewModel.getTrainingAppModel().getCompletedWorkouts();
     }
 
     /**

@@ -38,6 +38,9 @@ public class MockDataBase implements IDatabase {
         Exercise exampleExercise3 = new Exercise("Squats", 125);
         Exercise exampleExercise4 = new Exercise("Leg press", 126);
 
+        ActiveExercise activeExercise1 = new ActiveExercise(exampleExercise1);
+        ActiveExercise activeExercise2 = new ActiveExercise(exampleExercise2);
+
         exampleExercise1.setNumberOfSets(4);
         exampleExercise1.setNumberOfReps(8);
 
@@ -86,6 +89,14 @@ public class MockDataBase implements IDatabase {
         exampleWorkout1.addExercise(exampleExercise4);
         examplePlan1.addWorkout(exampleWorkout1);
         examplePlan1.addWorkout(exampleWorkout2);
+
+        activeWorkout1.addExercise(activeExercise1);
+        activeWorkout1.addExercise(activeExercise2);
+        activeWorkout2.addExercise(activeExercise2);
+        activeWorkout2.addExercise(activeExercise1);
+
+        addToCompletedWorkouts(activeWorkout1);
+        addToCompletedWorkouts(activeWorkout2);
 
         addPlan(examplePlan1);
     }

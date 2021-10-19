@@ -35,6 +35,7 @@ public class ActiveWorkout {
      */
     public ActiveWorkout(String workoutName) {
         this.workoutName = workoutName;
+        currentTime = "0";
     }
 
     /**

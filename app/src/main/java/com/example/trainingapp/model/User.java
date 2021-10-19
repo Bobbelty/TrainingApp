@@ -40,7 +40,7 @@ public class User {
         return mockDataBase.getPlanList();
     }
 
-    public List<ActiveWorkout> getCompletedPlans() {return mockDatabase.get}
+    public List<ActiveWorkout> getCompletedWorkouts() {return mockDataBase.getCompletedWorkouts();}
 
 
     /**

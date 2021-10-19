@@ -29,42 +29,29 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
     private ActiveWorkout selectedActiveWorkout;
     private ExerciseHistoryViewModel exerciseHistoryViewModel = ExerciseHistoryViewModel.getInstance();
 
-    public HistoryRecyclerViewAdapter(List<ActiveWorkout> completedWorkouts, Context context) {
+    public HistoryRecyclerViewAdapter(List<ActiveWorkout> completedWorkouts) {
         this.completedWorkouts = completedWorkouts;
-        this.context = context;
     }
 
     @NonNull
     @Override
-    public HistoryRecyclerViewAdapter.ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         return new HistoryRecyclerViewAdapter.ListViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_history_list_item, parent, false));
     }
 
     @Override
-    public void onBindViewHolder(@NonNull HistoryRecyclerViewAdapter.ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
 
         holder.lblActiveWorkoutName.setText(completedWorkouts.get(position).getName());
         holder.lblActiveWorkoutDate.setText(completedWorkouts.get(position).getCurrentTime());
         // set list views
-        holder.btnExercises.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick (View v) {
-                exerciseHistoryViewModel.setSelectedWorkout(completedWorkouts.get(position));
-
-                Intent openActivity = new Intent(context, ExerciseHistoryActivity.class);
-                context.startActivity(openActivity);
-
-            }
-        });
     }
 
     @Override
-    public int getItemCount() {
-        return selectedActiveWorkout.getExerciseList().size();
-    }
+    public int getItemCount() { return completedWorkouts.size(); }
 
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
@@ -74,13 +61,9 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
-
             lblActiveWorkoutName= itemView.findViewById(R.id.lblActiveWorkoutName);
             btnExercises = itemView.findViewById(R.id.btnExercises);
             lblActiveWorkoutDate = itemView.findViewById(R.id.lblActiveWorkoutDate);
-
-
-
         }
     }
 
