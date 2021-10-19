@@ -22,7 +22,7 @@ public class ActiveWorkoutSession {
 
     public void setCurrentDate (ActiveWorkout activeWorkout){
         Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String workoutDate = dateFormat.format(date);
         activeWorkout.setCurrentTime(workoutDate);
     }

@@ -29,7 +29,6 @@ public class ExerciseHistoryFragment extends Fragment {
 
 
     private ActiveWorkout selectedActiveWorkout;
-    private TextView titleText;
     private ExerciseHistoryRecyclerViewAdapter recyclerViewAdapter;
     private ExerciseHistoryViewModel editScheduleViewModel = ExerciseHistoryViewModel.getInstance();
 
@@ -49,7 +48,18 @@ public class ExerciseHistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_exercise_history,container,false);
+        selectedActiveWorkout = ExerciseHistoryViewModel.getInstance().getSelectedWorkout();
+
         return v;
+    }
+
+    private void initRecyclerView(View v) {
+
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.exercise_history_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
+        recyclerViewAdapter = new ExerciseHistoryRecyclerViewAdapter(selectedActiveWorkout);
+        recyclerView.setAdapter(recyclerViewAdapter);
     }
 
 }

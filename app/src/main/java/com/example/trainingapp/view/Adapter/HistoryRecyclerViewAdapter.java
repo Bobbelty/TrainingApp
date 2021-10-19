@@ -48,7 +48,16 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
         holder.lblActiveWorkoutName.setText(completedWorkouts.get(position).getName());
         holder.lblActiveWorkoutDate.setText(completedWorkouts.get(position).getTime());
-        // set list views
+        holder.btnExercises.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                exerciseHistoryViewModel.setSelectedWorkout(completedWorkouts.get(position));
+
+                Intent openActivity = new Intent(context, ExerciseHistoryActivity.class);
+                context.startActivity(openActivity);
+            }
+        });
+
     }
 
     @Override
@@ -58,11 +67,13 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
         private final TextView lblActiveWorkoutName;
         private final TextView lblActiveWorkoutDate;
+        private final Button btnExercises;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             lblActiveWorkoutName= itemView.findViewById(R.id.lblActiveWorkoutName);
             lblActiveWorkoutDate = itemView.findViewById(R.id.lblActiveWorkoutDate);
+            btnExercises = itemView.findViewById(R.id.btnExercises);
         }
     }
 
