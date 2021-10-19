@@ -16,13 +16,6 @@ public class ActiveWorkoutSession {
         for(int i = 0; i < workout.getExerciseList().size(); i++){
             
             activeWorkout.addExercise(ActiveWorkoutComponentFactory.createActiveExercise(workout.getExerciseList().get(i)));
-            
-            /*
-            String activeName = workout.getExerciseList().get(i).getName();
-            int activeReps = workout.getExerciseList().get(i).getNumberOfReps();
-            int activeSets = workout.getExerciseList().get(i).getNumberOfSets();
-            int activeId = workout.getExerciseList().get(i).getExerciseId();
-            activeWorkout.addExercise(ActiveWorkoutComponentFactory.createActiveExercise(activeName, activeId, activeReps, activeSets));*/
         }
         return activeWorkout;
     }

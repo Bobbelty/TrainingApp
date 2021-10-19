@@ -17,12 +17,12 @@ public class ActiveExercise {
     /**
      * List of reps. Ex 12 + 12 + 8 -> 3 sets with different amount of repetitions.
      */
-    private List<Integer> listOfReps;
+    private List<Integer> listOfReps = new ArrayList<>();
 
     /**
      * This is a list of the weight used in each set. Default value is zero.
      */
-    private List<Integer> listOfWeights;
+    private List<Integer> listOfWeights = new ArrayList<>();
 
     /**
      * An exercise contains an id to make it possible for PB-recording purposes. For example
@@ -86,6 +86,11 @@ public class ActiveExercise {
     public void addSetToList(int amountOfReps){
         listOfReps.add(amountOfReps);
         listOfWeights.add(0);
+    }
+
+    public void removeSetFromList(int index){
+        listOfReps.remove(index);
+        listOfWeights.remove(index);
     }
 
     /**
