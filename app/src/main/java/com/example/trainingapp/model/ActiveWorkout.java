@@ -86,8 +86,9 @@ public class ActiveWorkout {
     }
 
     /**
-     * Returns the list of exercises
-     * @param currentTime
+     * Sets the timestamp when an active workout is ended.
+     *
+     * @param currentTime is set (YYYY-MM-DD) when the workout ends.
      */
     public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
