@@ -87,6 +87,8 @@ public class MockDataBase implements IDatabase {
         ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
         ActiveWorkout activeWorkout1 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout1);
         ActiveWorkout activeWorkout2 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout2);
+        activeWorkoutSession.setCurrentDate(activeWorkout1);
+        activeWorkoutSession.setCurrentDate(activeWorkout2);
         completedWorkouts.add(activeWorkout1);
         completedWorkouts.add(activeWorkout2);
 
