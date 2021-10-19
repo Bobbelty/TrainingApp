@@ -28,12 +28,8 @@ public class EditScheduleFragment extends Fragment {
 
     //Plan activePlan;
     private Workout selectedWorkout;
-    private EditText etbxWorkoutName;
-    private Button btnDeleteWorkout;
-    private Button btnAddExercise;
     private EditScheduleRecyclerViewAdapter recyclerViewAdapter;
     private EditScheduleViewModel editScheduleViewModel = EditScheduleViewModel.getInstance();
-    private TextView alertTextView;
 
     private List<Plan> testPlans = new ArrayList<>();
 
@@ -64,7 +60,7 @@ public class EditScheduleFragment extends Fragment {
         return v;
     }
     private void initAddExerciseButton(View v) {
-        btnAddExercise = v.findViewById(R.id.btnAddExercise);
+        Button btnAddExercise = v.findViewById(R.id.btnAddExercise);
         btnAddExercise.setVisibility(View.VISIBLE);
         btnAddExercise.setText("Add exercise");
         btnAddExercise.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +81,7 @@ public class EditScheduleFragment extends Fragment {
         });
     }
     private void initDeleteWorkoutButton(View v) {
-        btnDeleteWorkout = v.findViewById(R.id.btnDeleteWorkout);
+        Button btnDeleteWorkout = v.findViewById(R.id.btnDeleteWorkout);
         btnDeleteWorkout.setVisibility(View.VISIBLE);
         btnDeleteWorkout.setText("Delete workout");
         btnDeleteWorkout.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +92,7 @@ public class EditScheduleFragment extends Fragment {
         });
     }
     private void initPopupMessageView(View v) {
-        alertTextView = (TextView) v.findViewById(R.id.AlertTextView);
+        TextView alertTextView = (TextView) v.findViewById(R.id.AlertTextView);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
         builder.setCancelable(true);
@@ -129,7 +125,7 @@ public class EditScheduleFragment extends Fragment {
     }
 
     private void initTitleText(View v) {
-        etbxWorkoutName = v.findViewById(R.id.etbxWorkoutName);
+        EditText etbxWorkoutName = v.findViewById(R.id.etbxWorkoutName);
         etbxWorkoutName.setText(selectedWorkout.getName());
 
         etbxWorkoutName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
