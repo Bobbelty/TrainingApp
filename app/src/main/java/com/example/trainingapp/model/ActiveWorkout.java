@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * A class for an active workout, containing the date. A workout contains zero or more exercises.
- * Active workouts are used for
+ * ActiveWorkout acts closely to the Workout-class with the exception of containing active exercises
+ * instead of normal exercises and a timestamp.
+ * This class is used when the User in the UI has started a workout and therefore the selected workout
+ * is converted into an ActiveWorkout.
  *
  * @author ...
  */
@@ -84,8 +86,9 @@ public class ActiveWorkout {
     }
 
     /**
-     * Returns the list of exercises
-     * @param currentTime
+     * Sets the timestamp when an active workout is ended.
+     *
+     * @param currentTime is set (YYYY-MM-DD) when the workout ends.
      */
     public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
