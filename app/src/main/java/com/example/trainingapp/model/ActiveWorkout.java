@@ -79,7 +79,7 @@ public class ActiveWorkout {
      *
      * @return the date of the active workout
      */
-    public String getCurrentTime() {
+    public String getTime() {
         return currentTime;
     }
 

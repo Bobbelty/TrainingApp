@@ -2,6 +2,7 @@ package com.example.trainingapp.view;
 
 import java.util.List;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +43,7 @@ public class HistoryFragment extends Fragment {
      * Instance of HistoryViewModel to enable communication and displaying of the correct elements.
      */
 
-    private HistoryViewModel historyViewModel;
+    private HistoryViewModel historyViewModel = new HistoryViewModel();
 
     /**
      * Instance of the binding-class for fragment_history.xml. Allows for access of all the root views
@@ -52,8 +53,7 @@ public class HistoryFragment extends Fragment {
     private FragmentHistoryBinding binding;
 
     private List<ActiveWorkout> testActiveWorkouts = new ArrayList<>();
-
-    ActiveWorkout activeWorkout;
+    Context context;
     HistoryRecyclerViewAdapter recyclerViewAdapter;
 
     /**
@@ -83,7 +83,7 @@ public class HistoryFragment extends Fragment {
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.history_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        recyclerViewAdapter = new HistoryRecyclerViewAdapter(testActiveWorkouts);
+        recyclerViewAdapter = new HistoryRecyclerViewAdapter(testActiveWorkouts, this.getContext());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 

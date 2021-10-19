@@ -29,8 +29,9 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
     private ActiveWorkout selectedActiveWorkout;
     private ExerciseHistoryViewModel exerciseHistoryViewModel = ExerciseHistoryViewModel.getInstance();
 
-    public HistoryRecyclerViewAdapter(List<ActiveWorkout> completedWorkouts) {
+    public HistoryRecyclerViewAdapter(List<ActiveWorkout> completedWorkouts, Context context) {
         this.completedWorkouts = completedWorkouts;
+        this.context = context;
     }
 
     @NonNull
@@ -46,7 +47,7 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
 
         holder.lblActiveWorkoutName.setText(completedWorkouts.get(position).getName());
-        holder.lblActiveWorkoutDate.setText(completedWorkouts.get(position).getCurrentTime());
+        holder.lblActiveWorkoutDate.setText(completedWorkouts.get(position).getTime());
         // set list views
     }
 
@@ -56,13 +57,11 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView lblActiveWorkoutName;
-        private final Button btnExercises;
         private final TextView lblActiveWorkoutDate;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             lblActiveWorkoutName= itemView.findViewById(R.id.lblActiveWorkoutName);
-            btnExercises = itemView.findViewById(R.id.btnExercises);
             lblActiveWorkoutDate = itemView.findViewById(R.id.lblActiveWorkoutDate);
         }
     }
