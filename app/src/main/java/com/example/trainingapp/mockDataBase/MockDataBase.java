@@ -2,6 +2,7 @@ package com.example.trainingapp.mockDataBase;
 
 import com.example.trainingapp.model.ActiveExercise;
 import com.example.trainingapp.model.ActiveWorkout;
+import com.example.trainingapp.model.ActiveWorkoutSession;
 import com.example.trainingapp.model.Exercise;
 import com.example.trainingapp.model.ExerciseIdNotFoundException;
 import com.example.trainingapp.model.Plan;
@@ -25,9 +26,6 @@ public class MockDataBase implements IDatabase {
 
     public MockDataBase(){
 
-        ActiveWorkout activeWorkout1 = new ActiveWorkout("Breast and shoulders");
-        ActiveWorkout activeWorkout2 = new ActiveWorkout("Legs");
-
         Plan examplePlan1 = new Plan("Summer");
         Workout exampleWorkout1 = new Workout("Breast and shoulders");
         Exercise exampleExercise1 = new Exercise("Bench Press", 123);
@@ -36,9 +34,6 @@ public class MockDataBase implements IDatabase {
         Workout exampleWorkout2 = new Workout("Legs");
         Exercise exampleExercise3 = new Exercise("Squats", 125);
         Exercise exampleExercise4 = new Exercise("Leg press", 126);
-
-        ActiveExercise activeExercise1 = new ActiveExercise(exampleExercise1);
-        ActiveExercise activeExercise2 = new ActiveExercise(exampleExercise2);
 
         exampleExercise1.setNumberOfSets(4);
         exampleExercise1.setNumberOfReps(8);
@@ -89,13 +84,9 @@ public class MockDataBase implements IDatabase {
         examplePlan1.addWorkout(exampleWorkout1);
         examplePlan1.addWorkout(exampleWorkout2);
 
-        activeWorkout1.addExercise(activeExercise1);
-        activeWorkout1.addExercise(activeExercise2);
-        activeWorkout2.addExercise(activeExercise2);
-        activeWorkout2.addExercise(activeExercise1);
-
-        addToCompletedWorkouts(activeWorkout1);
-        addToCompletedWorkouts(activeWorkout2);
+        ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
+        ActiveWorkout activeWorkout1 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout1);
+        ActiveWorkout activeWorkout2 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout2);
 
         addPlan(examplePlan1);
     }
