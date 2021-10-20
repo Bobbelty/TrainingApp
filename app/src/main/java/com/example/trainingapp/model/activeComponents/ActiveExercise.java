@@ -1,8 +1,9 @@
-package com.example.trainingapp.model;
+package com.example.trainingapp.model.activeComponents;
+
+import com.example.trainingapp.model.components.Exercise;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Class for creating an active exercise. The class is identical to the Exercise-class, but with added

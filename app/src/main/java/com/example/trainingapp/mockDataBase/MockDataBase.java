@@ -1,12 +1,11 @@
 package com.example.trainingapp.mockDataBase;
 
-import com.example.trainingapp.model.ActiveExercise;
-import com.example.trainingapp.model.ActiveWorkout;
-import com.example.trainingapp.model.ActiveWorkoutSession;
-import com.example.trainingapp.model.Exercise;
+import com.example.trainingapp.model.activeComponents.ActiveWorkout;
+import com.example.trainingapp.model.activeComponents.ActiveWorkoutSession;
+import com.example.trainingapp.model.components.Exercise;
 import com.example.trainingapp.model.ExerciseIdNotFoundException;
-import com.example.trainingapp.model.Plan;
-import com.example.trainingapp.model.Workout;
+import com.example.trainingapp.model.components.Plan;
+import com.example.trainingapp.model.components.Workout;
 
 import java.util.ArrayList;
 import java.util.HashMap;

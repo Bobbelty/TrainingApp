@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.model.Plan;
-import com.example.trainingapp.model.Workout;
+import com.example.trainingapp.model.components.Plan;
+import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.view.Adapter.EditScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.EditScheduleViewModel;
 

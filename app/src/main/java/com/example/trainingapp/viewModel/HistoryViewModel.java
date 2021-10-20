@@ -2,11 +2,9 @@ package com.example.trainingapp.viewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
-import com.example.trainingapp.model.ActiveWorkout;
 import com.example.trainingapp.model.TrainingAppFacade;
-import com.example.trainingapp.model.Workout;
+import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data

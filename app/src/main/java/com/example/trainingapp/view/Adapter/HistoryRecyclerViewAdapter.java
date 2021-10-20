@@ -14,7 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.model.ActiveWorkout;
+import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 
 public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecyclerViewAdapter.ListViewHolder>{
 

@@ -1,4 +1,6 @@
-package com.example.trainingapp.model;
+package com.example.trainingapp.model.activeComponents;
+
+import com.example.trainingapp.model.components.Workout;
 
 import java.util.Calendar;
 import java.util.Date;

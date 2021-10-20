@@ -4,14 +4,11 @@ import android.widget.EditText;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
-
-import com.example.trainingapp.model.Exercise;
-import com.example.trainingapp.model.Plan;
 
 import com.example.trainingapp.model.TrainingAppFacade;
-import com.example.trainingapp.model.Workout;
-import com.example.trainingapp.view.Adapter.EditScheduleRecyclerViewAdapter;
+import com.example.trainingapp.model.components.Plan;
+
+import com.example.trainingapp.model.components.Workout;
 
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data

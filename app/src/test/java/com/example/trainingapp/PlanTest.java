@@ -1,7 +1,7 @@
 package com.example.trainingapp;
 
-import com.example.trainingapp.model.Plan;
-import com.example.trainingapp.model.Workout;
+import com.example.trainingapp.model.components.Plan;
+import com.example.trainingapp.model.components.Workout;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

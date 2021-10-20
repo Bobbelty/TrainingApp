@@ -1,8 +1,7 @@
-package com.example.trainingapp.model;
+package com.example.trainingapp.model.components;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 
 /**

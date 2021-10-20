@@ -16,8 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.view.EditScheduleActivity;
-import com.example.trainingapp.model.Plan;
-import com.example.trainingapp.view.MainActivity;
+import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.viewModel.EditScheduleViewModel;
 
 public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder>  {

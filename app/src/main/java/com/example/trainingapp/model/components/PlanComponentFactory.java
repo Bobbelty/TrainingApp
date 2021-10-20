@@ -1,6 +1,4 @@
-package com.example.trainingapp.model;
-
-import java.util.List;
+package com.example.trainingapp.model.components;
 
 
 /**

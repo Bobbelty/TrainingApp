@@ -1,8 +1,8 @@
 package com.example.trainingapp.mockDataBase;
 
-import com.example.trainingapp.model.ActiveWorkout;
+import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.model.ExerciseIdNotFoundException;
-import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.model.components.Plan;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.trainingapp;
 
-import com.example.trainingapp.model.Exercise;
+import com.example.trainingapp.model.components.Exercise;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

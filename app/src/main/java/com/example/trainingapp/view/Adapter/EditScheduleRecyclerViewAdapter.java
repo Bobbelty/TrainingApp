@@ -2,30 +2,19 @@ package com.example.trainingapp.view.Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.model.Plan;
-import com.example.trainingapp.model.TrainingAppFacade;
-import com.example.trainingapp.model.Workout;
-import com.example.trainingapp.view.EditScheduleActivity;
-import com.example.trainingapp.view.MainActivity;
-import com.example.trainingapp.view.ScheduleFragment;
+import com.example.trainingapp.model.components.Plan;
+import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.viewModel.EditScheduleViewModel;
-import com.example.trainingapp.viewModel.TrainingAppModelViewModel;
-
-import java.util.List;
 
 public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditScheduleRecyclerViewAdapter.ListViewHolder> {
 

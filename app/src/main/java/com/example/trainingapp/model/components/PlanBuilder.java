@@ -1,4 +1,4 @@
-package com.example.trainingapp.model;
+package com.example.trainingapp.model.components;
 
 /**
  * Class for handling the objects in the application using a MockDatabase

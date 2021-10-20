@@ -1,9 +1,9 @@
-package com.example.trainingapp.model;
+package com.example.trainingapp.model.activeComponents;
+
+import com.example.trainingapp.model.components.Exercise;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * ActiveWorkout acts closely to the Workout-class with the exception of containing active exercises

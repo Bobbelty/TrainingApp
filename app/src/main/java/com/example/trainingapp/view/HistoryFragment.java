@@ -7,24 +7,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentHistoryBinding;
-import com.example.trainingapp.model.ActiveWorkout;
-import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.view.Adapter.HistoryRecyclerViewAdapter;
-import com.example.trainingapp.view.Adapter.ScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
 

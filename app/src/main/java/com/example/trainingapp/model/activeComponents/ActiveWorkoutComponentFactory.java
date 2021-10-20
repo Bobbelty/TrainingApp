@@ -1,4 +1,6 @@
-package com.example.trainingapp.model;
+package com.example.trainingapp.model.activeComponents;
+
+import com.example.trainingapp.model.components.Exercise;
 
 /**
  * Factory-class providing static methods for creating components of an active workout.

@@ -5,8 +5,8 @@ import android.widget.EditText;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.trainingapp.model.Plan;
 import com.example.trainingapp.model.TrainingAppFacade;
+import com.example.trainingapp.model.components.Plan;
 
 import java.util.List;
 

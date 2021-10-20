@@ -1,93 +1,139 @@
 package com.example.trainingapp.model;
 
+import com.example.trainingapp.mockDataBase.IDatabase;
+import com.example.trainingapp.mockDataBase.MockDataBase;
+import com.example.trainingapp.model.activeComponents.ActiveWorkout;
+import com.example.trainingapp.model.activeComponents.ActiveWorkoutSession;
+import com.example.trainingapp.model.components.Exercise;
+import com.example.trainingapp.model.components.Plan;
+import com.example.trainingapp.model.components.PlanBuilder;
+import com.example.trainingapp.model.components.Workout;
+
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * The TrainingApp-class purpose is to act as a facade of the model towards the ViewModels.
- * It communicates with a User-object, who in tern handles communication with the database
- * and the model.
+ * The User-class act as a datahandler that connects all of the model with the modelfacade and the
+ * database.
  */
 public class TrainingAppFacade {
 
     /**
-     * An instance of the User-class. Used for communication with the rest of the model.
+     * ActiveWorkoutSession-object to access logic for ActiveWorkout and ActiveExercise.
      */
-    private User user = new User();
+    private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
 
     /**
-     * Used to get list of saved plans from the mockdatabase.
+     * ExerciseIdHandler-object for creating new exerciseId:s
+     */
+    private final ExerciseIdHandler exerciseIdHandler = new ExerciseIdHandler();
+
+    /**
+     * PlanBuilder-object for access to the modelcomponents (Exercise, Workout, Plan)
+     */
+    private final PlanBuilder planBuilder = new PlanBuilder();
+
+    /**
+     * User uses a MockDatabase to store plans, workouts and exercises
+     * during runtime
+     */
+    private final IDatabase mockDataBase = new MockDataBase();
+
+    /**
+     * nextId used for generating unique id:S
+     */
+    private static AtomicInteger nextId = new AtomicInteger();
+
+    /**
+     * Method for returning a list of the stored plans from the database
      *
-     * @return list of saved plans
+     * @return list of plans from database
      */
     public List<Plan> getSavedPlans(){
-        return user.getSavedPlans();
+        return mockDataBase.getPlanList();
     }
 
-    public List<ActiveWorkout> getCompletedWorkouts(){return user.getCompletedWorkouts();}
+    /**
+     * Method for removing the selected plan (first in list) from the database.
+     */
+    public void removePlan(Plan selectedPlan) {
+        getSavedPlans().remove(selectedPlan);
+    }
 
     /**
-     * Method for creating a new Plan-object.
+     * Method for receiving the list of completed workouts from the database.
      *
-     * @param planName the name for the new Plan-object
+     * @return the list of completed workouts.
+     */
+    public List<ActiveWorkout> getCompletedWorkouts() {return mockDataBase.getCompletedWorkouts();}
+
+    /**
+     * Returns a new Plan-object
+     *
+     * @param planName the name of the plan
      */
     public void createNewPlan(String planName){
-        user.createNewPlan(planName);
+        mockDataBase.addPlan(planBuilder.createNewPlan(planName));
     }
 
     /**
-     * Method for creating a new Workout-object and adding it to a specific Plan.
+     * Method for adding a workout to a plan
      *
-     * @param plan which Plan-object to add the new Workout to
-     * @param workoutName name of new workout-object
+     * @param plan the reference to the plan object
+     * @param name the name of the Workout-object that gets added to the Plan
      */
-    public void addWorkoutToPlan(Plan plan, String workoutName){
-        user.addWorkoutToPlan(plan, workoutName);
+    public void addWorkoutToPlan(Plan plan, String name){
+        planBuilder.addWorkoutToPlan(plan, name);
     }
 
     /**
-     * Method for removing a workout from a plan.
+     * Method for removing a workout from a plan
      *
-     * @param plan the object which the workout will be removed from
-     * @param workout what workout that will be removed
+     * @param plan the reference to the plan object
+     * @param workout the reference to the workout object
      */
     public void removeWorkoutFromPlan(Plan plan, Workout workout) {
-        user.removeWorkoutFromPlan(plan, workout);
+        planBuilder.removeWorkoutFromPlan(plan, workout);
     }
 
     /**
-     * Method for creating and adding a new Exercise-object to an existing workout.
+     * Method for adding an exercise to a workout
      *
-     * @param workout the workout to add exercise into
-     * @param exerciseName name of the new exercise
+     * @param workout the reference to the workout object
+     * @param exerciseName the name of the exercise
      */
-    public void addExerciseToWorkout(Workout workout, String exerciseName ){
-        user.addExerciseToWorkout(workout,exerciseName);
-
-    }
-    public void removePlan(Plan selectedPlan) {
-        user.removePlan(selectedPlan);
+    public void addExerciseToWorkout(Workout workout, String exerciseName) {
+        try{
+            int exerciseId = mockDataBase.getExerciseIdFromMap(exerciseName);
+            planBuilder.addExerciseToWorkout(workout, exerciseName, exerciseId);
+        } catch (ExerciseIdNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
-     * Method for removing an exercise from a workout.
+     * Method for removing an exercise from a workout
      *
-     * @param workout which workout to remove exercise from
-     * @param exercise which exercise to be removed
+     * @param workout the reference to the Workout-object
+     * @param exercise the Exercise-object to be removed
      */
     public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
-        user.removeExerciseFromWorkout(workout, exercise);
+        planBuilder.removeExerciseFromWorkout(workout, exercise);
     }
-                    /*if (selectedWorkout.getExerciseList().size() == 0) {
-        List<Plan> plans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
-        for (int i = 0; i < plans.size(); i++) {
-            for (int k = 0; k < plans.get(i).getWorkoutList().size(); k++) {
-                if (plans.get(i).getWorkoutList().get(k).equals(selectedWorkout)) {
-                    plans.get(i).getWorkoutList().remove(k);
-                }
-            }
-        }
-*/
 
+    /**
+     * Method for creating a new exercise(not in a workout, just for purposes of storing
+     * it in database). Also connects an exerciseId to the exercise.
+     *
+     * @param exerciseIdName The exercise name that the exerciseId corresponds to
+     */
+    public void createAndSaveNewExerciseToDatabase(String exerciseIdName){
+        int id = nextId.getAndIncrement();
+        mockDataBase.addExerciseIdToMap(exerciseIdName, id);
+    }
 
+    public void createAndSaveActiveWorkoutToDatabase(Workout workout){
+
+    }
 
 }

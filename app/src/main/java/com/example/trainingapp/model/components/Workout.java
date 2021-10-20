@@ -1,8 +1,7 @@
-package com.example.trainingapp.model;
+package com.example.trainingapp.model.components;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * A class for building a workout. A workout contains zero or more exercises. Workouts are a part of a plan.
