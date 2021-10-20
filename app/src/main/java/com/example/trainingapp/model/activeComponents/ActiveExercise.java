@@ -30,7 +30,7 @@ public class ActiveExercise {
      * An exercise contains an id to make it possible for PB-recording purposes. For example
      * all Bench Press exercises will have the same id.
      */
-    private int exerciseId;
+    private String exerciseId;
 
     /**
      * Class constructor. Responsible for converting an exercise to an active exercise.
@@ -143,7 +143,7 @@ public class ActiveExercise {
      *
      * @return The exerciseId of the exercise
      */
-    public int getExerciseId(){
+    public String getExerciseId(){
         return exerciseId;
     }
 

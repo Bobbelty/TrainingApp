@@ -10,8 +10,8 @@ public class PlanBuilder {
      *
      * @param planName the name of the plan
      */
-    public Plan createNewPlan(String planName){
-        return PlanComponentFactory.createPlan(planName);
+    public Plan createNewPlan(){
+        return PlanComponentFactory.createPlan();
     }
 
     /**
@@ -20,19 +20,8 @@ public class PlanBuilder {
      * @param plan the reference to the plan object
      * @param workoutName the name of the Workout-object that gets added to the Plan
      */
-    public void addWorkoutToPlan(Plan plan, String workoutName) {
-        Workout workout = PlanComponentFactory.createWorkout(workoutName);
-        plan.addWorkout(workout);
-    }
-
-    /**
-     * Method for removing a workout from a plan
-     *
-     * @param plan the reference to the plan object
-     * @param workout the reference to the workout object
-     */
-    public void removeWorkoutFromPlan(Plan plan, Workout workout) {
-        plan.removeWorkout(workout);
+    public Workout createNewWorkout() {
+        return PlanComponentFactory.createWorkout();
     }
 
     /**
@@ -41,19 +30,7 @@ public class PlanBuilder {
      * @param workout the reference to the workout object
      * @param exerciseName the name of the exercise
      */
-    public void addExerciseToWorkout(Workout workout, String exerciseName, int exerciseID) {
-        Exercise exercise = PlanComponentFactory.createExercise(exerciseName, exerciseID);
-        workout.addExercise(exercise);
-    }
-
-
-    /**
-     * Method for removing an exercise from a workout
-     *
-     * @param workout the reference to the workout object
-     * @param exercise the reference to the exercise object
-     */
-    public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
-        workout.removeExercise(exercise);
+    public Exercise createNewExercise() {
+        return PlanComponentFactory.createExercise();
     }
 }

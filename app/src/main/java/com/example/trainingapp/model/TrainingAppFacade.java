@@ -37,12 +37,16 @@ public class TrainingAppFacade {
      * User uses a MockDatabase to store plans, workouts and exercises
      * during runtime
      */
-    private final IDatabase mockDataBase = new MockDataBase();
+    private final IDatabase mockDataBase;
 
     /**
-     * nextId used for generating unique id:S
+     * Class constructor
+     *
+     * @param mockDataBase
      */
-    private static AtomicInteger nextId = new AtomicInteger();
+    public TrainingAppFacade(IDatabase mockDataBase) {
+        this.mockDataBase = mockDataBase;
+    }
 
     /**
      * Method for returning a list of the stored plans from the database
@@ -50,14 +54,7 @@ public class TrainingAppFacade {
      * @return list of plans from database
      */
     public List<Plan> getSavedPlans(){
-        return mockDataBase.getPlanList();
-    }
-
-    /**
-     * Method for removing the selected plan (first in list) from the database.
-     */
-    public void removePlan(Plan selectedPlan) {
-        getSavedPlans().remove(selectedPlan);
+            return mockDataBase.getPlanList();
     }
 
     /**
@@ -68,12 +65,23 @@ public class TrainingAppFacade {
     public List<ActiveWorkout> getCompletedWorkouts() {return mockDataBase.getCompletedWorkouts();}
 
     /**
+     * Method for removing the selected plan (first in list) from the database.
+     */
+    public void removePlan(String planId) {
+        mockDataBase.removePlan(planId);
+    }
+
+    /**
      * Returns a new Plan-object
      *
      * @param planName the name of the plan
      */
-    public void createNewPlan(String planName){
-        mockDataBase.addPlan(planBuilder.createNewPlan(planName));
+    public void createNewPlan(){
+        mockDataBase.addPlan(planBuilder.createNewPlan());
+    }
+
+    public void updatePlanName(String name, String id){
+        mockDataBase.updatePlanName(name, id);
     }
 
     /**
@@ -82,8 +90,8 @@ public class TrainingAppFacade {
      * @param plan the reference to the plan object
      * @param name the name of the Workout-object that gets added to the Plan
      */
-    public void addWorkoutToPlan(Plan plan, String name){
-        planBuilder.addWorkoutToPlan(plan, name);
+    public void addWorkoutToPlan(String planId){
+        mockDataBase.addWorkoutToPlan(planBuilder.createNewWorkout(), planId);
     }
 
     /**
@@ -92,8 +100,12 @@ public class TrainingAppFacade {
      * @param plan the reference to the plan object
      * @param workout the reference to the workout object
      */
-    public void removeWorkoutFromPlan(Plan plan, Workout workout) {
-        planBuilder.removeWorkoutFromPlan(plan, workout);
+    public void removeWorkoutFromPlan(String planId, String workoutId) {
+        mockDataBase.removeWorkoutFromPlan(planId, workoutId);
+    }
+
+    public void updateWorkoutName(String name, String planId, String workoutId){
+        mockDataBase.updateWorkoutName(name, planId, workoutId);
     }
 
     /**
@@ -102,13 +114,8 @@ public class TrainingAppFacade {
      * @param workout the reference to the workout object
      * @param exerciseName the name of the exercise
      */
-    public void addExerciseToWorkout(Workout workout, String exerciseName) {
-        try{
-            int exerciseId = mockDataBase.getExerciseIdFromMap(exerciseName);
-            planBuilder.addExerciseToWorkout(workout, exerciseName, exerciseId);
-        } catch (ExerciseIdNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void addExerciseToWorkout(String planId, String workoutId) {
+        mockDataBase.addExerciseToWorkout(planBuilder.createNewExercise(), planId, workoutId);
     }
 
     /**
@@ -117,23 +124,11 @@ public class TrainingAppFacade {
      * @param workout the reference to the Workout-object
      * @param exercise the Exercise-object to be removed
      */
-    public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
-        planBuilder.removeExerciseFromWorkout(workout, exercise);
+    public void removeExerciseFromWorkout(String planId, String workoutId, String exerciseId){
+        mockDataBase.removeExerciseFromWorkout(planId, workoutId, exerciseId);
     }
 
-    /**
-     * Method for creating a new exercise(not in a workout, just for purposes of storing
-     * it in database). Also connects an exerciseId to the exercise.
-     *
-     * @param exerciseIdName The exercise name that the exerciseId corresponds to
-     */
-    public void createAndSaveNewExerciseToDatabase(String exerciseIdName){
-        int id = nextId.getAndIncrement();
-        mockDataBase.addExerciseIdToMap(exerciseIdName, id);
+    public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId){
+        mockDataBase.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
     }
-
-    public void createAndSaveActiveWorkoutToDatabase(Workout workout){
-
-    }
-
 }

@@ -1,7 +1,9 @@
 package com.example.trainingapp.model.components;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -16,18 +18,24 @@ public class Plan {
      */
     private String planName; // Make sure not able to send null values from GUI
 
-    /**
-     * The list containing all the workouts in the plan
-     */
-    private List<Workout> workouts = new ArrayList<>();
+    private HashMap<String, Workout> workoutMap = new HashMap<>();
+
+    private final String planId;
 
     /**
      * Class constructor setting planName
      *
      * @param planName name of plan
      */
-    public Plan(String planName) {
-        this.planName = planName;
+    public Plan() {
+        this.planName = "New plan";
+        this.planId = UUID.randomUUID().toString();
+    }
+
+    public Plan(Plan plan) {
+        this.planName = plan.getPlanName();
+        this.planId = plan.getId();
+        this.workoutMap = plan.getWorkoutMap();
     }
 
     public void setPlanName(String planName) {
@@ -38,13 +46,17 @@ public class Plan {
         return planName;
     }
 
+    public String getId() {
+        return planId;
+    }
+
     /**
      * Method for removing a workoutobject from the list of workouts
      *
-     * @param workout workoutobject to be removed from list
+     * @param workoutId
      */
-    void removeWorkout(Workout workout) {
-        workouts.remove(workout);
+    public void removeWorkout(String workoutId) {
+        workoutMap.remove(workoutId);
     }
 
     /**
@@ -52,7 +64,17 @@ public class Plan {
      * @return The list of Workouts that Plan contains
      */
     public List<Workout> getWorkoutList(){
+        List<Workout> workouts = new ArrayList<>();
+        for(String key: workoutMap.keySet()){
+            workouts.add(workoutMap.get(key));
+        }
         return workouts;
+
+    }
+
+    private HashMap<String, Workout> getWorkoutMap(){
+        //defensive copying?
+        return new HashMap<>(workoutMap);
     }
 
 
@@ -62,10 +84,28 @@ public class Plan {
      * @param workout workoutobject to add to list
      */
     public void addWorkout(Workout workout) {
-        workouts.add(workout);
+        workoutMap.put(workout.getId(), workout);
     }
     @Override
+
     public String toString() {
         return planName;
     }
+
+    public void setWorkoutName(String name, String workoutId){
+        workoutMap.get(workoutId).setName(name);
+    }
+
+    public void addExerciseToWorkout(Exercise exercise, String workoutId){
+        workoutMap.get(workoutId).addExercise(exercise);
+    }
+
+    public void removeExerciseFromWorkout(String workoutId, String exerciseId){
+        workoutMap.get(workoutId).removeExercise(exerciseId);
+    }
+
+    public void updateExerciseNameInWorkout(String newExerciseName, String workoutId, String exerciseId){
+        workoutMap.get(workoutId).updateExerciseName(newExerciseName, exerciseId);
+    }
+
 }

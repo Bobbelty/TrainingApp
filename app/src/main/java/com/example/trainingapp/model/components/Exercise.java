@@ -2,7 +2,7 @@ package com.example.trainingapp.model.components;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.UUID;
 
 /**
  * Class for creating an exercise. Several exercises makes up a workout
@@ -25,10 +25,10 @@ public class Exercise {
     private int numberOfReps;
 
     /**
-     * An exercise contains an id to make it possible for PB-recording purposes. For example
-     * all Bench Press exercises will have the same id.
+     *
+     *
      */
-    private int exerciseId;
+    private final String exerciseId;
 
     /**
      * Class constructor setting exerciseName and exerciseId
@@ -36,9 +36,9 @@ public class Exercise {
      * @param exerciseName name of exercise
      * @param exerciseId Id of exercise
      */
-    public Exercise(String exerciseName, int exerciseId) {
-        this.exerciseId = exerciseId;
-        this.exerciseName = exerciseName;
+    public Exercise() {
+        this.exerciseId = UUID.randomUUID().toString();
+        this.exerciseName = "New exercise";
     }
 
     /**
@@ -93,7 +93,7 @@ public class Exercise {
      *
      * @return The exerciseId of the exercise
      */
-    public int getExerciseId(){
+    public String getId(){
         return exerciseId;
     }
 
