@@ -30,6 +30,9 @@ public class TrainingAppFacade {
         user.addExerciseToWorkout(workout,exerciseName);
 
     }
+    public void removePlan(Plan selectedPlan) {
+        user.removePlan(selectedPlan);
+    }
 
     public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
         user.removeExerciseFromWorkout(workout, exercise);

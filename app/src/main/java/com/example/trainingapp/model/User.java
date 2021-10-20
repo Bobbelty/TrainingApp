@@ -38,7 +38,12 @@ public class User {
         return mockDataBase.getPlanList();
     }
 
-
+    /**
+     * Method for removing the selected plan (first in list) from the database.
+     */
+    public void removePlan(Plan selectedPlan) {
+        getSavedPlans().remove(selectedPlan);
+    }
     /**
      * Returns a new Plan-object
      *

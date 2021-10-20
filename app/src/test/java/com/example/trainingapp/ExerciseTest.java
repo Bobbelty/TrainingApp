@@ -29,12 +29,5 @@ public class ExerciseTest {
         int testRep1 = 1;
         int testRep2 = 2;
         Exercise exercise = new Exercise("test", 123);
-        exercise.addSet(testRep1);
-        exercise.addSet(testRep2);
-        assertEquals(testRep2, (int) exercise.getReps().get(1));
     }
-
-
-
-
 }

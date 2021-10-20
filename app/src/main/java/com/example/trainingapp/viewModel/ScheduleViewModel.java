@@ -36,8 +36,8 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     public void addPlan() {
         trainingAppModel.createNewPlan("New plan");
     }
-    public void removePlan() {
-        //trainingAppModel.
+    public void removePlan(Plan selectedPlan) {
+        trainingAppModel.removePlan(selectedPlan);
     }
     public void setNewPlanName(Plan selectedPlan, EditText etbxPlanName) {
         selectedPlan.setPlanName(etbxPlanName.getText().toString());

@@ -89,10 +89,44 @@ public class ScheduleFragment extends Fragment {
         btnAddPlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                // Add plan
                 scheduleViewModel.addPlan();
-                selectedPlan = scheduleViewModel.getLatestPlan();
                 scheduleViewModel.shiftRight(planList);
-                recyclerViewAdapter.notifyDataSetChanged();
+                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
+
+                // Update view
+                
+                adapter.clear();
+                adapter.addAll(planList);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
+                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
+                scheduleViewModel.addPlan();
+                scheduleViewModel.shiftRight(planList);
+                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
+                recyclerViewAdapter.setNewPlan(selectedPlan);
+                List<Plan> tempList = new ArrayList<Plan>(planList);
+                adapter.clear();
+                planList = tempList;
+                adapter.addAll(planList);
+                planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
+                etbxPlanName.setText(scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0).getPlanName());
+                recyclerViewAdapter.notifyDataSetChanged();*/
             }
         });
     }
@@ -125,8 +159,25 @@ public class ScheduleFragment extends Fragment {
         builder.setPositiveButton("REMOVE PLAN", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                // Remove plan
+                scheduleViewModel.removePlan(selectedPlan);
+                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
+
+                // Update view
+
+               /* planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
+                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
                 scheduleViewModel.removePlan();
+                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
+                recyclerViewAdapter.setNewPlan(selectedPlan);
+                List<Plan> tempList = new ArrayList<Plan>(planList);
+                adapter.clear();
+                planList = tempList;
+                adapter.addAll(planList);
+                etbxPlanName.setText(scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0).getPlanName());
+                planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
                 alertTextView.setVisibility(View.VISIBLE);
+                recyclerViewAdapter.notifyDataSetChanged();*/
             }
         });
         builder.show();
