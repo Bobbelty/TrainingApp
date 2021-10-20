@@ -16,6 +16,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:textSize="18dp"
+            android:textColor="#EFE2E2"
             android:translationX="10dp"
             android:translationY="10dp" />
 
@@ -23,9 +25,11 @@
             android:id="@+id/lblActiveWorkoutDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="right"
             android:text="TextView"
-            android:translationX="10dp"
+            android:textColor="#EFE2E2"
+            android:textSize="18dp"
+            android:translationX="-20dp"
             android:translationY="10dp" />
 
     </androidx.cardview.widget.CardView>

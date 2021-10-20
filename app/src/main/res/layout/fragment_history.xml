@@ -7,13 +7,24 @@
     android:background="#393939"
     tools:context=".view.HistoryFragment">
 
+    <TextView
+        android:id="@+id/lblCompletedWorkouts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Completed Workouts"
+        android:textColor="#EFE2E2"
+        android:textSize="20dp"
+        tools:layout_editor_absoluteX="110dp"
+        tools:ignore="MissingConstraints" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/history_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
         android:scrollbars="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
