@@ -18,6 +18,7 @@ public class Exercise {
      * Number of sets for the exercise
      */
     private int numberOfSets;
+
     /**
      * Number of reps for the exercise
      */
@@ -49,6 +50,7 @@ public class Exercise {
 
     /**
      * Method to set the number of set of the exercise
+     *
      * @param numberOfSets
      */
     public void setNumberOfSets(int numberOfSets) {
@@ -64,6 +66,7 @@ public class Exercise {
 
     /**
      * Method to change the number of reps of the exercise
+     *
      * @param numberOfReps
      */
     public void setNumberOfReps(int numberOfReps) {
@@ -71,6 +74,7 @@ public class Exercise {
     }
     /**
      * Method for getting the name of the exercise
+     *
      * @return The name of the exercise
      */
     public String getName(){
@@ -86,6 +90,7 @@ public class Exercise {
     }
     /**
      * Method for getting the exerciseId of the exercise
+     *
      * @return The exerciseId of the exercise
      */
     public int getExerciseId(){

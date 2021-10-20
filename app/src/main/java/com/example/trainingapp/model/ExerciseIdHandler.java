@@ -10,20 +10,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ExerciseIdHandler {
 
-
     /**
      *  An int value that maybe updated atomically. Used for generating unique id:s.
      */
     private static AtomicInteger nextId = new AtomicInteger();
 
     /**
-     *
      * The key to a Map in database that contains all exerciseId:s.
-     *                      The key is always a exercise name in string for, e.g "Bench Press"
-     *                      or "Deadlift"
-     *
+     * The key is always an exercise-name in String-form for, e.g "Bench Press"
+     * or "Deadlift"
      */
-
     public int getNewExerciseId() {
         return nextId.incrementAndGet();
     }

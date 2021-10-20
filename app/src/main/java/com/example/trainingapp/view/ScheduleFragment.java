@@ -211,12 +211,23 @@ public class ScheduleFragment extends Fragment {
         });
     }
 
+    /**
+     * initRecyclerView initiates the recyclerView and sets its adapter.
+     *
+     * @param v the current view used in the application.
+     */
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.schedule_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerViewAdapter = new ScheduleRecyclerViewAdapter(selectedPlan, this.getContext(), this.getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+
+    /**
+     * initSpinner initiates the spinner, sets its adapter and its items
+     *
+     * @param v the current view used in the application.
+     */
     private void initSpinner(View v) {
 
         dropdown = (Spinner) v.findViewById(R.id.schedule_spinner_dropdown);
@@ -239,6 +250,10 @@ public class ScheduleFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * initObjects gets the saved plans, used for testing and initial demo/presentation.
+     */
     //initiates test objects
     private void initObjects() {
         // setting up test objects

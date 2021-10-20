@@ -34,9 +34,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         this.activity = activity;
     }
 
-    public void setNewPlan(Plan plan) {
-        this.plan = plan;
-    }
+    public void setNewPlan(Plan plan) { this.plan = plan; }
 
     @NonNull
     @Override

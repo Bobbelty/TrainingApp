@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.trainingapp.model.Exercise;
 import com.example.trainingapp.model.Plan;
+
 import com.example.trainingapp.model.TrainingAppFacade;
 import com.example.trainingapp.model.Workout;
 import com.example.trainingapp.view.Adapter.EditScheduleRecyclerViewAdapter;

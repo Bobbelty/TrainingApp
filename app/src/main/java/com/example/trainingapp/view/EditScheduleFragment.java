@@ -98,6 +98,13 @@ public class EditScheduleFragment extends Fragment {
         builder.setCancelable(true);
         builder.setTitle("Remove workout");
         builder.setMessage("Are you sure you want to remove this workout?");
+    }
+    /**
+     * initRecyclerView initiates the recyclerView and sets its adapter.
+     *
+     * @param v the current view used in the application.
+     */
+    private void initRecyclerView(View v) {
 
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
@@ -124,6 +131,11 @@ public class EditScheduleFragment extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
+    /**
+     * initTitleText initiates the title text label.
+     *
+     * @param v the current view used in the application
+     */
     private void initTitleText(View v) {
         EditText etbxWorkoutName = v.findViewById(R.id.etbxWorkoutName);
         etbxWorkoutName.setText(selectedWorkout.getName());
@@ -143,6 +155,10 @@ public class EditScheduleFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * initObjects gets the saved plans, used for testing and initial demo/presentation.
+     */
     private void initObjects() {
         // setting up test objects
         testPlans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();

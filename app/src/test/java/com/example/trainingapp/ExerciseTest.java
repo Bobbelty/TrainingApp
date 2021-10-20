@@ -25,9 +25,13 @@ public class ExerciseTest {
     }
 
     @Test
-    public void testAddReps(){
-        int testRep1 = 1;
-        int testRep2 = 2;
+    public void testAddRepsAndSets(){
+        int reps = 12;
+        int sets = 4;
         Exercise exercise = new Exercise("test", 123);
+        exercise.setNumberOfReps(reps);
+        exercise.setNumberOfSets(sets);
+        assertEquals(reps, exercise.getNumberOfReps());
+        assertEquals(sets, exercise.getNumberOfSets());
     }
 }

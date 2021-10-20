@@ -40,14 +40,6 @@ public class Workout {
         return workoutName;
     }
 
-    /**
-     * Method for adding an exerciseObject to the list of exercises
-     *
-     * @param exercise object to add to list
-     */
-    public void addExercise(Exercise exercise) {
-        exercises.add(exercise);
-    }
 
     /**
      * Returns the list of exercises
@@ -57,6 +49,16 @@ public class Workout {
     public List<Exercise> getExerciseList(){
         return exercises;
     }
+
+    /**
+     * Method for adding an exerciseObject to the list of exercises
+     *
+     * @param exercise object to add to list
+     */
+    public void addExercise(Exercise exercise) {
+        exercises.add(exercise);
+    }
+
 
     /**
      * Method for removing an exerciseObject from the list of exercises
