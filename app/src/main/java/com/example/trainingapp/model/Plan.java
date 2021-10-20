@@ -31,6 +31,13 @@ public class Plan {
         this.planName = planName;
     }
 
+    public void setPlanName(String planName) {
+        this.planName = planName;
+    }
+
+    public String getPlanName() {
+        return planName;
+    }
 
     /**
      * Method for removing a workoutobject from the list of workouts

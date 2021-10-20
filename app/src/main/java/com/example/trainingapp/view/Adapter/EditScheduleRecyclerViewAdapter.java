@@ -1,11 +1,14 @@
 package com.example.trainingapp.view.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -13,22 +16,34 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
+import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.model.TrainingAppFacade;
 import com.example.trainingapp.model.Workout;
+import com.example.trainingapp.view.EditScheduleActivity;
+import com.example.trainingapp.view.MainActivity;
+import com.example.trainingapp.view.ScheduleFragment;
+import com.example.trainingapp.viewModel.EditScheduleViewModel;
+import com.example.trainingapp.viewModel.TrainingAppModelViewModel;
+
+import java.util.List;
 
 public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditScheduleRecyclerViewAdapter.ListViewHolder> {
 
 
+    private Activity activity;
     private Workout selectedWorkout;
+    private Plan selectedPlan;
+    private EditScheduleViewModel editScheduleViewModel = EditScheduleViewModel.getInstance();
 
-
-    public EditScheduleRecyclerViewAdapter(Workout selectedWorkout) {
-        this.selectedWorkout = selectedWorkout;
+    public EditScheduleRecyclerViewAdapter(Activity activity) {
+        this.selectedWorkout = editScheduleViewModel.getSelectedWorkout();
+        this.activity = activity;
+        this.selectedPlan = editScheduleViewModel.getSelectedPlan();
     }
 
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         return new ListViewHolder(LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.fragment_edit_schedule_list_item, parent, false));
     }
@@ -36,75 +51,78 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.lblExercise.setText(selectedWorkout.getExerciseList().get(position).getName());
+
+        holder.etbxExerciseName.setText(selectedWorkout.getExerciseList().get(position).getName());
         holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
         holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfReps() + "");
 
-        holder.etbxNoOfSets.addTextChangedListener(new TextWatcher() {
+        holder.btnDeleteExercise.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            public void onClick (View v) {
+                EditScheduleViewModel.getInstance().onClickRemoveExercise(selectedPlan, selectedWorkout, position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, getItemCount());
             }
-
+        });
+        holder.etbxNoOfSets.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(holder.etbxNoOfSets.getText().equals("")) {
+            public void onFocusChange(View view, boolean b) {
+                String txt = holder.etbxNoOfSets.getText().toString();
+                if(txt.equals("")) {
                     holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    selectedWorkout.getExerciseList().get(position).setNumberOfSets(Integer.parseInt(holder.etbxNoOfSets.getText().toString()));
+                    EditScheduleViewModel.getInstance().setNewNoOfSets(position, holder.etbxNoOfSets);
                 }
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
         });
-        holder.etbxNoOfReps.addTextChangedListener(new TextWatcher() {
-
+        holder.etbxNoOfReps.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-                if(holder.etbxNoOfReps.getText().equals("")) {
-                    holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfReps() + "");
+            public void onFocusChange(View view, boolean b) {
+                String txt = holder.etbxNoOfReps.getText().toString();
+                if(txt.equals("")) {
+                    holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    selectedWorkout.getExerciseList().get(position).setNumberOfReps(Integer.parseInt(holder.etbxNoOfReps.getText().toString()));
+                    EditScheduleViewModel.getInstance().setNewNoOfReps(position, holder.etbxNoOfReps);
                 }
             }
-
+        });
+        holder.etbxExerciseName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
-            public void afterTextChanged(Editable editable) {
-
+            public void onFocusChange(View view, boolean b) {
+                String txt = holder.etbxExerciseName.getText().toString();
+                if(txt.equals("")) {
+                    holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getName() + "");
+                }
+                else {
+                    EditScheduleViewModel.getInstance().setNewExerciseName(position, holder.etbxExerciseName);
+                }
             }
         });
-        // Either savebutton to save data to database or event from edit text boxes
     }
 
     @Override
     public int getItemCount() {
         return selectedWorkout.getExerciseList().size();
     }
-
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
         //change name, make private maybe final
-        private final TextView lblExercise;
+        //private final TextView lblExercise;
+        private final EditText etbxExerciseName;
         private final EditText etbxNoOfSets;
         private final EditText etbxNoOfReps;
+        private final Button btnDeleteExercise;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            lblExercise = itemView.findViewById(R.id.lblExercise);
+            //lblExercise = itemView.findViewById(R.id.lblExercise);
+            etbxExerciseName = itemView.findViewById(R.id.etbxExerciseName);
             etbxNoOfSets = itemView.findViewById(R.id.etbxNoOfSets);
             etbxNoOfReps = itemView.findViewById(R.id.etbxNoOfReps);
+            btnDeleteExercise = itemView.findViewById(R.id.btnDeleteExercise);
 
         }
     }

@@ -1,9 +1,14 @@
 package com.example.trainingapp.viewModel;
 
+import android.widget.EditText;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.trainingapp.model.Plan;
 import com.example.trainingapp.model.TrainingAppFacade;
+
+import java.util.List;
 
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data
@@ -27,6 +32,34 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     /**
      * Class constructor
      */
+
+    public void addPlan() {
+        trainingAppModel.createNewPlan("New plan");
+    }
+    public void removePlan(Plan selectedPlan) {
+        trainingAppModel.removePlan(selectedPlan);
+    }
+    public void setNewPlanName(Plan selectedPlan, EditText etbxPlanName) {
+        selectedPlan.setPlanName(etbxPlanName.getText().toString());
+    }
+    public String getPlanName(Plan selectedPlan) {
+        return selectedPlan.getPlanName();
+    }
+    public Plan getLatestPlan() {
+        return trainingAppModel.getSavedPlans().get(trainingAppModel.getSavedPlans().size()-1);
+    }
+
+    // push latest plan to top to display on
+    public void shiftRight(List<Plan> planList)
+    {
+        Plan temp = planList.get(planList.size()-1);
+
+        for(int i = planList.size()-1; i > 0; i--)
+        {
+            planList.set(i,planList.get(i-1));
+        }
+        planList.set(0, temp);
+    }
 
     public ScheduleViewModel() {
         mText = new MutableLiveData<>();

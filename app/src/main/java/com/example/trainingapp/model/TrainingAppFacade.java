@@ -64,6 +64,9 @@ public class TrainingAppFacade {
         user.addExerciseToWorkout(workout,exerciseName);
 
     }
+    public void removePlan(Plan selectedPlan) {
+        user.removePlan(selectedPlan);
+    }
 
     /**
      * Method for removing an exercise from a workout.
@@ -74,8 +77,16 @@ public class TrainingAppFacade {
     public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
         user.removeExerciseFromWorkout(workout, exercise);
     }
-
-
+                    /*if (selectedWorkout.getExerciseList().size() == 0) {
+        List<Plan> plans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
+        for (int i = 0; i < plans.size(); i++) {
+            for (int k = 0; k < plans.get(i).getWorkoutList().size(); k++) {
+                if (plans.get(i).getWorkoutList().get(k).equals(selectedWorkout)) {
+                    plans.get(i).getWorkoutList().remove(k);
+                }
+            }
+        }
+*/
 
 
 

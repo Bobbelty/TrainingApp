@@ -82,6 +82,13 @@ public class Exercise {
     }
 
     /**
+     * Method to change the number of reps of the exercise
+     * @param name
+     */
+    public void setName(String name) {
+        exerciseName = name;
+    }
+    /**
      * Method for getting the exerciseId of the exercise
      *
      * @return The exerciseId of the exercise

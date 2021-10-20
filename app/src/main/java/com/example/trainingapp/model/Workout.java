@@ -68,4 +68,8 @@ public class Workout {
     public void removeExercise(Exercise exercise) {
         exercises.remove(exercise);
     }
+
+    public void setWorkoutName(String workoutName) {
+        this.workoutName = workoutName;
+    }
 }

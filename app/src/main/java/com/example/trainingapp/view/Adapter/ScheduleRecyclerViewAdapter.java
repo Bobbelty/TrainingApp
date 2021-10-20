@@ -1,6 +1,7 @@
 package com.example.trainingapp.view.Adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,18 +17,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.view.EditScheduleActivity;
 import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.view.MainActivity;
 import com.example.trainingapp.viewModel.EditScheduleViewModel;
 
-public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder> {
+public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder>  {
 
 
     private Plan plan;
     private Context context;
+    private Activity activity;
     private EditScheduleViewModel editScheduleViewModel = EditScheduleViewModel.getInstance();
 
-    public ScheduleRecyclerViewAdapter(Plan plan, Context context) {
+    public ScheduleRecyclerViewAdapter(Plan plan, Context context, Activity activity) {
         this.plan = plan;
         this.context = context;
+        this.activity = activity;
     }
 
     public void setNewPlan(Plan plan) { this.plan = plan; }
@@ -49,7 +53,9 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
             @Override
             public void onClick (View v) {
                 editScheduleViewModel.setSelectedWorkout(plan.getWorkoutList().get(position));
+                editScheduleViewModel.setSelectedPlan(plan);
 
+                activity.onBackPressed();
                 Intent openActivity = new Intent(context, EditScheduleActivity.class);
                 context.startActivity(openActivity);
 
