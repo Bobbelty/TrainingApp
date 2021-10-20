@@ -98,13 +98,6 @@ public class EditScheduleFragment extends Fragment {
         builder.setCancelable(true);
         builder.setTitle("Remove workout");
         builder.setMessage("Are you sure you want to remove this workout?");
-    }
-    /**
-     * initRecyclerView initiates the recyclerView and sets its adapter.
-     *
-     * @param v the current view used in the application.
-     */
-    private void initRecyclerView(View v) {
 
         builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
             @Override
@@ -123,6 +116,12 @@ public class EditScheduleFragment extends Fragment {
         });
         builder.show();
     }
+
+    /**
+     * initRecyclerView initiates the recyclerView and sets its adapter.
+     *
+     * @param v the current view used in the application.
+     */
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));

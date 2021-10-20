@@ -53,6 +53,8 @@ public class User {
     public void removePlan(Plan selectedPlan) {
         getSavedPlans().remove(selectedPlan);
     }
+
+    /**
      * Method for receiving the list of completed workouts from the database.
      *
      * @return the list of completed workouts.
