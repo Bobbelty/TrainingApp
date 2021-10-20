@@ -6,10 +6,17 @@ import com.example.trainingapp.model.ActiveWorkoutSession;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
+/**
+ * The User-class act as a datahandler that connects all of the model with the modelfacade and the
+ * database.
+ */
 public class User {
 
+    /**
+     * ActiveWorkoutSession-object to access logic for ActiveWorkout and ActiveExercise.
+     */
     private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
+
     /**
      * ExerciseIdHandler-object for creating new exerciseId:s
      */
@@ -40,6 +47,12 @@ public class User {
         return mockDataBase.getPlanList();
     }
 
+    /**
+     * Method for receiving the list of completed workouts from the database.
+     *
+     * @return the list of completed workouts.
+     */
+    public List<ActiveWorkout> getCompletedWorkouts() {return mockDataBase.getCompletedWorkouts();}
 
     /**
      * Returns a new Plan-object
@@ -98,9 +111,9 @@ public class User {
     /**
      * Method for creating a new exercise(not in a workout, just for purposes of storing
      * it in database). Also connects an exerciseId to the exercise.
+     *
      * @param exerciseIdName The exercise name that the exerciseId corresponds to
      */
-
     public void createAndSaveNewExerciseToDatabase(String exerciseIdName){
         int id = nextId.getAndIncrement();
         mockDataBase.addExerciseIdToMap(exerciseIdName, id);

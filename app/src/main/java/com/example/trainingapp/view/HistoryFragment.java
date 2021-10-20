@@ -1,5 +1,8 @@
 package com.example.trainingapp.view;
 
+import java.util.List;
+
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,11 +12,23 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentHistoryBinding;
+import com.example.trainingapp.model.ActiveWorkout;
+import com.example.trainingapp.model.Plan;
+import com.example.trainingapp.view.Adapter.HistoryRecyclerViewAdapter;
+import com.example.trainingapp.view.Adapter.ScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.HistoryViewModel;
+
+
+import java.util.ArrayList;
 
 /**
  * HistoryFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
@@ -28,7 +43,7 @@ public class HistoryFragment extends Fragment {
      * Instance of HistoryViewModel to enable communication and displaying of the correct elements.
      */
 
-    private HistoryViewModel historyViewModel;
+    private HistoryViewModel historyViewModel = new HistoryViewModel();
 
     /**
      * Instance of the binding-class for fragment_history.xml. Allows for access of all the root views
@@ -36,6 +51,10 @@ public class HistoryFragment extends Fragment {
      */
 
     private FragmentHistoryBinding binding;
+
+    private List<ActiveWorkout> testActiveWorkouts = new ArrayList<>();
+    Context context;
+    HistoryRecyclerViewAdapter recyclerViewAdapter;
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
@@ -49,22 +68,27 @@ public class HistoryFragment extends Fragment {
      * @return Return the View for the fragment's UI, or null.
      */
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        historyViewModel =
-                new ViewModelProvider(this).get(HistoryViewModel.class);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        binding = FragmentHistoryBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_history,container,false);
 
-        final TextView textView = binding.textHistory;
-        historyViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
-        return root;
+        initObjects();
+        initRecyclerView(v);
+
+        return v;
+    }
+
+    private void initRecyclerView(View v) {
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.history_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        recyclerViewAdapter = new HistoryRecyclerViewAdapter(testActiveWorkouts, this.getActivity(), this.getContext());
+        recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
+    private void initObjects() {
+        testActiveWorkouts = historyViewModel.getTrainingAppModel().getCompletedWorkouts();
     }
 
     /**

@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.trainingapp.model.ActiveWorkout;
+import com.example.trainingapp.model.TrainingAppFacade;
+import com.example.trainingapp.model.Workout;
+
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data
  * objects from the model in such a way that objects are easily managed and presented.
@@ -13,6 +17,12 @@ import androidx.lifecycle.ViewModel;
  */
 
 public class HistoryViewModel extends TrainingAppModelViewModel {
+
+
+    private TrainingAppFacade trainingAppModel;
+    private ActiveWorkout selectedActiveWorkout;
+
+    private static HistoryViewModel instance = null;
 
     /**
      * Variable for textView
@@ -25,6 +35,8 @@ public class HistoryViewModel extends TrainingAppModelViewModel {
     public HistoryViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is history fragment");
+
+        trainingAppModel = getInstanceOfTrainingModel();
     }
 
     /**
@@ -32,5 +44,25 @@ public class HistoryViewModel extends TrainingAppModelViewModel {
      */
     public LiveData<String> getText() {
         return mText;
+    }
+
+    public TrainingAppFacade getTrainingAppModel(){
+        return trainingAppModel;
+    }
+    public static HistoryViewModel getInstance() {
+        if (instance == null) {
+            instance = new HistoryViewModel();
+            return instance;
+        }
+        else {
+            return instance;
+        }
+    }
+
+    public ActiveWorkout getSelectedWorkout() {
+        return selectedActiveWorkout;
+    }
+    public void setSelectedWorkout(ActiveWorkout selectedActiveWorkout) {
+        this.selectedActiveWorkout = selectedActiveWorkout;
     }
 }
