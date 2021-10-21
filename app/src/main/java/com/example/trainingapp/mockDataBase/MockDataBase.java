@@ -114,8 +114,8 @@ public class MockDataBase implements IDatabase {
         ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
         ActiveWorkout activeWorkout1 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout1);
         ActiveWorkout activeWorkout2 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout2);
-        activeWorkoutSession.setCurrentDate(activeWorkout1);
-        activeWorkoutSession.setCurrentDate(activeWorkout2);
+        activeWorkout1.setCurrentTime("2020-05-12");
+        activeWorkout2.setCurrentTime("2019-10-02");
         completedWorkouts.add(activeWorkout1);
         completedWorkouts.add(activeWorkout2);
 
@@ -213,7 +213,6 @@ public class MockDataBase implements IDatabase {
         activeWorkout = activeWorkoutSession.convertWorkoutToActiveWorkout(workout);
     }
 
-    //TODO fix defensive copy constructor
     public ActiveWorkout getActiveWorkout(){
         return new ActiveWorkout(activeWorkout);
     }
@@ -235,6 +234,7 @@ public class MockDataBase implements IDatabase {
     }
 
     public void endActiveWorkout(){
+        activeWorkout.setCurrentTime(activeWorkoutSession.getCurrentDate());
         completedWorkouts.add(activeWorkout);
         activeWorkout = null; //How to remove the pointer? Maybe null is bad? /Valdemar
     }

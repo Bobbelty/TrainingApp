@@ -21,11 +21,6 @@ public class ActiveWorkout {
      */
     private String workoutName;
 
-    /**
-     * List containing all the exercises in the workout
-     */
-    private List<ActiveExercise> exercises = new ArrayList<>();
-
     private HashMap<String, ActiveExercise> activeExerciseMap = new HashMap<>();
 
     /**
@@ -44,7 +39,9 @@ public class ActiveWorkout {
     }
 
     public ActiveWorkout(ActiveWorkout activeWorkout){
-
+        this.workoutName = activeWorkout.workoutName;
+        this.activeExerciseMap = new HashMap<>(activeWorkout.activeExerciseMap);
+        currentTime = "0";
     }
 
     /**
@@ -62,7 +59,7 @@ public class ActiveWorkout {
      * @param exercise object to add to list
      */
     public void addExercise(ActiveExercise exercise) {
-        exercises.add(exercise);
+        activeExerciseMap.put(exercise.getExerciseId(), exercise);
     }
 
     /**
@@ -73,7 +70,7 @@ public class ActiveWorkout {
     public List<ActiveExercise> getExerciseList(){
         List<ActiveExercise> activeExercises = new ArrayList<>();
         for(String key: activeExerciseMap.keySet()){
-            exercises.add(activeExerciseMap.get(key));
+            activeExercises.add(activeExerciseMap.get(key));
         }
         return activeExercises;
         }
@@ -115,9 +112,5 @@ public class ActiveWorkout {
 
     public void updateWeightInSet(String exerciseId, int index, int change) {
         activeExerciseMap.get(exerciseId).changeWeightInList(index, change);
-    }
-
-    public void updateActiveExerciseRep(String exerciseId, int index) {
-
     }
 }

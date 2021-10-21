@@ -25,8 +25,6 @@ public class Plan {
 
     /**
      * Class constructor setting planName
-     *
-     * @param planName name of plan
      */
     public Plan() {
         this.planName = "New plan";
@@ -38,9 +36,7 @@ public class Plan {
         this.planId = plan.getId();
         this.workoutMap = plan.getWorkoutMap();
     }
-    public Workout getWorkout(String workoutId) {
-        return workoutMap.get(workoutId);
-    }
+
 
     public Plan(String name){
         this.planName = name;
@@ -59,6 +55,9 @@ public class Plan {
         return planId;
     }
 
+    public Workout getWorkout(String workoutId) {
+        return workoutMap.get(workoutId);
+    }
     /**
      * Method for removing a workoutobject from the list of workouts
      *
@@ -123,9 +122,5 @@ public class Plan {
 
     public void updateExerciseSets(String workoutId, String exerciseId, int sets){
         workoutMap.get(workoutId).updateExerciseSets(exerciseId, sets);
-    }
-
-    public Workout getWorkout(String workoutId){
-        return new Workout(workoutMap.get(workoutId));
     }
 }
