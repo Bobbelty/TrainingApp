@@ -37,6 +37,20 @@ public interface IDatabase {
 
     void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId);
 
+    void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId);
+
+    void newActiveWorkout(String planId, String workoutId);
+
+    void addNewSet(String exerciseId);
+
+    void updateActiveExerciseRep(int reps, String exerciseId, int index);
+
+    void removeSetFromActiveExercise(String exerciseId, int index);
+
+    void updateWeightInSet(String exerciseId, int index, int change);
+
+    void endActiveWorkout();
+
     Plan getPlan(String planId);
 
     Workout getWorkout(String planId, String workoutId);

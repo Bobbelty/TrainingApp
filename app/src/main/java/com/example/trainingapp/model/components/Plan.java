@@ -26,7 +26,7 @@ public class Plan {
     /**
      * Class constructor setting planName
      *
-     *    * @param planName name of plan
+     * @param planName name of plan
      */
     public Plan() {
         this.planName = "New plan";
@@ -40,6 +40,11 @@ public class Plan {
     }
     public Workout getWorkout(String workoutId) {
         return workoutMap.get(workoutId);
+    }
+
+    public Plan(String name){
+        this.planName = name;
+        this.planId = UUID.randomUUID().toString();
     }
 
     public void setPlanName(String planName) {
@@ -108,7 +113,19 @@ public class Plan {
         workoutMap.get(workoutId).removeExercise(exerciseId);
     }
 
-    public void updateExerciseNameInWorkout(String newExerciseName, String workoutId, String exerciseId){
+    public void updateExerciseName(String newExerciseName, String workoutId, String exerciseId){
         workoutMap.get(workoutId).updateExerciseName(newExerciseName, exerciseId);
+    }
+
+    public void updateExerciseRep(String workoutId, String exerciseId, int reps){
+        workoutMap.get(workoutId).updateExerciseRep(exerciseId, reps);
+    }
+
+    public void updateExerciseSets(String workoutId, String exerciseId, int sets){
+        workoutMap.get(workoutId).updateExerciseSets(exerciseId, sets);
+    }
+
+    public Workout getWorkout(String workoutId){
+        return new Workout(workoutMap.get(workoutId));
     }
 }

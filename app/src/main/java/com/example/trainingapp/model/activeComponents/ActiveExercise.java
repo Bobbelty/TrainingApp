@@ -147,7 +147,9 @@ public class ActiveExercise {
         return exerciseId;
     }
 
-
+    public void updateRep(int reps, int index){
+        listOfReps.set(index, reps);
+    }
 
 
 }
