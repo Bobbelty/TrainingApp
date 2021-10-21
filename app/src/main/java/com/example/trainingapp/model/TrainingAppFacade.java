@@ -150,4 +150,36 @@ public class TrainingAppFacade {
     public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId){
         mockDataBase.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
     }
+
+    public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId){
+        mockDataBase.updateExerciseRep(reps, planId, workoutId, exerciseId);
+    }
+
+    public void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId){
+
+    }
+
+    public void convertWorkoutToActive(String planId, String workoutId){
+        mockDataBase.newActiveWorkout(planId, workoutId);
+    }
+
+    public void addSetToActiveExercise(String exerciseId){
+        mockDataBase.addNewSet(exerciseId);
+    }
+
+    public void removeSetFromExercise(String exerciseId, int index){
+        mockDataBase.removeSetFromActiveExercise(exerciseId, index);
+    }
+
+    public void updateActiveExerciseRep(int reps, String exerciseId, int index){
+        mockDataBase.updateActiveExerciseRep(reps, exerciseId, index);
+    }
+
+    public void updateWeightInSet(String exerciseId, int index, int change){
+        mockDataBase.updateWeightInSet(exerciseId, index, change);
+    }
+
+    public void endActiveWorkout(){
+        mockDataBase.endActiveWorkout();
+    }
 }

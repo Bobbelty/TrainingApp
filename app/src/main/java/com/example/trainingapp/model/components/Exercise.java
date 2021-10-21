@@ -34,11 +34,19 @@ public class Exercise {
      * Class constructor setting exerciseName and exerciseId
      *
      * @param exerciseName name of exercise
-     * @param exerciseId Id of exercise
      */
-    public Exercise() {
+    public Exercise(String exerciseName) {
+        this.exerciseName = exerciseName;
         this.exerciseId = UUID.randomUUID().toString();
-        this.exerciseName = "New exercise";
+        this.numberOfReps = 0;
+        this.numberOfSets = 0;
+    }
+    
+    public Exercise(){
+        this.exerciseName = "New Exercise";
+        this.exerciseId = UUID.randomUUID().toString();
+        this.numberOfReps = 0;
+        this.numberOfSets = 0;
     }
 
     /**
@@ -98,7 +106,7 @@ public class Exercise {
     }
 
 
-
-
-
+    public String getExerciseId() {
+        return exerciseId;
+    }
 }

@@ -13,6 +13,11 @@ import java.util.List;
 
 
 public class MockDataBase implements IDatabase {
+
+    private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
+
+    private ActiveWorkout activeWorkout;
+
     private final HashMap<String, Plan> planMap = new HashMap<>();
 
     private final List<ActiveWorkout> completedWorkouts = new ArrayList<>();
@@ -28,17 +33,17 @@ public class MockDataBase implements IDatabase {
 
         Plan examplePlan1 = new Plan("Summer");
         Workout exampleWorkout1 = new Workout("Chest and shoulders");
-        Workout presetWorkout = new Workout("New workout");
+        Workout exampleWorkout2 = new Workout("Back");
 
-        addExerciseIdToMap("Bench Press", 123);
-        addExerciseIdToMap("New exercise", 000);
-        Exercise presetExercise = new Exercise("New exercise", 000);
-        Exercise exampleExercise1 = new Exercise("Bench Press", 123);
-        Exercise exampleExercise2 = new Exercise("Military Press", 124);
+        //addExerciseIdToMap("Bench Press", 123);
+        //addExerciseIdToMap("New exercise", 000);
+        Exercise exampleExercise0 = new Exercise("Dips");
+        Exercise exampleExercise1 = new Exercise("Bench Press");
+        Exercise exampleExercise2 = new Exercise("Military Press");
 
-        Workout exampleWorkout2 = new Workout("Legs");
-        Exercise exampleExercise3 = new Exercise("Squats", 125);
-        Exercise exampleExercise4 = new Exercise("Leg press", 126);
+        Workout exampleWorkout5 = new Workout("Legs");
+        Exercise exampleExercise3 = new Exercise("Squats");
+        Exercise exampleExercise4 = new Exercise("Leg press");
 
         exampleExercise1.setNumberOfSets(4);
         exampleExercise1.setNumberOfReps(8);
@@ -63,12 +68,12 @@ public class MockDataBase implements IDatabase {
 
         examplePlan1 = new Plan("Winter");
         exampleWorkout2 = new Workout("Breast and shoulders");
-        exampleExercise3 = new Exercise("Bench Press", 123);
-        exampleExercise4 = new Exercise("Military Press", 124);
+        exampleExercise3 = new Exercise("Bench Press");
+        exampleExercise4 = new Exercise("Military Press");
 
         exampleWorkout1 = new Workout("Legs");
-        exampleExercise1 = new Exercise("Squats", 125);
-        exampleExercise2 = new Exercise("Leg press", 126);
+        exampleExercise1 = new Exercise("Squats");
+        exampleExercise2 = new Exercise("Leg press");
 
         exampleExercise1.setNumberOfSets(4);
         exampleExercise1.setNumberOfReps(8);
@@ -168,7 +173,45 @@ public class MockDataBase implements IDatabase {
     }
 
     public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId){
-        planMap.get(planId).updateExerciseNameInWorkout(exerciseName, workoutId, exerciseId);
+        planMap.get(planId).updateExerciseName(exerciseName, workoutId, exerciseId);
+    }
 
+    public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId){
+        planMap.get(planId).updateExerciseRep(workoutId, exerciseId, reps);
+    }
+
+    public void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId){
+        planMap.get(planId).updateExerciseSets(workoutId, exerciseId, sets);
+    }
+
+    public void newActiveWorkout(String planId, String workoutId){
+        Workout workout = new Workout(planMap.get(planId).getWorkout(workoutId));
+        activeWorkout = activeWorkoutSession.convertWorkoutToActiveWorkout(workout);
+    }
+
+    //TODO fix defensive copy constructor
+    public ActiveWorkout getActiveWorkout(){
+        return new ActiveWorkout(activeWorkout);
+    }
+
+    public void updateActiveExerciseRep(int reps, String exerciseId, int index){
+        activeWorkout.updateActiveExerciseRep(reps, exerciseId, index);
+    }
+
+    public void addNewSet(String exerciseId){
+        activeWorkout.addSetToExercise(exerciseId);
+    }
+
+    public void removeSetFromActiveExercise(String exerciseId, int index){
+        activeWorkout.removeSetFromExercise(exerciseId, index);
+    }
+
+    public void updateWeightInSet(String exerciseId, int index, int change){
+        activeWorkout.updateWeightInSet(exerciseId, index, change);
+    }
+
+    public void endActiveWorkout(){
+        completedWorkouts.add(activeWorkout);
+        activeWorkout = null; //How to remove the pointer? Maybe null is bad? /Valdemar
     }
 }

@@ -2,6 +2,7 @@ package com.example.trainingapp.model.activeComponents;
 
 import com.example.trainingapp.model.components.Exercise;
 
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class ActiveWorkout {
      */
     private List<ActiveExercise> exercises = new ArrayList<>();
 
+    private HashMap<String, ActiveExercise> activeExerciseMap = new HashMap<>();
+
     /**
      * The time for the active workout, used for history
      */
@@ -38,6 +41,10 @@ public class ActiveWorkout {
     public ActiveWorkout(String workoutName) {
         this.workoutName = workoutName;
         currentTime = "0";
+    }
+
+    public ActiveWorkout(ActiveWorkout activeWorkout){
+
     }
 
     /**
@@ -64,17 +71,17 @@ public class ActiveWorkout {
      * @return the list of exercises that Workout contains
      */
     public List<ActiveExercise> getExerciseList(){
-        return exercises;
-    }
+        List<ActiveExercise> activeExercises = new ArrayList<>();
+        for(String key: activeExerciseMap.keySet()){
+            exercises.add(activeExerciseMap.get(key));
+        }
+        return activeExercises;
+        }
 
-    /**
-     * Method for removing an exerciseObject from the list of exercises
-     *
-     * @param exercise object to remove from the list
-     */
-    public void removeExercise(Exercise exercise) {
-        exercises.remove(exercise);
-    }
+    //TODO is this ok?
+    public ActiveExercise getExercise(int index){
+            return getExerciseList().get(index);
+        }
 
     /**
      * Returns the date of the active workout (on session end)
@@ -92,5 +99,25 @@ public class ActiveWorkout {
      */
     public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
+    }
+
+    public void addSetToExercise(String exerciseId){
+        activeExerciseMap.get(exerciseId).addSetToList(0);
+    }
+
+    public void updateActiveExerciseRep(int reps, String exerciseId, int index){
+        activeExerciseMap.get(exerciseId).updateRep(reps, index);
+    }
+
+    public void removeSetFromExercise(String exerciseId, int index){
+        activeExerciseMap.get(exerciseId).removeSetFromList(index);
+    }
+
+    public void updateWeightInSet(String exerciseId, int index, int change) {
+        activeExerciseMap.get(exerciseId).changeWeightInList(index, change);
+    }
+
+    public void updateActiveExerciseRep(String exerciseId, int index) {
+
     }
 }

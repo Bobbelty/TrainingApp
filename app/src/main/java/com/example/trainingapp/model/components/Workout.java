@@ -31,8 +31,19 @@ public class Workout {
      * @param workoutName name of workout
      */
     public Workout(String workoutName) {
-        this.workoutName = "New Workout";
+        this.workoutName = workoutName;
         this.workoutId = UUID.randomUUID().toString();
+    }
+
+    public Workout() {
+        this.workoutName ="New Workout";
+        this.workoutId = UUID.randomUUID().toString();
+    }
+
+    public Workout(Workout workout){
+        this.workoutName = workout.workoutName;
+        this.workoutId = workout.workoutId;
+        this.exerciseMap = new HashMap<>(workout.exerciseMap);
     }
 
     /**
@@ -90,5 +101,13 @@ public class Workout {
 
     public String getId() {
         return workoutId;
+    }
+
+    public void updateExerciseRep(String exerciseId, int reps) {
+        exerciseMap.get(exerciseId).setNumberOfReps(reps);
+    }
+
+    public void updateExerciseSets(String exerciseId, int sets){
+        exerciseMap.get(exerciseId).setNumberOfSets(sets);
     }
 }
