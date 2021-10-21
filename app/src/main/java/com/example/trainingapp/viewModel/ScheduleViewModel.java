@@ -40,14 +40,20 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
         trainingAppModel.removePlan(selectedPlan.getId());
     }
 
-    public void setNewPlanName(Plan selectedPlan, EditText etbxPlanName) {
-        selectedPlan.setPlanName(etbxPlanName.getText().toString());
+    public void setNewPlanName(Plan selectedPlan, EditText etbxPlanName, List<Plan> planList) {
+        trainingAppModel.updatePlanName(etbxPlanName.getText().toString(), selectedPlan.getId());
+        for (int i = 0; i < planList.size(); i++) {
+            List<Plan> databaseList = getTrainingAppModel().getSavedPlans();
+            for (int k = 0; k < databaseList.size(); k++) {
+                if (databaseList.get(k).getId().equals(planList.get(i).getId())) {
+                    planList.get(i).setPlanName(databaseList.get(k).getPlanName());
+                }
+            }
+        }
+
     }
     public String getPlanName(Plan selectedPlan) {
         return selectedPlan.getPlanName();
-    }
-    public Plan getLatestPlan() {
-        return trainingAppModel.getSavedPlans().get(trainingAppModel.getSavedPlans().size()-1);
     }
 
     // push latest plan to top to display on

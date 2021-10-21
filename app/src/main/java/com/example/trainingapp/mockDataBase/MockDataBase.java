@@ -8,30 +8,35 @@ import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
 public class MockDataBase implements IDatabase {
 
+    private final LinkedHashMap<String, Plan> planMap = new LinkedHashMap<>();
+
     private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
 
     private ActiveWorkout activeWorkout;
-
-    private final HashMap<String, Plan> planMap = new HashMap<>();
 
     private final List<ActiveWorkout> completedWorkouts = new ArrayList<>();
 
     /*It's possible to iterate through a hashMap, so this HashMap can be used for both
     storing savedExercises and getting the savedExercises for display purposes.*/
 
-    HashMap<String, Integer> ExerciseIdMap = new HashMap<>();
-    HashMap<Integer, Integer> currentPBs = new HashMap<>();
+    LinkedHashMap<String, Integer> ExerciseIdMap = new LinkedHashMap<>();
+    LinkedHashMap<Integer, Integer> currentPBs = new LinkedHashMap<>();
 
 
     public MockDataBase(){
 
-        Plan examplePlan1 = new Plan("Summer");
+        Plan examplePlan1 = new Plan();
+        examplePlan1.setPlanName("Bulk");
         Workout exampleWorkout1 = new Workout("Chest and shoulders");
         Workout exampleWorkout2 = new Workout("Back");
 
@@ -66,7 +71,8 @@ public class MockDataBase implements IDatabase {
 
         addPlan(examplePlan1);
 
-        examplePlan1 = new Plan("Winter");
+        examplePlan1 = new Plan();
+        examplePlan1.setPlanName("Deff");
         exampleWorkout2 = new Workout("Breast and shoulders");
         exampleExercise3 = new Exercise("Bench Press");
         exampleExercise4 = new Exercise("Military Press");
@@ -137,6 +143,9 @@ public class MockDataBase implements IDatabase {
         return planListCopy;
     }
 
+    public Plan getPlan(String planId){
+        return planMap.get(planId);
+    }
     public List<ActiveWorkout> getCompletedWorkouts() {
         return new ArrayList<>(completedWorkouts);
     }

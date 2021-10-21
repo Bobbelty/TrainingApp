@@ -50,4 +50,6 @@ public interface IDatabase {
     void updateWeightInSet(String exerciseId, int index, int change);
 
     void endActiveWorkout();
+
+    Plan getPlan(String planId);
 }
