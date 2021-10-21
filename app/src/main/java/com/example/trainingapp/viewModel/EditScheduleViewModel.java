@@ -46,10 +46,10 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
     }
 
     public void onClickRemoveExercise(Plan selectedPlan, Workout selectedWorkout, int position) {
-        getTrainingAppModel().removeExerciseFromWorkout(selectedWorkout, selectedWorkout.getExerciseList().get(position));
+        //getTrainingAppModel().removeExerciseFromWorkout(selectedWorkout, selectedWorkout.getExerciseList().get(position));
     }
     public void removeWorkout(Plan selectedPlan, Workout selectedWorkout) {
-        getTrainingAppModel().removeWorkoutFromPlan(selectedPlan, selectedWorkout);
+        //getTrainingAppModel().removeWorkoutFromPlan(selectedPlan, selectedWorkout);
     }
     public void setNewNoOfSets(int position, EditText etbxNoOfSets) {
         selectedWorkout.getExerciseList().get(position).setNumberOfSets(Integer.parseInt(etbxNoOfSets.getText().toString()));

@@ -38,7 +38,7 @@ public class ActiveExercise {
      */
     public ActiveExercise(Exercise exercise){
         this.exerciseName = exercise.getName();
-        this.exerciseId = exercise.getExerciseId();
+        //this.exerciseId = exercise.getExerciseId();
         convertRepsSetsToList(exercise.getNumberOfReps(), exercise.getNumberOfSets());
         createListOfWeights(listOfReps);
     }

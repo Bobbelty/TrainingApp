@@ -66,7 +66,7 @@ public class EditScheduleFragment extends Fragment {
         btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditScheduleViewModel.getInstance().getTrainingAppModel().addExerciseToWorkout(selectedWorkout, "New exercise");
+                //EditScheduleViewModel.getInstance().getTrainingAppModel().addExerciseToWorkout(selectedWorkout, "New exercise");
                 // Make sure model adds a new exercise that the user later on can change in the UI
                 // Benchpress  4  6
                 // Exercise1  0  0

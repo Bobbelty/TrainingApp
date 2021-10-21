@@ -8,37 +8,45 @@ import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 
 public class MockDataBase implements IDatabase {
-    private final HashMap<String, Plan> planMap = new HashMap<>();
+    private final LinkedHashMap<String, Plan> planMap = new LinkedHashMap<>();
 
     private final List<ActiveWorkout> completedWorkouts = new ArrayList<>();
 
     /*It's possible to iterate through a hashMap, so this HashMap can be used for both
     storing savedExercises and getting the savedExercises for display purposes.*/
 
-    HashMap<String, Integer> ExerciseIdMap = new HashMap<>();
-    HashMap<Integer, Integer> currentPBs = new HashMap<>();
+    LinkedHashMap<String, Integer> ExerciseIdMap = new LinkedHashMap<>();
+    LinkedHashMap<Integer, Integer> currentPBs = new LinkedHashMap<>();
 
 
     public MockDataBase(){
 
-        Plan examplePlan1 = new Plan("Summer");
+        Plan examplePlan1 = new Plan();
+        examplePlan1.setPlanName("Bulk");
         Workout exampleWorkout1 = new Workout("Chest and shoulders");
         Workout presetWorkout = new Workout("New workout");
 
-        addExerciseIdToMap("Bench Press", 123);
-        addExerciseIdToMap("New exercise", 000);
-        Exercise presetExercise = new Exercise("New exercise", 000);
-        Exercise exampleExercise1 = new Exercise("Bench Press", 123);
-        Exercise exampleExercise2 = new Exercise("Military Press", 124);
+        Exercise presetExercise = new Exercise();
+        Exercise exampleExercise1 = new Exercise();
+        Exercise exampleExercise2 = new Exercise();
 
         Workout exampleWorkout2 = new Workout("Legs");
-        Exercise exampleExercise3 = new Exercise("Squats", 125);
-        Exercise exampleExercise4 = new Exercise("Leg press", 126);
+        Exercise exampleExercise3 = new Exercise();
+        Exercise exampleExercise4 = new Exercise();
+
+        exampleExercise1.setName("Benchpress");
+        exampleExercise2.setName("Shoulderpress");
+        exampleExercise3.setName("Legpress");
+        exampleExercise4.setName("Bicepcurls");
 
         exampleExercise1.setNumberOfSets(4);
         exampleExercise1.setNumberOfReps(8);
@@ -61,14 +69,14 @@ public class MockDataBase implements IDatabase {
 
         addPlan(examplePlan1);
 
-        examplePlan1 = new Plan("Winter");
+        examplePlan1 = new Plan();
+        examplePlan1.setPlanName("Deff");
         exampleWorkout2 = new Workout("Breast and shoulders");
-        exampleExercise3 = new Exercise("Bench Press", 123);
-        exampleExercise4 = new Exercise("Military Press", 124);
+        exampleExercise3 = new Exercise();
+        exampleExercise4 = new Exercise();
 
         exampleWorkout1 = new Workout("Legs");
-        exampleExercise1 = new Exercise("Squats", 125);
-        exampleExercise2 = new Exercise("Leg press", 126);
+        exampleExercise1 = new Exercise();
 
         exampleExercise1.setNumberOfSets(4);
         exampleExercise1.setNumberOfReps(8);
@@ -132,6 +140,9 @@ public class MockDataBase implements IDatabase {
         return planListCopy;
     }
 
+    public Plan getPlan(String planId){
+        return planMap.get(planId);
+    }
     public List<ActiveWorkout> getCompletedWorkouts() {
         return new ArrayList<>(completedWorkouts);
     }

@@ -57,6 +57,10 @@ public class TrainingAppFacade {
             return mockDataBase.getPlanList();
     }
 
+    public Plan getPlan(String planId) {
+        return mockDataBase.getPlan(planId);
+    }
+
     /**
      * Method for receiving the copy of the list with completed workouts from the database.
      *
@@ -70,7 +74,6 @@ public class TrainingAppFacade {
     public void removePlan(String planId) {
         mockDataBase.removePlan(planId);
     }
-
     /**
      * Adds a new Plan-object to the database
      */

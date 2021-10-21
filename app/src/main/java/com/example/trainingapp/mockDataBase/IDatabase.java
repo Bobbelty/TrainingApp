@@ -31,10 +31,11 @@ public interface IDatabase {
 
     void updateWorkoutName(String name, String planId, String workoutId);
 
-    void addExerciseToWorkout(Exercise exercise, String planId, String workoutId)
+    void addExerciseToWorkout(Exercise exercise, String planId, String workoutId);
 
     void removeExerciseFromWorkout(String exerciseName, String planId, String workoutId);
 
     void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId);
 
+    Plan getPlan(String planId);
 }

@@ -1,6 +1,7 @@
 package com.example.trainingapp.model.components;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
@@ -25,7 +26,7 @@ public class Plan {
     /**
      * Class constructor setting planName
      *
-     * @param planName name of plan
+     *    * @param planName name of plan
      */
     public Plan() {
         this.planName = "New plan";
@@ -107,5 +108,4 @@ public class Plan {
     public void updateExerciseNameInWorkout(String newExerciseName, String workoutId, String exerciseId){
         workoutMap.get(workoutId).updateExerciseName(newExerciseName, exerciseId);
     }
-
 }
