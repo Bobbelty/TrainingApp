@@ -28,9 +28,8 @@ public class Workout {
     /**
      * Class constructor setting workoutName
      *
-     * @param workoutName name of workout
      */
-    public Workout(String workoutName) {
+    public Workout() {
         this.workoutName = "New Workout";
         this.workoutId = UUID.randomUUID().toString();
     }

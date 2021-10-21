@@ -38,6 +38,9 @@ public class Plan {
         this.planId = plan.getId();
         this.workoutMap = plan.getWorkoutMap();
     }
+    public Workout getWorkout(String workoutId) {
+        return workoutMap.get(workoutId);
+    }
 
     public void setPlanName(String planName) {
         this.planName = planName;

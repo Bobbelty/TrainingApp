@@ -109,7 +109,9 @@ public class TrainingAppFacade {
     public void removeWorkoutFromPlan(String planId, String workoutId) {
         mockDataBase.removeWorkoutFromPlan(planId, workoutId);
     }
-
+    public Workout getWorkout(String planId, String workoutId) {
+        return mockDataBase.getWorkout(planId, workoutId);
+    }
     /**
      * Updates the name of a specific workout
      *

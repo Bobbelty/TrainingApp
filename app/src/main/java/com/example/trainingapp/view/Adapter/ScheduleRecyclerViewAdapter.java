@@ -51,6 +51,8 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         holder.btnEditExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
+                //editScheduleViewModel.setSelectedPlanId(plan.getId());
+
                 editScheduleViewModel.setSelectedWorkout(plan.getWorkoutList().get(position));
                 editScheduleViewModel.setSelectedPlan(plan);
 

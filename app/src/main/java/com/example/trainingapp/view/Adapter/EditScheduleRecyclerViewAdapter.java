@@ -48,7 +48,9 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
         holder.btnDeleteExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                EditScheduleViewModel.getInstance().onClickRemoveExercise(selectedPlan, selectedWorkout, position);
+                editScheduleViewModel.onClickRemoveExercise(
+                        selectedPlan.getId(), selectedWorkout.getId(), selectedWorkout.getExerciseList().get(position).getId());
+                selectedWorkout = editScheduleViewModel.getTrainingAppModel().getWorkout(selectedPlan.getId(), selectedWorkout.getId());
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, getItemCount());
             }
@@ -61,7 +63,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    EditScheduleViewModel.getInstance().setNewNoOfSets(position, holder.etbxNoOfSets);
+                    editScheduleViewModel.setNewNoOfSets(position, holder.etbxNoOfSets.getText().toString());
                 }
             }
         });
@@ -73,7 +75,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    EditScheduleViewModel.getInstance().setNewNoOfReps(position, holder.etbxNoOfReps);
+                    editScheduleViewModel.setNewNoOfReps(position, holder.etbxNoOfReps.getText().toString());
                 }
             }
         });
@@ -85,7 +87,10 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getName() + "");
                 }
                 else {
-                    EditScheduleViewModel.getInstance().setNewExerciseName(position, holder.etbxExerciseName);
+                    editScheduleViewModel.setNewExerciseName(
+                            holder.etbxExerciseName.getText().toString(),
+                            selectedPlan.getId(), selectedWorkout.getId(),
+                            selectedWorkout.getExercise(position).getId());
                 }
             }
         });

@@ -32,14 +32,14 @@ public class MockDataBase implements IDatabase {
 
         Plan examplePlan1 = new Plan();
         examplePlan1.setPlanName("Bulk");
-        Workout exampleWorkout1 = new Workout("Chest and shoulders");
-        Workout presetWorkout = new Workout("New workout");
+        Workout exampleWorkout1 = new Workout();
+        exampleWorkout1.setName("Chest & Shoulder");
 
-        Exercise presetExercise = new Exercise();
         Exercise exampleExercise1 = new Exercise();
         Exercise exampleExercise2 = new Exercise();
 
-        Workout exampleWorkout2 = new Workout("Legs");
+        Workout exampleWorkout2 = new Workout();
+        exampleWorkout2.setName("Legs");
         Exercise exampleExercise3 = new Exercise();
         Exercise exampleExercise4 = new Exercise();
 
@@ -71,11 +71,13 @@ public class MockDataBase implements IDatabase {
 
         examplePlan1 = new Plan();
         examplePlan1.setPlanName("Deff");
-        exampleWorkout2 = new Workout("Breast and shoulders");
+        exampleWorkout2 = new Workout();
+        exampleWorkout2.setName("Heavy chest");
         exampleExercise3 = new Exercise();
         exampleExercise4 = new Exercise();
 
-        exampleWorkout1 = new Workout("Legs");
+        exampleWorkout1 = new Workout();
+        exampleWorkout1.setName("Backday");
         exampleExercise1 = new Exercise();
 
         exampleExercise1.setNumberOfSets(4);
@@ -142,6 +144,10 @@ public class MockDataBase implements IDatabase {
 
     public Plan getPlan(String planId){
         return planMap.get(planId);
+    }
+
+    public Workout getWorkout(String planId, String workoutId) {
+        return planMap.get(planId).getWorkout(workoutId);
     }
     public List<ActiveWorkout> getCompletedWorkouts() {
         return new ArrayList<>(completedWorkouts);

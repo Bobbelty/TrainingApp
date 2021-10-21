@@ -50,7 +50,6 @@ public class EditScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_edit_schedule,container,false);
-        // activePlan = user.getActivePlan();
         initObjects();
         selectedWorkout = editScheduleViewModel.getSelectedWorkout();
         initTitleText(v);
@@ -109,7 +108,7 @@ public class EditScheduleFragment extends Fragment {
         builder.setPositiveButton("REMOVE WORKOUT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditScheduleViewModel.getInstance().removeWorkout(editScheduleViewModel.getSelectedPlan(), selectedWorkout);
+                editScheduleViewModel.getTrainingAppModel().removeWorkoutFromPlan(editScheduleViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
                 getActivity().finish();
                 alertTextView.setVisibility(View.VISIBLE);
             }
@@ -147,9 +146,7 @@ public class EditScheduleFragment extends Fragment {
                     etbxWorkoutName.setText(selectedWorkout.getName() + "");
                 }
                 else {
-                    EditScheduleViewModel.getInstance().setNewWorkoutName(etbxWorkoutName);
-                    //EditScheduleViewModel.getInstance().
-                            //setNewExerciseName(position, etbxWorkoutName);
+                    editScheduleViewModel.setNewWorkoutName(etbxWorkoutName.getText().toString(), editScheduleViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
                 }
             }
         });

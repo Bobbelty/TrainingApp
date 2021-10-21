@@ -38,4 +38,6 @@ public interface IDatabase {
     void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId);
 
     Plan getPlan(String planId);
+
+    Workout getWorkout(String planId, String workoutId);
 }

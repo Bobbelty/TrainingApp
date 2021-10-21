@@ -29,6 +29,16 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
     private Workout selectedWorkout;
     private Plan selectedPlan;
 
+    public String getSelectedPlanId() {
+        return selectedPlanId;
+    }
+
+    public void setSelectedPlanId(String selectedPlanId) {
+        this.selectedPlanId = selectedPlanId;
+    }
+
+    private String selectedPlanId;
+
     private static EditScheduleViewModel instance = null;
 
     // Create an ArrayAdapter using the string array and a default spinner layout
@@ -45,24 +55,28 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
         trainingAppModel = getInstanceOfTrainingModel();
     }
 
-    public void onClickRemoveExercise(Plan selectedPlan, Workout selectedWorkout, int position) {
+    public void onClickRemoveExercise(String planId, String workoutId, String exerciseId) {
+        trainingAppModel.removeExerciseFromWorkout(planId, workoutId, exerciseId);
         //getTrainingAppModel().removeExerciseFromWorkout(selectedWorkout, selectedWorkout.getExerciseList().get(position));
     }
-    public void removeWorkout(Plan selectedPlan, Workout selectedWorkout) {
+    public void removeWorkout(String planId, String workoutId) {
+        trainingAppModel.removeWorkoutFromPlan(planId, workoutId);
         //getTrainingAppModel().removeWorkoutFromPlan(selectedPlan, selectedWorkout);
     }
-    public void setNewNoOfSets(int position, EditText etbxNoOfSets) {
-        selectedWorkout.getExerciseList().get(position).setNumberOfSets(Integer.parseInt(etbxNoOfSets.getText().toString()));
+    public void setNewNoOfSets(int position, String noOfSets) {
+        // Set
+        selectedWorkout.getExerciseList().get(position).setNumberOfSets(Integer.parseInt(noOfSets));
     }
-    public void setNewNoOfReps(int position, EditText etbxNoOfReps) {
-        selectedWorkout.getExerciseList().get(position).setNumberOfReps(Integer.parseInt(etbxNoOfReps.getText().toString()));
+    public void setNewNoOfReps(int position, String noOfReps) {
+        selectedWorkout.getExerciseList().get(position).setNumberOfReps(Integer.parseInt(noOfReps));
     }
-    public void setNewExerciseName(int position, EditText etbxExerciseName) {
-        selectedWorkout.getExerciseList().get(position).setName(etbxExerciseName.getText().toString());
-
+    public void setNewExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) {
+        trainingAppModel.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
+        //selectedWorkout.getExerciseList().get(position).setName(exerciseName);
     }
-    public void setNewWorkoutName(EditText etbxWorkoutName) {
-        selectedWorkout.setName(etbxWorkoutName.getText().toString());
+    public void setNewWorkoutName(String newWorkoutName, String planId, String workoutId) {
+        trainingAppModel.updateWorkoutName(newWorkoutName, planId, workoutId);
+        //selectedWorkout.setName(newWorkoutName);
     }
     /**
      * @return reference of mText variable
@@ -75,6 +89,7 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
     public TrainingAppFacade getTrainingAppModel(){
         return trainingAppModel;
     }
+
     public static EditScheduleViewModel getInstance() {
         if (instance == null) {
             instance = new EditScheduleViewModel();
