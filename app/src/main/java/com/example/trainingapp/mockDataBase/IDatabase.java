@@ -19,9 +19,9 @@ public interface IDatabase {
 
     void addToCompletedWorkouts(ActiveWorkout workout);
 
-    int getExerciseIdFromMap(String exerciseName) throws ExerciseIdNotFoundException;
+    //int getExerciseIdFromMap(String exerciseName) throws ExerciseIdNotFoundException;
 
-    void addExerciseIdToMap(String key, Integer exerciseId);
+    //void addExerciseIdToMap(String key, Integer exerciseId);
 
     void updatePlanName(String name, String Id);
 
@@ -54,4 +54,7 @@ public interface IDatabase {
     Plan getPlan(String planId);
 
     Workout getWorkout(String planId, String workoutId);
+
+    void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId);
+
 }

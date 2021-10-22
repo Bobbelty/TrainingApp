@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -74,7 +75,6 @@ public class Workout {
     return exercises;
     }
 
-    //TODO is this ok?
     public Exercise getExercise(int index){
         return getExerciseList().get(index);
     }
@@ -97,8 +97,8 @@ public class Workout {
         exerciseMap.remove(exerciseId);
     }
 
-    public void updateExerciseName(String name, String exerciseId){
-        exerciseMap.get(exerciseId).setName(name);
+    public void updateExerciseName(String name, String exerciseId) throws NullPointerException {
+        Objects.requireNonNull(exerciseMap.get(exerciseId), "No exercise with this Id exists").setName(name);
     }
 
     public void setName(String workoutName) {
@@ -109,11 +109,15 @@ public class Workout {
         return workoutId;
     }
 
+    private Exercise getExerciseMap(String exerciseId) throws NullPointerException{
+        return Objects.requireNonNull(exerciseMap.get(exerciseId), "No exercise with this Id exists");
+    }
+
     public void updateExerciseRep(String exerciseId, int reps) {
-        exerciseMap.get(exerciseId).setNumberOfReps(reps);
+        getExerciseMap(exerciseId).setNumberOfReps(reps);
     }
 
     public void updateExerciseSets(String exerciseId, int sets){
-        exerciseMap.get(exerciseId).setNumberOfSets(sets);
+        getExerciseMap(exerciseId).setNumberOfSets(sets);
     }
 }

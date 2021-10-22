@@ -1,10 +1,13 @@
 package com.example.trainingapp.model.components;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -37,8 +40,8 @@ public class Plan {
         this.planId = plan.getId();
         this.workoutMap = plan.getWorkoutMap();
     }
-    public Workout getWorkout(String workoutId) {
-        return new Workout(workoutMap.get(workoutId));
+    public Workout getWorkout(String workoutId) throws NullPointerException{
+        return new Workout(getWorkoutFromMap(workoutId));
     }
 
     public Plan(String name){
@@ -94,33 +97,38 @@ public class Plan {
     public void addWorkout(Workout workout) {
         workoutMap.put(workout.getId(), workout);
     }
-    @Override
 
+    @NonNull
+    @Override
     public String toString() {
         return planName;
     }
 
+    private Workout getWorkoutFromMap(String workoutId) throws NullPointerException{
+        return Objects.requireNonNull(workoutMap.get(workoutId), "No workout with this Id exist");
+    }
+
     public void setWorkoutName(String name, String workoutId){
-        workoutMap.get(workoutId).setName(name);
+        getWorkoutFromMap(workoutId).setName(name);
     }
 
     public void addExerciseToWorkout(Exercise exercise, String workoutId){
-        workoutMap.get(workoutId).addExercise(exercise);
+        getWorkoutFromMap(workoutId).addExercise(exercise);
     }
 
     public void removeExerciseFromWorkout(String workoutId, String exerciseId){
-        workoutMap.get(workoutId).removeExercise(exerciseId);
+        getWorkoutFromMap(workoutId).removeExercise(exerciseId);
     }
 
     public void updateExerciseName(String newExerciseName, String workoutId, String exerciseId){
-        workoutMap.get(workoutId).updateExerciseName(newExerciseName, exerciseId);
+        getWorkoutFromMap(workoutId).updateExerciseName(newExerciseName, exerciseId);
     }
 
     public void updateExerciseRep(String workoutId, String exerciseId, int reps){
-        workoutMap.get(workoutId).updateExerciseRep(exerciseId, reps);
+        getWorkoutFromMap(workoutId).updateExerciseRep(exerciseId, reps);
     }
 
     public void updateExerciseSets(String workoutId, String exerciseId, int sets){
-        workoutMap.get(workoutId).updateExerciseSets(exerciseId, sets);
+        getWorkoutFromMap(workoutId).updateExerciseSets(exerciseId, sets);
     }
 }

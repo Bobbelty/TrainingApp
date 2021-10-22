@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Objects;
 
 
 public class MockDataBase implements IDatabase {
@@ -29,7 +30,7 @@ public class MockDataBase implements IDatabase {
     /*It's possible to iterate through a hashMap, so this HashMap can be used for both
     storing savedExercises and getting the savedExercises for display purposes.*/
 
-    LinkedHashMap<String, Integer> ExerciseIdMap = new LinkedHashMap<>();
+    //LinkedHashMap<String, Integer> ExerciseIdMap = new LinkedHashMap<>();
     LinkedHashMap<Integer, Integer> currentPBs = new LinkedHashMap<>();
 
 
@@ -122,16 +123,16 @@ public class MockDataBase implements IDatabase {
         addPlan(examplePlan1);
     }
 
-    public void addExerciseIdToMap(String key, Integer exerciseId) {
+    /*public void addExerciseIdToMap(String key, Integer exerciseId) {
         ExerciseIdMap.put(key, exerciseId);
-    }
+    }*/
 
-    public int getExerciseIdFromMap(String key) throws ExerciseIdNotFoundException {
+    /*public int getExerciseIdFromMap(String key) throws ExerciseIdNotFoundException {
         if(ExerciseIdMap.get(key) != null){
             return ExerciseIdMap.get(key);
         }
         throw new ExerciseIdNotFoundException("That ExerciseId has not been added to mockDatabase");
-    }
+    }*/
 
     public void addPlan(Plan plan) {
         planMap.put(plan.getId(), plan);
@@ -142,24 +143,23 @@ public class MockDataBase implements IDatabase {
     }
 
     public void updatePlanName(String name, String id){
-        planMap.get(id).setPlanName(name);
+        getPlanFromMap(id).setPlanName(name);
     }
 
-    //TODO fix this nullpointerexception.
     public List<Plan> getPlanList() {
         List<Plan> planListCopy = new ArrayList();
         for(String key : planMap.keySet()){
-                planListCopy.add(new Plan(planMap.get(key)));
+                planListCopy.add(new Plan(getPlanFromMap(key)));
         }
         return planListCopy;
     }
 
     public Plan getPlan(String planId){
-        return new Plan(planMap.get(planId));
+        return new Plan(getPlanFromMap(planId));
     }
 
     public Workout getWorkout(String planId, String workoutId) {
-        return planMap.get(planId).getWorkout(workoutId);
+        return getPlanFromMap(planId).getWorkout(workoutId);
     }
     public List<ActiveWorkout> getCompletedWorkouts() {
         return new ArrayList<>(completedWorkouts);
@@ -176,45 +176,40 @@ public class MockDataBase implements IDatabase {
     }
 
     public void updateWorkoutName(String name, String planId, String workoutId){
-        Plan plan = planMap.get(planId);
-        plan.setWorkoutName(name, workoutId);
+        getPlanFromMap(planId).setWorkoutName(name, workoutId);
     }
 
     public void removeWorkoutFromPlan(String planId, String workoutId){
-        planMap.get(planId).removeWorkout(workoutId);
+        getPlanFromMap(planId).removeWorkout(workoutId);
     }
 
     public void addWorkoutToPlan(Workout workout, String planId){
-        planMap.get(planId).addWorkout(workout);
+        getPlanFromMap(planId).addWorkout(workout);
     }
 
     public void addExerciseToWorkout(Exercise exercise, String planId, String workoutId){
-        planMap.get(planId).addExerciseToWorkout(exercise, workoutId);
+        getPlanFromMap(planId).addExerciseToWorkout(exercise, workoutId);
     }
 
-    public void removeExerciseFromWorkout(String planId, String workoutId, String exerciseId) {
-        planMap.get(planId).removeExerciseFromWorkout(workoutId, exerciseId);
+    public void removeExerciseFromWorkout(String planId, String workoutId, String exerciseId){
+        getPlanFromMap(planId).removeExerciseFromWorkout(workoutId, exerciseId);
     }
 
     public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId){
-        planMap.get(planId).updateExerciseName(exerciseName, workoutId, exerciseId);
+        getPlanFromMap(planId).updateExerciseName(exerciseName, workoutId, exerciseId);
     }
 
     public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId){
-        planMap.get(planId).updateExerciseRep(workoutId, exerciseId, reps);
+        getPlanFromMap(planId).updateExerciseRep(workoutId, exerciseId, reps);
     }
 
     public void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId){
-        planMap.get(planId).updateExerciseSets(workoutId, exerciseId, sets);
+        getPlanFromMap(planId).updateExerciseSets(workoutId, exerciseId, sets);
     }
 
     public void newActiveWorkout(String planId, String workoutId){
-        Workout workout = new Workout(planMap.get(planId).getWorkout(workoutId));
+        Workout workout = new Workout(getPlanFromMap(planId).getWorkout(workoutId));
         activeWorkout = activeWorkoutSession.convertWorkoutToActiveWorkout(workout);
-    }
-
-    public ActiveWorkout getActiveWorkout(){
-        return new ActiveWorkout(activeWorkout);
     }
 
     public void updateActiveExerciseRep(int reps, String exerciseId, int index){
@@ -237,5 +232,9 @@ public class MockDataBase implements IDatabase {
         activeWorkout.setCurrentTime(activeWorkoutSession.getCurrentDate());
         completedWorkouts.add(activeWorkout);
         activeWorkout = null; //How to remove the pointer? Maybe null is bad? /Valdemar
+    }
+
+    private Plan getPlanFromMap(String planId) throws NullPointerException{
+        return Objects.requireNonNull(planMap.get(planId), "No plan with this Id exists");
     }
 }
