@@ -19,33 +19,34 @@ public class Workout {
     private String workoutName;
 
     /**
-     * List containing all the exercises in the workout
+     * LinkedHashMap containing all the exercises in the workout
      */
-   // private List<Exercise> exercises = new ArrayList<>();
     private LinkedHashMap<String, Exercise> exerciseMap = new LinkedHashMap<>();
 
+    /**
+     * The id for the workout
+     */
     private final String workoutId;
 
     /**
-     * Class constructor setting workoutName
-     *
+     * Class constructor setting a default workoutName and generated workoutId
      */
-/*
-    public Workout() {
-        this.workoutName = "New Workout";
-
-    public Workout(String workoutName) {
-        this.workoutName = workoutName;
-        this.workoutId = UUID.randomUUID().toString();
-    }
-    */
- 
-
     public Workout() {
         this.workoutName ="New Workout";
         this.workoutId = UUID.randomUUID().toString();
     }
 
+    /**
+     * Class constructor setting a specified workoutName and generated workoutId
+     */
+    public Workout(String workoutName) {
+        this.workoutName = workoutName;
+        this.workoutId = UUID.randomUUID().toString();
+    }
+
+    /**
+     * Class constructor for defensive copying of a workout
+     */
     public Workout(Workout workout){
         this.workoutName = workout.workoutName;
         this.workoutId = workout.workoutId;
@@ -62,9 +63,9 @@ public class Workout {
     }
 
     /**
-     * Returns the list of exercises
+     * Returns a list of exercises, copying the LinkedHashMap to a list
      *
-     * @return the list of exercises that Workout contains
+     * @return a list of exercises that Workout contains
      */
     public List<Exercise> getExerciseList(){
     List<Exercise> exercises = new ArrayList<>();
@@ -74,13 +75,19 @@ public class Workout {
     return exercises;
     }
 
-    //TODO is this ok?
+    /**
+     * Method for getting an exercise from the specified index in the list
+     *
+     * @param index the position of the exercise in the list
+     *
+     * @return the exercise object
+     */
     public Exercise getExercise(int index){
         return getExerciseList().get(index);
     }
 
     /**
-     * Method for adding an exerciseObject to the list of exercises
+     * Method for adding an exerciseObject to the map of exercises
      *
      * @param exercise object to add to list
      */
@@ -89,30 +96,58 @@ public class Workout {
     }
 
     /**
-     * Method for removing an exerciseObject from the list of exercises
+     * Method for removing an exercise object from the map of exercises
      *
-     * @param exercise object to remove from the list
+     * @param exerciseId the id of the exercise
      */
     public void removeExercise(String exerciseId) {
         exerciseMap.remove(exerciseId);
     }
 
+    /**
+     * Method for updating the exercise name
+     *
+     * @param name the new name of the exercise
+     * @param exerciseId the Id of the exercise
+     */
     public void updateExerciseName(String name, String exerciseId){
         exerciseMap.get(exerciseId).setName(name);
     }
 
+    /**
+     * Method for setting a name for a workout
+     *
+     * @param workoutName the new name for the workout
+     */
     public void setName(String workoutName) {
         this.workoutName = workoutName;
     }
 
+    /**
+     * Method for getting the Id for the workout
+     *
+     * @return the Id of the workout
+     */
     public String getId() {
         return workoutId;
     }
 
+    /**
+     * Method for updating the number of reps in a set in the exercise
+     *
+     * @param exerciseId the Id of the exercise
+     * @param reps the new number of reps
+     */
     public void updateExerciseRep(String exerciseId, int reps) {
         exerciseMap.get(exerciseId).setNumberOfReps(reps);
     }
 
+    /**
+     * Method for updating the number of sets in the exercise
+     *
+     * @param exerciseId the Id of the exercise
+     * @param sets the new number of sets
+     */
     public void updateExerciseSets(String exerciseId, int sets){
         exerciseMap.get(exerciseId).setNumberOfSets(sets);
     }

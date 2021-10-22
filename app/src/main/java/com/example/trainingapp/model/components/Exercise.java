@@ -25,13 +25,12 @@ public class Exercise {
     private int numberOfReps;
 
     /**
-     *
-     *
+     * The Id for the exercise
      */
     private final String exerciseId;
 
     /**
-     * Class constructor setting exerciseName and exerciseId
+     * Class constructor setting a specified exerciseName and generated exerciseId
      *
      * @param exerciseName name of exercise
      */
@@ -41,7 +40,11 @@ public class Exercise {
         this.numberOfReps = 0;
         this.numberOfSets = 0;
     }
-    
+
+    /**
+     * Class constructor setting default exerciseName and generated exerciseId
+     *
+     */
     public Exercise(){
         this.exerciseName = "New Exercise";
         this.exerciseId = UUID.randomUUID().toString();
@@ -101,12 +104,5 @@ public class Exercise {
      *
      * @return The exerciseId of the exercise
      */
-    public String getId(){
-        return exerciseId;
-    }
-
-
-    public String getExerciseId() {
-        return exerciseId;
-    }
+    public String getId(){ return exerciseId; }
 }

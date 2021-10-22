@@ -8,27 +8,25 @@ public class PlanBuilder {
     /**
      * Returns a new Plan-object
      *
-     * @param planName the name of the plan
+     * @return a plan object
      */
     public Plan createNewPlan(){
         return PlanComponentFactory.createPlan();
     }
 
     /**
-     * Method for adding a workout to a plan
+     * Returns a new Workout-object
      *
-     * @param plan the reference to the plan object
-     * @param workoutName the name of the Workout-object that gets added to the Plan
+     * @return a workout object
      */
     public Workout createNewWorkout() {
         return PlanComponentFactory.createWorkout();
     }
 
     /**
-     * Method for adding an exercise to a workout
+     * Returns a new Exercise-object
      *
-     * @param workout the reference to the workout object
-     * @param exerciseName the name of the exercise
+     * @return a exercise object
      */
     public Exercise createNewExercise() {
         return PlanComponentFactory.createExercise();
