@@ -1,7 +1,6 @@
-package com.example.trainingapp.mockDataBase;
+package com.example.trainingapp.mockDatabase;
 
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
-import com.example.trainingapp.model.ExerciseIdNotFoundException;
 import com.example.trainingapp.model.components.Exercise;
 import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;

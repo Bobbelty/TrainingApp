@@ -1,6 +1,6 @@
 package com.example.trainingapp.model;
 
-import com.example.trainingapp.mockDataBase.IDatabase;
+import com.example.trainingapp.mockDatabase.IDatabase;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.model.activeComponents.ActiveWorkoutSession;
 import com.example.trainingapp.model.components.Plan;
@@ -20,11 +20,6 @@ public class TrainingAppFacade {
      */
     private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
 
-    /**
-     * ExerciseIdHandler-object for creating new exerciseId:s
-     */
-    private final ExerciseIdHandler exerciseIdHandler = new ExerciseIdHandler();
-    
     /**
      * The facade uses a MockDatabase to store plans, workouts and exercises
      * during runtime. It also stores completed workouts.

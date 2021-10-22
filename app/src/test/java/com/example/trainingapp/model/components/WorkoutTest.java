@@ -1,4 +1,4 @@
-package com.example.trainingapp;
+package com.example.trainingapp.model.components;
 
 import com.example.trainingapp.model.components.Exercise;
 import com.example.trainingapp.model.components.Workout;

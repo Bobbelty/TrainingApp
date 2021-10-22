@@ -1,4 +1,4 @@
-package com.example.trainingapp.mockDataBase;
+package com.example.trainingapp.mockDatabase;
 
 import com.example.trainingapp.model.activeComponents.ActiveExercise;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
@@ -15,8 +15,7 @@ import java.util.Objects;
 /**
  * Class for the database holding the data used in the application.
  */
-public class MockDataBase implements IDatabase {
-
+public class MockDatabase implements IDatabase {
 
     /**
      * LinkedHashMap holding all the plans used in the application
@@ -45,83 +44,54 @@ public class MockDataBase implements IDatabase {
     List<ActiveExercise> currentPBs = new ArrayList<>();
 
 
-    public MockDataBase(){
+    public MockDatabase(){
 
-        Plan examplePlan1 = new Plan();
-        examplePlan1.setPlanName("Bulk");
+        Plan examplePlan1 = new Plan("Bulk");
 
-        Workout exampleWorkout1 = new Workout();
-        exampleWorkout1.setName("Chest and shoulders");
-        Workout exampleWorkout2 = new Workout();
-        exampleWorkout2.setName("Back");
+        Workout exampleWorkout1 = new Workout("Chest and shoulders");
+        Workout exampleWorkout2 = new Workout("Back");
+        Workout exampleWorkout3 = new Workout("Legs");
 
-        Exercise exampleExercise0 = new Exercise("Dips");
-        Exercise exampleExercise1 = new Exercise("Bench Press");
-        Exercise exampleExercise2 = new Exercise("Military Press");
+        Exercise exampleExercise0 = new Exercise("Dips", 12,4);
+        Exercise exampleExercise1 = new Exercise("Bench Press",10,3);
+        Exercise exampleExercise2 = new Exercise("Military Press",5,5);
+        Exercise exampleExercise3 = new Exercise("Squats", 3,5);
+        Exercise exampleExercise4 = new Exercise("Leg press",10,5);
 
-        Workout exampleWorkout5 = new Workout();
-        exampleWorkout5.setName("Legs");
-        Exercise exampleExercise3 = new Exercise("Squats");
-        Exercise exampleExercise4 = new Exercise("Leg press");
+        addWorkoutToPlan(exampleWorkout1, examplePlan1.getId());
+        addWorkoutToPlan(exampleWorkout2, examplePlan1.getId());
 
-        exampleExercise1.setNumberOfSets(4);
-        exampleExercise1.setNumberOfReps(8);
+        addExerciseToWorkout(exampleExercise0, examplePlan1.getId(), exampleWorkout1.getId());
+        addExerciseToWorkout(exampleExercise1, examplePlan1.getId(), exampleWorkout1.getId());
+        addExerciseToWorkout(exampleExercise2, examplePlan1.getId(), exampleWorkout1.getId());
 
-        exampleExercise2.setNumberOfSets(5);
-        exampleExercise2.setNumberOfReps(10);
-
-        exampleExercise3.setNumberOfSets(4);
-        exampleExercise3.setNumberOfReps(4);
-
-        exampleExercise4.setNumberOfSets(6);
-        exampleExercise4.setNumberOfReps(12);
-
-        exampleWorkout1.addExercise(exampleExercise1);
-        exampleWorkout1.addExercise(exampleExercise2);
-        exampleWorkout1.addExercise(exampleExercise3);
-        exampleWorkout1.addExercise(exampleExercise4);
-        examplePlan1.addWorkout(exampleWorkout1);
-        examplePlan1.addWorkout(exampleWorkout2);
+        addExerciseToWorkout(exampleExercise3, examplePlan1.getId(), exampleWorkout2.getId());
+        addExerciseToWorkout(exampleExercise4, examplePlan1.getId(), exampleWorkout2.getId());
 
         addPlan(examplePlan1);
 
-        examplePlan1 = new Plan();
-        examplePlan1.setPlanName("Deff");
-        exampleWorkout2 = new Workout();
-        exampleWorkout2.setName("Heavy chest");
-        exampleExercise3 = new Exercise();
-        exampleExercise4 = new Exercise();
+        Plan examplePlan2 = new Plan("Deff");
 
-        exampleWorkout1 = new Workout();
-        exampleWorkout1.setName("Backday");
-        exampleExercise1 = new Exercise();
+        exampleWorkout1 = new Workout("Legs");
+        exampleWorkout2 = new Workout("Back");
 
-        exampleWorkout2 = new Workout();
-        exampleExercise3 = new Exercise("Bench Press");
-        exampleExercise4 = new Exercise("Military Press");
+        exampleExercise0 = new Exercise("Squats", 12,4);
+        exampleExercise1 = new Exercise("Leg press",10,3);
+        exampleExercise2 = new Exercise("Leg extension",5,5);
+        exampleExercise3 = new Exercise("Deadlift", 3,5);
+        exampleExercise4 = new Exercise("Row",10,5);
 
-        exampleWorkout1 = new Workout();
-        exampleExercise1 = new Exercise("Squats");
-        exampleExercise2 = new Exercise("Leg press");
+        addWorkoutToPlan(exampleWorkout1, examplePlan1.getId());
+        addWorkoutToPlan(exampleWorkout2, examplePlan1.getId());
 
-        exampleExercise1.setNumberOfSets(4);
-        exampleExercise1.setNumberOfReps(4);
+        addExerciseToWorkout(exampleExercise0, examplePlan1.getId(), exampleWorkout1.getId());
+        addExerciseToWorkout(exampleExercise1, examplePlan1.getId(), exampleWorkout1.getId());
+        addExerciseToWorkout(exampleExercise2, examplePlan1.getId(), exampleWorkout1.getId());
 
-        exampleExercise2.setNumberOfSets(5);
-        exampleExercise2.setNumberOfReps(3);
+        addExerciseToWorkout(exampleExercise3, examplePlan1.getId(), exampleWorkout2.getId());
+        addExerciseToWorkout(exampleExercise4, examplePlan1.getId(), exampleWorkout2.getId());
 
-        exampleExercise3.setNumberOfSets(4);
-        exampleExercise3.setNumberOfReps(4);
-
-        exampleExercise4.setNumberOfSets(6);
-        exampleExercise4.setNumberOfReps(5);
-
-        exampleWorkout1.addExercise(exampleExercise1);
-        exampleWorkout1.addExercise(exampleExercise2);
-        exampleWorkout1.addExercise(exampleExercise3);
-        exampleWorkout1.addExercise(exampleExercise4);
-        examplePlan1.addWorkout(exampleWorkout1);
-        examplePlan1.addWorkout(exampleWorkout2);
+        addPlan(examplePlan2);
 
         ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
         ActiveWorkout activeWorkout1 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout1);

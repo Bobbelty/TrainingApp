@@ -34,11 +34,11 @@ public class Exercise {
      *
      * @param exerciseName name of exercise
      */
-    public Exercise(String exerciseName) {
+    public Exercise(String exerciseName, int reps, int sets) {
         this.exerciseName = exerciseName;
         this.exerciseId = UUID.randomUUID().toString();
-        this.numberOfReps = 0;
-        this.numberOfSets = 0;
+        this.numberOfReps = reps;
+        this.numberOfSets = sets;
     }
 
     /**
@@ -53,6 +53,18 @@ public class Exercise {
     }
 
     /**
+     * Class constructor for defensive copy
+     *
+     * @param exercise what exercise-object to copy
+     */
+    public Exercise(Exercise exercise) {
+        this.exerciseName = exercise.getName();
+        this.exerciseId = exercise.getId();
+        this.numberOfReps = exercise.getNumberOfReps();
+        this.numberOfSets = exercise.getNumberOfSets();
+    }
+
+    /**
      * Method to get the number of sets of the exercise
      */
     public int getNumberOfSets() {
@@ -64,7 +76,7 @@ public class Exercise {
      *
      * @param numberOfSets
      */
-    public void setNumberOfSets(int numberOfSets) {
+    protected void setNumberOfSets(int numberOfSets) {
         this.numberOfSets = numberOfSets;
     }
 
@@ -80,7 +92,7 @@ public class Exercise {
      *
      * @param numberOfReps
      */
-    public void setNumberOfReps(int numberOfReps) {
+    protected void setNumberOfReps(int numberOfReps) {
         this.numberOfReps = numberOfReps;
     }
 
@@ -97,7 +109,7 @@ public class Exercise {
      * Method to change the number of reps of the exercise
      * @param name
      */
-    public void setName(String name) {
+    protected void setName(String name) {
         exerciseName = name;
     }
 
