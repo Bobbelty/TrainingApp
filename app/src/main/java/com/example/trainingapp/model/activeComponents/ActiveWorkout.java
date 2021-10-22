@@ -125,7 +125,8 @@ public class ActiveWorkout {
      * @param exerciseId the Id for the exercise
      * @param weight new value for weight
      */
-    public void updateWeightInSet(String exerciseId, double weight) {
+
+    public void updateActiveExerciseWeight(String exerciseId, double weight) {
         activeExerciseMap.get(exerciseId).changeWeight(weight);
     }
 }

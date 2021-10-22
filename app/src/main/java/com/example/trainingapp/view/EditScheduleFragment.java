@@ -28,6 +28,7 @@ public class EditScheduleFragment extends Fragment {
 
     //Plan activePlan;
     private Workout selectedWorkout;
+    private RecyclerView recyclerView;
     private EditScheduleRecyclerViewAdapter recyclerViewAdapter;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
@@ -66,8 +67,8 @@ public class EditScheduleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editWorkoutViewModel.addExerciseToWorkout(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
-
-                recyclerViewAdapter.notifyDataSetChanged();
+                recyclerViewAdapter = new EditScheduleRecyclerViewAdapter(getActivity());
+                recyclerView.setAdapter(recyclerViewAdapter);
             }
         });
     }
@@ -100,6 +101,7 @@ public class EditScheduleFragment extends Fragment {
         builder.setPositiveButton("REMOVE WORKOUT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                if (getActivity().getCurrentFocus() != null) getActivity().getCurrentFocus().clearFocus();
                 editWorkoutViewModel.removeWorkoutFromPlan(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
                 getActivity().finish();
                 alertTextView.setVisibility(View.VISIBLE);
@@ -114,7 +116,7 @@ public class EditScheduleFragment extends Fragment {
      * @param v the current view used in the application.
      */
     private void initRecyclerView(View v) {
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
+        recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
         recyclerViewAdapter = new EditScheduleRecyclerViewAdapter(this.getActivity());

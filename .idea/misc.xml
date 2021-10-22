@@ -4,7 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/fragment_dropdown.xml" value="0.2164855072463768" />
-        <entry key="app/src/main/res/layout/fragment_edit_activeworkout_list_item.xml" value="0.25965692976174987" />
+        <entry key="app/src/main/res/layout/fragment_edit_activeworkout.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/fragment_edit_activeworkout_list_item.xml" value="0.2452185994556828" />
         <entry key="app/src/main/res/layout/fragment_edit_schedule.xml" value="0.24257658619680045" />
         <entry key="app/src/main/res/layout/fragment_edit_schedule_list_item.xml" value="0.20223829123650433" />
         <entry key="app/src/main/res/layout/fragment_edit_workout.xml" value="0.16032608695652173" />
