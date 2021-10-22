@@ -1,5 +1,6 @@
 package com.example.trainingapp.mockDataBase;
 
+import com.example.trainingapp.model.activeComponents.ActiveExercise;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.model.activeComponents.ActiveWorkoutSession;
 import com.example.trainingapp.model.components.Exercise;
@@ -16,22 +17,42 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
 
-
+/**
+ * Class for the database holding the data used in the application.
+ */
 public class MockDataBase implements IDatabase {
 
+
+    /**
+     * LinkedHashMap holding all the plans used in the application
+     */
     private final LinkedHashMap<String, Plan> planMap = new LinkedHashMap<>();
 
+    /**
+     * Instance of ActiveWorkoutSession, used to convert workouts to active workouts in the database.
+     */
     private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
 
+    /**
+     * Variable for the selected active workout, used for workout tab in application.
+     */
     private ActiveWorkout activeWorkout;
 
+    /**
+     * List of completed workouts, used to display in history
+     */
     private final List<ActiveWorkout> completedWorkouts = new ArrayList<>();
 
     /*It's possible to iterate through a hashMap, so this HashMap can be used for both
     storing savedExercises and getting the savedExercises for display purposes.*/
 
     //LinkedHashMap<String, Integer> ExerciseIdMap = new LinkedHashMap<>();
-    LinkedHashMap<Integer, Integer> currentPBs = new LinkedHashMap<>();
+
+    /**
+     * List containing personal bests (in terms of weight) in each completed exercise, used in
+     * PB part of application (not yet implemented)
+     */
+    List<ActiveExercise> currentPBs = new ArrayList<>();
 
 
     public MockDataBase(){
@@ -167,12 +188,12 @@ public class MockDataBase implements IDatabase {
 
     public void addToCompletedWorkouts(ActiveWorkout workout) {completedWorkouts.add(workout);}
 
-    public HashMap<Integer, Integer> getCurrentPBs() {
+    public List<ActiveExercise> getCurrentPBs() {
         return currentPBs;
     }
 
-    public void addToCurrentPBs(Integer exerciseId, Integer newWeight) {
-        currentPBs.put(exerciseId, newWeight);
+    public void addToCurrentPBs(ActiveExercise activeExercise) {
+        currentPBs.add(activeExercise);
     }
 
     public void updateWorkoutName(String name, String planId, String workoutId){
@@ -224,8 +245,8 @@ public class MockDataBase implements IDatabase {
         activeWorkout.removeSetFromExercise(exerciseId, index);
     }
 
-    public void updateWeightInSet(String exerciseId, int index, int change){
-        activeWorkout.updateWeightInSet(exerciseId, index, change);
+    public void updateWeightInSet(String exerciseId, int index, int newWeight){
+        activeWorkout.updateWeightInSet(exerciseId, index, newWeight);
     }
 
     public void endActiveWorkout(){

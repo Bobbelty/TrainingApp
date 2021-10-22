@@ -8,51 +8,172 @@ import com.example.trainingapp.model.components.Workout;
 
 import java.util.List;
 
+/**
+ * Interface for the databased used in the application.
+ */
 public interface IDatabase {
+
+    /**
+     * Method for getting a plan list
+     */
     List<Plan> getPlanList();
 
+    /**
+     * Method for getting completed workouts
+     */
     List<ActiveWorkout> getCompletedWorkouts();
 
+    /**
+     * Method for adding a plan to the planMap
+     */
     void addPlan(Plan newPlan);
 
+    /**
+     * Method for removing a plan from the planMap
+     */
     void removePlan(String planId);
 
+    /**
+     * Method for adding an finished active workout to completed workouts
+     *
+     * @param workout the workout object to be added
+     */
     void addToCompletedWorkouts(ActiveWorkout workout);
 
     //int getExerciseIdFromMap(String exerciseName) throws ExerciseIdNotFoundException;
 
     //void addExerciseIdToMap(String key, Integer exerciseId);
 
+    /**
+     * Method for updating the plan name
+     *
+     * @param name the new name of the plan
+     * @param Id the Id of the plan
+     */
     void updatePlanName(String name, String Id);
 
+    /**
+     * Method for removing a workout from a plan
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     void removeWorkoutFromPlan(String planId, String workoutId);
 
+    /**
+     * Method for adding a workout to a plan
+     *
+     * @param workout the workout object to be added
+     * @param planId the Id for the plan
+     */
     void addWorkoutToPlan(Workout workout, String planId);
 
+    /**
+     * Method for updating a workout name in a plan
+     *
+     * @param name the new name for a workout
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     void updateWorkoutName(String name, String planId, String workoutId);
 
+    /**
+     * Method for adding an exercise to a workout
+     *
+     * @param exercise the exercise object to be added
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     void addExerciseToWorkout(Exercise exercise, String planId, String workoutId);
 
+    /**
+     * Method for removing an exercise from a workout
+     *
+     * @param exerciseName the name of the exercise
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     void removeExerciseFromWorkout(String exerciseName, String planId, String workoutId);
 
+    /**
+     * Method for updating an exercise name
+     *
+     * @param exerciseName the new name for the exercise
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
     void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId);
 
+    /**
+     * Method for updating a rep in an exercise set
+     *
+     * @param reps the new number of reps
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
     void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId);
 
+    /**
+     * Method for converting a workout to an active workout
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     void newActiveWorkout(String planId, String workoutId);
 
+    /**
+     * Method for adding a new set to an exercise
+     *
+     * @param exerciseId the Id for the exercise
+     */
     void addNewSet(String exerciseId);
 
+    /**
+     * Method for updating an a rep in a set of an active exercise
+     *
+     * @param reps the new number of reps
+     * @param exerciseId the Id for the exerise
+     * @param index the position for the set
+     */
     void updateActiveExerciseRep(int reps, String exerciseId, int index);
 
+    /**
+     * Method for removing a set from an active exercise
+     *
+     * @param exerciseId the Id for the exercise
+     * @param index the position for the set
+     */
     void removeSetFromActiveExercise(String exerciseId, int index);
 
-    void updateWeightInSet(String exerciseId, int index, int change);
+    /**
+     * Method for updating the weight for a set
+     *
+     * @param  exerciseId the Id for an exercise
+     * @param index the position for the set
+     * @param newWeight the new value for the weight
+     */
+    void updateWeightInSet(String exerciseId, int index, int newWeight);
 
+    /**
+     *  Method for ending an active workout, used to store in history.
+     */
     void endActiveWorkout();
 
+    /**
+     * Method for getting a plan
+     *
+     * @param planId the Id for the plan
+     */
     Plan getPlan(String planId);
 
+    /**
+     * Method for getting a workout
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     Workout getWorkout(String planId, String workoutId);
 
     void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId);
