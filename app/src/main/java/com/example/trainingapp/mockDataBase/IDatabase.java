@@ -16,7 +16,7 @@ public interface IDatabase {
     /**
      * Method for getting a plan list
      */
-    List<Plan> getPlanList();
+    List<Plan> getPlanList() throws NullPointerException;
 
     /**
      * Method for getting completed workouts
@@ -40,17 +40,13 @@ public interface IDatabase {
      */
     void addToCompletedWorkouts(ActiveWorkout workout);
 
-    //int getExerciseIdFromMap(String exerciseName) throws ExerciseIdNotFoundException;
-
-    //void addExerciseIdToMap(String key, Integer exerciseId);
-
     /**
      * Method for updating the plan name
      *
      * @param name the new name of the plan
      * @param Id the Id of the plan
      */
-    void updatePlanName(String name, String Id);
+    void updatePlanName(String name, String Id) throws NullPointerException;
 
     /**
      * Method for removing a workout from a plan
@@ -58,7 +54,7 @@ public interface IDatabase {
      * @param planId the Id for the plan
      * @param workoutId the Id for the workout
      */
-    void removeWorkoutFromPlan(String planId, String workoutId);
+    void removeWorkoutFromPlan(String planId, String workoutId) throws NullPointerException;
 
     /**
      * Method for adding a workout to a plan
@@ -66,7 +62,7 @@ public interface IDatabase {
      * @param workout the workout object to be added
      * @param planId the Id for the plan
      */
-    void addWorkoutToPlan(Workout workout, String planId);
+    void addWorkoutToPlan(Workout workout, String planId) throws NullPointerException;
 
     /**
      * Method for updating a workout name in a plan
@@ -75,7 +71,7 @@ public interface IDatabase {
      * @param planId the Id for the plan
      * @param workoutId the Id for the workout
      */
-    void updateWorkoutName(String name, String planId, String workoutId);
+    void updateWorkoutName(String name, String planId, String workoutId) throws NullPointerException;
 
     /**
      * Method for adding an exercise to a workout
@@ -84,7 +80,7 @@ public interface IDatabase {
      * @param planId the Id for the plan
      * @param workoutId the Id for the workout
      */
-    void addExerciseToWorkout(Exercise exercise, String planId, String workoutId);
+    void addExerciseToWorkout(Exercise exercise, String planId, String workoutId) throws NullPointerException;
 
     /**
      * Method for removing an exercise from a workout
@@ -93,7 +89,7 @@ public interface IDatabase {
      * @param planId the Id for the plan
      * @param workoutId the Id for the workout
      */
-    void removeExerciseFromWorkout(String exerciseName, String planId, String workoutId);
+    void removeExerciseFromWorkout(String exerciseName, String planId, String workoutId) throws NullPointerException;
 
     /**
      * Method for updating an exercise name
@@ -103,7 +99,7 @@ public interface IDatabase {
      * @param workoutId the Id for the workout
      * @param exerciseId the Id for the exercise
      */
-    void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId);
+    void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) throws NullPointerException;
 
     /**
      * Method for updating a rep in an exercise set
@@ -113,7 +109,7 @@ public interface IDatabase {
      * @param workoutId the Id for the workout
      * @param exerciseId the Id for the exercise
      */
-    void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId);
+    void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId) throws NullPointerException;
 
     /**
      * Method for converting a workout to an active workout
@@ -121,8 +117,14 @@ public interface IDatabase {
      * @param planId the Id for the plan
      * @param workoutId the Id for the workout
      */
-    void newActiveWorkout(String planId, String workoutId);
+    void newActiveWorkout(String planId, String workoutId) throws NullPointerException;
 
+    /**
+     * Method for updating a rep in an active exercise
+     *
+     * @param reps the new amount of reps
+     * @param exerciseId the Id for the exercise
+     */
     void updateActiveExerciseRep(int reps, String exerciseId);
 
     void endActiveWorkout();
@@ -132,7 +134,7 @@ public interface IDatabase {
      *
      * @param planId the Id for the plan
      */
-    Plan getPlan(String planId);
+    Plan getPlan(String planId) throws NullPointerException;
 
     /**
      * Method for getting a workout
@@ -140,11 +142,19 @@ public interface IDatabase {
      * @param planId the Id for the plan
      * @param workoutId the Id for the workout
      */
-    Workout getWorkout(String planId, String workoutId);
-
+    Workout getWorkout(String planId, String workoutId) throws NullPointerException;
+    
     ActiveWorkout getActiveWorkout();
 
-    void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId);
+    /**
+     * Method for updating sets for an exercise
+     *
+     * @param sets the new amount of sets
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
+    void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId) throws NullPointerException;
 
     void updateActiveExerciseWeight(String exerciseId, double weight);
 }

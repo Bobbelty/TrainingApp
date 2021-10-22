@@ -45,22 +45,6 @@ public class ActiveExercise {
     }
 
     /**
-     * This method converts the format of reps/sets from int reps x int sets to a list of
-     * reps and size of list is the number of sets.
-     *
-     * @param reps value of each startvalue in list
-     * @param sets size of list
-     */
-
-    /**
-     * Method for creating a list of weights that corresponds to the list of reps.
-     * The size of the weightlist must be the same as the size of the replist. Default element value
-     * is zero.
-     *
-     * @param listOfReps Used to know the necessary size of the weightlist.
-     */
-
-    /**
      * Method for getting information about the list with reps.
      *
      * @return a copy of the list with reps.
@@ -81,8 +65,7 @@ public class ActiveExercise {
     /**
      * Method for changing a specific value in the list of reps.
      *
-     * @param index position in the list where the value will change at.
-     * @param change new value.
+     * @param noOfReps new value for reps
      */
     public void changeRep(int noOfReps){
         this.noOfReps = noOfReps;
@@ -91,28 +74,11 @@ public class ActiveExercise {
     /**
      * Method for changing a specific value in the list of weights.
      *
-     * @param index position in the list where the value will change at.
-     * @param change new value.
+     * @param weight new value for weight
      */
     public void changeWeight(double weight){
         this.weight = weight;
     }
-
-    /**
-     * Method for adding another set of reps to the list of reps. The list with weights will also
-     * get a corresponding weightelement, initially zero.
-     *
-     * @param amountOfReps amount of reps for the new set.
-     */
-
-
-    /**
-     * Method for removing a set from the list of reps. The corresponding weight will be removed
-     * from the list with weights.
-     *
-     * @param index which index to be removed.
-     */
-
 
     /**
      * Method for getting the name of the exercise
@@ -131,7 +97,5 @@ public class ActiveExercise {
     public String getExerciseId(){
         return exerciseId;
     }
-    
-
 
 }

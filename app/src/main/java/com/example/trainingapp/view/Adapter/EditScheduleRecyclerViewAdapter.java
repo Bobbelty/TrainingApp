@@ -67,7 +67,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                             Integer.parseInt(txt),
                             selectedPlan.getId(),
                             selectedWorkout.getId(),
-                            selectedWorkout.getExercise(position).getId());
+                            selectedWorkout.getExerciseByIndex(position).getId());
                 }
             }
         });
@@ -83,7 +83,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                             Integer.parseInt(txt),
                             selectedPlan.getId(),
                             selectedWorkout.getId(),
-                            selectedWorkout.getExercise(position).getId());
+                            selectedWorkout.getExerciseByIndex(position).getId());
                 }
             }
         });
@@ -98,7 +98,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     editWorkoutViewModel.setNewExerciseName(
                             holder.etbxExerciseName.getText().toString(),
                             selectedPlan.getId(), selectedWorkout.getId(),
-                            selectedWorkout.getExercise(position).getId());
+                            selectedWorkout.getExerciseByIndex(position).getId());
                 }
             }
         });
