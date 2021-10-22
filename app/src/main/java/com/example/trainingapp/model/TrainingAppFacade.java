@@ -49,6 +49,13 @@ public class TrainingAppFacade {
             return mockDataBase.getPlanList();
     }
 
+    /**
+     * Method for getting a copy of the plan from the database
+     *
+     * @param planId the id of the plan
+     *
+     * @return copy of the specified plan object
+     */
     public Plan getPlan(String planId) {
         return mockDataBase.getPlan(planId);
     }
@@ -148,34 +155,84 @@ public class TrainingAppFacade {
         mockDataBase.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
     }
 
+    /**
+     * Method for updating the reps in an exercise
+     *
+     * @param reps the new number of reps
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
     public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId){
         mockDataBase.updateExerciseRep(reps, planId, workoutId, exerciseId);
     }
 
+    /**
+     * Method for updating the sets in an exercise
+     *
+     * @param sets the new number of sets
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
     public void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId){
         mockDataBase.updateExerciseSets(sets, planId, workoutId, exerciseId);
     }
 
+    /**
+     * Method for convert a workout to an activeWorkout
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     public void convertWorkoutToActive(String planId, String workoutId){
         mockDataBase.newActiveWorkout(planId, workoutId);
     }
 
+    /**
+     * Method for adding a set to an active exercise
+     *
+     * @param exerciseId the Id for the exercise
+     */
     public void addSetToActiveExercise(String exerciseId){
         mockDataBase.addNewSet(exerciseId);
     }
 
+    /**
+     * Method for removing a set from an active exercise
+     *
+     * @param exerciseId the Id for the exercise
+     * @param index the position of the set
+     */
     public void removeSetFromExercise(String exerciseId, int index){
         mockDataBase.removeSetFromActiveExercise(exerciseId, index);
     }
 
+    /**
+     * Method for updating the rep for a set of an active exercise
+     *
+     * @param reps the new number of reps
+     * @param exerciseId the Id for the exercise
+     * @param index the position of the set
+     */
     public void updateActiveExerciseRep(int reps, String exerciseId, int index){
         mockDataBase.updateActiveExerciseRep(reps, exerciseId, index);
     }
 
-    public void updateWeightInSet(String exerciseId, int index, int change){
-        mockDataBase.updateWeightInSet(exerciseId, index, change);
+    /**
+     * Method for updating the weight in an active exercise
+     *
+     * @param exerciseId the Id of the exercise
+     * @param index the position of the set
+     * @param newWeight the new value for the weight
+     */
+    public void updateWeightInSet(String exerciseId, int index, int newWeight){
+        mockDataBase.updateWeightInSet(exerciseId, index, newWeight);
     }
 
+    /**
+     * Method for ending an active workout
+     */
     public void endActiveWorkout(){
         mockDataBase.endActiveWorkout();
     }

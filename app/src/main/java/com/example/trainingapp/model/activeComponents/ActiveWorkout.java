@@ -21,6 +21,10 @@ public class ActiveWorkout {
      */
     private String workoutName;
 
+    /**
+     * HashMap for storing the active exercises in a active workout
+     */
+
     private HashMap<String, ActiveExercise> activeExerciseMap = new HashMap<>();
 
     /**
@@ -38,6 +42,11 @@ public class ActiveWorkout {
         currentTime = "0";
     }
 
+    /**
+     * Constructor for defensive copying, used when performing active workouts
+     *
+     * @param activeWorkout the active workout in use
+     */
     public ActiveWorkout(ActiveWorkout activeWorkout){
         this.workoutName = activeWorkout.workoutName;
         this.activeExerciseMap = new HashMap<>(activeWorkout.activeExerciseMap);
@@ -54,9 +63,9 @@ public class ActiveWorkout {
     }
 
     /**
-     * Method for adding an exerciseObject to the list of exercises
+     * Method for adding an exerciseObject to the map of exercises
      *
-     * @param exercise object to add to list
+     * @param exercise object to add to map
      */
     public void addExercise(ActiveExercise exercise) {
         activeExerciseMap.put(exercise.getExerciseId(), exercise);
@@ -75,6 +84,12 @@ public class ActiveWorkout {
         return activeExercises;
         }
 
+    /**
+     * Method for getting a exercise at the index
+     *
+     * @param index position in the list where the wanted exercises is
+     * @return The exerciseId of the exercise
+     */
     //TODO is this ok?
     public ActiveExercise getExercise(int index){
             return getExerciseList().get(index);
@@ -98,19 +113,44 @@ public class ActiveWorkout {
         this.currentTime = currentTime;
     }
 
+    /**
+     * Adds a set to the active exercise
+     *
+     * @param exerciseId the id of the exercise that adds the set
+     */
     public void addSetToExercise(String exerciseId){
         activeExerciseMap.get(exerciseId).addSetToList(0);
     }
 
+    /**
+     * Updates the active exercise's reps for a specified set
+     *
+     * @param reps the new amount of reps
+     * @param exerciseId the id of the exercise that is updated
+     * @param index the position of the set that is updated
+     */
     public void updateActiveExerciseRep(int reps, String exerciseId, int index){
         activeExerciseMap.get(exerciseId).updateRep(reps, index);
     }
 
+    /**
+     * Removes the active exercise's specified set
+     *
+     * @param exerciseId the id of the exercise that is updated
+     * @param index the position of the set that is removed
+     */
     public void removeSetFromExercise(String exerciseId, int index){
         activeExerciseMap.get(exerciseId).removeSetFromList(index);
     }
 
-    public void updateWeightInSet(String exerciseId, int index, int change) {
-        activeExerciseMap.get(exerciseId).changeWeightInList(index, change);
+    /**
+     * Updates the weight for a set in the active exercise
+     *
+     * @param exerciseId the id for the exercise that is updated
+     * @param index the position of the set that is being updated
+     * @param newWeight the new value for the weight
+     */
+    public void updateWeightInSet(String exerciseId, int index, int newWeight) {
+        activeExerciseMap.get(exerciseId).changeWeightInList(index, newWeight);
     }
 }

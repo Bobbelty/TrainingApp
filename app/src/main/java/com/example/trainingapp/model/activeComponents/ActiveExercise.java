@@ -148,6 +148,12 @@ public class ActiveExercise {
         return exerciseId;
     }
 
+    /**
+     * Method for updating the reps on a specified set
+     *
+     * @param reps the new value for reps
+     * @param index which index to update
+     */
     public void updateRep(int reps, int index){
         listOfReps.set(index, reps);
     }
