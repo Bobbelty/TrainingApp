@@ -15,7 +15,7 @@ import com.example.trainingapp.model.components.Workout;
  * objects from the model in such a way that objects are easily managed and presented.
  * In this respect, the ViewModel is more model than view, and handles most if not all of the view's display logic.
  *
- * @author Valdemar Vålvik and Victor Hui
+ * @author Philip Rabia and Patrik Olsson
  */
 
 public class EditScheduleViewModel extends TrainingAppModelViewModel{
@@ -23,30 +23,16 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
     /**
      * Variable for textView
      */
-
-    private MutableLiveData<String> mText;
-    private TrainingAppFacade trainingAppModel;
+    private final MutableLiveData<String> mText;
+    private final TrainingAppFacade trainingAppModel;
     private Workout selectedWorkout;
     private Plan selectedPlan;
 
-    public String getSelectedPlanId() {
-        return selectedPlanId;
-    }
-
-    public void setSelectedPlanId(String selectedPlanId) {
-        this.selectedPlanId = selectedPlanId;
-    }
-
-    private String selectedPlanId;
-
     private static EditScheduleViewModel instance = null;
-
-    // Create an ArrayAdapter using the string array and a default spinner layout
 
     /**
      * Class constructor
      */
-
     private EditScheduleViewModel() {
 
         mText = new MutableLiveData<>();
@@ -54,29 +40,26 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
 
         trainingAppModel = getInstanceOfTrainingModel();
     }
-
+    public void addExerciseToWorkout(String planId, String workoutId) {
+        trainingAppModel.addExerciseToWorkout(planId, workoutId);
+    }
     public void onClickRemoveExercise(String planId, String workoutId, String exerciseId) {
         trainingAppModel.removeExerciseFromWorkout(planId, workoutId, exerciseId);
-        //getTrainingAppModel().removeExerciseFromWorkout(selectedWorkout, selectedWorkout.getExerciseList().get(position));
     }
-    public void removeWorkout(String planId, String workoutId) {
+    public void removeWorkoutFromPlan(String planId, String workoutId) {
         trainingAppModel.removeWorkoutFromPlan(planId, workoutId);
-        //getTrainingAppModel().removeWorkoutFromPlan(selectedPlan, selectedWorkout);
     }
-    public void setNewNoOfSets(int position, String noOfSets) {
-        // Set
-        selectedWorkout.getExerciseList().get(position).setNumberOfSets(Integer.parseInt(noOfSets));
+    public void setNewNoOfSets(int noOfSets, String planId, String workoutId, String exerciseId) {
+        trainingAppModel.updateExerciseSets(noOfSets, planId, workoutId, exerciseId);
     }
-    public void setNewNoOfReps(int position, String noOfReps) {
-        selectedWorkout.getExerciseList().get(position).setNumberOfReps(Integer.parseInt(noOfReps));
+    public void setNewNoOfReps(int noOfReps, String planId, String workoutId, String exerciseId) {
+        trainingAppModel.updateExerciseRep(noOfReps, planId, workoutId, exerciseId);
     }
     public void setNewExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) {
         trainingAppModel.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
-        //selectedWorkout.getExerciseList().get(position).setName(exerciseName);
     }
     public void setNewWorkoutName(String newWorkoutName, String planId, String workoutId) {
         trainingAppModel.updateWorkoutName(newWorkoutName, planId, workoutId);
-        //selectedWorkout.setName(newWorkoutName);
     }
     /**
      * @return reference of mText variable
@@ -99,7 +82,9 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
             return instance;
         }
     }
-
+    public Workout getWorkoutById(String planId, String workoutId) {
+        return trainingAppModel.getWorkout(planId, workoutId);
+    }
     public Workout getSelectedWorkout() {
         return selectedWorkout;
     }

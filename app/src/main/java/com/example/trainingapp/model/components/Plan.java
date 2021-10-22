@@ -3,6 +3,7 @@ package com.example.trainingapp.model.components;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -19,7 +20,7 @@ public class Plan {
      */
     private String planName; // Make sure not able to send null values from GUI
 
-    private HashMap<String, Workout> workoutMap = new HashMap<>();
+    private LinkedHashMap<String, Workout> workoutMap = new LinkedHashMap<>();
 
     private final String planId;
 
@@ -39,7 +40,7 @@ public class Plan {
         this.workoutMap = plan.getWorkoutMap();
     }
     public Workout getWorkout(String workoutId) {
-        return workoutMap.get(workoutId);
+        return new Workout(workoutMap.get(workoutId));
     }
 
     public Plan(String name){
@@ -81,9 +82,9 @@ public class Plan {
 
     }
 
-    private HashMap<String, Workout> getWorkoutMap(){
+    private LinkedHashMap<String, Workout> getWorkoutMap(){
         //defensive copying?
-        return new HashMap<>(workoutMap);
+        return new LinkedHashMap<>(workoutMap);
     }
 
 
@@ -125,7 +126,7 @@ public class Plan {
         workoutMap.get(workoutId).updateExerciseSets(exerciseId, sets);
     }
 
-    public Workout getWorkout(String workoutId){
+    /*public Workout getWorkout(String workoutId){
         return new Workout(workoutMap.get(workoutId));
-    }
+    }*/
 }

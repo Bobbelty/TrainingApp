@@ -2,6 +2,7 @@ package com.example.trainingapp.model.components;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,7 +22,7 @@ public class Workout {
      * List containing all the exercises in the workout
      */
    // private List<Exercise> exercises = new ArrayList<>();
-    private HashMap<String, Exercise> exerciseMap = new HashMap<>();
+    private LinkedHashMap<String, Exercise> exerciseMap = new LinkedHashMap<>();
 
     private final String workoutId;
 
@@ -48,7 +49,7 @@ public class Workout {
     public Workout(Workout workout){
         this.workoutName = workout.workoutName;
         this.workoutId = workout.workoutId;
-        this.exerciseMap = new HashMap<>(workout.exerciseMap);
+        this.exerciseMap = new LinkedHashMap<>(workout.exerciseMap);
     }
 
     /**

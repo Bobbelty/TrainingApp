@@ -155,7 +155,7 @@ public class MockDataBase implements IDatabase {
     }
 
     public Plan getPlan(String planId){
-        return planMap.get(planId);
+        return new Plan(planMap.get(planId));
     }
 
     public Workout getWorkout(String planId, String workoutId) {

@@ -36,6 +36,9 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     public void addPlan() {
         trainingAppModel.createNewPlan();
     }
+    public Plan getPlanById(String planId) {
+        return trainingAppModel.getPlan(planId);
+    }
     public void removePlan(Plan selectedPlan) {
         trainingAppModel.removePlan(selectedPlan.getId());
     }
@@ -50,10 +53,6 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
                 }
             }
         }
-
-    }
-    public String getPlanName(Plan selectedPlan) {
-        return selectedPlan.getPlanName();
     }
 
     // push latest plan to top to display on

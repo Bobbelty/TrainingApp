@@ -176,7 +176,7 @@ public class ScheduleFragment extends Fragment {
             public void onClick(View view) {
                 scheduleViewModel.getTrainingAppModel().addWorkoutToPlan(selectedPlan.getId());
 
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getPlan(selectedPlan.getId());
+                selectedPlan = scheduleViewModel.getPlanById(selectedPlan.getId());
 
                 recyclerViewAdapter = new ScheduleRecyclerViewAdapter(selectedPlan, getContext(), getActivity());
                 recyclerView.setAdapter(recyclerViewAdapter);

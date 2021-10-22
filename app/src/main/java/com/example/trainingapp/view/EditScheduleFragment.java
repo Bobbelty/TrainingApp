@@ -65,15 +65,7 @@ public class EditScheduleFragment extends Fragment {
         btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //EditScheduleViewModel.getInstance().getTrainingAppModel().addExerciseToWorkout(selectedWorkout, "New exercise");
-                // Make sure model adds a new exercise that the user later on can change in the UI
-                // Benchpress  4  6
-                // Exercise1  0  0
-                // Exercise2  0  0
-                //String name = "BenchPress";
-                //name.toLowerCase(Locale.ROOT).replace(" ", "").replace("_","");
-
-                // plocka från savedExercises
+                editScheduleViewModel.addExerciseToWorkout(editScheduleViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
 
                 recyclerViewAdapter.notifyDataSetChanged();
             }
@@ -108,7 +100,7 @@ public class EditScheduleFragment extends Fragment {
         builder.setPositiveButton("REMOVE WORKOUT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                editScheduleViewModel.getTrainingAppModel().removeWorkoutFromPlan(editScheduleViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
+                editScheduleViewModel.removeWorkoutFromPlan(editScheduleViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
                 getActivity().finish();
                 alertTextView.setVisibility(View.VISIBLE);
             }

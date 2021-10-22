@@ -50,7 +50,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
             public void onClick (View v) {
                 editScheduleViewModel.onClickRemoveExercise(
                         selectedPlan.getId(), selectedWorkout.getId(), selectedWorkout.getExerciseList().get(position).getId());
-                selectedWorkout = editScheduleViewModel.getTrainingAppModel().getWorkout(selectedPlan.getId(), selectedWorkout.getId());
+                selectedWorkout = editScheduleViewModel.getWorkoutById(selectedPlan.getId(), selectedWorkout.getId());
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, getItemCount());
             }
@@ -63,7 +63,11 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    editScheduleViewModel.setNewNoOfSets(position, holder.etbxNoOfSets.getText().toString());
+                    editScheduleViewModel.setNewNoOfSets(
+                            Integer.parseInt(txt),
+                            selectedPlan.getId(),
+                            selectedWorkout.getId(),
+                            selectedWorkout.getExercise(position).getId());
                 }
             }
         });
@@ -75,7 +79,11 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    editScheduleViewModel.setNewNoOfReps(position, holder.etbxNoOfReps.getText().toString());
+                    editScheduleViewModel.setNewNoOfReps(
+                            Integer.parseInt(txt),
+                            selectedPlan.getId(),
+                            selectedWorkout.getId(),
+                            selectedWorkout.getExercise(position).getId());
                 }
             }
         });
