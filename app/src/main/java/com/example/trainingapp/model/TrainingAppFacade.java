@@ -1,16 +1,13 @@
 package com.example.trainingapp.model;
 
 import com.example.trainingapp.mockDataBase.IDatabase;
-import com.example.trainingapp.mockDataBase.MockDataBase;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.model.activeComponents.ActiveWorkoutSession;
-import com.example.trainingapp.model.components.Exercise;
 import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.model.components.PlanBuilder;
+import com.example.trainingapp.model.components.PlanComponentFactory;
 import com.example.trainingapp.model.components.Workout;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * The User-class act as a datahandler that connects all of the model with the modelfacade and the
@@ -27,12 +24,7 @@ public class TrainingAppFacade {
      * ExerciseIdHandler-object for creating new exerciseId:s
      */
     private final ExerciseIdHandler exerciseIdHandler = new ExerciseIdHandler();
-
-    /**
-     * PlanBuilder-object for creating new plancomponents.
-     */
-    private final PlanBuilder planBuilder = new PlanBuilder();
-
+    
     /**
      * The facade uses a MockDatabase to store plans, workouts and exercises
      * during runtime. It also stores completed workouts.
@@ -57,6 +49,13 @@ public class TrainingAppFacade {
             return mockDataBase.getPlanList();
     }
 
+    /**
+     * Method for getting a copy of the plan from the database
+     *
+     * @param planId the id of the plan
+     *
+     * @return copy of the specified plan object
+     */
     public Plan getPlan(String planId) {
         return mockDataBase.getPlan(planId);
     }
@@ -78,7 +77,7 @@ public class TrainingAppFacade {
      * Adds a new Plan-object to the database
      */
     public void createNewPlan(){
-        mockDataBase.addPlan(planBuilder.createNewPlan());
+        mockDataBase.addPlan(PlanComponentFactory.createPlan());
     }
 
     /**
@@ -97,7 +96,7 @@ public class TrainingAppFacade {
      * @param planId what plan to add it into
      */
     public void addWorkoutToPlan(String planId){
-        mockDataBase.addWorkoutToPlan(planBuilder.createNewWorkout(), planId);
+        mockDataBase.addWorkoutToPlan(PlanComponentFactory.createWorkout(), planId);
     }
 
     /**
@@ -130,7 +129,7 @@ public class TrainingAppFacade {
      * @param workoutId in which workout
      */
     public void addExerciseToWorkout(String planId, String workoutId) {
-        mockDataBase.addExerciseToWorkout(planBuilder.createNewExercise(), planId, workoutId);
+        mockDataBase.addExerciseToWorkout(PlanComponentFactory.createExercise(), planId, workoutId);
     }
     public ActiveWorkout getActiveWorkout() {
         return mockDataBase.getActiveWorkout();
@@ -159,17 +158,40 @@ public class TrainingAppFacade {
         mockDataBase.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
     }
 
+    /**
+     * Method for updating the reps in an exercise
+     *
+     * @param reps the new number of reps
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
     public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId){
         mockDataBase.updateExerciseRep(reps, planId, workoutId, exerciseId);
     }
 
+    /**
+     * Method for updating the sets in an exercise
+     *
+     * @param sets the new number of sets
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
     public void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId){
-
+        mockDataBase.updateExerciseSets(sets, planId, workoutId, exerciseId);
     }
 
+    /**
+     * Method for convert a workout to an activeWorkout
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     public void convertWorkoutToActive(String planId, String workoutId){
         mockDataBase.newActiveWorkout(planId, workoutId);
     }
+
 
     public void updateActiveExerciseRep(int reps, String exerciseId){
         mockDataBase.updateActiveExerciseRep(reps, exerciseId);
@@ -179,7 +201,11 @@ public class TrainingAppFacade {
         mockDataBase.updateWeightInSet(exerciseId, weight);
     }
 
+    /**
+     * Method for ending an active workout
+     */
     public void endActiveWorkout(){
         mockDataBase.endActiveWorkout();
     }
+    
 }

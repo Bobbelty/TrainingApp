@@ -38,14 +38,13 @@ public class ActiveWorkoutSession {
         }*/
         return activeWorkout;
     }
-
-    /*public void setCurrentDate (ActiveWorkout activeWorkout){
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String workoutDate = dateFormat.format(date);
-        activeWorkout.setCurrentTime(workoutDate);
-    }*/
-
+    /**
+     * Method for getting the current date for an active workout, used to show when the user has
+     * done the workout when looking at history. Uses the java Calendar class to get the current
+     * time.
+     *
+     * @return the date in yyyy-MM-dd format as a string
+     */
     public String getCurrentDate (){
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
