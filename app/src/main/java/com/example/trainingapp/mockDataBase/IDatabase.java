@@ -41,17 +41,17 @@ public interface IDatabase {
 
     void newActiveWorkout(String planId, String workoutId);
 
-    void addNewSet(String exerciseId);
+    //void addNewSet(String exerciseId);
 
-    void updateActiveExerciseRep(int reps, String exerciseId, int index);
+    void updateActiveExerciseRep(int reps, String exerciseId);
 
-    void removeSetFromActiveExercise(String exerciseId, int index);
-
-    void updateWeightInSet(String exerciseId, int index, int change);
+    void updateWeightInSet(String exerciseId, double weight);
 
     void endActiveWorkout();
 
     Plan getPlan(String planId);
 
     Workout getWorkout(String planId, String workoutId);
+
+    ActiveWorkout getActiveWorkout();
 }

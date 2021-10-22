@@ -93,16 +93,16 @@ public class MockDataBase implements IDatabase {
         exampleExercise2 = new Exercise("Leg press");
 
         exampleExercise1.setNumberOfSets(4);
-        exampleExercise1.setNumberOfReps(8);
+        exampleExercise1.setNumberOfReps(4);
 
         exampleExercise2.setNumberOfSets(5);
-        exampleExercise2.setNumberOfReps(10);
+        exampleExercise2.setNumberOfReps(3);
 
         exampleExercise3.setNumberOfSets(4);
         exampleExercise3.setNumberOfReps(4);
 
         exampleExercise4.setNumberOfSets(6);
-        exampleExercise4.setNumberOfReps(12);
+        exampleExercise4.setNumberOfReps(5);
 
         exampleWorkout1.addExercise(exampleExercise1);
         exampleWorkout1.addExercise(exampleExercise2);
@@ -174,6 +174,9 @@ public class MockDataBase implements IDatabase {
     public void addToCurrentPBs(Integer exerciseId, Integer newWeight) {
         currentPBs.put(exerciseId, newWeight);
     }
+    public ActiveWorkout getActiveWorkot() {
+        return new ActiveWorkout(activeWorkout);
+    }
 
     public void updateWorkoutName(String name, String planId, String workoutId){
         Plan plan = planMap.get(planId);
@@ -217,20 +220,20 @@ public class MockDataBase implements IDatabase {
         return new ActiveWorkout(activeWorkout);
     }
 
-    public void updateActiveExerciseRep(int reps, String exerciseId, int index){
-        activeWorkout.updateActiveExerciseRep(reps, exerciseId, index);
+    public void updateActiveExerciseRep(int reps, String exerciseId){
+        activeWorkout.updateActiveExerciseRep(reps, exerciseId);
     }
 
-    public void addNewSet(String exerciseId){
-        activeWorkout.addSetToExercise(exerciseId);
-    }
-
+    //public void addNewSet(String exerciseId){
+       // activeWorkout.addSetToExercise(exerciseId);
+    //}
+/*
     public void removeSetFromActiveExercise(String exerciseId, int index){
         activeWorkout.removeSetFromExercise(exerciseId, index);
-    }
+    }*/
 
-    public void updateWeightInSet(String exerciseId, int index, int change){
-        activeWorkout.updateWeightInSet(exerciseId, index, change);
+    public void updateWeightInSet(String exerciseId, double weight){
+        activeWorkout.updateWeightInSet(exerciseId, weight);
     }
 
     public void endActiveWorkout(){

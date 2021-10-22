@@ -1,14 +1,15 @@
 package com.example.trainingapp.viewModel;
 
-import android.widget.EditText;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.trainingapp.model.TrainingAppFacade;
+import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.model.components.Plan;
 
 import com.example.trainingapp.model.components.Workout;
+
+import java.util.List;
 
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data
@@ -18,7 +19,7 @@ import com.example.trainingapp.model.components.Workout;
  * @author Philip Rabia and Patrik Olsson
  */
 
-public class EditScheduleViewModel extends TrainingAppModelViewModel{
+public class EditWorkoutViewModel extends TrainingAppModelViewModel{
 
     /**
      * Variable for textView
@@ -28,17 +29,26 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
     private Workout selectedWorkout;
     private Plan selectedPlan;
 
-    private static EditScheduleViewModel instance = null;
+    private static EditWorkoutViewModel instance = null;
 
     /**
      * Class constructor
      */
-    private EditScheduleViewModel() {
+    private EditWorkoutViewModel() {
 
         mText = new MutableLiveData<>();
         mText.setValue("This is schedule fragment");
 
         trainingAppModel = getInstanceOfTrainingModel();
+    }
+    public void createActiveWorkout(String planId, String workoutId){
+        trainingAppModel.convertWorkoutToActive(planId, workoutId);
+    }
+    public ActiveWorkout getActiveWorkout() {
+        return trainingAppModel.getActiveWorkout();
+    }
+    public List<Plan> getSavedPlans() {
+        return trainingAppModel.getSavedPlans();
     }
     public void addExerciseToWorkout(String planId, String workoutId) {
         trainingAppModel.addExerciseToWorkout(planId, workoutId);
@@ -73,9 +83,9 @@ public class EditScheduleViewModel extends TrainingAppModelViewModel{
         return trainingAppModel;
     }
 
-    public static EditScheduleViewModel getInstance() {
+    public static EditWorkoutViewModel getInstance() {
         if (instance == null) {
-            instance = new EditScheduleViewModel();
+            instance = new EditWorkoutViewModel();
             return instance;
         }
         else {

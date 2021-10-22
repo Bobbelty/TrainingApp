@@ -23,16 +23,13 @@
             android:translationX="-90dp"
             android:translationY="12dp" />
 
-        <EditText
-            android:id="@+id/etbxExerciseName"
+        <TextView
+            android:id="@+id/lblWorkoutExerciseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Name"
+            android:text="TextView"
             android:textColor="#FFFFFF"
-            android:textSize="22sp"
-            android:translationX="10dp" />
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/etbxWeight"
@@ -57,14 +54,6 @@
             android:textColor="@color/white"
             android:textSize="22sp"
             android:translationX="-100dp" />
-
-        <Button
-            android:id="@+id/btnDeleteExercise"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:text="Button"
-            android:translationX="-10dp" />
 
     </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -33,6 +33,9 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
      * Class constructor
      */
 
+    public List<Plan> getSavedPlans() {
+        return trainingAppModel.getSavedPlans();
+    }
     public void addPlan() {
         trainingAppModel.createNewPlan();
     }

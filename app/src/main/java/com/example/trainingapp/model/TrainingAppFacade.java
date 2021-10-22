@@ -132,6 +132,9 @@ public class TrainingAppFacade {
     public void addExerciseToWorkout(String planId, String workoutId) {
         mockDataBase.addExerciseToWorkout(planBuilder.createNewExercise(), planId, workoutId);
     }
+    public ActiveWorkout getActiveWorkout() {
+        return mockDataBase.getActiveWorkout();
+    }
 
     /**
      * Method for removing an exercise from a workout
@@ -168,20 +171,12 @@ public class TrainingAppFacade {
         mockDataBase.newActiveWorkout(planId, workoutId);
     }
 
-    public void addSetToActiveExercise(String exerciseId){
-        mockDataBase.addNewSet(exerciseId);
+    public void updateActiveExerciseRep(int reps, String exerciseId){
+        mockDataBase.updateActiveExerciseRep(reps, exerciseId);
     }
 
-    public void removeSetFromExercise(String exerciseId, int index){
-        mockDataBase.removeSetFromActiveExercise(exerciseId, index);
-    }
-
-    public void updateActiveExerciseRep(int reps, String exerciseId, int index){
-        mockDataBase.updateActiveExerciseRep(reps, exerciseId, index);
-    }
-
-    public void updateWeightInSet(String exerciseId, int index, int change){
-        mockDataBase.updateWeightInSet(exerciseId, index, change);
+    public void updateWeightInSet(String exerciseId, double weight){
+        mockDataBase.updateWeightInSet(exerciseId, weight);
     }
 
     public void endActiveWorkout(){

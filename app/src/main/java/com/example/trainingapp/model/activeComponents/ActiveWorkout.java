@@ -4,6 +4,7 @@ import com.example.trainingapp.model.components.Exercise;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -21,7 +22,7 @@ public class ActiveWorkout {
      */
     private String workoutName;
 
-    private HashMap<String, ActiveExercise> activeExerciseMap = new HashMap<>();
+    private LinkedHashMap<String, ActiveExercise> activeExerciseMap = new LinkedHashMap<>();
 
     /**
      * The time for the active workout, used for history
@@ -40,7 +41,7 @@ public class ActiveWorkout {
 
     public ActiveWorkout(ActiveWorkout activeWorkout){
         this.workoutName = activeWorkout.workoutName;
-        this.activeExerciseMap = new HashMap<>(activeWorkout.activeExerciseMap);
+        this.activeExerciseMap = new LinkedHashMap<>(activeWorkout.activeExerciseMap);
         currentTime = "0";
     }
 
@@ -98,19 +99,19 @@ public class ActiveWorkout {
         this.currentTime = currentTime;
     }
 
-    public void addSetToExercise(String exerciseId){
+    /*public void addSetToExercise(String exerciseId){
         activeExerciseMap.get(exerciseId).addSetToList(0);
-    }
+    }*/
 
-    public void updateActiveExerciseRep(int reps, String exerciseId, int index){
-        activeExerciseMap.get(exerciseId).updateRep(reps, index);
+    public void updateActiveExerciseRep(int reps, String exerciseId){
+        activeExerciseMap.get(exerciseId).changeRep(reps);
     }
-
+/*
     public void removeSetFromExercise(String exerciseId, int index){
         activeExerciseMap.get(exerciseId).removeSetFromList(index);
-    }
+    }*/
 
-    public void updateWeightInSet(String exerciseId, int index, int change) {
-        activeExerciseMap.get(exerciseId).changeWeightInList(index, change);
+    public void updateWeightInSet(String exerciseId, double weight) {
+        activeExerciseMap.get(exerciseId).changeWeight(weight);
     }
 }

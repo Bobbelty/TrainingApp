@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
-import com.example.trainingapp.viewModel.EditScheduleViewModel;
+import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
 public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditScheduleRecyclerViewAdapter.ListViewHolder> {
 
@@ -22,12 +22,12 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     private Activity activity;
     private Workout selectedWorkout;
     private Plan selectedPlan;
-    private EditScheduleViewModel editScheduleViewModel = EditScheduleViewModel.getInstance();
+    private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
     public EditScheduleRecyclerViewAdapter(Activity activity) {
-        this.selectedWorkout = editScheduleViewModel.getSelectedWorkout();
+        this.selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
         this.activity = activity;
-        this.selectedPlan = editScheduleViewModel.getSelectedPlan();
+        this.selectedPlan = editWorkoutViewModel.getSelectedPlan();
     }
 
     @NonNull
@@ -48,9 +48,9 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
         holder.btnDeleteExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                editScheduleViewModel.onClickRemoveExercise(
+                editWorkoutViewModel.onClickRemoveExercise(
                         selectedPlan.getId(), selectedWorkout.getId(), selectedWorkout.getExerciseList().get(position).getId());
-                selectedWorkout = editScheduleViewModel.getWorkoutById(selectedPlan.getId(), selectedWorkout.getId());
+                selectedWorkout = editWorkoutViewModel.getWorkoutById(selectedPlan.getId(), selectedWorkout.getId());
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, getItemCount());
             }
@@ -63,7 +63,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    editScheduleViewModel.setNewNoOfSets(
+                    editWorkoutViewModel.setNewNoOfSets(
                             Integer.parseInt(txt),
                             selectedPlan.getId(),
                             selectedWorkout.getId(),
@@ -79,7 +79,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    editScheduleViewModel.setNewNoOfReps(
+                    editWorkoutViewModel.setNewNoOfReps(
                             Integer.parseInt(txt),
                             selectedPlan.getId(),
                             selectedWorkout.getId(),
@@ -95,7 +95,7 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getName() + "");
                 }
                 else {
-                    editScheduleViewModel.setNewExerciseName(
+                    editWorkoutViewModel.setNewExerciseName(
                             holder.etbxExerciseName.getText().toString(),
                             selectedPlan.getId(), selectedWorkout.getId(),
                             selectedWorkout.getExercise(position).getId());
@@ -122,8 +122,8 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
 
             //lblExercise = itemView.findViewById(R.id.lblExercise);
             etbxExerciseName = itemView.findViewById(R.id.etbxExerciseName);
-            etbxNoOfSets = itemView.findViewById(R.id.etbxNoOfSets);
-            etbxNoOfReps = itemView.findViewById(R.id.etbxNoOfReps);
+            etbxNoOfSets = itemView.findViewById(R.id.etbxNoOfReps);
+            etbxNoOfReps = itemView.findViewById(R.id.etbxWeight);
             btnDeleteExercise = itemView.findViewById(R.id.btnDeleteExercise);
 
         }

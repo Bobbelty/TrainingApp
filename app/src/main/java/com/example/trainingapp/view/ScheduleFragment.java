@@ -93,7 +93,7 @@ public class ScheduleFragment extends Fragment {
 
                 // Add plan
                 scheduleViewModel.addPlan();
-                planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
+                planList = scheduleViewModel.getSavedPlans();
                 scheduleViewModel.shiftRight(planList);
                 selectedPlan = planList.get(0);
 
@@ -111,7 +111,7 @@ public class ScheduleFragment extends Fragment {
         btnRemovePlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!(scheduleViewModel.getTrainingAppModel().getSavedPlans().size() <= 1)) {
+                if(!(scheduleViewModel.getSavedPlans().size() <= 1)) {
                     popupMessage(v);
                 }
             }
@@ -138,8 +138,8 @@ public class ScheduleFragment extends Fragment {
 
                 // Remove plan
                 scheduleViewModel.removePlan(selectedPlan);
-                planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
+                planList = scheduleViewModel.getSavedPlans();
+                selectedPlan = scheduleViewModel.getSavedPlans().get(0);
 
                 // Update view
                 adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, planList);
@@ -190,7 +190,7 @@ public class ScheduleFragment extends Fragment {
      * @param v the current view used in the application.
      */
     private void initRecyclerView(View v) {
-        recyclerView = (RecyclerView) v.findViewById(R.id.schedule_recyclerview);
+        recyclerView = (RecyclerView) v.findViewById(R.id.workoutRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerViewAdapter = new ScheduleRecyclerViewAdapter(selectedPlan, this.getContext(), this.getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -216,7 +216,7 @@ public class ScheduleFragment extends Fragment {
 
                 recyclerViewAdapter.setNewPlan(selectedPlan);
                 etbxPlanName.setText(selectedPlan.getPlanName());
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getPlan(selectedPlan.getId());
+                selectedPlan = scheduleViewModel.getPlanById(selectedPlan.getId());
                 recyclerViewAdapter = new ScheduleRecyclerViewAdapter(selectedPlan, getContext(), getActivity());
                 recyclerView.setAdapter(recyclerViewAdapter);
             }
@@ -234,7 +234,7 @@ public class ScheduleFragment extends Fragment {
     //initiates test objects
     private void initObjects() {
         // setting up test objects
-        planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
+        planList = scheduleViewModel.getSavedPlans();
         selectedPlan = planList.get(0);
     }
 

@@ -21,12 +21,21 @@ public class ActiveWorkoutSession {
      * @return a new ActiveWorkout
      */
     public ActiveWorkout convertWorkoutToActiveWorkout(Workout workout){
+
+
+        ActiveWorkout activeWorkout = ActiveWorkoutComponentFactory.createActiveWorkout(workout.getName());
+        for (int i = 0; i < workout.getExerciseList().size(); i++) {
+            for (int k = 0; k < workout.getExerciseList().get(i).getNumberOfSets(); k++) {
+                activeWorkout.addExercise(ActiveWorkoutComponentFactory.createActiveExercise(workout.getExerciseList().get(i)));
+            }
+        }
+        /*
         ActiveWorkout activeWorkout = ActiveWorkoutComponentFactory.createActiveWorkout(workout.getName());
         
         for(int i = 0; i < workout.getExerciseList().size(); i++){
             
             activeWorkout.addExercise(ActiveWorkoutComponentFactory.createActiveExercise(workout.getExerciseList().get(i)));
-        }
+        }*/
         return activeWorkout;
     }
 

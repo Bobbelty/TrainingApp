@@ -19,16 +19,17 @@ import com.example.trainingapp.R;
 import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.view.Adapter.EditScheduleRecyclerViewAdapter;
+import com.example.trainingapp.view.Adapter.EditWorkoutRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EditScheduleFragment extends Fragment {
+public class EditWorkoutFragment extends Fragment {
 
     //Plan activePlan;
     private Workout selectedWorkout;
-    private EditScheduleRecyclerViewAdapter recyclerViewAdapter;
+    private EditWorkoutRecyclerViewAdapter recyclerViewAdapter;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
     private List<Plan> testPlans = new ArrayList<>();
@@ -49,19 +50,18 @@ public class EditScheduleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_edit_schedule,container,false);
+        View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_edit_activeworkout,container,false);
         initObjects();
         selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
         initTitleText(v);
         initRecyclerView(v);
-        initDeleteWorkoutButton(v);
-        initAddExerciseButton(v);
+        initFinishWorkoutButton(v);
         return v;
     }
-    private void initAddExerciseButton(View v) {
+    private void initFinishWorkoutButton(View v) {
         Button btnAddExercise = v.findViewById(R.id.btnFinishWorkout);
         btnAddExercise.setVisibility(View.VISIBLE);
-        btnAddExercise.setText("Add exercise");
+        btnAddExercise.setText("Finish workout");
         btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -70,42 +70,6 @@ public class EditScheduleFragment extends Fragment {
                 recyclerViewAdapter.notifyDataSetChanged();
             }
         });
-    }
-    private void initDeleteWorkoutButton(View v) {
-        Button btnDeleteWorkout = v.findViewById(R.id.btnDeleteWorkout);
-        btnDeleteWorkout.setVisibility(View.VISIBLE);
-        btnDeleteWorkout.setText("Delete workout");
-        btnDeleteWorkout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                initPopupMessageView(v);
-            }
-        });
-    }
-    private void initPopupMessageView(View v) {
-        TextView alertTextView = (TextView) v.findViewById(R.id.AlertTextView);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-        builder.setCancelable(true);
-        builder.setTitle("Remove workout");
-        builder.setMessage("Are you sure you want to remove this workout?");
-
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel();
-            }
-        });
-
-        builder.setPositiveButton("REMOVE WORKOUT", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                editWorkoutViewModel.removeWorkoutFromPlan(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
-                getActivity().finish();
-                alertTextView.setVisibility(View.VISIBLE);
-            }
-        });
-        builder.show();
     }
 
     /**
@@ -117,7 +81,7 @@ public class EditScheduleFragment extends Fragment {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        recyclerViewAdapter = new EditScheduleRecyclerViewAdapter(this.getActivity());
+        recyclerViewAdapter = new EditWorkoutRecyclerViewAdapter(this.getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
@@ -127,21 +91,8 @@ public class EditScheduleFragment extends Fragment {
      * @param v the current view used in the application
      */
     private void initTitleText(View v) {
-        EditText etbxWorkoutName = v.findViewById(R.id.etbxWorkoutName);
-        etbxWorkoutName.setText(selectedWorkout.getName());
-
-        etbxWorkoutName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View view, boolean b) {
-                String txt = etbxWorkoutName.getText().toString();
-                if(txt.equals("")) {
-                    etbxWorkoutName.setText(selectedWorkout.getName() + "");
-                }
-                else {
-                    editWorkoutViewModel.setNewWorkoutName(etbxWorkoutName.getText().toString(), editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
-                }
-            }
-        });
+        TextView tbxWorkoutName = v.findViewById(R.id.tbxWorkoutName);
+        tbxWorkoutName.setText(selectedWorkout.getName());
     }
 
     /**

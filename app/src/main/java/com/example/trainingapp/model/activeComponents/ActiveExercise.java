@@ -20,12 +20,12 @@ public class ActiveExercise {
     /**
      * List of reps. Ex 12 + 12 + 8 -> 3 sets with different amount of repetitions.
      */
-    private List<Integer> listOfReps = new ArrayList<>();
+    private int noOfReps;
 
     /**
      * This is a list of the weight used in each set. Default value is zero.
      */
-    private List<Integer> listOfWeights = new ArrayList<>();
+    private double weight;
 
     /**
      * An exercise contains an id to make it possible for PB-recording purposes. For example
@@ -40,8 +40,8 @@ public class ActiveExercise {
     public ActiveExercise(Exercise exercise){
         this.exerciseName = exercise.getName();
         this.exerciseId = UUID.randomUUID().toString();
-        convertRepsSetsToList(exercise.getNumberOfReps(), exercise.getNumberOfSets());
-        createListOfWeights(listOfReps);
+        this.noOfReps = exercise.getNumberOfReps();
+        this.weight = 0;
     }
 
     /**
@@ -51,11 +51,6 @@ public class ActiveExercise {
      * @param reps value of each startvalue in list
      * @param sets size of list
      */
-    private void convertRepsSetsToList(int reps, int sets){
-        for(int i = 0; i < sets; i++){
-            listOfReps.add(reps);
-        }
-    }
 
     /**
      * Method for creating a list of weights that corresponds to the list of reps.
@@ -64,19 +59,14 @@ public class ActiveExercise {
      *
      * @param listOfReps Used to know the necessary size of the weightlist.
      */
-    private void createListOfWeights(List<Integer> listOfReps){
-        for(int i = 0; i < listOfReps.size(); i++){
-            listOfWeights.add(0);
-        }
-    }
 
     /**
      * Method for getting information about the list with reps.
      *
      * @return a copy of the list with reps.
      */
-    public List<Integer> getListOfReps() {
-        return new ArrayList<>(listOfReps);
+    public int getNoOfReps() {
+        return noOfReps;
     }
 
     /**
@@ -84,8 +74,8 @@ public class ActiveExercise {
      *
      * @return a copy of the list with weights.
      */
-    public List<Integer> getListOfWeights() {
-        return new ArrayList<>(listOfWeights);
+    public double getWeights() {
+        return weight;
     }
 
     /**
@@ -94,8 +84,8 @@ public class ActiveExercise {
      * @param index position in the list where the value will change at.
      * @param change new value.
      */
-    public void changeRepInList(int index, int change){
-        listOfReps.set(index, change);
+    public void changeRep(int noOfReps){
+        this.noOfReps = noOfReps;
     }
 
     /**
@@ -104,8 +94,8 @@ public class ActiveExercise {
      * @param index position in the list where the value will change at.
      * @param change new value.
      */
-    public void changeWeightInList(int index, int change){
-        listOfWeights.set(index, change);
+    public void changeWeight(double weight){
+        this.weight = weight;
     }
 
     /**
@@ -114,10 +104,7 @@ public class ActiveExercise {
      *
      * @param amountOfReps amount of reps for the new set.
      */
-    public void addSetToList(int amountOfReps){
-        listOfReps.add(amountOfReps);
-        listOfWeights.add(0);
-    }
+
 
     /**
      * Method for removing a set from the list of reps. The corresponding weight will be removed
@@ -125,10 +112,7 @@ public class ActiveExercise {
      *
      * @param index which index to be removed.
      */
-    public void removeSetFromList(int index){
-        listOfReps.remove(index);
-        listOfWeights.remove(index);
-    }
+
 
     /**
      * Method for getting the name of the exercise
@@ -148,9 +132,6 @@ public class ActiveExercise {
         return exerciseId;
     }
 
-    public void updateRep(int reps, int index){
-        listOfReps.set(index, reps);
-    }
 
 
 }

@@ -8,18 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.view.EditScheduleActivity;
 import com.example.trainingapp.model.components.Plan;
+import com.example.trainingapp.view.EditScheduleActivity;
+import com.example.trainingapp.view.EditWorkoutActivity;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
-public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder>  {
+public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecyclerViewAdapter.ListViewHolder>  {
 
 
     private Plan plan;
@@ -27,7 +27,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     private Activity activity;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
-    public ScheduleRecyclerViewAdapter(Plan plan, Context context, Activity activity) {
+    public WorkoutRecyclerViewAdapter(Plan plan, Context context, Activity activity) {
         this.plan = plan;
         this.context = context;
         this.activity = activity;
@@ -40,7 +40,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         return new ListViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_schedule_list_item, parent, false));
+                .inflate(R.layout.fragment_workout_list_item, parent, false));
     }
 
     @Override
@@ -48,14 +48,16 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
 
         holder.lblWorkoutName.setText(plan.getWorkoutList().get(position).getName());
         // set list views
-        holder.btnEditWorkout.setOnClickListener(new View.OnClickListener() {
+        holder.btnWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
+                //editScheduleViewModel.setSelectedPlanId(plan.getId());
+
                 editWorkoutViewModel.setSelectedWorkout(plan.getWorkoutList().get(position));
                 editWorkoutViewModel.setSelectedPlan(plan);
 
                 activity.onBackPressed();
-                Intent openActivity = new Intent(context, EditScheduleActivity.class);
+                Intent openActivity = new Intent(context, EditWorkoutActivity.class);
                 context.startActivity(openActivity);
             }
         });
@@ -70,13 +72,14 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
 
         //change name, make private maybe final
         private final TextView lblWorkoutName;
-        private final Button btnEditWorkout;
+        private final Button btnWorkout;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 
             lblWorkoutName = itemView.findViewById(R.id.lblWorkoutName);
-            btnEditWorkout = itemView.findViewById(R.id.btnWorkout);
+            btnWorkout = itemView.findViewById(R.id.btnWorkout);
+
         }
     }
 }
