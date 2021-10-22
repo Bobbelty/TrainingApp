@@ -26,8 +26,6 @@ public class Plan {
 
     /**
      * Class constructor setting planName
-     *
-     * @param planName name of plan
      */
     public Plan() {
         this.planName = "New plan";
@@ -125,8 +123,4 @@ public class Plan {
     public void updateExerciseSets(String workoutId, String exerciseId, int sets){
         workoutMap.get(workoutId).updateExerciseSets(exerciseId, sets);
     }
-
-    /*public Workout getWorkout(String workoutId){
-        return new Workout(workoutMap.get(workoutId));
-    }*/
 }

@@ -21,7 +21,7 @@ public class ActiveWorkoutSession {
      * @return a new ActiveWorkout
      */
     public ActiveWorkout convertWorkoutToActiveWorkout(Workout workout){
-        ActiveWorkout activeWorkout = new ActiveWorkout(workout.getName());
+        ActiveWorkout activeWorkout = ActiveWorkoutComponentFactory.createActiveWorkout(workout.getName());
         
         for(int i = 0; i < workout.getExerciseList().size(); i++){
             
@@ -30,15 +30,16 @@ public class ActiveWorkoutSession {
         return activeWorkout;
     }
 
-    /**
-     * Method for setting a datestamp to the active workout when it is ended.
-     *
-     * @param activeWorkout which active workout to set the date on.
-     */
-    public void setCurrentDate (ActiveWorkout activeWorkout){
+    /*public void setCurrentDate (ActiveWorkout activeWorkout){
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String workoutDate = dateFormat.format(date);
         activeWorkout.setCurrentTime(workoutDate);
+    }*/
+
+    public String getCurrentDate (){
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
     }
 }

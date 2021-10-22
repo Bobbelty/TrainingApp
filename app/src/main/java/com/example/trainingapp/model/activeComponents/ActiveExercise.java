@@ -4,6 +4,7 @@ import com.example.trainingapp.model.components.Exercise;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Class for creating an active exercise. The class is identical to the Exercise-class, but with added
@@ -38,7 +39,7 @@ public class ActiveExercise {
      */
     public ActiveExercise(Exercise exercise){
         this.exerciseName = exercise.getName();
-        //this.exerciseId = exercise.getExerciseId();
+        this.exerciseId = UUID.randomUUID().toString();
         convertRepsSetsToList(exercise.getNumberOfReps(), exercise.getNumberOfSets());
         createListOfWeights(listOfReps);
     }
