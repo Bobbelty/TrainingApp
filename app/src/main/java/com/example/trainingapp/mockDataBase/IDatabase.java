@@ -40,10 +40,6 @@ public interface IDatabase {
      */
     void addToCompletedWorkouts(ActiveWorkout workout);
 
-    //int getExerciseIdFromMap(String exerciseName) throws ExerciseIdNotFoundException;
-
-    //void addExerciseIdToMap(String key, Integer exerciseId);
-
     /**
      * Method for updating the plan name
      *
@@ -123,10 +119,25 @@ public interface IDatabase {
      */
     void newActiveWorkout(String planId, String workoutId) throws NullPointerException;
 
+    /**
+     * Method for updating a rep in an active exercise
+     *
+     * @param reps the new amount of reps
+     * @param exerciseId the Id for the exercise
+     */
     void updateActiveExerciseRep(int reps, String exerciseId);
 
+    /**
+     * Method for updating weight for a set in the exercise
+     *
+     * @param exerciseId the Id for the exercise
+     * @param weight the new weight
+     */
     void updateWeightInSet(String exerciseId, double weight);
 
+    /**
+     * Method for ending an active workout
+     */
     void endActiveWorkout();
 
     /**
@@ -145,8 +156,19 @@ public interface IDatabase {
     Workout getWorkout(String planId, String workoutId) throws NullPointerException;
 
 
+    /**
+     * Method for getting the active workout
+     */
     ActiveWorkout getActiveWorkout();
 
+    /**
+     * Method for updating sets for an exercise
+     *
+     * @param sets the new amount of sets
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
     void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId) throws NullPointerException;
 
 }

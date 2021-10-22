@@ -29,13 +29,6 @@ public class ActiveWorkoutSession {
                 activeWorkout.addExercise(ActiveWorkoutComponentFactory.createActiveExercise(workout.getExerciseList().get(i)));
             }
         }
-        /*
-        ActiveWorkout activeWorkout = ActiveWorkoutComponentFactory.createActiveWorkout(workout.getName());
-        
-        for(int i = 0; i < workout.getExerciseList().size(); i++){
-            
-            activeWorkout.addExercise(ActiveWorkoutComponentFactory.createActiveExercise(workout.getExerciseList().get(i)));
-        }*/
         return activeWorkout;
     }
     /**

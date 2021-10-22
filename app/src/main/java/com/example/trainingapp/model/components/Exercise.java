@@ -83,6 +83,7 @@ public class Exercise {
     public void setNumberOfReps(int numberOfReps) {
         this.numberOfReps = numberOfReps;
     }
+
     /**
      * Method for getting the name of the exercise
      *
@@ -99,6 +100,7 @@ public class Exercise {
     public void setName(String name) {
         exerciseName = name;
     }
+
     /**
      * Method for getting the exerciseId of the exercise
      *

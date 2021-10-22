@@ -193,10 +193,22 @@ public class TrainingAppFacade {
     }
 
 
+    /**
+     * Method for updating a rep in an active exercise
+     *
+     * @param reps the new amount of reps
+     * @param exerciseId the Id for the exercise
+     */
     public void updateActiveExerciseRep(int reps, String exerciseId){
         mockDataBase.updateActiveExerciseRep(reps, exerciseId);
     }
 
+    /**
+     * Method for updating weight in an exercise
+     *
+     * @param exerciseId the Id for the exercise
+     * @param weight new value for weight
+     */
     public void updateWeightInSet(String exerciseId, double weight){
         mockDataBase.updateWeightInSet(exerciseId, weight);
     }

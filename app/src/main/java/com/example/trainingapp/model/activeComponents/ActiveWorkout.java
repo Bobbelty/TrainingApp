@@ -87,7 +87,6 @@ public class ActiveWorkout {
      * @param index position in the list where the wanted exercises is
      * @return The exerciseId of the exercise
      */
-    //TODO is this ok?
     public ActiveExercise getExercise(int index){
             return getExerciseList().get(index);
         }
@@ -110,28 +109,23 @@ public class ActiveWorkout {
         this.currentTime = currentTime;
     }
 
+    /**
+     * Method for updating a rep in an active exercise
+     *
+     * @param reps new amount of reps
+     * @param exerciseId the Id for the exercise
+     */
     public void updateActiveExerciseRep(int reps, String exerciseId){
         activeExerciseMap.get(exerciseId).changeRep(reps);
     }
 
     /**
-     * Removes the active exercise's specified set
+     * Method for updating the weight in a set
      *
-     * @param exerciseId the id of the exercise that is updated
-     * @param index the position of the set that is removed
+     * @param exerciseId the Id for the exercise
+     * @param weight new value for weight
      */
-
-
     public void updateWeightInSet(String exerciseId, double weight) {
         activeExerciseMap.get(exerciseId).changeWeight(weight);
-
-    /**
-     * Updates the weight for a set in the active exercise
-     *
-     * @param exerciseId the id for the exercise that is updated
-     * @param index the position of the set that is being updated
-     * @param newWeight the new value for the weight
-     */
-
     }
 }
