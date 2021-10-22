@@ -197,8 +197,8 @@ public class TrainingAppFacade {
         mockDataBase.updateActiveExerciseRep(reps, exerciseId);
     }
 
-    public void updateWeightInSet(String exerciseId, double weight){
-        mockDataBase.updateWeightInSet(exerciseId, weight);
+    public void updateActiveExerciseWeight(String exerciseId, double weight){
+        mockDataBase.updateActiveExerciseWeight(exerciseId, weight);
     }
 
     /**

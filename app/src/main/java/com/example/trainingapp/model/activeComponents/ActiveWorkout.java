@@ -122,7 +122,7 @@ public class ActiveWorkout {
      */
 
 
-    public void updateWeightInSet(String exerciseId, double weight) {
+    public void updateActiveExerciseWeight(String exerciseId, double weight) {
         activeExerciseMap.get(exerciseId).changeWeight(weight);
 
     /**

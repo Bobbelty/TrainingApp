@@ -21,7 +21,8 @@
             android:textColor="#FFFFFF"
             android:textSize="16sp"
             android:translationX="-90dp"
-            android:translationY="12dp" />
+            android:translationY="12dp"
+            android:focusable="true"/>
 
         <TextView
             android:id="@+id/lblWorkoutExerciseName"
@@ -32,6 +33,11 @@
             android:textSize="24sp" />
 
         <EditText
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:imeOptions="actionDone"
+            android:nextFocusDown="@+id/lblWorkoutExerciseName"
+            android:nextFocusRight="@+id/lblWorkoutExerciseName"
             android:id="@+id/etbxWeight"
             android:layout_width="40dp"
             android:layout_height="wrap_content"
@@ -44,6 +50,11 @@
             android:translationX="-50dp" />
 
         <EditText
+            android:focusableInTouchMode="true"
+            android:focusable="true"
+            android:imeOptions="actionDone"
+            android:nextFocusDown="@+id/lblWorkoutExerciseName"
+            android:nextFocusRight="@+id/lblWorkoutExerciseName"
             android:id="@+id/etbxNoOfReps"
             android:layout_width="40dp"
             android:layout_height="wrap_content"

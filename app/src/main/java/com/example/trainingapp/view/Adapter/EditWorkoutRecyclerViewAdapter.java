@@ -51,20 +51,16 @@ public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWor
         holder.lblWorkoutExerciseName.setText(activeWorkout.getExercise(position).getName());
         holder.etbxNoOfReps.setText(activeWorkout.getExercise(position).getNoOfReps() + "");
         holder.etbxWeight.setText(0 + "");
-        //holder.lblWorkoutExerciseName.setText(selectedWorkout.getExerciseList().get(position).getName());
-        //holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfReps() + "");
-        //holder.etbxWeight.setText(0 + "");
-
 
         holder.etbxWeight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View view, boolean b) {
                 String txt = holder.etbxWeight.getText().toString();
                 if(txt.equals("")) {
-
+                    holder.etbxNoOfReps.setText("0");
                 }
                 else {
-
+                    editWorkoutViewModel.updateActiveExerciseWeight(Double.parseDouble(txt), activeWorkout.getExercise(position).getExerciseId());
                 }
             }
         });
@@ -73,53 +69,30 @@ public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWor
             public void onFocusChange(View view, boolean b) {
                 String txt = holder.etbxNoOfReps.getText().toString();
                 if(txt.equals("")) {
-
+                    holder.etbxNoOfReps.setText(editWorkoutViewModel.getActiveWorkout().getExercise(position).getNoOfReps());
                 }
                 else {
-
+                    editWorkoutViewModel.updateActiveExerciseReps(Integer.parseInt(txt), activeWorkout.getExercise(position).getExerciseId());
                 }
             }
         });
     }
-    // Benchpress 3 4
-
-
-    // Benchpress rep + vikt
-    // Benchjpress rep + vikt
-    // Benchjpress rep + vikt
 
     @Override
     public int getItemCount() {
         return activeWorkout.getExerciseList().size();
     }
-    private List<Exercise> expandWorkoutList() {
-       /* List<Exercise> exerciseList = new ArrayList<>();
-        for (int i = 0; i < selectedWorkout.getExerciseList().size(); i++) {
-            for (int k = 0; k < selectedWorkout.getExerciseList().get(i).getNumberOfSets(); k++) {
-                exerciseList.add(selectedWorkout.getExerciseList().get(i));
-            }
-        }
-        Workout expandedWorkout = new Workout();
-        for (int i = 0; i < exerciseList.size(); i++) {
-            expandedWorkout.addExercise(exerciseList.get(i));
-        }
-        editWorkoutViewModel.createActiveWorkout(selectedPlan.getId(), expandedWorkout.getId());
-        return exerciseList;*/
-        return null;
-    }
 
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
-        //change name, make private maybe final
-        //private final TextView lblExercise;
-        public TextView lblWorkoutExerciseName;
+
+        public final TextView lblWorkoutExerciseName;
         private final EditText etbxNoOfReps;
         private final EditText etbxWeight;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //lblExercise = itemView.findViewById(R.id.lblExercise);
             lblWorkoutExerciseName = itemView.findViewById(R.id.lblWorkoutExerciseName);
             etbxNoOfReps = itemView.findViewById(R.id.etbxNoOfReps);
             etbxWeight= itemView.findViewById(R.id.etbxWeight);

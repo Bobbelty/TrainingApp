@@ -41,6 +41,15 @@ public class EditWorkoutViewModel extends TrainingAppModelViewModel{
 
         trainingAppModel = getInstanceOfTrainingModel();
     }
+    public void endActiveWorkout() {
+        trainingAppModel.endActiveWorkout();
+    }
+    public void updateActiveExerciseReps(int reps, String exerciseId) {
+        trainingAppModel.updateActiveExerciseRep(reps, exerciseId);
+    }
+    public void updateActiveExerciseWeight(double weight, String exerciseId) {
+        trainingAppModel.updateActiveExerciseWeight(exerciseId, weight);
+    }
     public void createActiveWorkout(String planId, String workoutId){
         trainingAppModel.convertWorkoutToActive(planId, workoutId);
     }

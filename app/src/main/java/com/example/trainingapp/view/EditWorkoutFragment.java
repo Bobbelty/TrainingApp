@@ -65,11 +65,35 @@ public class EditWorkoutFragment extends Fragment {
         btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editWorkoutViewModel.addExerciseToWorkout(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
-
-                recyclerViewAdapter.notifyDataSetChanged();
+                if(getActivity().getCurrentFocus() != null) getActivity().getCurrentFocus().clearFocus();
+                initPopupMessageView(v);
             }
         });
+    }
+    private void initPopupMessageView(View v) {
+        TextView alertTextView = (TextView) v.findViewById(R.id.alertTextViewEndActive);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+        builder.setCancelable(true);
+        builder.setTitle("Finish workout");
+        builder.setMessage("Are you sure you want to end this workout?");
+
+        builder.setNegativeButton("KEEP TRAINING", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
+
+        builder.setPositiveButton("FINISH WORKOUT", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                editWorkoutViewModel.endActiveWorkout();
+                getActivity().finish();
+                alertTextView.setVisibility(View.VISIBLE);
+            }
+        });
+        builder.show();
     }
 
     /**
@@ -94,7 +118,6 @@ public class EditWorkoutFragment extends Fragment {
         TextView tbxWorkoutName = v.findViewById(R.id.tbxWorkoutName);
         tbxWorkoutName.setText(selectedWorkout.getName());
     }
-
     /**
      * initObjects gets the saved plans, used for testing and initial demo/presentation.
      */

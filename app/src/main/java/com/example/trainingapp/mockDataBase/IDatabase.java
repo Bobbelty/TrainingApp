@@ -125,8 +125,6 @@ public interface IDatabase {
 
     void updateActiveExerciseRep(int reps, String exerciseId);
 
-    void updateWeightInSet(String exerciseId, double weight);
-
     void endActiveWorkout();
 
     /**
@@ -144,9 +142,9 @@ public interface IDatabase {
      */
     Workout getWorkout(String planId, String workoutId);
 
-
     ActiveWorkout getActiveWorkout();
 
     void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId);
 
+    void updateActiveExerciseWeight(String exerciseId, double weight);
 }

@@ -66,7 +66,6 @@ public class EditScheduleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editWorkoutViewModel.addExerciseToWorkout(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
-
                 recyclerViewAdapter.notifyDataSetChanged();
             }
         });
@@ -100,6 +99,7 @@ public class EditScheduleFragment extends Fragment {
         builder.setPositiveButton("REMOVE WORKOUT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                if (getActivity().getCurrentFocus() != null) getActivity().getCurrentFocus().clearFocus();
                 editWorkoutViewModel.removeWorkoutFromPlan(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
                 getActivity().finish();
                 alertTextView.setVisibility(View.VISIBLE);
