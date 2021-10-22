@@ -45,7 +45,7 @@ public class TrainingAppFacade {
      *
      * @return list of saved plans from database
      */
-    public List<Plan> getSavedPlans(){
+    public List<Plan> getSavedPlans() throws NullPointerException{
             return mockDataBase.getPlanList();
     }
 
@@ -56,7 +56,7 @@ public class TrainingAppFacade {
      *
      * @return copy of the specified plan object
      */
-    public Plan getPlan(String planId) {
+    public Plan getPlan(String planId) throws NullPointerException{
         return mockDataBase.getPlan(planId);
     }
 
@@ -86,7 +86,7 @@ public class TrainingAppFacade {
      * @param name the new name
      * @param id the id of the desired plan
      */
-    public void updatePlanName(String name, String id){
+    public void updatePlanName(String name, String id) throws NullPointerException{
         mockDataBase.updatePlanName(name, id);
     }
 
@@ -95,7 +95,7 @@ public class TrainingAppFacade {
      *
      * @param planId what plan to add it into
      */
-    public void addWorkoutToPlan(String planId){
+    public void addWorkoutToPlan(String planId) throws NullPointerException{
         mockDataBase.addWorkoutToPlan(PlanComponentFactory.createWorkout(), planId);
     }
 
@@ -105,10 +105,10 @@ public class TrainingAppFacade {
      * @param planId in which plan
      * @param workoutId which workout to remove
      */
-    public void removeWorkoutFromPlan(String planId, String workoutId) {
+    public void removeWorkoutFromPlan(String planId, String workoutId) throws NullPointerException{
         mockDataBase.removeWorkoutFromPlan(planId, workoutId);
     }
-    public Workout getWorkout(String planId, String workoutId) {
+    public Workout getWorkout(String planId, String workoutId) throws NullPointerException {
         return mockDataBase.getWorkout(planId, workoutId);
     }
     /**
@@ -118,7 +118,7 @@ public class TrainingAppFacade {
      * @param planId in which plan
      * @param workoutId which workout to update
      */
-    public void updateWorkoutName(String name, String planId, String workoutId){
+    public void updateWorkoutName(String name, String planId, String workoutId) throws NullPointerException{
         mockDataBase.updateWorkoutName(name, planId, workoutId);
     }
 
@@ -128,7 +128,7 @@ public class TrainingAppFacade {
      * @param planId in which plan
      * @param workoutId in which workout
      */
-    public void addExerciseToWorkout(String planId, String workoutId) {
+    public void addExerciseToWorkout(String planId, String workoutId) throws NullPointerException {
         mockDataBase.addExerciseToWorkout(PlanComponentFactory.createExercise(), planId, workoutId);
     }
     public ActiveWorkout getActiveWorkout() {
@@ -142,7 +142,7 @@ public class TrainingAppFacade {
      * @param workoutId in which workout
      * @param exerciseId which exercise to remove
      */
-    public void removeExerciseFromWorkout(String planId, String workoutId, String exerciseId){
+    public void removeExerciseFromWorkout(String planId, String workoutId, String exerciseId) throws NullPointerException{
         mockDataBase.removeExerciseFromWorkout(planId, workoutId, exerciseId);
     }
 
@@ -154,7 +154,7 @@ public class TrainingAppFacade {
      * @param workoutId in which workout
      * @param exerciseId what exercise to update
      */
-    public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId){
+    public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) throws NullPointerException{
         mockDataBase.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
     }
 
@@ -166,7 +166,7 @@ public class TrainingAppFacade {
      * @param workoutId the Id for the workout
      * @param exerciseId the Id for the exercise
      */
-    public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId){
+    public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId) throws NullPointerException{
         mockDataBase.updateExerciseRep(reps, planId, workoutId, exerciseId);
     }
 
@@ -178,7 +178,7 @@ public class TrainingAppFacade {
      * @param workoutId the Id for the workout
      * @param exerciseId the Id for the exercise
      */
-    public void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId){
+    public void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId) throws NullPointerException{
         mockDataBase.updateExerciseSets(sets, planId, workoutId, exerciseId);
     }
 
@@ -188,7 +188,7 @@ public class TrainingAppFacade {
      * @param planId the Id for the plan
      * @param workoutId the Id for the workout
      */
-    public void convertWorkoutToActive(String planId, String workoutId){
+    public void convertWorkoutToActive(String planId, String workoutId) throws NullPointerException{
         mockDataBase.newActiveWorkout(planId, workoutId);
     }
 

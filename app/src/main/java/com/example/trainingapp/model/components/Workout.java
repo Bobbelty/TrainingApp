@@ -83,7 +83,7 @@ public class Workout {
      *
      * @return the exercise object
      */
-    public Exercise getExercise(int index){
+    public Exercise getExerciseByIndex(int index){
         return getExerciseList().get(index);
     }
 
@@ -105,15 +105,7 @@ public class Workout {
         exerciseMap.remove(exerciseId);
     }
 
-    /**
-     * Method for updating the exercise name
-     *
-     * @param name the new name of the exercise
-     * @param exerciseId the Id of the exercise
-     */
-    public void updateExerciseName(String name, String exerciseId) throws NullPointerException {
-        Objects.requireNonNull(exerciseMap.get(exerciseId), "No exercise with this Id exists").setName(name);
-    }
+
 
     /**
      * Method for setting a name for a workout
@@ -133,8 +125,18 @@ public class Workout {
         return workoutId;
     }
 
-    private Exercise getExerciseMap(String exerciseId) throws NullPointerException{
+    private Exercise getExerciseFromMap(String exerciseId) throws NullPointerException{
         return Objects.requireNonNull(exerciseMap.get(exerciseId), "No exercise with this Id exists");
+    }
+
+    /**
+     * Method for updating the exercise name
+     *
+     * @param name the new name of the exercise
+     * @param exerciseId the Id of the exercise
+     */
+    public void updateExerciseName(String name, String exerciseId) throws NullPointerException {
+        getExerciseFromMap(exerciseId).setName(name);
     }
 
     /**
@@ -143,8 +145,8 @@ public class Workout {
      * @param exerciseId the Id of the exercise
      * @param reps the new number of reps
      */
-    public void updateExerciseRep(String exerciseId, int reps) {
-        getExerciseMap(exerciseId).setNumberOfReps(reps);
+    public void updateExerciseRep(String exerciseId, int reps) throws NullPointerException {
+        getExerciseFromMap(exerciseId).setNumberOfReps(reps);
     }
 
     /**
@@ -153,7 +155,7 @@ public class Workout {
      * @param exerciseId the Id of the exercise
      * @param sets the new number of sets
      */
-    public void updateExerciseSets(String exerciseId, int sets){
-        getExerciseMap(exerciseId).setNumberOfSets(sets);
+    public void updateExerciseSets(String exerciseId, int sets) throws NullPointerException{
+        getExerciseFromMap(exerciseId).setNumberOfSets(sets);
     }
 }

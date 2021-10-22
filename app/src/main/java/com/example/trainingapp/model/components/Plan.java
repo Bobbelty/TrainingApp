@@ -54,7 +54,7 @@ public class Plan {
      *
      * @return the specified workout object
      */
-    public Workout getWorkout(String workoutId) throws NullPointerException{
+    public Workout getWorkoutById(String workoutId) throws NullPointerException{
         return new Workout(getWorkoutFromMap(workoutId));
     }
 
@@ -156,7 +156,7 @@ public class Plan {
      * @param name the new name for the workout
      * @param workoutId the id for the workout
      */
-    public void setWorkoutName(String name, String workoutId){
+    public void setWorkoutName(String name, String workoutId) throws NullPointerException{
         getWorkoutFromMap(workoutId).setName(name);
     }
 
@@ -166,7 +166,7 @@ public class Plan {
      * @param exercise the exercise to be added
      * @param workoutId the id for the workout
      */
-    public void addExerciseToWorkout(Exercise exercise, String workoutId){
+    public void addExerciseToWorkout(Exercise exercise, String workoutId) throws NullPointerException{
         getWorkoutFromMap(workoutId).addExercise(exercise);
     }
 
@@ -176,7 +176,7 @@ public class Plan {
      * @param workoutId the id for the workout
      * @param exerciseId the id for the exercise
      */
-    public void removeExerciseFromWorkout(String workoutId, String exerciseId){
+    public void removeExerciseFromWorkout(String workoutId, String exerciseId) throws NullPointerException{
         getWorkoutFromMap(workoutId).removeExercise(exerciseId);
     }
 
@@ -187,7 +187,7 @@ public class Plan {
      * @param workoutId the id for the workout
      * @param exerciseId the id for the exercise
      */
-    public void updateExerciseName(String newExerciseName, String workoutId, String exerciseId){
+    public void updateExerciseName(String newExerciseName, String workoutId, String exerciseId) throws NullPointerException{
         getWorkoutFromMap(workoutId).updateExerciseName(newExerciseName, exerciseId);
     }
 
@@ -198,7 +198,7 @@ public class Plan {
      * @param exerciseId the id for the exercise
      * @param reps the new value for the reps
      */
-    public void updateExerciseRep(String workoutId, String exerciseId, int reps){
+    public void updateExerciseRep(String workoutId, String exerciseId, int reps) throws NullPointerException{
         getWorkoutFromMap(workoutId).updateExerciseRep(exerciseId, reps);
     }
 
@@ -209,7 +209,7 @@ public class Plan {
      * @param exerciseId the id for the exercise
      * @param sets the new value for the sets
      */
-    public void updateExerciseSets(String workoutId, String exerciseId, int sets){
+    public void updateExerciseSets(String workoutId, String exerciseId, int sets) throws NullPointerException{
         getWorkoutFromMap(workoutId).updateExerciseSets(exerciseId, sets);
     }
 }
