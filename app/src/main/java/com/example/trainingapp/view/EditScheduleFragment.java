@@ -24,9 +24,11 @@ import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fragment for editing the workouts in plans
+ */
 public class EditScheduleFragment extends Fragment {
 
-    //Plan activePlan;
     private Workout selectedWorkout;
     private RecyclerView recyclerView;
     private EditScheduleRecyclerViewAdapter recyclerViewAdapter;
@@ -34,7 +36,7 @@ public class EditScheduleFragment extends Fragment {
 
     private List<Plan> testPlans = new ArrayList<>();
 
-    Plan plan; // plan should be the first plan in the database (SavedPlans)
+    Plan plan;
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
      *
@@ -59,6 +61,12 @@ public class EditScheduleFragment extends Fragment {
         initAddExerciseButton(v);
         return v;
     }
+
+    /**
+     * initAddExerciseButton initiates the add exercise button.
+     *
+     * @param v the current view used in the application
+     */
     private void initAddExerciseButton(View v) {
         Button btnAddExercise = v.findViewById(R.id.btnFinishWorkout);
         btnAddExercise.setVisibility(View.VISIBLE);
@@ -72,6 +80,12 @@ public class EditScheduleFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * initDeleteWorkoutButton initiates the delete workout button
+     *
+     * @param v the current view used in the application
+     */
     private void initDeleteWorkoutButton(View v) {
         Button btnDeleteWorkout = v.findViewById(R.id.btnDeleteWorkout);
         btnDeleteWorkout.setVisibility(View.VISIBLE);
@@ -83,6 +97,12 @@ public class EditScheduleFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * initPopupMessageView initiates the popup message view
+     *
+     * @param v the current view used in the application
+     */
     private void initPopupMessageView(View v) {
         TextView alertTextView = (TextView) v.findViewById(R.id.AlertTextView);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

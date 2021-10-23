@@ -25,10 +25,26 @@ public class EditWorkoutViewModel extends TrainingAppModelViewModel{
      * Variable for textView
      */
     private final MutableLiveData<String> mText;
+
+    /**
+     * Variable for the Facade
+     */
     private final TrainingAppFacade trainingAppModel;
+
+
+    /**
+     * Variable used to access various workouts
+     */
     private Workout selectedWorkout;
+
+    /**
+     * The Plan selected in Schedule part of application
+     */
     private Plan selectedPlan;
 
+    /**
+     * Variable for Singleton
+     */
     private static EditWorkoutViewModel instance = null;
 
     /**
@@ -41,49 +57,62 @@ public class EditWorkoutViewModel extends TrainingAppModelViewModel{
 
         trainingAppModel = getInstanceOfTrainingModel();
     }
+
     public void endActiveWorkout() {
         trainingAppModel.endActiveWorkout();
     }
+
     public void updateActiveExerciseReps(int reps, String exerciseId) {
         trainingAppModel.updateActiveExerciseRep(reps, exerciseId);
     }
+
     public void updateActiveExerciseWeight(double weight, String exerciseId) {
         trainingAppModel.updateActiveExerciseWeight(exerciseId, weight);
     }
+
     public void createActiveWorkout(String planId, String workoutId){
         trainingAppModel.convertWorkoutToActive(planId, workoutId);
     }
+
     public ActiveWorkout getActiveWorkout() {
         return trainingAppModel.getActiveWorkout();
     }
+
     public List<Plan> getSavedPlans() {
         return trainingAppModel.getSavedPlans();
     }
+
     public void addExerciseToWorkout(String planId, String workoutId) {
         trainingAppModel.addExerciseToWorkout(planId, workoutId);
     }
+
     public void onClickRemoveExercise(String planId, String workoutId, String exerciseId) {
         trainingAppModel.removeExerciseFromWorkout(planId, workoutId, exerciseId);
     }
+
     public void removeWorkoutFromPlan(String planId, String workoutId) {
         trainingAppModel.removeWorkoutFromPlan(planId, workoutId);
     }
+
     public void setNewNoOfSets(int noOfSets, String planId, String workoutId, String exerciseId) {
         trainingAppModel.updateExerciseSets(noOfSets, planId, workoutId, exerciseId);
     }
+
     public void setNewNoOfReps(int noOfReps, String planId, String workoutId, String exerciseId) {
         trainingAppModel.updateExerciseRep(noOfReps, planId, workoutId, exerciseId);
     }
+
     public void setNewExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) {
         trainingAppModel.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
     }
+
     public void setNewWorkoutName(String newWorkoutName, String planId, String workoutId) {
         trainingAppModel.updateWorkoutName(newWorkoutName, planId, workoutId);
     }
+
     /**
      * @return reference of mText variable
      */
-
     public LiveData<String> getText() {
         return mText;
     }
@@ -92,6 +121,10 @@ public class EditWorkoutViewModel extends TrainingAppModelViewModel{
         return trainingAppModel;
     }
 
+    /**
+     * Method enforcing singleton on ViewModel, sending current reference of ViewModel if
+     * it is otherwise creating a new instance
+     */
     public static EditWorkoutViewModel getInstance() {
         if (instance == null) {
             instance = new EditWorkoutViewModel();
@@ -104,15 +137,19 @@ public class EditWorkoutViewModel extends TrainingAppModelViewModel{
     public Workout getWorkoutById(String planId, String workoutId) {
         return trainingAppModel.getWorkout(planId, workoutId);
     }
+
     public Workout getSelectedWorkout() {
         return selectedWorkout;
     }
+
     public void setSelectedWorkout(Workout selectedWorkout) {
         this.selectedWorkout = selectedWorkout;
     }
+
     public Plan getSelectedPlan() {
         return selectedPlan;
     }
+
     public void setSelectedPlan(Plan selectedPlan) {
         this.selectedPlan = selectedPlan;
     }

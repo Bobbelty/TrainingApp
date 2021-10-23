@@ -22,6 +22,10 @@ import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter for the RecyclerView in the EditWorkoutActivity, provides the correct information for
+ * each list item
+ */
 public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWorkoutRecyclerViewAdapter.ListViewHolder> {
 
 
@@ -31,6 +35,11 @@ public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWor
     private Workout selectedWorkout;
     private ActiveWorkout activeWorkout;
 
+    /**
+     * Constructor for adapter
+     *
+     * @param activity the current activity
+     */
     public EditWorkoutRecyclerViewAdapter(Activity activity) {
         this.selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
         this.activity = activity;
@@ -46,6 +55,12 @@ public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWor
                 .inflate(R.layout.fragment_edit_activeworkout_list_item, parent, false));
     }
 
+    /**
+     * Binds application data to the ViewHolder
+     *
+     * @param holder the ViewHolder
+     * @param position current position in the exerciseList
+     */
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
         holder.lblWorkoutExerciseName.setText(activeWorkout.getExercise(position).getName());
@@ -90,6 +105,11 @@ public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWor
         private final EditText etbxNoOfReps;
         private final EditText etbxWeight;
 
+        /**
+         * Binds elements in layout file to the variables in the ViewHolder
+         *
+         * @param itemView the itemView
+         */
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 

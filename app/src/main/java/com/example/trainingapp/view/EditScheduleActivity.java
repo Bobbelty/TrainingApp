@@ -7,6 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.trainingapp.R;
 //import com.example.trainingapp.databinding.ActivityMainBinding;
 
+/**
+ * Activity for editing the workouts in plans
+ */
 public class EditScheduleActivity extends AppCompatActivity {
 
     public EditScheduleActivity() {
