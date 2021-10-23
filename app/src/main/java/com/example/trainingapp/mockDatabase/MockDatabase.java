@@ -188,14 +188,6 @@ public class MockDatabase implements IDatabase {
         activeWorkout.updateActiveExerciseRep(reps, exerciseId);
     }
 
-    //public void addNewSet(String exerciseId){
-       // activeWorkout.addSetToExercise(exerciseId);
-    //}
-/*
-    public void removeSetFromActiveExercise(String exerciseId, int index){
-        activeWorkout.removeSetFromExercise(exerciseId, index);
-    }*/
-
     public void updateActiveExerciseWeight(String exerciseId, double weight){
         activeWorkout.updateActiveExerciseWeight(exerciseId, weight);
     }

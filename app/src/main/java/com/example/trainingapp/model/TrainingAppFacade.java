@@ -98,6 +98,13 @@ public class TrainingAppFacade {
     public void removeWorkoutFromPlan(String planId, String workoutId) throws NullPointerException{
         mockDataBase.removeWorkoutFromPlan(planId, workoutId);
     }
+
+    /**
+     * Method for getting a specified workout
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     public Workout getWorkout(String planId, String workoutId) throws NullPointerException {
         return mockDataBase.getWorkout(planId, workoutId);
     }
@@ -121,6 +128,12 @@ public class TrainingAppFacade {
     public void addExerciseToWorkout(String planId, String workoutId) throws NullPointerException {
         mockDataBase.addExerciseToWorkout(PlanComponentFactory.createExercise(), planId, workoutId);
     }
+
+    /**
+     * Method for getting the current activeWorkout
+     *
+     * @return the current activeWorkout
+     */
     public ActiveWorkout getActiveWorkout() {
         return mockDataBase.getActiveWorkout();
     }
@@ -193,7 +206,12 @@ public class TrainingAppFacade {
         mockDataBase.updateActiveExerciseRep(reps, exerciseId);
     }
 
-
+    /**
+     * Method for updating the weight for a set in the exercise
+     *
+     * @param exerciseId the Id for the exercise
+     * @param weight the new weight value
+     */
     public void updateActiveExerciseWeight(String exerciseId, double weight){
         mockDataBase.updateActiveExerciseWeight(exerciseId, weight);
     }

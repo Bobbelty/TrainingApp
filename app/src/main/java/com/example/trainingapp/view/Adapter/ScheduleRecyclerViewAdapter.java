@@ -19,6 +19,10 @@ import com.example.trainingapp.view.EditScheduleActivity;
 import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
+/**
+ * Adapter for the RecyclerView in the ScheduleActivity, provides the correct information for
+ * each list item
+ */
 public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder>  {
 
 
@@ -27,6 +31,13 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     private Activity activity;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
+    /**
+     * Constructor for adapter
+     *
+     * @param plan the selected plan
+     * @param context the current state of the application
+     * @param activity the current activity
+     */
     public ScheduleRecyclerViewAdapter(Plan plan, Context context, Activity activity) {
         this.plan = plan;
         this.context = context;
@@ -43,6 +54,12 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
                 .inflate(R.layout.fragment_schedule_list_item, parent, false));
     }
 
+    /**
+     * Binds application data to the ViewHolder
+     *
+     * @param holder the ViewHolder
+     * @param position current position in the workout list
+     */
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -68,10 +85,15 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
 
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
-        //change name, make private maybe final
+
         private final TextView lblWorkoutName;
         private final Button btnEditWorkout;
 
+        /**
+         * Binds elements in layout file to the variables in the ViewHolder
+         *
+         * @param itemView the itemView
+         */
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 

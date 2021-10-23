@@ -25,16 +25,18 @@ import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Fragment for editing workouts during an active session
+ */
 public class EditWorkoutFragment extends Fragment {
 
-    //Plan activePlan;
     private Workout selectedWorkout;
     private EditWorkoutRecyclerViewAdapter recyclerViewAdapter;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
     private List<Plan> testPlans = new ArrayList<>();
 
-    Plan plan; // plan should be the first plan in the database (SavedPlans)
+    Plan plan;
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
      *
@@ -58,6 +60,12 @@ public class EditWorkoutFragment extends Fragment {
         initFinishWorkoutButton(v);
         return v;
     }
+
+    /**
+     * initFinishWorkoutButton initiates the 'finish workout'-button
+     *
+     * @param v the current view used in the application
+     */
     private void initFinishWorkoutButton(View v) {
         Button btnAddExercise = v.findViewById(R.id.btnFinishWorkout);
         btnAddExercise.setVisibility(View.VISIBLE);
@@ -70,6 +78,12 @@ public class EditWorkoutFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * initPopupMessageView initiates the popup message view.
+     *
+     * @param v the current view used in the application
+     */
     private void initPopupMessageView(View v) {
         TextView alertTextView = (TextView) v.findViewById(R.id.alertTextViewEndActive);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

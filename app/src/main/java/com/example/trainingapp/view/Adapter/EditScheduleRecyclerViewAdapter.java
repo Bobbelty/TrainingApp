@@ -16,6 +16,10 @@ import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
+/**
+ * Adapter for the RecyclerView in the EditScheduleActivity, provides the correct information for
+ * each list item
+ */
 public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditScheduleRecyclerViewAdapter.ListViewHolder> {
 
 
@@ -24,6 +28,11 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     private Plan selectedPlan;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
+    /**
+     * Constructor for adapter
+     *
+     * @param activity the current activity
+     */
     public EditScheduleRecyclerViewAdapter(Activity activity) {
         this.selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
         this.activity = activity;
@@ -37,6 +46,12 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                 .inflate(R.layout.fragment_edit_schedule_list_item, parent, false));
     }
 
+    /**
+     * Binds application data to the ViewHolder
+     *
+     * @param holder the ViewHolder
+     * @param position current position in the exerciseList
+     */
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -108,19 +123,24 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     public int getItemCount() {
         return selectedWorkout.getExerciseList().size();
     }
+
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
-        //change name, make private maybe final
-        //private final TextView lblExercise;
+
         private final EditText etbxExerciseName;
         private final EditText etbxNoOfSets;
         private final EditText etbxNoOfReps;
         private final Button btnDeleteExercise;
 
+        /**
+         * Binds elements in layout file to the variables in the ViewHolder
+         *
+         * @param itemView the itemView
+         */
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //lblExercise = itemView.findViewById(R.id.lblExercise);
+
             etbxExerciseName = itemView.findViewById(R.id.etbxExerciseName);
             etbxNoOfSets = itemView.findViewById(R.id.etbxNoOfReps);
             etbxNoOfReps = itemView.findViewById(R.id.etbxWeight);

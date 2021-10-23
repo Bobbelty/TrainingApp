@@ -126,6 +126,9 @@ public interface IDatabase {
      */
     void updateActiveExerciseRep(int reps, String exerciseId);
 
+    /**
+     * Method for ending an active workout and adding it into history
+     */
     void endActiveWorkout();
 
     /**
@@ -142,7 +145,10 @@ public interface IDatabase {
      * @param workoutId the Id for the workout
      */
     Workout getWorkout(String planId, String workoutId) throws NullPointerException;
-    
+
+    /**
+     * Method for getting the current activeWorkout
+     */
     ActiveWorkout getActiveWorkout();
 
     /**
@@ -155,5 +161,11 @@ public interface IDatabase {
      */
     void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId) throws NullPointerException;
 
+    /**
+     * Method for updating the weight for sets in an active exercise
+     *
+     * @param exerciseId the Id for the exercise
+     * @param weight the new value for weight
+     */
     void updateActiveExerciseWeight(String exerciseId, double weight);
 }
