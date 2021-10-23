@@ -72,7 +72,7 @@ public class Workout {
         List<Exercise> exercises = new ArrayList<>();
 
         for(String key: exerciseMap.keySet()){
-            exercises.add(new Exercise(getExerciseFromMap("key")));
+            exercises.add(new Exercise(getExerciseFromMap(key)));
         }
         return exercises;
     }
