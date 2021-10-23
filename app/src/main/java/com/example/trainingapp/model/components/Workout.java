@@ -69,11 +69,12 @@ public class Workout {
      * @return a list of exercises that Workout contains
      */
     public List<Exercise> getExerciseList() throws NullPointerException{
-    List<Exercise> exercises = new ArrayList<>();
-    for(String key: exerciseMap.keySet()){
-        exercises.add(new Exercise(getExerciseFromMap("key")));
-    }
-    return exercises;
+        List<Exercise> exercises = new ArrayList<>();
+
+        for(String key: exerciseMap.keySet()){
+            exercises.add(new Exercise(getExerciseFromMap("key")));
+        }
+        return exercises;
     }
 
     /**

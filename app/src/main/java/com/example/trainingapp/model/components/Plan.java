@@ -48,6 +48,14 @@ public class Plan {
     }
 
     /**
+     * Class constructor setting specified planName and generated planId
+     */
+    public Plan(String name){
+        this.planName = name;
+        this.planId = UUID.randomUUID().toString();
+    }
+
+    /**
      * Method for getting a workout from the workoutMap
      *
      * @param workoutId the Id for the workout
@@ -56,14 +64,6 @@ public class Plan {
      */
     public Workout getWorkoutById(String workoutId) throws NullPointerException{
         return new Workout(getWorkoutFromMap(workoutId));
-    }
-
-    /**
-     * Class constructor setting specified planName and generated planId
-     */
-    public Plan(String name){
-        this.planName = name;
-        this.planId = UUID.randomUUID().toString();
     }
 
     /**
