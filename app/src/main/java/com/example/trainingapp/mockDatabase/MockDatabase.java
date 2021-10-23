@@ -45,12 +45,15 @@ public class MockDatabase implements IDatabase {
 
 
     public MockDatabase(){
-
         Plan examplePlan1 = new Plan("Bulk");
+        addPlan(examplePlan1);
 
         Workout exampleWorkout1 = new Workout("Chest and shoulders");
         Workout exampleWorkout2 = new Workout("Back");
         Workout exampleWorkout3 = new Workout("Legs");
+
+        addWorkoutToPlan(exampleWorkout1, examplePlan1.getId());
+        addWorkoutToPlan(exampleWorkout2, examplePlan1.getId());
 
         Exercise exampleExercise0 = new Exercise("Dips", 12,4);
         Exercise exampleExercise1 = new Exercise("Bench Press",10,3);
@@ -58,9 +61,6 @@ public class MockDatabase implements IDatabase {
         Exercise exampleExercise3 = new Exercise("Squats", 3,5);
         Exercise exampleExercise4 = new Exercise("Leg press",10,5);
 
-        addWorkoutToPlan(exampleWorkout1, examplePlan1.getId());
-        addWorkoutToPlan(exampleWorkout2, examplePlan1.getId());
-
         addExerciseToWorkout(exampleExercise0, examplePlan1.getId(), exampleWorkout1.getId());
         addExerciseToWorkout(exampleExercise1, examplePlan1.getId(), exampleWorkout1.getId());
         addExerciseToWorkout(exampleExercise2, examplePlan1.getId(), exampleWorkout1.getId());
@@ -68,12 +68,15 @@ public class MockDatabase implements IDatabase {
         addExerciseToWorkout(exampleExercise3, examplePlan1.getId(), exampleWorkout2.getId());
         addExerciseToWorkout(exampleExercise4, examplePlan1.getId(), exampleWorkout2.getId());
 
-        addPlan(examplePlan1);
 
         Plan examplePlan2 = new Plan("Deff");
+        addPlan(examplePlan2);
 
-        exampleWorkout1 = new Workout("Legs");
-        exampleWorkout2 = new Workout("Back");
+        Workout exampleWorkout11 = new Workout("Legs");
+        Workout exampleWorkout22 = new Workout("Back");
+
+        addWorkoutToPlan(exampleWorkout11, examplePlan2.getId());
+        addWorkoutToPlan(exampleWorkout22, examplePlan2.getId());
 
         exampleExercise0 = new Exercise("Squats", 12,4);
         exampleExercise1 = new Exercise("Leg press",10,3);
@@ -81,28 +84,23 @@ public class MockDatabase implements IDatabase {
         exampleExercise3 = new Exercise("Deadlift", 3,5);
         exampleExercise4 = new Exercise("Row",10,5);
 
-        addWorkoutToPlan(exampleWorkout1, examplePlan1.getId());
-        addWorkoutToPlan(exampleWorkout2, examplePlan1.getId());
+        addExerciseToWorkout(exampleExercise0, examplePlan2.getId(), exampleWorkout11.getId());
+        addExerciseToWorkout(exampleExercise1, examplePlan2.getId(), exampleWorkout11.getId());
+        addExerciseToWorkout(exampleExercise2, examplePlan2.getId(), exampleWorkout11.getId());
 
-        addExerciseToWorkout(exampleExercise0, examplePlan1.getId(), exampleWorkout1.getId());
-        addExerciseToWorkout(exampleExercise1, examplePlan1.getId(), exampleWorkout1.getId());
-        addExerciseToWorkout(exampleExercise2, examplePlan1.getId(), exampleWorkout1.getId());
+        addExerciseToWorkout(exampleExercise3, examplePlan2.getId(), exampleWorkout22.getId());
+        addExerciseToWorkout(exampleExercise4, examplePlan2.getId(), exampleWorkout22.getId());
 
-        addExerciseToWorkout(exampleExercise3, examplePlan1.getId(), exampleWorkout2.getId());
-        addExerciseToWorkout(exampleExercise4, examplePlan1.getId(), exampleWorkout2.getId());
 
-        addPlan(examplePlan2);
-
-        ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
-        ActiveWorkout activeWorkout1 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout1);
-        ActiveWorkout activeWorkout2 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout2);
+        ActiveWorkout activeWorkout1 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout11);
+        ActiveWorkout activeWorkout2 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout22);
         activeWorkout1.setCurrentTime("2020-05-12");
         activeWorkout2.setCurrentTime("2019-10-02");
         completedWorkouts.add(activeWorkout1);
         completedWorkouts.add(activeWorkout2);
 
-        addPlan(examplePlan1);
     }
+    
 
     public void addPlan(Plan plan) {
         planMap.put(plan.getId(), plan);
@@ -146,7 +144,7 @@ public class MockDatabase implements IDatabase {
     }
 
     public void updateWorkoutName(String name, String planId, String workoutId) throws NullPointerException{
-        getPlanFromMap(planId).setWorkoutName(name, workoutId);
+        getPlanFromMap(planId).updateWorkoutName(name, workoutId);
     }
 
     public void removeWorkoutFromPlan(String planId, String workoutId) throws NullPointerException{
@@ -165,8 +163,8 @@ public class MockDatabase implements IDatabase {
         getPlanFromMap(planId).removeExerciseFromWorkout(workoutId, exerciseId);
     }
 
-    public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) throws NullPointerException{
-        getPlanFromMap(planId).updateExerciseName(exerciseName, workoutId, exerciseId);
+    public void updateExerciseName(String planId, String workoutId, String exerciseId, String exerciseName) throws NullPointerException{
+        getPlanFromMap(planId).updateExerciseName(workoutId, exerciseId, exerciseName);
     }
 
     public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId) throws NullPointerException{

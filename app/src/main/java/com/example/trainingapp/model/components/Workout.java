@@ -136,7 +136,7 @@ public class Workout {
      * @param name the new name of the exercise
      * @param exerciseId the Id of the exercise
      */
-    protected void updateExerciseName(String name, String exerciseId) throws NullPointerException {
+    protected void updateExerciseName(String exerciseId, String name) throws NullPointerException {
         getExerciseFromMap(exerciseId).setName(name);
     }
 

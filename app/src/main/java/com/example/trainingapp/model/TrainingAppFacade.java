@@ -90,7 +90,7 @@ public class TrainingAppFacade {
      *
      * @param planId what plan to add it into
      */
-    public void addWorkoutToPlan(String planId) throws NullPointerException{
+    public void createNewWorkout(String planId) throws NullPointerException{
         mockDataBase.addWorkoutToPlan(PlanComponentFactory.createWorkout(), planId);
     }
 
@@ -149,8 +149,8 @@ public class TrainingAppFacade {
      * @param workoutId in which workout
      * @param exerciseId what exercise to update
      */
-    public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) throws NullPointerException{
-        mockDataBase.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
+    public void updateExerciseName(String planId, String workoutId, String exerciseId, String exerciseName) throws NullPointerException{
+        mockDataBase.updateExerciseName(planId, workoutId, exerciseId, exerciseName);
     }
 
     /**

@@ -10,22 +10,41 @@ public class WorkoutTest {
 
 
     @Test
-    public void testAddingExercise(){
-        Workout workout = new Workout("testWorkout");
-        Exercise dummyExercise = new Exercise("dummyExcercise",123);
-        workout.addExercise(dummyExercise);
-        assertEquals(1, workout.getExerciseList().size());
+    public void testUpdateExerciseNameWhenExerciseIdDoesNotExist(){
+        Workout workout = new Workout();
+        Exception exception = assertThrows(NullPointerException.class, () ->{
+            workout.updateExerciseName("ThisIdDoesNotExist", "testName");
+        });
 
+        String expectedMessage = "No exercise with this Id exists";
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
 
     @Test
-    public void testRemovingExercise(){
-        Workout workout = new Workout("testWorkout");
-        Exercise dummyExercise = new Exercise("dummyExcercise",123);
-        workout.addExercise(dummyExercise);
-        workout.removeExercise(dummyExercise);
-        assertTrue(workout.getExerciseList().isEmpty());
+    public void testUpdateExerciseRepsWhenExerciseIdDoesNotExist(){
+        Workout workout = new Workout();
+        Exception exception = assertThrows(NullPointerException.class, () ->{
+            workout.updateExerciseRep("ThisIdDoesNotExist", 12);
+        });
 
+        String expectedMessage = "No exercise with this Id exists";
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
     }
+
+    @Test
+    public void testUpdateExerciseSetsWhenExerciseIdDoesNotExist(){
+        Workout workout = new Workout();
+        Exception exception = assertThrows(NullPointerException.class, () ->{
+            workout.updateExerciseSets("ThisIdDoesNotExist", 4);
+        });
+
+        String expectedMessage = "No exercise with this Id exists";
+        String actualMessage = exception.getMessage();
+        assertEquals(expectedMessage, actualMessage);
+    }
+    
+ 
 
 }

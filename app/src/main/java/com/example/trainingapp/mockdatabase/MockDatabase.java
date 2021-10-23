@@ -45,7 +45,6 @@ public class MockDatabase implements IDatabase {
 
 
     public MockDatabase(){
-
         Plan examplePlan1 = new Plan("Bulk");
         addPlan(examplePlan1);
 
@@ -99,7 +98,9 @@ public class MockDatabase implements IDatabase {
         activeWorkout2.setCurrentTime("2019-10-02");
         completedWorkouts.add(activeWorkout1);
         completedWorkouts.add(activeWorkout2);
+
     }
+    
 
     public void addPlan(Plan plan) {
         planMap.put(plan.getId(), plan);
@@ -143,7 +144,7 @@ public class MockDatabase implements IDatabase {
     }
 
     public void updateWorkoutName(String name, String planId, String workoutId) throws NullPointerException{
-        getPlanFromMap(planId).setWorkoutName(name, workoutId);
+        getPlanFromMap(planId).updateWorkoutName(name, workoutId);
     }
 
     public void removeWorkoutFromPlan(String planId, String workoutId) throws NullPointerException{
@@ -162,8 +163,8 @@ public class MockDatabase implements IDatabase {
         getPlanFromMap(planId).removeExerciseFromWorkout(workoutId, exerciseId);
     }
 
-    public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) throws NullPointerException{
-        getPlanFromMap(planId).updateExerciseName(exerciseName, workoutId, exerciseId);
+    public void updateExerciseName(String planId, String workoutId, String exerciseId, String exerciseName) throws NullPointerException{
+        getPlanFromMap(planId).updateExerciseName(workoutId, exerciseId, exerciseName);
     }
 
     public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId) throws NullPointerException{

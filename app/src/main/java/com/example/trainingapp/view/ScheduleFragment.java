@@ -174,7 +174,7 @@ public class ScheduleFragment extends Fragment {
         btnAddWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scheduleViewModel.getTrainingAppModel().addWorkoutToPlan(selectedPlan.getId());
+                scheduleViewModel.getTrainingAppModel().createNewWorkout(selectedPlan.getId());
 
                 selectedPlan = scheduleViewModel.getPlanById(selectedPlan.getId());
 

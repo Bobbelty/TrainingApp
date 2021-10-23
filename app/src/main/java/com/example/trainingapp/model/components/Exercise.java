@@ -106,7 +106,7 @@ public class Exercise {
     }
 
     /**
-     * Method to change the number of reps of the exercise
+     * Method to change the name of the exercise
      * @param name
      */
     protected void setName(String name) {
