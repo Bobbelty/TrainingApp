@@ -34,7 +34,7 @@ public class ActiveWorkout {
      *
      * @param workoutName name of workout
      */
-    public ActiveWorkout(String workoutName) {
+    protected ActiveWorkout(String workoutName) {
         this.workoutName = workoutName;
         currentTime = "0";
     }
@@ -64,7 +64,7 @@ public class ActiveWorkout {
      *
      * @param exercise object to add to map
      */
-    public void addExercise(ActiveExercise exercise) {
+    protected void addExercise(ActiveExercise exercise) {
         activeExerciseMap.put(exercise.getExerciseId(), exercise);
     }
 

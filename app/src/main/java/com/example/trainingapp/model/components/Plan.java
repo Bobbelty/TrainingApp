@@ -33,7 +33,7 @@ public class Plan {
     /**
      * Class constructor setting default plan name and generating planId
      */
-    public Plan() {
+    protected Plan() {
         this.planName = "New plan";
         this.planId = UUID.randomUUID().toString();
     }

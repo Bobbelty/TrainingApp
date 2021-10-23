@@ -16,11 +16,6 @@ import java.util.List;
 public class TrainingAppFacade {
 
     /**
-     * ActiveWorkoutSession-object to access logic for ActiveWorkout and ActiveExercise.
-     */
-    private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
-
-    /**
      * The facade uses a MockDatabase to store plans, workouts and exercises
      * during runtime. It also stores completed workouts.
      */

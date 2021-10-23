@@ -45,7 +45,7 @@ public class Exercise {
      * Class constructor setting default exerciseName and generated exerciseId
      *
      */
-    public Exercise(){
+    protected Exercise(){
         this.exerciseName = "New Exercise";
         this.exerciseId = UUID.randomUUID().toString();
         this.numberOfReps = 0;
@@ -57,7 +57,7 @@ public class Exercise {
      *
      * @param exercise what exercise-object to copy
      */
-    public Exercise(Exercise exercise) {
+    protected Exercise(Exercise exercise) {
         this.exerciseName = exercise.getName();
         this.exerciseId = exercise.getId();
         this.numberOfReps = exercise.getNumberOfReps();

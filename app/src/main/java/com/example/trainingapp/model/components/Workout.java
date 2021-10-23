@@ -32,7 +32,7 @@ public class Workout {
     /**
      * Class constructor setting a default workoutName and generated workoutId
      */
-    public Workout() {
+    protected Workout() {
         this.workoutName ="New Workout";
         this.workoutId = UUID.randomUUID().toString();
     }
@@ -105,8 +105,6 @@ public class Workout {
     protected void removeExercise(String exerciseId) {
         exerciseMap.remove(exerciseId);
     }
-
-
 
     /**
      * Method for setting a name for a workout

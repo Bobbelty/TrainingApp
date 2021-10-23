@@ -31,13 +31,13 @@ public class ActiveExercise {
      * An exercise contains an id to make it possible for PB-recording purposes. For example
      * all Bench Press exercises will have the same id.
      */
-    private String exerciseId;
+    private final String exerciseId;
 
     /**
      * Class constructor. Responsible for converting an exercise to an active exercise.
      * @param exercise The exercise-object to be converted.
      */
-    public ActiveExercise(Exercise exercise){
+    protected ActiveExercise(Exercise exercise){
         this.exerciseName = exercise.getName();
         this.exerciseId = UUID.randomUUID().toString();
         this.noOfReps = exercise.getNumberOfReps();
@@ -67,7 +67,7 @@ public class ActiveExercise {
      *
      * @param noOfReps new value for reps
      */
-    public void changeRep(int noOfReps){
+    protected void changeRep(int noOfReps){
         this.noOfReps = noOfReps;
     }
 
@@ -76,7 +76,7 @@ public class ActiveExercise {
      *
      * @param weight new value for weight
      */
-    public void changeWeight(double weight){
+    protected void changeWeight(double weight){
         this.weight = weight;
     }
 
