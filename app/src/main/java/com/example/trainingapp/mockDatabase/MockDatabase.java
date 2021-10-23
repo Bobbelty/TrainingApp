@@ -43,7 +43,10 @@ public class MockDatabase implements IDatabase {
      */
     List<ActiveExercise> currentPBs = new ArrayList<>();
 
-
+    /**
+     * Class constructor is responsible for creating a number of mock Plan-objects. This is done
+     * for UI presentation purposes.
+     */
     public MockDatabase(){
         Plan examplePlan1 = new Plan("Bulk");
         addPlan(examplePlan1);
@@ -198,6 +201,15 @@ public class MockDatabase implements IDatabase {
         activeWorkout = null; //How to remove the pointer? Maybe null is bad? /Valdemar
     }
 
+    /**
+     * Method for retrieving specific Plan-object from hashmap.
+     *
+     * @param planId what Plan-object to look for
+     *
+     * @return Plan from hashmap
+     *
+     * @throws NullPointerException if the id doesn't get a match in the hashmap
+     */
     private Plan getPlanFromMap(String planId) throws NullPointerException {
         return Objects.requireNonNull(planMap.get(planId), "No plan with this Id exists");
     }
