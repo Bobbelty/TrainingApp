@@ -115,7 +115,7 @@ public class MockDatabase implements IDatabase {
     }
 
     public List<Plan> getPlanList() throws NullPointerException {
-        List<Plan> planListCopy = new ArrayList();
+        List<Plan> planListCopy = new ArrayList<>();
         for(String key : planMap.keySet()){
                 planListCopy.add(new Plan(getPlanFromMap(key)));
         }
