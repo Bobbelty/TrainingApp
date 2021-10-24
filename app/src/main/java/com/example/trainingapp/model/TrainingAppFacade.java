@@ -1,139 +1,227 @@
 package com.example.trainingapp.model;
 
-import com.example.trainingapp.mockDataBase.IDatabase;
-import com.example.trainingapp.mockDataBase.MockDataBase;
+import com.example.trainingapp.mockDatabase.IDatabase;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.model.activeComponents.ActiveWorkoutSession;
-import com.example.trainingapp.model.components.Exercise;
 import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.model.components.PlanBuilder;
+import com.example.trainingapp.model.components.PlanComponentFactory;
 import com.example.trainingapp.model.components.Workout;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * The User-class act as a datahandler that connects all of the model with the modelfacade and the
  * database.
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class TrainingAppFacade {
 
     /**
-     * ActiveWorkoutSession-object to access logic for ActiveWorkout and ActiveExercise.
+     * The facade uses a MockDatabase to store plans, workouts and exercises
+     * during runtime. It also stores completed workouts.
      */
-    private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
+    private final IDatabase mockDataBase;
 
     /**
-     * ExerciseIdHandler-object for creating new exerciseId:s
-     */
-    private final ExerciseIdHandler exerciseIdHandler = new ExerciseIdHandler();
-
-    /**
-     * PlanBuilder-object for access to the modelcomponents (Exercise, Workout, Plan)
-     */
-    private final PlanBuilder planBuilder = new PlanBuilder();
-
-    /**
-     * User uses a MockDatabase to store plans, workouts and exercises
-     * during runtime
-     */
-    private final IDatabase mockDataBase = new MockDataBase();
-
-    /**
-     * nextId used for generating unique id:S
-     */
-    private static AtomicInteger nextId = new AtomicInteger();
-
-    /**
-     * Method for returning a list of the stored plans from the database
+     * Class constructor initiating the database
      *
-     * @return list of plans from database
+     * @param mockDataBase the programs database
      */
-    public List<Plan> getSavedPlans(){
-        return mockDataBase.getPlanList();
+    public TrainingAppFacade(IDatabase mockDataBase) {
+        this.mockDataBase = mockDataBase;
     }
 
     /**
-     * Method for removing the selected plan (first in list) from the database.
+     * Method for returning a copy of the list of saved plans from the database
+     *
+     * @return list of saved plans from database
      */
-    public void removePlan(Plan selectedPlan) {
-        getSavedPlans().remove(selectedPlan);
+    public List<Plan> getSavedPlans() throws NullPointerException{
+            return mockDataBase.getPlanList();
     }
 
     /**
-     * Method for receiving the list of completed workouts from the database.
+     * Method for getting a copy of the plan from the database
+     *
+     * @param planId the id of the plan
+     *
+     * @return copy of the specified plan object
+     */
+    public Plan getPlan(String planId) throws NullPointerException{
+        return mockDataBase.getPlan(planId);
+    }
+
+    /**
+     * Method for receiving the copy of the list with completed workouts from the database.
      *
      * @return the list of completed workouts.
      */
     public List<ActiveWorkout> getCompletedWorkouts() {return mockDataBase.getCompletedWorkouts();}
 
     /**
-     * Returns a new Plan-object
-     *
-     * @param planName the name of the plan
+     * Method for removing a specific plan from the database.
      */
-    public void createNewPlan(String planName){
-        mockDataBase.addPlan(planBuilder.createNewPlan(planName));
+    public void removePlan(String planId) {
+        mockDataBase.removePlan(planId);
+    }
+    /**
+     * Adds a new Plan-object to the database
+     */
+    public void createNewPlan(){
+        mockDataBase.addPlan(PlanComponentFactory.createPlan());
+    }
+
+    /**
+     * Updates a specific plans name
+     *
+     * @param name the new name
+     * @param id the id of the desired plan
+     */
+    public void updatePlanName(String name, String id) throws NullPointerException{
+        mockDataBase.updatePlanName(name, id);
     }
 
     /**
      * Method for adding a workout to a plan
      *
-     * @param plan the reference to the plan object
-     * @param name the name of the Workout-object that gets added to the Plan
+     * @param planId what plan to add it into
      */
-    public void addWorkoutToPlan(Plan plan, String name){
-        planBuilder.addWorkoutToPlan(plan, name);
+    public void createNewWorkout(String planId) throws NullPointerException{
+        mockDataBase.addWorkoutToPlan(PlanComponentFactory.createWorkout(), planId);
     }
 
     /**
      * Method for removing a workout from a plan
      *
-     * @param plan the reference to the plan object
-     * @param workout the reference to the workout object
+     * @param planId in which plan
+     * @param workoutId which workout to remove
      */
-    public void removeWorkoutFromPlan(Plan plan, Workout workout) {
-        planBuilder.removeWorkoutFromPlan(plan, workout);
+    public void removeWorkoutFromPlan(String planId, String workoutId) throws NullPointerException{
+        mockDataBase.removeWorkoutFromPlan(planId, workoutId);
+    }
+
+    /**
+     * Method for getting a specified workout
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
+    public Workout getWorkout(String planId, String workoutId) throws NullPointerException {
+        return mockDataBase.getWorkout(planId, workoutId);
+    }
+    /**
+     * Updates the name of a specific workout
+     *
+     * @param name the new name
+     * @param planId in which plan
+     * @param workoutId which workout to update
+     */
+    public void updateWorkoutName(String name, String planId, String workoutId) throws NullPointerException{
+        mockDataBase.updateWorkoutName(name, planId, workoutId);
     }
 
     /**
      * Method for adding an exercise to a workout
      *
-     * @param workout the reference to the workout object
-     * @param exerciseName the name of the exercise
+     * @param planId in which plan
+     * @param workoutId in which workout
      */
-    public void addExerciseToWorkout(Workout workout, String exerciseName) {
-        try{
-            int exerciseId = mockDataBase.getExerciseIdFromMap(exerciseName);
-            planBuilder.addExerciseToWorkout(workout, exerciseName, exerciseId);
-        } catch (ExerciseIdNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void addExerciseToWorkout(String planId, String workoutId) throws NullPointerException {
+        mockDataBase.addExerciseToWorkout(PlanComponentFactory.createExercise(), planId, workoutId);
+    }
+
+    /**
+     * Method for getting the current activeWorkout
+     *
+     * @return the current activeWorkout
+     */
+    public ActiveWorkout getActiveWorkout() {
+        return mockDataBase.getActiveWorkout();
     }
 
     /**
      * Method for removing an exercise from a workout
      *
-     * @param workout the reference to the Workout-object
-     * @param exercise the Exercise-object to be removed
+     * @param planId in which plan
+     * @param workoutId in which workout
+     * @param exerciseId which exercise to remove
      */
-    public void removeExerciseFromWorkout(Workout workout, Exercise exercise){
-        planBuilder.removeExerciseFromWorkout(workout, exercise);
+    public void removeExerciseFromWorkout(String planId, String workoutId, String exerciseId) throws NullPointerException{
+        mockDataBase.removeExerciseFromWorkout(planId, workoutId, exerciseId);
     }
 
     /**
-     * Method for creating a new exercise(not in a workout, just for purposes of storing
-     * it in database). Also connects an exerciseId to the exercise.
+     * Method for updating the name of an exercise
      *
-     * @param exerciseIdName The exercise name that the exerciseId corresponds to
+     * @param exerciseName the new name
+     * @param planId in which plan
+     * @param workoutId in which workout
+     * @param exerciseId what exercise to update
      */
-    public void createAndSaveNewExerciseToDatabase(String exerciseIdName){
-        int id = nextId.getAndIncrement();
-        mockDataBase.addExerciseIdToMap(exerciseIdName, id);
+    public void updateExerciseName(String planId, String workoutId, String exerciseId, String exerciseName) throws NullPointerException{
+        mockDataBase.updateExerciseName(planId, workoutId, exerciseId, exerciseName);
     }
 
-    public void createAndSaveActiveWorkoutToDatabase(Workout workout){
-
+    /**
+     * Method for updating the reps in an exercise
+     *
+     * @param reps the new number of reps
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
+    public void updateExerciseRep(int reps, String planId, String workoutId, String exerciseId) throws NullPointerException{
+        mockDataBase.updateExerciseRep(reps, planId, workoutId, exerciseId);
     }
 
+    /**
+     * Method for updating the sets in an exercise
+     *
+     * @param sets the new number of sets
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     * @param exerciseId the Id for the exercise
+     */
+    public void updateExerciseSets(int sets, String planId, String workoutId, String exerciseId) throws NullPointerException{
+        mockDataBase.updateExerciseSets(sets, planId, workoutId, exerciseId);
+    }
+
+    /**
+     * Method for convert a workout to an activeWorkout
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
+    public void convertWorkoutToActive(String planId, String workoutId) throws NullPointerException{
+        mockDataBase.newActiveWorkout(planId, workoutId);
+    }
+
+
+    /**
+     * Method for updating a rep in an active exercise
+     *
+     * @param reps the new amount of reps
+     * @param exerciseId the Id for the exercise
+     */
+    public void updateActiveExerciseRep(int reps, String exerciseId){
+        mockDataBase.updateActiveExerciseRep(reps, exerciseId);
+    }
+
+    /**
+     * Method for updating the weight for a set in the exercise
+     *
+     * @param exerciseId the Id for the exercise
+     * @param weight the new weight value
+     */
+    public void updateActiveExerciseWeight(String exerciseId, double weight){
+        mockDataBase.updateActiveExerciseWeight(exerciseId, weight);
+    }
+
+    /**
+     * Method for ending an active workout
+     */
+    public void endActiveWorkout(){
+        mockDataBase.endActiveWorkout();
+    }
+    
 }

@@ -1,8 +1,7 @@
-package com.example.trainingapp.view;
+package com.example.trainingapp.view.History.HistoryExercise;
 
 import java.util.List;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentHistoryBinding;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
-import com.example.trainingapp.view.Adapter.HistoryRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
 
@@ -24,9 +22,9 @@ import java.util.ArrayList;
 
 /**
  * HistoryFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
- * fragment.history.xml
+ * fragment_history.xml
  *
- * @author Valdemar Vålvik and Victor Hui
+ * @author Philip Rabia and Patrik Olsson
  */
 
 public class HistoryFragment extends Fragment {
@@ -45,7 +43,7 @@ public class HistoryFragment extends Fragment {
     private FragmentHistoryBinding binding;
 
     private List<ActiveWorkout> testActiveWorkouts = new ArrayList<>();
-    Context context;
+
     HistoryRecyclerViewAdapter recyclerViewAdapter;
 
     /**
@@ -59,7 +57,6 @@ public class HistoryFragment extends Fragment {
      *
      * @return Return the View for the fragment's UI, or null.
      */
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -72,13 +69,23 @@ public class HistoryFragment extends Fragment {
         return v;
     }
 
+    /**
+     * initRecyclerView initiates the recyclerView and sets its adapter.
+     *
+     * @param v the current view used in the application.
+     */
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.history_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
         recyclerViewAdapter = new HistoryRecyclerViewAdapter(testActiveWorkouts, this.getActivity(), this.getContext());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
+    /**
+     * initObjects initiates the objects to be shown in history
+     *
+     */
     private void initObjects() {
         testActiveWorkouts = historyViewModel.getTrainingAppModel().getCompletedWorkouts();
     }

@@ -7,19 +7,23 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentHomeBinding;
 import com.example.trainingapp.viewModel.HomeViewModel;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * HomeFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
  * fragment.home.xml
  *
- * @author Valdemar Vålvik and Victor Hui
+ * @author Philip Rabia and Patrik Olsson
  */
 
 public class HomeFragment extends Fragment {
@@ -36,16 +40,16 @@ public class HomeFragment extends Fragment {
      */
 
     private FragmentHomeBinding binding;
+    private TextView lblDate;
 
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
      *
-     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment
-     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
-     * The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
-     * This value may be null.
-     * @param savedInstanceState  If non-null, this fragment is being re-constructed from a previous saved state as given here.
-     *
+     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment
+     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                           The fragment should not add the view itself, but this can be used to generate the LayoutParams of the view.
+     *                           This value may be null.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed from a previous saved state as given here.
      * @return Return the View for the fragment's UI, or null.
      */
 
@@ -57,14 +61,22 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        //final TextView textView = binding.textHome;
+        /*homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
-                textView.setText(s);
+                //textView.setText(s);
             }
-        });
+        });*/
+        initObjects(root);
         return root;
+    }
+
+    private void initObjects(View v) {
+        TextView lblDate = v.findViewById(R.id.lblDate);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        lblDate.setText(dateFormat.format(date));
     }
 
     /**

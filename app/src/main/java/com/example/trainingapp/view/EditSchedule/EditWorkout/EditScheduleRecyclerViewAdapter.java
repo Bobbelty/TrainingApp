@@ -1,7 +1,6 @@
-package com.example.trainingapp.view.Adapter;
+package com.example.trainingapp.view.EditSchedule.EditWorkout;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
-import com.example.trainingapp.viewModel.EditScheduleViewModel;
+import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
+/**
+ * Adapter for the RecyclerView in the EditScheduleFragment, provides the correct information for
+ * each list item
+ *
+ * @author Philip Rabia and Patrik Olsson
+ */
 public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditScheduleRecyclerViewAdapter.ListViewHolder> {
 
-
-    private Activity activity;
     private Workout selectedWorkout;
     private Plan selectedPlan;
-    private EditScheduleViewModel editScheduleViewModel = EditScheduleViewModel.getInstance();
+    private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
-    public EditScheduleRecyclerViewAdapter(Activity activity) {
-        this.selectedWorkout = editScheduleViewModel.getSelectedWorkout();
-        this.activity = activity;
-        this.selectedPlan = editScheduleViewModel.getSelectedPlan();
+    /**
+     * Constructor for adapter
+     */
+    public EditScheduleRecyclerViewAdapter() {
+        this.selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
+        this.selectedPlan = editWorkoutViewModel.getSelectedPlan();
     }
 
     @NonNull
@@ -37,6 +42,12 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                 .inflate(R.layout.fragment_edit_schedule_list_item, parent, false));
     }
 
+    /**
+     * Binds application data to the ViewHolder
+     *
+     * @param holder the ViewHolder
+     * @param position current position in the exerciseList
+     */
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -48,7 +59,9 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
         holder.btnDeleteExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                EditScheduleViewModel.getInstance().onClickRemoveExercise(selectedPlan, selectedWorkout, position);
+                editWorkoutViewModel.onClickRemoveExercise(
+                        selectedPlan.getId(), selectedWorkout.getId(), selectedWorkout.getExerciseList().get(position).getId());
+                selectedWorkout = editWorkoutViewModel.getWorkoutById(selectedPlan.getId(), selectedWorkout.getId());
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, getItemCount());
             }
@@ -61,7 +74,11 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfSets.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    EditScheduleViewModel.getInstance().setNewNoOfSets(position, holder.etbxNoOfSets);
+                    editWorkoutViewModel.setNewNoOfSets(
+                            Integer.parseInt(txt),
+                            selectedPlan.getId(),
+                            selectedWorkout.getId(),
+                            selectedWorkout.getExerciseByIndex(position).getId());
                 }
             }
         });
@@ -73,7 +90,11 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getNumberOfSets() + "");
                 }
                 else {
-                    EditScheduleViewModel.getInstance().setNewNoOfReps(position, holder.etbxNoOfReps);
+                    editWorkoutViewModel.setNewNoOfReps(
+                            Integer.parseInt(txt),
+                            selectedPlan.getId(),
+                            selectedWorkout.getId(),
+                            selectedWorkout.getExerciseByIndex(position).getId());
                 }
             }
         });
@@ -85,32 +106,44 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
                     holder.etbxNoOfReps.setText(selectedWorkout.getExerciseList().get(position).getName() + "");
                 }
                 else {
-                    EditScheduleViewModel.getInstance().setNewExerciseName(position, holder.etbxExerciseName);
+                    editWorkoutViewModel.setNewExerciseName(
+                            holder.etbxExerciseName.getText().toString(),
+                            selectedPlan.getId(), selectedWorkout.getId(),
+                            selectedWorkout.getExerciseByIndex(position).getId());
                 }
             }
         });
     }
-
+    /**
+     * Return value is used to set the amount of items in the recyclerview
+     * @return Returns the length of the list of items that is to be displayed
+     */
     @Override
     public int getItemCount() {
         return selectedWorkout.getExerciseList().size();
     }
+
+    /**
+     * Class for the ListViewHolder that is used by this adapter
+     */
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
-        //change name, make private maybe final
-        //private final TextView lblExercise;
         private final EditText etbxExerciseName;
         private final EditText etbxNoOfSets;
         private final EditText etbxNoOfReps;
         private final Button btnDeleteExercise;
 
+        /**
+         * Binds elements in layout file to the variables in the ViewHolder
+         *
+         * @param itemView the itemView
+         */
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //lblExercise = itemView.findViewById(R.id.lblExercise);
             etbxExerciseName = itemView.findViewById(R.id.etbxExerciseName);
-            etbxNoOfSets = itemView.findViewById(R.id.etbxNoOfSets);
-            etbxNoOfReps = itemView.findViewById(R.id.etbxNoOfReps);
+            etbxNoOfSets = itemView.findViewById(R.id.etbxNoOfReps);
+            etbxNoOfReps = itemView.findViewById(R.id.etbxWeight);
             btnDeleteExercise = itemView.findViewById(R.id.btnDeleteExercise);
 
         }

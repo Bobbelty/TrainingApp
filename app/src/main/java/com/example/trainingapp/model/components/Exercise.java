@@ -2,10 +2,11 @@ package com.example.trainingapp.model.components;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.UUID;
 
 /**
  * Class for creating an exercise. Several exercises makes up a workout
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class Exercise {
 
@@ -25,20 +26,43 @@ public class Exercise {
     private int numberOfReps;
 
     /**
-     * An exercise contains an id to make it possible for PB-recording purposes. For example
-     * all Bench Press exercises will have the same id.
+     * The Id for the exercise
      */
-    private int exerciseId;
+    private final String exerciseId;
 
     /**
-     * Class constructor setting exerciseName and exerciseId
+     * Class constructor setting a specified exerciseName and generated exerciseId
      *
      * @param exerciseName name of exercise
-     * @param exerciseId Id of exercise
      */
-    public Exercise(String exerciseName, int exerciseId) {
-        this.exerciseId = exerciseId;
+    public Exercise(String exerciseName, int reps, int sets) {
         this.exerciseName = exerciseName;
+        this.exerciseId = UUID.randomUUID().toString();
+        this.numberOfReps = reps;
+        this.numberOfSets = sets;
+    }
+
+    /**
+     * Class constructor setting default exerciseName and generated exerciseId
+     *
+     */
+    protected Exercise(){
+        this.exerciseName = "New Exercise";
+        this.exerciseId = UUID.randomUUID().toString();
+        this.numberOfReps = 0;
+        this.numberOfSets = 0;
+    }
+
+    /**
+     * Class constructor for defensive copy
+     *
+     * @param exercise what exercise-object to copy
+     */
+    protected Exercise(Exercise exercise) {
+        this.exerciseName = exercise.getName();
+        this.exerciseId = exercise.getId();
+        this.numberOfReps = exercise.getNumberOfReps();
+        this.numberOfSets = exercise.getNumberOfSets();
     }
 
     /**
@@ -53,7 +77,7 @@ public class Exercise {
      *
      * @param numberOfSets
      */
-    public void setNumberOfSets(int numberOfSets) {
+    protected void setNumberOfSets(int numberOfSets) {
         this.numberOfSets = numberOfSets;
     }
 
@@ -69,9 +93,10 @@ public class Exercise {
      *
      * @param numberOfReps
      */
-    public void setNumberOfReps(int numberOfReps) {
+    protected void setNumberOfReps(int numberOfReps) {
         this.numberOfReps = numberOfReps;
     }
+
     /**
      * Method for getting the name of the exercise
      *
@@ -82,23 +107,17 @@ public class Exercise {
     }
 
     /**
-     * Method to change the number of reps of the exercise
+     * Method to change the name of the exercise
      * @param name
      */
-    public void setName(String name) {
+    protected void setName(String name) {
         exerciseName = name;
     }
+
     /**
      * Method for getting the exerciseId of the exercise
      *
      * @return The exerciseId of the exercise
      */
-    public int getExerciseId(){
-        return exerciseId;
-    }
-
-
-
-
-
+    public String getId(){ return exerciseId; }
 }

@@ -1,4 +1,4 @@
-package com.example.trainingapp.view;
+package com.example.trainingapp.view.EditSchedule.EditPlan;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentScheduleBinding;
 import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.view.Adapter.ScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.ScheduleViewModel;
 
 import java.util.ArrayList;
@@ -39,19 +38,18 @@ public class ScheduleFragment extends Fragment {
     /**
      * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
      */
-
     private ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
     private EditText etbxPlanName;
     private ArrayAdapter<Plan> adapter;
     private List<Plan> planList = new ArrayList<>();
-    private Plan selectedPlan; // plan should be the first plan in the database (SavedPlans)
+    private Plan selectedPlan;
+    private RecyclerView recyclerView;
     private ScheduleRecyclerViewAdapter recyclerViewAdapter;
     private Spinner dropdown;
     /**
      * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
      * ID's.
      */
-
     private FragmentScheduleBinding binding; //
 
 
@@ -82,6 +80,10 @@ public class ScheduleFragment extends Fragment {
 
         return v;
     }
+    /**
+     * initAddPlanButton initiates the add plan button
+     * @param v the current view used in the application.
+     */
     private void initAddPlanButton(View v) {
         Button btnAddPlan = v.findViewById(R.id.btnAddPlan);
         btnAddPlan.setText("+");
@@ -92,44 +94,21 @@ public class ScheduleFragment extends Fragment {
 
                 // Add plan
                 scheduleViewModel.addPlan();
+                planList = scheduleViewModel.getSavedPlans();
                 scheduleViewModel.shiftRight(planList);
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
+                selectedPlan = planList.get(0);
 
                 // Update view
-                
-                adapter.clear();
-                adapter.addAll(planList);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                /*planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
-                scheduleViewModel.addPlan();
-                scheduleViewModel.shiftRight(planList);
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
-                recyclerViewAdapter.setNewPlan(selectedPlan);
-                List<Plan> tempList = new ArrayList<Plan>(planList);
-                adapter.clear();
-                planList = tempList;
-                adapter.addAll(planList);
-                planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
-                etbxPlanName.setText(scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0).getPlanName());
-                recyclerViewAdapter.notifyDataSetChanged();*/
+                adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, planList);
+                adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                dropdown.setAdapter(adapter);
             }
         });
     }
+    /**
+     * initAddPlanButton initiates the remove plan button
+     * @param v the current view used in the application.
+     */
     private void initRemovePlanButton(View v) {
         Button btnRemovePlan = v.findViewById(R.id.btnRemovePlan);
         btnRemovePlan.setText("-");
@@ -137,10 +116,16 @@ public class ScheduleFragment extends Fragment {
         btnRemovePlan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popupMessage(v);
+                if(!(scheduleViewModel.getSavedPlans().size() <= 1)) {
+                    popupMessage(v);
+                }
             }
         });
     }
+    /**
+     * popupMessage creates a popup message, asking the user to comfirm the action
+     * @param v the current view used in the application.
+     */
     private void popupMessage(View v) {
         TextView alertTextView = (TextView) v.findViewById(R.id.alertTextView);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -159,30 +144,25 @@ public class ScheduleFragment extends Fragment {
         builder.setPositiveButton("REMOVE PLAN", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
                 // Remove plan
                 scheduleViewModel.removePlan(selectedPlan);
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
+                planList = scheduleViewModel.getSavedPlans();
+                selectedPlan = scheduleViewModel.getSavedPlans().get(0);
 
                 // Update view
+                adapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, planList);
+                adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                dropdown.setAdapter(adapter);
 
-               /* planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
-                scheduleViewModel.removePlan();
-                selectedPlan = scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0);
-                recyclerViewAdapter.setNewPlan(selectedPlan);
-                List<Plan> tempList = new ArrayList<Plan>(planList);
-                adapter.clear();
-                planList = tempList;
-                adapter.addAll(planList);
-                etbxPlanName.setText(scheduleViewModel.getTrainingAppModel().getSavedPlans().get(0).getPlanName());
-                planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
-                alertTextView.setVisibility(View.VISIBLE);
-                recyclerViewAdapter.notifyDataSetChanged();*/
             }
         });
         builder.show();
     }
-
+    /**
+     * initPlanNameEditText initiates the text that displays the name of the plan
+     * @param v the current view used in the application.
+     */
     private void initPlanNameEditText(View v) {
         etbxPlanName = v.findViewById(R.id.etbxPlanName);
         etbxPlanName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -193,11 +173,16 @@ public class ScheduleFragment extends Fragment {
                     etbxPlanName.setText(selectedPlan.getPlanName());
                 }
                 else {
-                    scheduleViewModel.setNewPlanName(selectedPlan, etbxPlanName);
+                    scheduleViewModel.setNewPlanName(selectedPlan, etbxPlanName, planList);
+                    adapter.notifyDataSetChanged();
                 }
             }
         });
     }
+    /**
+     * initAddWorkoutButton initiates the button that adds workouts to a plan
+     * @param v the current view used in the application.
+     */
     private void initAddWorkoutButton(View v) {
         Button btnAddWorkout = v.findViewById(R.id.btnAddWorkout);
         btnAddWorkout.setText("Add workout");
@@ -205,8 +190,12 @@ public class ScheduleFragment extends Fragment {
         btnAddWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scheduleViewModel.getTrainingAppModel().addWorkoutToPlan(selectedPlan, "New workout");
-                recyclerViewAdapter.notifyDataSetChanged();
+                scheduleViewModel.getTrainingAppModel().createNewWorkout(selectedPlan.getId());
+
+                selectedPlan = scheduleViewModel.getPlanById(selectedPlan.getId());
+
+                recyclerViewAdapter = new ScheduleRecyclerViewAdapter(selectedPlan, getContext(), getActivity());
+                recyclerView.setAdapter(recyclerViewAdapter);
             }
         });
     }
@@ -217,7 +206,7 @@ public class ScheduleFragment extends Fragment {
      * @param v the current view used in the application.
      */
     private void initRecyclerView(View v) {
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.schedule_recyclerview);
+        recyclerView = (RecyclerView) v.findViewById(R.id.workoutRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerViewAdapter = new ScheduleRecyclerViewAdapter(selectedPlan, this.getContext(), this.getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
@@ -238,10 +227,12 @@ public class ScheduleFragment extends Fragment {
         dropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+
                 selectedPlan = planList.get(position);
-                recyclerViewAdapter.setNewPlan(selectedPlan);
                 etbxPlanName.setText(selectedPlan.getPlanName());
-                recyclerViewAdapter.notifyDataSetChanged();
+                selectedPlan = scheduleViewModel.getPlanById(selectedPlan.getId());
+                recyclerViewAdapter = new ScheduleRecyclerViewAdapter(selectedPlan, getContext(), getActivity());
+                recyclerView.setAdapter(recyclerViewAdapter);
             }
 
             @Override
@@ -252,12 +243,10 @@ public class ScheduleFragment extends Fragment {
     }
 
     /**
-     * initObjects gets the saved plans, used for testing and initial demo/presentation.
+     * initObjects gets the saved plans.
      */
-    //initiates test objects
     private void initObjects() {
-        // setting up test objects
-        planList = scheduleViewModel.getTrainingAppModel().getSavedPlans();
+        planList = scheduleViewModel.getSavedPlans();
         selectedPlan = planList.get(0);
     }
 

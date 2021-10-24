@@ -3,31 +3,28 @@ package com.example.trainingapp.model.components;
 
 /**
  * Class providing static methods for creating resources
+ *  @author Victor Hui, Valdemar Vålvik
  */
 public class PlanComponentFactory {
 
     /**
-     * Method for creating a new plan
+     * Static method for creating a new Plan-object
      *
-     * @param name the name of the new plan
-     * @return the reference to the new Plan object
+     * @return a plan object
      */
-    public static Plan createPlan(String name){return new Plan(name);}
+    public static Plan createPlan(){return new Plan();}
 
     /**
-     * Method for creating a new workout
+     * Static method for creating a new Workout-object
      *
-     * @param name the name of the new workout
-     * @return the reference to the new Workout object
+     * @return a workout object
      */
-    public static Workout createWorkout(String name){return new Workout(name);}
+    public static Workout createWorkout(){return new Workout();}
 
     /**
-     * Method for creating a new exercise
+     * Static method for creating a new Exercise-object
      *
-     * @param exerciseName the name of the new exercise
-     * @param exerciseId the Id of the new exercise
-     * @return the reference to the new Exercise object
+     * @return a exercise object
      */
-    public static Exercise createExercise(String exerciseName, int exerciseId){return new Exercise(exerciseName, exerciseId);}
+    public static Exercise createExercise(){return new Exercise();}
 }

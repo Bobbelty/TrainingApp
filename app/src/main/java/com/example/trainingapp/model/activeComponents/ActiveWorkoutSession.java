@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 
 /**
  * Class handling logic for ActiveExercise and ActiveWorkout
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class ActiveWorkoutSession {
 
@@ -21,24 +22,26 @@ public class ActiveWorkoutSession {
      * @return a new ActiveWorkout
      */
     public ActiveWorkout convertWorkoutToActiveWorkout(Workout workout){
-        ActiveWorkout activeWorkout = new ActiveWorkout(workout.getName());
-        
-        for(int i = 0; i < workout.getExerciseList().size(); i++){
-            
-            activeWorkout.addExercise(ActiveWorkoutComponentFactory.createActiveExercise(workout.getExerciseList().get(i)));
+
+        ActiveWorkout activeWorkout = ActiveWorkoutComponentFactory.createActiveWorkout(workout.getName());
+
+        for (int i = 0; i < workout.getExerciseList().size(); i++) {
+            for (int k = 0; k < workout.getExerciseList().get(i).getNumberOfSets(); k++) {
+                activeWorkout.addExercise(ActiveWorkoutComponentFactory.createActiveExercise(workout.getExerciseList().get(i)));
+            }
         }
         return activeWorkout;
     }
-
     /**
-     * Method for setting a datestamp to the active workout when it is ended.
+     * Method for getting the current date for an active workout, used to show when the user has
+     * done the workout when looking at history. Uses the java Calendar class to get the current
+     * time.
      *
-     * @param activeWorkout which active workout to set the date on.
+     * @return the date in yyyy-MM-dd format as a string
      */
-    public void setCurrentDate (ActiveWorkout activeWorkout){
+    public String getCurrentDate (){
         Date date = Calendar.getInstance().getTime();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String workoutDate = dateFormat.format(date);
-        activeWorkout.setCurrentTime(workoutDate);
+        return dateFormat.format(date);
     }
 }

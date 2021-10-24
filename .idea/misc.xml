@@ -4,13 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/fragment_dropdown.xml" value="0.2164855072463768" />
+        <entry key="app/src/main/res/layout/fragment_edit_activeworkout.xml" value="0.19429347826086957" />
+        <entry key="app/src/main/res/layout/fragment_edit_activeworkout_list_item.xml" value="0.2452185994556828" />
         <entry key="app/src/main/res/layout/fragment_edit_schedule.xml" value="0.24257658619680045" />
         <entry key="app/src/main/res/layout/fragment_edit_schedule_list_item.xml" value="0.20223829123650433" />
+        <entry key="app/src/main/res/layout/fragment_edit_workout.xml" value="0.16032608695652173" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1864123145548987" />
         <entry key="app/src/main/res/layout/fragment_schedule.xml" value="0.2485946411008427" />
-        <entry key="app/src/main/res/layout/fragment_schedule_list_item.xml" value="0.2744345336709179" />
+        <entry key="app/src/main/res/layout/fragment_schedule_list_item.xml" value="0.755804483523427" />
         <entry key="app/src/main/res/layout/fragment_schedule_recyclerview.xml" value="0.37063203303182557" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.12817028985507245" />
+        <entry key="app/src/main/res/layout/fragment_workout.xml" value="0.27845299406064655" />
+        <entry key="app/src/main/res/layout/fragment_workout_list_item.xml" value="0.2732365842522897" />
       </map>
     </option>
   </component>

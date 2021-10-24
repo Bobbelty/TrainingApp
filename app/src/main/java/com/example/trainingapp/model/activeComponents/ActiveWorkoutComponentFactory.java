@@ -4,6 +4,7 @@ import com.example.trainingapp.model.components.Exercise;
 
 /**
  * Factory-class providing static methods for creating components of an active workout.
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class ActiveWorkoutComponentFactory {
 

@@ -1,4 +1,4 @@
-package com.example.trainingapp.view;
+package com.example.trainingapp.view.EditSchedule.EditWorkout;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,24 +16,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
-import com.example.trainingapp.view.Adapter.EditScheduleRecyclerViewAdapter;
-import com.example.trainingapp.viewModel.EditScheduleViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import com.example.trainingapp.viewModel.EditWorkoutViewModel;
+/**
+ * EditScheduleFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.history.xml
+ *
+ * @author Philip Rabia and Patrik Olsson
+ */
 public class EditScheduleFragment extends Fragment {
 
-    //Plan activePlan;
     private Workout selectedWorkout;
+    private RecyclerView recyclerView;
     private EditScheduleRecyclerViewAdapter recyclerViewAdapter;
-    private EditScheduleViewModel editScheduleViewModel = EditScheduleViewModel.getInstance();
+    private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
-    private List<Plan> testPlans = new ArrayList<>();
 
-    Plan plan; // plan should be the first plan in the database (SavedPlans)
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
      *
@@ -50,36 +48,38 @@ public class EditScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_edit_schedule,container,false);
-        // activePlan = user.getActivePlan();
-        initObjects();
-        selectedWorkout = editScheduleViewModel.getSelectedWorkout();
+        selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
         initTitleText(v);
         initRecyclerView(v);
         initDeleteWorkoutButton(v);
         initAddExerciseButton(v);
         return v;
     }
+
+    /**
+     * initAddExerciseButton initiates the add exercise button.
+     *
+     * @param v the current view used in the application
+     */
     private void initAddExerciseButton(View v) {
-        Button btnAddExercise = v.findViewById(R.id.btnAddExercise);
+        Button btnAddExercise = v.findViewById(R.id.btnFinishWorkout);
         btnAddExercise.setVisibility(View.VISIBLE);
         btnAddExercise.setText("Add exercise");
         btnAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditScheduleViewModel.getInstance().getTrainingAppModel().addExerciseToWorkout(selectedWorkout, "New exercise");
-                // Make sure model adds a new exercise that the user later on can change in the UI
-                // Benchpress  4  6
-                // Exercise1  0  0
-                // Exercise2  0  0
-                //String name = "BenchPress";
-                //name.toLowerCase(Locale.ROOT).replace(" ", "").replace("_","");
-
-                // plocka från savedExercises
-
-                recyclerViewAdapter.notifyDataSetChanged();
+                editWorkoutViewModel.addExerciseToWorkout(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
+                recyclerViewAdapter = new EditScheduleRecyclerViewAdapter();
+                recyclerView.setAdapter(recyclerViewAdapter);
             }
         });
     }
+
+    /**
+     * initDeleteWorkoutButton initiates the delete workout button
+     *
+     * @param v the current view used in the application
+     */
     private void initDeleteWorkoutButton(View v) {
         Button btnDeleteWorkout = v.findViewById(R.id.btnDeleteWorkout);
         btnDeleteWorkout.setVisibility(View.VISIBLE);
@@ -91,6 +91,12 @@ public class EditScheduleFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * initPopupMessageView initiates the popup message view
+     *
+     * @param v the current view used in the application
+     */
     private void initPopupMessageView(View v) {
         TextView alertTextView = (TextView) v.findViewById(R.id.AlertTextView);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -109,7 +115,8 @@ public class EditScheduleFragment extends Fragment {
         builder.setPositiveButton("REMOVE WORKOUT", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                EditScheduleViewModel.getInstance().removeWorkout(editScheduleViewModel.getSelectedPlan(), selectedWorkout);
+                if (getActivity().getCurrentFocus() != null) getActivity().getCurrentFocus().clearFocus();
+                editWorkoutViewModel.removeWorkoutFromPlan(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
                 getActivity().finish();
                 alertTextView.setVisibility(View.VISIBLE);
             }
@@ -123,10 +130,10 @@ public class EditScheduleFragment extends Fragment {
      * @param v the current view used in the application.
      */
     private void initRecyclerView(View v) {
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
+        recyclerView = (RecyclerView) v.findViewById(R.id.HistoryExerciseRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        recyclerViewAdapter = new EditScheduleRecyclerViewAdapter(this.getActivity());
+        recyclerViewAdapter = new EditScheduleRecyclerViewAdapter();
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
@@ -147,20 +154,9 @@ public class EditScheduleFragment extends Fragment {
                     etbxWorkoutName.setText(selectedWorkout.getName() + "");
                 }
                 else {
-                    EditScheduleViewModel.getInstance().setNewWorkoutName(etbxWorkoutName);
-                    //EditScheduleViewModel.getInstance().
-                            //setNewExerciseName(position, etbxWorkoutName);
+                    editWorkoutViewModel.setNewWorkoutName(etbxWorkoutName.getText().toString(), editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
                 }
             }
         });
-    }
-
-    /**
-     * initObjects gets the saved plans, used for testing and initial demo/presentation.
-     */
-    private void initObjects() {
-        // setting up test objects
-        testPlans = editScheduleViewModel.getTrainingAppModel().getSavedPlans();
-        plan = testPlans.get(0); // get active plan instead
     }
 }

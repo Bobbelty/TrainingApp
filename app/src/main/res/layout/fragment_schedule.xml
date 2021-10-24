@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#393939"
-    tools:context=".view.ScheduleFragment">
+    tools:context=".view.EditSchedule.EditPlan.ScheduleFragment">
 
 
     <TextView
@@ -67,7 +67,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etbxPlanName" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/schedule_recyclerview"
+        android:id="@+id/workoutRecyclerView"
         android:layout_width="409dp"
         android:layout_height="400dp"
         android:layout_marginTop="30dp"

@@ -15,7 +15,7 @@ import java.util.List;
  * objects from the model in such a way that objects are easily managed and presented.
  * In this respect, the ViewModel is more model than view, and handles most if not all of the view's display logic.
  *
- * @author Valdemar Vålvik and Victor Hui
+ * @author Philip Rabia and Patrik Olsson
  */
 
 public class ScheduleViewModel extends TrainingAppModelViewModel{
@@ -27,29 +27,66 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     private MutableLiveData<String> mText;
     private TrainingAppFacade trainingAppModel;
 
-    // Create an ArrayAdapter using the string array and a default spinner layout
-
     /**
      * Class constructor
      */
 
-    public void addPlan() {
-        trainingAppModel.createNewPlan("New plan");
-    }
-    public void removePlan(Plan selectedPlan) {
-        trainingAppModel.removePlan(selectedPlan);
-    }
-    public void setNewPlanName(Plan selectedPlan, EditText etbxPlanName) {
-        selectedPlan.setPlanName(etbxPlanName.getText().toString());
-    }
-    public String getPlanName(Plan selectedPlan) {
-        return selectedPlan.getPlanName();
-    }
-    public Plan getLatestPlan() {
-        return trainingAppModel.getSavedPlans().get(trainingAppModel.getSavedPlans().size()-1);
+    /**
+     * @return returns a list of saved plans
+     */
+    public List<Plan> getSavedPlans() {
+        return trainingAppModel.getSavedPlans();
     }
 
-    // push latest plan to top to display on
+    /**
+     * addPlan adds a plan to the user's database
+     */
+    public void addPlan() {
+        trainingAppModel.createNewPlan();
+    }
+
+    /**
+     * Searches the database to find the correct plan
+     * @param planId identifier for a plan
+     * @return returns a copy of the plan
+     */
+    public Plan getPlanById(String planId) {
+        return trainingAppModel.getPlan(planId);
+    }
+
+    /**
+     * Removes the plan
+     * @param selectedPlan plan to remove
+     */
+    public void removePlan(Plan selectedPlan) {
+        trainingAppModel.removePlan(selectedPlan.getId());
+    }
+
+    /**
+     * Method for setting a new plan name through the EditText window, using nested loop for
+     * finding the plan to change
+     *
+     * @param selectedPlan the current selected plan
+     * @param etbxPlanName the EditText window
+     * @param planList the list of plans
+     */
+    public void setNewPlanName(Plan selectedPlan, EditText etbxPlanName, List<Plan> planList) {
+        trainingAppModel.updatePlanName(etbxPlanName.getText().toString(), selectedPlan.getId());
+        for (int i = 0; i < planList.size(); i++) {
+            List<Plan> databaseList = getTrainingAppModel().getSavedPlans();
+            for (int k = 0; k < databaseList.size(); k++) {
+                if (databaseList.get(k).getId().equals(planList.get(i).getId())) {
+                    planList.get(i).setPlanName(databaseList.get(k).getPlanName());
+                }
+            }
+        }
+    }
+
+    /**
+     * Method for pushing the latest plan to the top of list as to display its content on creation
+     *
+     * @param planList the list of plans
+     */
     public void shiftRight(List<Plan> planList)
     {
         Plan temp = planList.get(planList.size()-1);
@@ -61,6 +98,9 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
         planList.set(0, temp);
     }
 
+    /**
+     * Constructor for the viewModel
+     */
     public ScheduleViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is schedule fragment");
@@ -71,7 +111,6 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     /**
      * @return reference of mText variable
      */
-
     public LiveData<String> getText() {
         return mText;
     }

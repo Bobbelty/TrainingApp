@@ -15,17 +15,17 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="5dp"
             android:scaleX="1000"
-            android:translationY="46dp"
+            android:translationY="45dp"
             app:srcCompat="@android:drawable/divider_horizontal_textfield" />
 
         <Button
             android:id="@+id/btnWorkout"
-            android:layout_width="159dp"
+            android:layout_width="207dp"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Edit workout" />
+            android:text="Start workout" />
 
         <TextView
             android:id="@+id/lblWorkoutName"

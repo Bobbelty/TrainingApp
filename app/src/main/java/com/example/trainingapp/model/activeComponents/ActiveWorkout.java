@@ -2,7 +2,9 @@ package com.example.trainingapp.model.activeComponents;
 
 import com.example.trainingapp.model.components.Exercise;
 
+import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -11,7 +13,7 @@ import java.util.List;
  * This class is used when the User in the UI has started a workout and therefore the selected workout
  * is converted into an ActiveWorkout.
  *
- * @author ...
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class ActiveWorkout {
 
@@ -21,9 +23,9 @@ public class ActiveWorkout {
     private String workoutName;
 
     /**
-     * List containing all the exercises in the workout
+     * A LinkedHashMap for storing active exercises
      */
-    private List<ActiveExercise> exercises = new ArrayList<>();
+    private LinkedHashMap<String, ActiveExercise> activeExerciseMap = new LinkedHashMap<>();
 
     /**
      * The time for the active workout, used for history
@@ -35,8 +37,19 @@ public class ActiveWorkout {
      *
      * @param workoutName name of workout
      */
-    public ActiveWorkout(String workoutName) {
+    protected ActiveWorkout(String workoutName) {
         this.workoutName = workoutName;
+        currentTime = "0";
+    }
+
+    /**
+     * Constructor for defensive copying, used when performing active workouts
+     *
+     * @param activeWorkout the active workout in use
+     */
+    public ActiveWorkout(ActiveWorkout activeWorkout){
+        this.workoutName = activeWorkout.workoutName;
+        this.activeExerciseMap = new LinkedHashMap<>(activeWorkout.activeExerciseMap);
         currentTime = "0";
     }
 
@@ -50,12 +63,12 @@ public class ActiveWorkout {
     }
 
     /**
-     * Method for adding an exerciseObject to the list of exercises
+     * Method for adding an exerciseObject to the map of exercises
      *
-     * @param exercise object to add to list
+     * @param exercise object to add to map
      */
-    public void addExercise(ActiveExercise exercise) {
-        exercises.add(exercise);
+    protected void addExercise(ActiveExercise exercise) {
+        activeExerciseMap.put(exercise.getExerciseId(), exercise);
     }
 
     /**
@@ -64,17 +77,22 @@ public class ActiveWorkout {
      * @return the list of exercises that Workout contains
      */
     public List<ActiveExercise> getExerciseList(){
-        return exercises;
-    }
+        List<ActiveExercise> activeExercises = new ArrayList<>();
+        for(String key: activeExerciseMap.keySet()){
+            activeExercises.add(activeExerciseMap.get(key));
+        }
+        return activeExercises;
+        }
 
     /**
-     * Method for removing an exerciseObject from the list of exercises
+     * Method for getting a exercise at the index
      *
-     * @param exercise object to remove from the list
+     * @param index position in the list where the wanted exercises is
+     * @return The exerciseId of the exercise
      */
-    public void removeExercise(Exercise exercise) {
-        exercises.remove(exercise);
-    }
+    public ActiveExercise getExercise(int index){
+            return getExerciseList().get(index);
+        }
 
     /**
      * Returns the date of the active workout (on session end)
@@ -92,5 +110,25 @@ public class ActiveWorkout {
      */
     public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
+    }
+
+    /**
+     * Method for updating a rep in an active exercise
+     *
+     * @param reps new amount of reps
+     * @param exerciseId the Id for the exercise
+     */
+    public void updateActiveExerciseRep(int reps, String exerciseId){
+        activeExerciseMap.get(exerciseId).changeRep(reps);
+    }
+
+    /**
+     * Method for updating the weight in a set
+     *
+     * @param exerciseId the Id for the exercise
+     * @param weight new value for weight
+     */
+    public void updateActiveExerciseWeight(String exerciseId, double weight) {
+        activeExerciseMap.get(exerciseId).changeWeight(weight);
     }
 }

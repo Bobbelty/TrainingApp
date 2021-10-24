@@ -1,14 +1,20 @@
-package com.example.trainingapp.view;
+package com.example.trainingapp.view.EditSchedule;
 
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainingapp.R;
-//import com.example.trainingapp.databinding.ActivityMainBinding;
 
+/**
+ * Activity for editing the workouts in plans
+ * @author Philip Rabia and Patrik Olsson
+ */
 public class EditScheduleActivity extends AppCompatActivity {
 
+    /**
+     * Contructor for the activity
+     */
     public EditScheduleActivity() {
         super(R.layout.fragment_edit_schedule);
     }
