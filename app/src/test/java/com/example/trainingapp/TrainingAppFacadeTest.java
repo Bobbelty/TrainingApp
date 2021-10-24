@@ -350,6 +350,21 @@ public class TrainingAppFacadeTest {
     }
 
     @Test
+    public void testUpdateActiveExerciseWeight(){
+        trainingAppFacade.createNewPlan();
+        Plan plan = trainingAppFacade.getSavedPlans().get(0);
+        trainingAppFacade.createNewWorkout(plan.getId());
+        Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
+        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        Exercise exercise = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0).getExerciseByIndex(0);
+        trainingAppFacade.updateExerciseSets(2, plan.getId(), workout.getId(), exercise.getId());
+        trainingAppFacade.convertWorkoutToActive(plan.getId(), workout.getId());
+        ActiveExercise activeExercise = trainingAppFacade.getActiveWorkout().getExercise(0);
+        trainingAppFacade.updateActiveExerciseWeight( activeExercise.getExerciseId(), 40);
+        assertEquals(40, activeExercise.getWeights(), 0.01);
+    }
+
+    @Test
     public void testAddToHistory() {
         trainingAppFacade.createNewPlan();
         Plan plan = trainingAppFacade.getSavedPlans().get(0);
@@ -365,5 +380,8 @@ public class TrainingAppFacadeTest {
         List<ActiveWorkout> completedWorkouts = trainingAppFacade.getCompletedWorkouts();
         assertEquals(3, completedWorkouts.size());
     }
+
+
+
 
 }
