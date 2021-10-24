@@ -3,6 +3,7 @@ package com.example.trainingapp.model.components;
 
 /**
  * Class providing static methods for creating resources
+ *  @author Victor Hui, Valdemar Vålvik
  */
 public class PlanComponentFactory {
 

@@ -14,6 +14,7 @@ import java.util.Objects;
 
 /**
  * Class for the database holding the data used in the application.
+ * @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class MockDatabase implements IDatabase {
 

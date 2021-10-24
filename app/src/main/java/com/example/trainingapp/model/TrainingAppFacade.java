@@ -12,6 +12,7 @@ import java.util.List;
 /**
  * The User-class act as a datahandler that connects all of the model with the modelfacade and the
  * database.
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class TrainingAppFacade {
 

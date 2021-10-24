@@ -6,6 +6,7 @@ import java.util.UUID;
 
 /**
  * Class for creating an exercise. Several exercises makes up a workout
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class Exercise {
 

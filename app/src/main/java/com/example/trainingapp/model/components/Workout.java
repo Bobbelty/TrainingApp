@@ -10,7 +10,7 @@ import java.util.UUID;
 /**
  * A class for building a workout. A workout contains zero or more exercises. Workouts are a part of a plan.
  *
- * @author ...
+ * @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class Workout {
 

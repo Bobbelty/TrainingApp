@@ -13,7 +13,7 @@ import java.util.List;
  * This class is used when the User in the UI has started a workout and therefore the selected workout
  * is converted into an ActiveWorkout.
  *
- * @author ...
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class ActiveWorkout {
 

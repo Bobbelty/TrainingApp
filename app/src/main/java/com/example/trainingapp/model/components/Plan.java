@@ -11,7 +11,7 @@ import java.util.UUID;
 /**
  * A class for building a workout plan that contains zero or more workouts.
  *
- * @author ...
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class Plan {
 

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 
 /**
  * Class handling logic for ActiveExercise and ActiveWorkout
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class ActiveWorkoutSession {
 

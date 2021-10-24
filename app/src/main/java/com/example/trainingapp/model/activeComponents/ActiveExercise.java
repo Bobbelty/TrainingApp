@@ -9,6 +9,7 @@ import java.util.UUID;
 /**
  * Class for creating an active exercise. The class is identical to the Exercise-class, but with added
  * variables and logic to handle a weight used at each set.
+ *  @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public class ActiveExercise {
 

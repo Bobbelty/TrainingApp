@@ -9,6 +9,7 @@ import java.util.List;
 
 /**
  * Interface for the databased used in the application.
+ * @author Victor Hui, Valdemar Vålvik, Oscar Wallin
  */
 public interface IDatabase {
 
