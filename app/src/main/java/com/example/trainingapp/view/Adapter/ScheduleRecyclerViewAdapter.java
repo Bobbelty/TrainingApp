@@ -64,7 +64,6 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.lblWorkoutName.setText(plan.getWorkoutList().get(position).getName());
-        // set list views
         holder.btnEditWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
@@ -84,7 +83,6 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder{
-
 
         private final TextView lblWorkoutName;
         private final Button btnEditWorkout;

@@ -19,7 +19,7 @@ import com.example.trainingapp.viewModel.HomeViewModel;
  * HomeFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
  * fragment.home.xml
  *
- * @author Valdemar Vålvik and Victor Hui
+ * @author Philip Rabia and Patrik Olsson
  */
 
 public class HomeFragment extends Fragment {

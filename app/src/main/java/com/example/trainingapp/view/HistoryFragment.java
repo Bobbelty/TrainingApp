@@ -80,6 +80,7 @@ public class HistoryFragment extends Fragment {
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.history_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+
         recyclerViewAdapter = new HistoryRecyclerViewAdapter(testActiveWorkouts, this.getActivity(), this.getContext());
         recyclerView.setAdapter(recyclerViewAdapter);
     }

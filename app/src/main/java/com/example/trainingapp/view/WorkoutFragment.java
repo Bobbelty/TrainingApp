@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentWorkoutBinding;
 import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.view.Adapter.ScheduleRecyclerViewAdapter;
 import com.example.trainingapp.view.Adapter.WorkoutRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.ScheduleViewModel;
 
@@ -39,7 +38,7 @@ public class WorkoutFragment extends Fragment {
     private ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
     private List<Plan> planList = new ArrayList<>();
     private ArrayAdapter<Plan> adapter;
-    private Plan selectedPlan; // plan should be the first plan in the database (SavedPlans)
+    private Plan selectedPlan;
     private RecyclerView recyclerView;
     private WorkoutRecyclerViewAdapter recyclerViewAdapter;
     private Spinner dropdown;
@@ -111,7 +110,6 @@ public class WorkoutFragment extends Fragment {
         });
     }
     private void initObjects() {
-        // setting up test objects
         planList = scheduleViewModel.getSavedPlans();
         selectedPlan = planList.get(0);
     }

@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -18,7 +17,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
-import com.example.trainingapp.view.Adapter.EditScheduleRecyclerViewAdapter;
 import com.example.trainingapp.view.Adapter.EditWorkoutRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
@@ -33,10 +31,6 @@ public class EditWorkoutFragment extends Fragment {
     private Workout selectedWorkout;
     private EditWorkoutRecyclerViewAdapter recyclerViewAdapter;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
-
-    private List<Plan> testPlans = new ArrayList<>();
-
-    Plan plan;
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
      *
@@ -53,9 +47,8 @@ public class EditWorkoutFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_edit_activeworkout,container,false);
-        initObjects();
         selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
-        initTitleText(v);
+        initLabels(v);
         initRecyclerView(v);
         initFinishWorkoutButton(v);
         return v;
@@ -116,10 +109,10 @@ public class EditWorkoutFragment extends Fragment {
      * @param v the current view used in the application.
      */
     private void initRecyclerView(View v) {
-        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.HistoryExerciseRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        recyclerViewAdapter = new EditWorkoutRecyclerViewAdapter(this.getActivity());
+        recyclerViewAdapter = new EditWorkoutRecyclerViewAdapter();
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
@@ -128,16 +121,12 @@ public class EditWorkoutFragment extends Fragment {
      *
      * @param v the current view used in the application
      */
-    private void initTitleText(View v) {
+    private void initLabels(View v) {
         TextView tbxWorkoutName = v.findViewById(R.id.tbxWorkoutName);
         tbxWorkoutName.setText(selectedWorkout.getName());
-    }
-    /**
-     * initObjects gets the saved plans, used for testing and initial demo/presentation.
-     */
-    private void initObjects() {
-        // setting up test objects
-        testPlans = editWorkoutViewModel.getSavedPlans();
-        plan = testPlans.get(0); // get active plan instead
+        TextView lblReps = v.findViewById(R.id.lblReps);
+        lblReps.setText("Reps");
+        TextView lblWeight = v.findViewById(R.id.lblWeight);
+        lblWeight.setText("Weight");
     }
 }

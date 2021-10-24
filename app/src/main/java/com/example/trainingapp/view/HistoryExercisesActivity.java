@@ -6,13 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainingapp.R;
 
-/**
- * Activity for editing the workouts in plans
- */
-public class EditScheduleActivity extends AppCompatActivity {
+public class HistoryExercisesActivity extends AppCompatActivity {
 
-    public EditScheduleActivity() {
-        super(R.layout.fragment_edit_schedule);
+    public HistoryExercisesActivity() {
+        super(R.layout.fragment_exercise_history);
     }
 
     @Override

@@ -29,7 +29,6 @@ import java.util.List;
 public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWorkoutRecyclerViewAdapter.ListViewHolder> {
 
 
-    private Activity activity;
     private Plan selectedPlan;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
     private Workout selectedWorkout;
@@ -37,12 +36,9 @@ public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWor
 
     /**
      * Constructor for adapter
-     *
-     * @param activity the current activity
      */
-    public EditWorkoutRecyclerViewAdapter(Activity activity) {
+    public EditWorkoutRecyclerViewAdapter() {
         this.selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
-        this.activity = activity;
         this.selectedPlan = editWorkoutViewModel.getSelectedPlan();
         editWorkoutViewModel.createActiveWorkout(selectedPlan.getId(), selectedWorkout.getId());
         this.activeWorkout = editWorkoutViewModel.getActiveWorkout();
@@ -63,7 +59,15 @@ public class EditWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<EditWor
      */
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.lblWorkoutExerciseName.setText(activeWorkout.getExercise(position).getName());
+        holder.lblWorkoutExerciseName.setText("");
+        if  (position > 0) {
+            if (!(activeWorkout.getExercise(position).getName().equals(activeWorkout.getExercise(position-1).getName()))) {
+                holder.lblWorkoutExerciseName.setText(activeWorkout.getExercise(position).getName());
+            }
+        }
+        else {
+            holder.lblWorkoutExerciseName.setText(activeWorkout.getExercise(position).getName());
+        }
         holder.etbxNoOfReps.setText(activeWorkout.getExercise(position).getNoOfReps() + "");
         holder.etbxWeight.setText(0 + "");
 
