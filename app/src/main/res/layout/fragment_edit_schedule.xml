@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/editScheduleRecyclerView"
+        android:id="@+id/HistoryExerciseRecyclerView"
         android:layout_width="440dp"
         android:layout_height="600dp"
         android:layout_marginTop="100dp"

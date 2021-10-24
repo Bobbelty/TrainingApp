@@ -13,18 +13,6 @@
         app:cardBackgroundColor="#393939">
 
         <TextView
-            android:id="@+id/lblX"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:text="x"
-            android:textColor="#FFFFFF"
-            android:textSize="16sp"
-            android:translationX="-90dp"
-            android:translationY="12dp"
-            android:focusable="true"/>
-
-        <TextView
             android:id="@+id/lblWorkoutExerciseName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,21 +21,21 @@
             android:textSize="24sp" />
 
         <EditText
-            android:focusableInTouchMode="true"
-            android:focusable="true"
-            android:imeOptions="actionDone"
-            android:nextFocusDown="@+id/lblWorkoutExerciseName"
-            android:nextFocusRight="@+id/lblWorkoutExerciseName"
             android:id="@+id/etbxWeight"
-            android:layout_width="40dp"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:ems="10"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:imeOptions="actionDone"
             android:inputType="number"
+            android:nextFocusRight="@+id/lblWorkoutExerciseName"
+            android:nextFocusDown="@+id/lblWorkoutExerciseName"
             android:textAlignment="gravity"
             android:textColor="@color/white"
             android:textSize="22sp"
-            android:translationX="-50dp" />
+            android:translationX="-30dp" />
 
         <EditText
             android:focusableInTouchMode="true"

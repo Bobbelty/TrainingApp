@@ -19,14 +19,12 @@ import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditScheduleRecyclerViewAdapter.ListViewHolder> {
 
 
-    private Activity activity;
     private Workout selectedWorkout;
     private Plan selectedPlan;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
-    public EditScheduleRecyclerViewAdapter(Activity activity) {
+    public EditScheduleRecyclerViewAdapter() {
         this.selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
-        this.activity = activity;
         this.selectedPlan = editWorkoutViewModel.getSelectedPlan();
     }
 
@@ -110,8 +108,6 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
     }
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
-        //change name, make private maybe final
-        //private final TextView lblExercise;
         private final EditText etbxExerciseName;
         private final EditText etbxNoOfSets;
         private final EditText etbxNoOfReps;
@@ -120,7 +116,6 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            //lblExercise = itemView.findViewById(R.id.lblExercise);
             etbxExerciseName = itemView.findViewById(R.id.etbxExerciseName);
             etbxNoOfSets = itemView.findViewById(R.id.etbxNoOfReps);
             etbxNoOfReps = itemView.findViewById(R.id.etbxWeight);

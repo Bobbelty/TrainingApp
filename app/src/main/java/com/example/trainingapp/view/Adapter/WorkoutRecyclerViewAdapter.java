@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.view.EditScheduleActivity;
 import com.example.trainingapp.view.EditWorkoutActivity;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
@@ -51,7 +50,6 @@ public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecy
         holder.btnWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-                //editScheduleViewModel.setSelectedPlanId(plan.getId());
 
                 editWorkoutViewModel.setSelectedWorkout(plan.getWorkoutList().get(position));
                 editWorkoutViewModel.setSelectedPlan(plan);
@@ -70,7 +68,6 @@ public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecy
 
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
-        //change name, make private maybe final
         private final TextView lblWorkoutName;
         private final Button btnWorkout;
 

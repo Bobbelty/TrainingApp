@@ -16,25 +16,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
-import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.view.Adapter.EditScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class EditScheduleFragment extends Fragment {
 
-    //Plan activePlan;
     private Workout selectedWorkout;
     private RecyclerView recyclerView;
     private EditScheduleRecyclerViewAdapter recyclerViewAdapter;
     private EditWorkoutViewModel editWorkoutViewModel = EditWorkoutViewModel.getInstance();
 
-    private List<Plan> testPlans = new ArrayList<>();
 
-    Plan plan; // plan should be the first plan in the database (SavedPlans)
     /**
      * onCreateView creates and returns the view hierarchy associated with the fragment.
      *
@@ -51,7 +44,6 @@ public class EditScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View v = LayoutInflater.from(getContext()).inflate(R.layout.fragment_edit_schedule,container,false);
-        initObjects();
         selectedWorkout = editWorkoutViewModel.getSelectedWorkout();
         initTitleText(v);
         initRecyclerView(v);
@@ -67,7 +59,7 @@ public class EditScheduleFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 editWorkoutViewModel.addExerciseToWorkout(editWorkoutViewModel.getSelectedPlan().getId(), selectedWorkout.getId());
-                recyclerViewAdapter = new EditScheduleRecyclerViewAdapter(getActivity());
+                recyclerViewAdapter = new EditScheduleRecyclerViewAdapter();
                 recyclerView.setAdapter(recyclerViewAdapter);
             }
         });
@@ -116,10 +108,10 @@ public class EditScheduleFragment extends Fragment {
      * @param v the current view used in the application.
      */
     private void initRecyclerView(View v) {
-        recyclerView = (RecyclerView) v.findViewById(R.id.editScheduleRecyclerView);
+        recyclerView = (RecyclerView) v.findViewById(R.id.HistoryExerciseRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
-        recyclerViewAdapter = new EditScheduleRecyclerViewAdapter(this.getActivity());
+        recyclerViewAdapter = new EditScheduleRecyclerViewAdapter();
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
@@ -144,14 +136,5 @@ public class EditScheduleFragment extends Fragment {
                 }
             }
         });
-    }
-
-    /**
-     * initObjects gets the saved plans, used for testing and initial demo/presentation.
-     */
-    private void initObjects() {
-        // setting up test objects
-        testPlans = editWorkoutViewModel.getSavedPlans();
-        plan = testPlans.get(0); // get active plan instead
     }
 }

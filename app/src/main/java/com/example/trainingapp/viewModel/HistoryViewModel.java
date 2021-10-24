@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.trainingapp.model.TrainingAppFacade;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 
+import java.util.List;
+
 /**
  * This is the "ViewModel" in the mvvm. The ViewModel is responsible for exposing (converting) the data
  * objects from the model in such a way that objects are easily managed and presented.
@@ -36,7 +38,6 @@ public class HistoryViewModel extends TrainingAppModelViewModel {
 
         trainingAppModel = getInstanceOfTrainingModel();
     }
-
     /**
      * @return reference of mText variable
      */
@@ -47,6 +48,7 @@ public class HistoryViewModel extends TrainingAppModelViewModel {
     public TrainingAppFacade getTrainingAppModel(){
         return trainingAppModel;
     }
+
     public static HistoryViewModel getInstance() {
         if (instance == null) {
             instance = new HistoryViewModel();
