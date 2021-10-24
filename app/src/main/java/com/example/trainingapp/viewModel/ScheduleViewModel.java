@@ -15,7 +15,7 @@ import java.util.List;
  * objects from the model in such a way that objects are easily managed and presented.
  * In this respect, the ViewModel is more model than view, and handles most if not all of the view's display logic.
  *
- * @author Philip Rabia, Patrik Olsson and Oscar Wallin
+ * @author Philip Rabia and Patrik Olsson
  */
 
 public class ScheduleViewModel extends TrainingAppModelViewModel{
@@ -31,18 +31,33 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
      * Class constructor
      */
 
+    /**
+     * @return returns a list of saved plans
+     */
     public List<Plan> getSavedPlans() {
         return trainingAppModel.getSavedPlans();
     }
 
+    /**
+     * addPlan adds a plan to the user's database
+     */
     public void addPlan() {
         trainingAppModel.createNewPlan();
     }
 
+    /**
+     * Searches the database to find the correct plan
+     * @param planId identifier for a plan
+     * @return returns a copy of the plan
+     */
     public Plan getPlanById(String planId) {
         return trainingAppModel.getPlan(planId);
     }
 
+    /**
+     * Removes the plan
+     * @param selectedPlan plan to remove
+     */
     public void removePlan(Plan selectedPlan) {
         trainingAppModel.removePlan(selectedPlan.getId());
     }
@@ -96,7 +111,6 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     /**
      * @return reference of mText variable
      */
-
     public LiveData<String> getText() {
         return mText;
     }

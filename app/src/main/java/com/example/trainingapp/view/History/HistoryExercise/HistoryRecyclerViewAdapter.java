@@ -21,8 +21,10 @@ import com.example.trainingapp.view.History.HistoryExercisesActivity;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
 /**
- * Adapter for the RecyclerView in the HistoryActivity, provides the correct information for
+ * Adapter for the RecyclerView in the HistoryFragment provides the correct information for
  * each list item
+ *
+ * @author Philip Rabia and Patrik Olsson
  */
 public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecyclerViewAdapter.ListViewHolder>{
 
@@ -44,6 +46,13 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
         this.context = context;
     }
 
+    /**
+     * onCreateViewHolder creates and returns the ViewHolder hierarchy associated with the adapter.
+     *
+     * @param parent
+     * @param viewType
+     * @return Return the ListViewHolder for the adapter, or null.
+     */
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -78,9 +87,16 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
     }
 
+    /**
+     * Return value is used to set the amount of items in the recyclerview
+     * @return Returns the length of the list of items that is to be displayed
+     */
     @Override
     public int getItemCount() { return completedWorkouts.size(); }
 
+    /**
+     * Class for the ListViewHolder that is used by this adapter
+     */
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView lblActiveWorkoutName;

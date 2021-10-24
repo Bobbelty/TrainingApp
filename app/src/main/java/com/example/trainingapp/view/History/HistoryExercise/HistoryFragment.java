@@ -2,7 +2,6 @@ package com.example.trainingapp.view.History.HistoryExercise;
 
 import java.util.List;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 
 /**
  * HistoryFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
- * fragment.history.xml
+ * fragment_history.xml
  *
  * @author Philip Rabia and Patrik Olsson
  */
@@ -58,7 +57,6 @@ public class HistoryFragment extends Fragment {
      *
      * @return Return the View for the fragment's UI, or null.
      */
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

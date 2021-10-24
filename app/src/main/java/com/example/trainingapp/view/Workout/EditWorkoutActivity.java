@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainingapp.R;
-//import com.example.trainingapp.databinding.ActivityMainBinding;
 
 /**
  * Activity for editing workouts during an active session

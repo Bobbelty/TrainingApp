@@ -8,9 +8,13 @@ import com.example.trainingapp.R;
 
 /**
  * Activity for editing the workouts in plans
+ * @author Philip Rabia and Patrik Olsson
  */
 public class EditScheduleActivity extends AppCompatActivity {
 
+    /**
+     * Contructor for the activity
+     */
     public EditScheduleActivity() {
         super(R.layout.fragment_edit_schedule);
     }

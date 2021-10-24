@@ -16,11 +16,12 @@ import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
 /**
- * Adapter for the RecyclerView in the EditScheduleActivity, provides the correct information for
+ * Adapter for the RecyclerView in the EditScheduleFragment, provides the correct information for
  * each list item
+ *
+ * @author Philip Rabia and Patrik Olsson
  */
 public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditScheduleRecyclerViewAdapter.ListViewHolder> {
-
 
     private Workout selectedWorkout;
     private Plan selectedPlan;
@@ -113,12 +114,18 @@ public class EditScheduleRecyclerViewAdapter extends RecyclerView.Adapter<EditSc
             }
         });
     }
-
+    /**
+     * Return value is used to set the amount of items in the recyclerview
+     * @return Returns the length of the list of items that is to be displayed
+     */
     @Override
     public int getItemCount() {
         return selectedWorkout.getExerciseList().size();
     }
 
+    /**
+     * Class for the ListViewHolder that is used by this adapter
+     */
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
         private final EditText etbxExerciseName;

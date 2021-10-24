@@ -19,9 +19,12 @@ import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
 /**
- * Adapter for the RecyclerView in the ScheduleActivity, provides the correct information for
+ * Adapter for the RecyclerView in the ScheduleFragment, provides the correct information for
  * each list item
+ *
+ * @author Philip Rabia and Patrik Olsson
  */
+
 public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder>  {
 
 
@@ -43,8 +46,14 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         this.activity = activity;
     }
 
-    public void setNewPlan(Plan plan) { this.plan = plan; }
 
+    /**
+     * onCreateViewHolder creates and returns the ViewHolder hierarchy associated with the adapter.
+     *
+     * @param parent
+     * @param viewType
+     * @return Return the ListViewHolder for the adapter, or null.
+     */
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -76,11 +85,18 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
         });
     }
 
+    /**
+     * Return value is used to set the amount of items in the recyclerview
+     * @return Returns the length of the list of items that is to be displayed
+     */
     @Override
     public int getItemCount() {
         return plan.getWorkoutList().size();
     }
 
+    /**
+     * Class for the ListViewHolder that is used by this adapter
+     */
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView lblWorkoutName;

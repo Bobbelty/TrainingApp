@@ -19,8 +19,10 @@ import com.example.trainingapp.view.Workout.EditWorkoutActivity;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
 /**
- * Adapter for the RecyclerView in the WorkoutActivity, provides the correct information for
+ * Adapter for the RecyclerView in the WorkoutFragment, provides the correct information for
  * each list item
+ *
+ * @author Philip Rabia and Patrik Olsson
  */
 public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecyclerViewAdapter.ListViewHolder>  {
 
@@ -81,11 +83,18 @@ public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecy
         });
     }
 
+    /**
+     * Return value is used to set the amount of items in the recyclerview
+     * @return Returns the length of the list of items that is to be displayed
+     */
     @Override
     public int getItemCount() {
         return plan.getWorkoutList().size();
     }
 
+    /**
+     * Class for the ListViewHolder that is used by this adapter
+     */
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView lblWorkoutName;

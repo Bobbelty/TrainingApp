@@ -71,6 +71,11 @@ public class WorkoutFragment extends Fragment {
         return v;
     }
 
+    /**
+     * initRecyclerView initiates the recyclerView and sets its adapter.
+     *
+     * @param v the current view used in the application.
+     */
     private void initRecyclerView(View v) {
         recyclerView = (RecyclerView) v.findViewById(R.id.workoutRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -108,6 +113,10 @@ public class WorkoutFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * initObjects gets the saved plans.
+     */
     private void initObjects() {
         planList = scheduleViewModel.getSavedPlans();
         selectedPlan = planList.get(0);

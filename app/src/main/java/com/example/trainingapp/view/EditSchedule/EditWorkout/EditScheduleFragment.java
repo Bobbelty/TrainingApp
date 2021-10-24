@@ -18,9 +18,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
-
 /**
- * Fragment for editing the workouts in plans
+ * EditScheduleFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.history.xml
+ *
+ * @author Philip Rabia and Patrik Olsson
  */
 public class EditScheduleFragment extends Fragment {
 

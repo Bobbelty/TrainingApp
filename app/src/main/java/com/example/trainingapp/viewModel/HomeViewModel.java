@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel;
  * objects from the model in such a way that objects are easily managed and presented.
  * In this respect, the ViewModel is more model than view, and handles most if not all of the view's display logic.
  *
- * @author ...
+ * @author Philip Lindström Rabia, Patrik Olsson
  */
 
 public class HomeViewModel extends TrainingAppModelViewModel {

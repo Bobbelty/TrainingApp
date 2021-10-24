@@ -38,12 +38,11 @@ public class ScheduleFragment extends Fragment {
     /**
      * Instance of ScheduleViewModel to enable communication and displaying of the correct elements.
      */
-
     private ScheduleViewModel scheduleViewModel = new ScheduleViewModel();
     private EditText etbxPlanName;
     private ArrayAdapter<Plan> adapter;
     private List<Plan> planList = new ArrayList<>();
-    private Plan selectedPlan; // plan should be the first plan in the database (SavedPlans)
+    private Plan selectedPlan;
     private RecyclerView recyclerView;
     private ScheduleRecyclerViewAdapter recyclerViewAdapter;
     private Spinner dropdown;
@@ -51,7 +50,6 @@ public class ScheduleFragment extends Fragment {
      * Instance of the binding-class for fragment_schedule.xml. Allows for access of all the root views
      * ID's.
      */
-
     private FragmentScheduleBinding binding; //
 
 
@@ -82,6 +80,10 @@ public class ScheduleFragment extends Fragment {
 
         return v;
     }
+    /**
+     * initAddPlanButton initiates the add plan button
+     * @param v the current view used in the application.
+     */
     private void initAddPlanButton(View v) {
         Button btnAddPlan = v.findViewById(R.id.btnAddPlan);
         btnAddPlan.setText("+");
@@ -103,6 +105,10 @@ public class ScheduleFragment extends Fragment {
             }
         });
     }
+    /**
+     * initAddPlanButton initiates the remove plan button
+     * @param v the current view used in the application.
+     */
     private void initRemovePlanButton(View v) {
         Button btnRemovePlan = v.findViewById(R.id.btnRemovePlan);
         btnRemovePlan.setText("-");
@@ -116,6 +122,10 @@ public class ScheduleFragment extends Fragment {
             }
         });
     }
+    /**
+     * popupMessage creates a popup message, asking the user to comfirm the action
+     * @param v the current view used in the application.
+     */
     private void popupMessage(View v) {
         TextView alertTextView = (TextView) v.findViewById(R.id.alertTextView);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
@@ -149,7 +159,10 @@ public class ScheduleFragment extends Fragment {
         });
         builder.show();
     }
-
+    /**
+     * initPlanNameEditText initiates the text that displays the name of the plan
+     * @param v the current view used in the application.
+     */
     private void initPlanNameEditText(View v) {
         etbxPlanName = v.findViewById(R.id.etbxPlanName);
         etbxPlanName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -166,6 +179,10 @@ public class ScheduleFragment extends Fragment {
             }
         });
     }
+    /**
+     * initAddWorkoutButton initiates the button that adds workouts to a plan
+     * @param v the current view used in the application.
+     */
     private void initAddWorkoutButton(View v) {
         Button btnAddWorkout = v.findViewById(R.id.btnAddWorkout);
         btnAddWorkout.setText("Add workout");
@@ -212,8 +229,6 @@ public class ScheduleFragment extends Fragment {
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
 
                 selectedPlan = planList.get(position);
-
-                recyclerViewAdapter.setNewPlan(selectedPlan);
                 etbxPlanName.setText(selectedPlan.getPlanName());
                 selectedPlan = scheduleViewModel.getPlanById(selectedPlan.getId());
                 recyclerViewAdapter = new ScheduleRecyclerViewAdapter(selectedPlan, getContext(), getActivity());
@@ -228,11 +243,9 @@ public class ScheduleFragment extends Fragment {
     }
 
     /**
-     * initObjects gets the saved plans, used for testing and initial demo/presentation.
+     * initObjects gets the saved plans.
      */
-    //initiates test objects
     private void initObjects() {
-        // setting up test objects
         planList = scheduleViewModel.getSavedPlans();
         selectedPlan = planList.get(0);
     }
