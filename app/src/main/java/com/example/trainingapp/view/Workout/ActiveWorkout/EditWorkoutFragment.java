@@ -19,8 +19,12 @@ import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
 /**
- * Fragment for editing workouts during an active session
+ * ScheduleFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment.schedule.xml
+ *
+ * @author Philip Rabia and Patrik Olsson
  */
+
 public class EditWorkoutFragment extends Fragment {
 
     private Workout selectedWorkout;

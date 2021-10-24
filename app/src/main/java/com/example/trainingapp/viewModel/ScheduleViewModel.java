@@ -31,18 +31,33 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
      * Class constructor
      */
 
+    /**
+     * @return returns a list of saved plans
+     */
     public List<Plan> getSavedPlans() {
         return trainingAppModel.getSavedPlans();
     }
 
+    /**
+     * addPlan adds a plan to the user's database
+     */
     public void addPlan() {
         trainingAppModel.createNewPlan();
     }
 
+    /**
+     * Searches the database to find the correct plan
+     * @param planId identifier for a plan
+     * @return returns a copy of the plan
+     */
     public Plan getPlanById(String planId) {
         return trainingAppModel.getPlan(planId);
     }
 
+    /**
+     * Removes the plan
+     * @param selectedPlan plan to remove
+     */
     public void removePlan(Plan selectedPlan) {
         trainingAppModel.removePlan(selectedPlan.getId());
     }
@@ -96,7 +111,6 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     /**
      * @return reference of mText variable
      */
-
     public LiveData<String> getText() {
         return mText;
     }

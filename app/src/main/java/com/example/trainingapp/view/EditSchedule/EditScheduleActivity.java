@@ -11,6 +11,9 @@ import com.example.trainingapp.R;
  */
 public class EditScheduleActivity extends AppCompatActivity {
 
+    /**
+     * Contructor for the activity
+     */
     public EditScheduleActivity() {
         super(R.layout.fragment_edit_schedule);
     }

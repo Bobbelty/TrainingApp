@@ -12,15 +12,32 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 
-
+/**
+ * Adapter for the RecyclerView in the HistoryExercisesFragment, provides the correct information for
+ * each list item
+ *
+ * @author Philip Rabia and Patrik Olsson
+ */
 public class HistoryExercisesRecyclerViewAdapter extends RecyclerView.Adapter<HistoryExercisesRecyclerViewAdapter.ListViewHolder>{
 
     private ActiveWorkout selectedWorkout;
 
+    /**
+     * Constructor for adapter
+     *
+     * @param selectedWorkout the selected workout from HistoryFragment page
+     */
     public HistoryExercisesRecyclerViewAdapter(ActiveWorkout selectedWorkout) {
         this.selectedWorkout = selectedWorkout;
     }
 
+    /**
+     * onCreateViewHolder creates and returns the ViewHolder hierarchy associated with the adapter.
+     *
+     * @param parent
+     * @param viewType
+     * @return Return the ListViewHolder for the adapter, or null.
+     */
     @NonNull
     @Override
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -8,6 +8,7 @@ import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Objects;
@@ -97,8 +98,8 @@ public class MockDatabase implements IDatabase {
 
         ActiveWorkout activeWorkout1 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout11);
         ActiveWorkout activeWorkout2 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout22);
-        activeWorkout1.setCurrentTime("2020-05-12");
-        activeWorkout2.setCurrentTime("2019-10-02");
+        activeWorkout1.setCurrentTime("2019-05-12");
+        activeWorkout2.setCurrentTime("2020-10-02");
         completedWorkouts.add(activeWorkout1);
         completedWorkouts.add(activeWorkout2);
 
@@ -133,18 +134,12 @@ public class MockDatabase implements IDatabase {
         return getPlanFromMap(planId).getWorkoutById(workoutId);
     }
     public List<ActiveWorkout> getCompletedWorkouts() {
-        return new ArrayList<>(completedWorkouts);
+        List<ActiveWorkout> temp = new ArrayList<>(completedWorkouts);
+        Collections.reverse(temp);
+        return temp;
     }
 
     public void addToCompletedWorkouts(ActiveWorkout workout) {completedWorkouts.add(workout);}
-
-    public List<ActiveExercise> getCurrentPBs() {
-        return currentPBs;
-    }
-
-    public void addToCurrentPBs(ActiveExercise activeExercise) {
-        currentPBs.add(activeExercise);
-    }
 
     public void updateWorkoutName(String name, String planId, String workoutId) throws NullPointerException{
         getPlanFromMap(planId).updateWorkoutName(name, workoutId);

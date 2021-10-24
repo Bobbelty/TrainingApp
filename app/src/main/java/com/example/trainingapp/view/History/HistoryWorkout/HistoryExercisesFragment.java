@@ -15,6 +15,13 @@ import com.example.trainingapp.R;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
+/**
+ * HistoryExercisesFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
+ * fragment_exercise_history
+ *
+ * @author Philip Rabia and Patrik Olsson
+ */
+
 public class HistoryExercisesFragment extends Fragment {
 
     private ActiveWorkout selectedWorkout;
