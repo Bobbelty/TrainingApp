@@ -1,6 +1,6 @@
 package com.example.trainingapp.model;
 
-import com.example.trainingapp.mockDataBase.IDatabase;
+import com.example.trainingapp.mockDatabase.IDatabase;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
 import com.example.trainingapp.model.activeComponents.ActiveWorkoutSession;
 import com.example.trainingapp.model.components.Plan;
@@ -15,16 +15,6 @@ import java.util.List;
  */
 public class TrainingAppFacade {
 
-    /**
-     * ActiveWorkoutSession-object to access logic for ActiveWorkout and ActiveExercise.
-     */
-    private final ActiveWorkoutSession activeWorkoutSession = new ActiveWorkoutSession();
-
-    /**
-     * ExerciseIdHandler-object for creating new exerciseId:s
-     */
-    private final ExerciseIdHandler exerciseIdHandler = new ExerciseIdHandler();
-    
     /**
      * The facade uses a MockDatabase to store plans, workouts and exercises
      * during runtime. It also stores completed workouts.
@@ -95,7 +85,7 @@ public class TrainingAppFacade {
      *
      * @param planId what plan to add it into
      */
-    public void addWorkoutToPlan(String planId) throws NullPointerException{
+    public void createNewWorkout(String planId) throws NullPointerException{
         mockDataBase.addWorkoutToPlan(PlanComponentFactory.createWorkout(), planId);
     }
 
@@ -108,6 +98,13 @@ public class TrainingAppFacade {
     public void removeWorkoutFromPlan(String planId, String workoutId) throws NullPointerException{
         mockDataBase.removeWorkoutFromPlan(planId, workoutId);
     }
+
+    /**
+     * Method for getting a specified workout
+     *
+     * @param planId the Id for the plan
+     * @param workoutId the Id for the workout
+     */
     public Workout getWorkout(String planId, String workoutId) throws NullPointerException {
         return mockDataBase.getWorkout(planId, workoutId);
     }
@@ -131,6 +128,12 @@ public class TrainingAppFacade {
     public void addExerciseToWorkout(String planId, String workoutId) throws NullPointerException {
         mockDataBase.addExerciseToWorkout(PlanComponentFactory.createExercise(), planId, workoutId);
     }
+
+    /**
+     * Method for getting the current activeWorkout
+     *
+     * @return the current activeWorkout
+     */
     public ActiveWorkout getActiveWorkout() {
         return mockDataBase.getActiveWorkout();
     }
@@ -154,8 +157,8 @@ public class TrainingAppFacade {
      * @param workoutId in which workout
      * @param exerciseId what exercise to update
      */
-    public void updateExerciseName(String exerciseName, String planId, String workoutId, String exerciseId) throws NullPointerException{
-        mockDataBase.updateExerciseName(exerciseName, planId, workoutId, exerciseId);
+    public void updateExerciseName(String planId, String workoutId, String exerciseId, String exerciseName) throws NullPointerException{
+        mockDataBase.updateExerciseName(planId, workoutId, exerciseId, exerciseName);
     }
 
     /**
@@ -203,7 +206,12 @@ public class TrainingAppFacade {
         mockDataBase.updateActiveExerciseRep(reps, exerciseId);
     }
 
-
+    /**
+     * Method for updating the weight for a set in the exercise
+     *
+     * @param exerciseId the Id for the exercise
+     * @param weight the new weight value
+     */
     public void updateActiveExerciseWeight(String exerciseId, double weight){
         mockDataBase.updateActiveExerciseWeight(exerciseId, weight);
     }

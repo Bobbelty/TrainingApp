@@ -21,6 +21,10 @@ import com.example.trainingapp.view.EditScheduleActivity;
 import com.example.trainingapp.view.HistoryExercisesActivity;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
+/**
+ * Adapter for the RecyclerView in the HistoryActivity, provides the correct information for
+ * each list item
+ */
 public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecyclerViewAdapter.ListViewHolder>{
 
     private List<ActiveWorkout> completedWorkouts;
@@ -28,6 +32,13 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
     private Activity activity;
     private HistoryViewModel historyViewModel = HistoryViewModel.getInstance();
 
+    /**
+     * Constructor for adapter
+     *
+     * @param completedWorkouts list of completed workouts
+     * @param activity the current activity
+     * @param context the current state of the application
+     */
     public HistoryRecyclerViewAdapter(List<ActiveWorkout> completedWorkouts, Activity activity, Context context) {
         this.completedWorkouts = completedWorkouts;
         this.activity = activity;
@@ -43,6 +54,12 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
 
     }
 
+    /**
+     * Binds application data to the ViewHolder
+     *
+     * @param holder the ViewHolder
+     * @param position current position in completedWorkouts
+     */
     @Override
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
@@ -71,6 +88,11 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
         private final TextView lblActiveWorkoutDate;
         private final Button btnViewExercises;
 
+        /**
+         * Binds elements in layout file to the variables in the ViewHolder
+         *
+         * @param itemView the itemView
+         */
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             lblActiveWorkoutName= itemView.findViewById(R.id.lblActiveWorkoutName);

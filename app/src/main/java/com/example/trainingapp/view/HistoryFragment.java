@@ -72,6 +72,11 @@ public class HistoryFragment extends Fragment {
         return v;
     }
 
+    /**
+     * initRecyclerView initiates the recyclerView and sets its adapter.
+     *
+     * @param v the current view used in the application.
+     */
     private void initRecyclerView(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.history_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
@@ -80,6 +85,10 @@ public class HistoryFragment extends Fragment {
         recyclerView.setAdapter(recyclerViewAdapter);
     }
 
+    /**
+     * initObjects initiates the objects to be shown in history
+     *
+     */
     private void initObjects() {
         testActiveWorkouts = historyViewModel.getTrainingAppModel().getCompletedWorkouts();
     }

@@ -13,7 +13,7 @@ import java.util.List;
  * objects from the model in such a way that objects are easily managed and presented.
  * In this respect, the ViewModel is more model than view, and handles most if not all of the view's display logic.
  *
- * @author Valdemar Vålvik and Victor Hui
+ * @author Oscar Wallin
  */
 
 public class HistoryViewModel extends TrainingAppModelViewModel {
@@ -49,6 +49,10 @@ public class HistoryViewModel extends TrainingAppModelViewModel {
         return trainingAppModel;
     }
 
+    /**
+     * Method enforcing singleton on ViewModel, sending current reference of ViewModel if
+     * it is present, otherwise creating new instance
+     */
     public static HistoryViewModel getInstance() {
         if (instance == null) {
             instance = new HistoryViewModel();
@@ -62,6 +66,7 @@ public class HistoryViewModel extends TrainingAppModelViewModel {
     public ActiveWorkout getSelectedWorkout() {
         return selectedActiveWorkout;
     }
+
     public void setSelectedWorkout(ActiveWorkout selectedActiveWorkout) {
         this.selectedActiveWorkout = selectedActiveWorkout;
     }

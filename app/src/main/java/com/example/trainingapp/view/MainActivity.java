@@ -13,6 +13,9 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.trainingapp.databinding.ActivityMainBinding;
 
+/**
+ * The main activity presenting the first point of view of the application
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;

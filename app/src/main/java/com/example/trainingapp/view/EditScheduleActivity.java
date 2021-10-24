@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.trainingapp.R;
 
+/**
+ * Activity for editing the workouts in plans
+ */
 public class EditScheduleActivity extends AppCompatActivity {
 
     public EditScheduleActivity() {

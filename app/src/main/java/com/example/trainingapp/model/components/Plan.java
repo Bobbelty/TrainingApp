@@ -33,7 +33,7 @@ public class Plan {
     /**
      * Class constructor setting default plan name and generating planId
      */
-    public Plan() {
+    protected Plan() {
         this.planName = "New plan";
         this.planId = UUID.randomUUID().toString();
     }
@@ -48,6 +48,14 @@ public class Plan {
     }
 
     /**
+     * Class constructor setting specified planName and generated planId
+     */
+    public Plan(String name){
+        this.planName = name;
+        this.planId = UUID.randomUUID().toString();
+    }
+
+    /**
      * Method for getting a workout from the workoutMap
      *
      * @param workoutId the Id for the workout
@@ -56,14 +64,6 @@ public class Plan {
      */
     public Workout getWorkoutById(String workoutId) throws NullPointerException{
         return new Workout(getWorkoutFromMap(workoutId));
-    }
-
-    /**
-     * Class constructor setting specified planName and generated planId
-     */
-    public Plan(String name){
-        this.planName = name;
-        this.planId = UUID.randomUUID().toString();
     }
 
     /**
@@ -147,7 +147,7 @@ public class Plan {
     }
 
     private Workout getWorkoutFromMap(String workoutId) throws NullPointerException{
-        return Objects.requireNonNull(workoutMap.get(workoutId), "No workout with this Id exist");
+        return Objects.requireNonNull(workoutMap.get(workoutId), "No workout with this Id exists");
     }
 
     /**
@@ -156,7 +156,7 @@ public class Plan {
      * @param name the new name for the workout
      * @param workoutId the id for the workout
      */
-    public void setWorkoutName(String name, String workoutId) throws NullPointerException{
+    public void updateWorkoutName(String name, String workoutId) throws NullPointerException{
         getWorkoutFromMap(workoutId).setName(name);
     }
 
@@ -187,8 +187,8 @@ public class Plan {
      * @param workoutId the id for the workout
      * @param exerciseId the id for the exercise
      */
-    public void updateExerciseName(String newExerciseName, String workoutId, String exerciseId) throws NullPointerException{
-        getWorkoutFromMap(workoutId).updateExerciseName(newExerciseName, exerciseId);
+    public void updateExerciseName(String workoutId, String exerciseId, String newExerciseName) throws NullPointerException{
+        getWorkoutFromMap(workoutId).updateExerciseName(exerciseId, newExerciseName);
     }
 
     /**

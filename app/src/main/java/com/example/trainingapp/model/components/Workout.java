@@ -32,7 +32,7 @@ public class Workout {
     /**
      * Class constructor setting a default workoutName and generated workoutId
      */
-    public Workout() {
+    protected Workout() {
         this.workoutName ="New Workout";
         this.workoutId = UUID.randomUUID().toString();
     }
@@ -68,12 +68,13 @@ public class Workout {
      *
      * @return a list of exercises that Workout contains
      */
-    public List<Exercise> getExerciseList(){
-    List<Exercise> exercises = new ArrayList<>();
-    for(String key: exerciseMap.keySet()){
-        exercises.add(exerciseMap.get(key));
-    }
-    return exercises;
+    public List<Exercise> getExerciseList() throws NullPointerException{
+        List<Exercise> exercises = new ArrayList<>();
+
+        for(String key: exerciseMap.keySet()){
+            exercises.add(new Exercise(getExerciseFromMap(key)));
+        }
+        return exercises;
     }
 
     /**
@@ -92,7 +93,7 @@ public class Workout {
      *
      * @param exercise object to add to list
      */
-    public void addExercise(Exercise exercise) {
+    protected void addExercise(Exercise exercise) {
         exerciseMap.put(exercise.getId(), exercise);
     }
 
@@ -101,18 +102,16 @@ public class Workout {
      *
      * @param exerciseId the id of the exercise
      */
-    public void removeExercise(String exerciseId) {
+    protected void removeExercise(String exerciseId) {
         exerciseMap.remove(exerciseId);
     }
-
-
 
     /**
      * Method for setting a name for a workout
      *
      * @param workoutName the new name for the workout
      */
-    public void setName(String workoutName) {
+    protected void setName(String workoutName) {
         this.workoutName = workoutName;
     }
 
@@ -135,7 +134,7 @@ public class Workout {
      * @param name the new name of the exercise
      * @param exerciseId the Id of the exercise
      */
-    public void updateExerciseName(String name, String exerciseId) throws NullPointerException {
+    protected void updateExerciseName(String exerciseId, String name) throws NullPointerException {
         getExerciseFromMap(exerciseId).setName(name);
     }
 
@@ -145,7 +144,7 @@ public class Workout {
      * @param exerciseId the Id of the exercise
      * @param reps the new number of reps
      */
-    public void updateExerciseRep(String exerciseId, int reps) throws NullPointerException {
+    protected void updateExerciseRep(String exerciseId, int reps) throws NullPointerException {
         getExerciseFromMap(exerciseId).setNumberOfReps(reps);
     }
 
@@ -155,7 +154,7 @@ public class Workout {
      * @param exerciseId the Id of the exercise
      * @param sets the new number of sets
      */
-    public void updateExerciseSets(String exerciseId, int sets) throws NullPointerException{
+    protected void updateExerciseSets(String exerciseId, int sets) throws NullPointerException{
         getExerciseFromMap(exerciseId).setNumberOfSets(sets);
     }
 }

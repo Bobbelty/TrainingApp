@@ -15,7 +15,7 @@ import java.util.List;
  * objects from the model in such a way that objects are easily managed and presented.
  * In this respect, the ViewModel is more model than view, and handles most if not all of the view's display logic.
  *
- * @author Valdemar Vålvik and Victor Hui
+ * @author Philip Rabia, Patrik Olsson and Oscar Wallin
  */
 
 public class ScheduleViewModel extends TrainingAppModelViewModel{
@@ -27,8 +27,6 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     private MutableLiveData<String> mText;
     private TrainingAppFacade trainingAppModel;
 
-    // Create an ArrayAdapter using the string array and a default spinner layout
-
     /**
      * Class constructor
      */
@@ -36,16 +34,27 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
     public List<Plan> getSavedPlans() {
         return trainingAppModel.getSavedPlans();
     }
+
     public void addPlan() {
         trainingAppModel.createNewPlan();
     }
+
     public Plan getPlanById(String planId) {
         return trainingAppModel.getPlan(planId);
     }
+
     public void removePlan(Plan selectedPlan) {
         trainingAppModel.removePlan(selectedPlan.getId());
     }
 
+    /**
+     * Method for setting a new plan name through the EditText window, using nested loop for
+     * finding the plan to change
+     *
+     * @param selectedPlan the current selected plan
+     * @param etbxPlanName the EditText window
+     * @param planList the list of plans
+     */
     public void setNewPlanName(Plan selectedPlan, EditText etbxPlanName, List<Plan> planList) {
         trainingAppModel.updatePlanName(etbxPlanName.getText().toString(), selectedPlan.getId());
         for (int i = 0; i < planList.size(); i++) {
@@ -58,7 +67,11 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
         }
     }
 
-    // push latest plan to top to display on
+    /**
+     * Method for pushing the latest plan to the top of list as to display its content on creation
+     *
+     * @param planList the list of plans
+     */
     public void shiftRight(List<Plan> planList)
     {
         Plan temp = planList.get(planList.size()-1);
@@ -70,6 +83,9 @@ public class ScheduleViewModel extends TrainingAppModelViewModel{
         planList.set(0, temp);
     }
 
+    /**
+     * Constructor for the viewModel
+     */
     public ScheduleViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is schedule fragment");

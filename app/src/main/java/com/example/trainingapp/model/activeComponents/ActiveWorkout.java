@@ -22,6 +22,9 @@ public class ActiveWorkout {
      */
     private String workoutName;
 
+    /**
+     * A LinkedHashMap for storing active exercises
+     */
     private LinkedHashMap<String, ActiveExercise> activeExerciseMap = new LinkedHashMap<>();
 
     /**
@@ -34,7 +37,7 @@ public class ActiveWorkout {
      *
      * @param workoutName name of workout
      */
-    public ActiveWorkout(String workoutName) {
+    protected ActiveWorkout(String workoutName) {
         this.workoutName = workoutName;
         currentTime = "0";
     }
@@ -64,7 +67,7 @@ public class ActiveWorkout {
      *
      * @param exercise object to add to map
      */
-    public void addExercise(ActiveExercise exercise) {
+    protected void addExercise(ActiveExercise exercise) {
         activeExerciseMap.put(exercise.getExerciseId(), exercise);
     }
 
@@ -125,7 +128,6 @@ public class ActiveWorkout {
      * @param exerciseId the Id for the exercise
      * @param weight new value for weight
      */
-
     public void updateActiveExerciseWeight(String exerciseId, double weight) {
         activeExerciseMap.get(exerciseId).changeWeight(weight);
     }
