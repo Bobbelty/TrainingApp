@@ -184,7 +184,7 @@ public class EditWorkoutViewModel extends TrainingAppModelViewModel{
     /**
      * Set a new name of a workout
      * @param newWorkoutName the new workout name
-     * @param planId plan id 
+     * @param planId plan id
      * @param workoutId workout id
      */
     public void setNewWorkoutName(String newWorkoutName, String planId, String workoutId) {

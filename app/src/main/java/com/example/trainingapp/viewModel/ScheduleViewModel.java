@@ -15,7 +15,7 @@ import java.util.List;
  * objects from the model in such a way that objects are easily managed and presented.
  * In this respect, the ViewModel is more model than view, and handles most if not all of the view's display logic.
  *
- * @author Philip Rabia, Patrik Olsson and Oscar Wallin
+ * @author Philip Rabia and Patrik Olsson
  */
 
 public class ScheduleViewModel extends TrainingAppModelViewModel{

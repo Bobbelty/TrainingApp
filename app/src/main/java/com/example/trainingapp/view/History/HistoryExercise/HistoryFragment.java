@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 /**
  * HistoryFragment acts as the "view" in mvvm. It is responsible for displaying all parts to the
- * fragment.history.xml
+ * fragment_history.xml
  *
  * @author Philip Rabia and Patrik Olsson
  */

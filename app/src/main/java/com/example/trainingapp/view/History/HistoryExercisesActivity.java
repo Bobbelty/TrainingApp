@@ -8,6 +8,7 @@ import com.example.trainingapp.R;
 
 /**
  * Activity for viewing exercise history
+ * @author Philip Rabia and Patrik Olsson
  */
 public class HistoryExercisesActivity extends AppCompatActivity {
 
