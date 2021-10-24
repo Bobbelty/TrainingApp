@@ -13,18 +13,18 @@
 
     <fragment
         android:id="@+id/navigation_schedule"
-        android:name="com.example.trainingapp.view.ScheduleFragment"
+        android:name="com.example.trainingapp.view.EditSchedule.EditPlan.ScheduleFragment"
         android:label="@string/title_schedule"
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
         android:id="@+id/navigation_workout"
-        android:name="com.example.trainingapp.view.WorkoutFragment"
+        android:name="com.example.trainingapp.view.Workout.SelectWorkout.WorkoutFragment"
         android:label="@string/title_workout"
         tools:layout="@layout/fragment_workout" />
     <fragment
         android:id="@+id/navigation_history"
-        android:name="com.example.trainingapp.view.HistoryFragment"
+        android:name="com.example.trainingapp.view.History.HistoryExercise.HistoryFragment"
         android:label="@string/title_history"
         tools:layout="@layout/fragment_history" />
     <fragment

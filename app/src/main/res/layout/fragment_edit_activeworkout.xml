@@ -54,7 +54,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.trainingapp.view.EditWorkoutFragment"
+        android:name="com.example.trainingapp.view.Workout.ActiveWorkout.EditWorkoutFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

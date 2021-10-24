@@ -41,7 +41,7 @@
             android:layout_gravity="end"
             android:ems="10"
             android:inputType="number"
-            android:textAlignment="gravity"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:translationX="-50dp" />
@@ -53,7 +53,7 @@
             android:layout_gravity="end"
             android:ems="10"
             android:inputType="number"
-            android:textAlignment="gravity"
+            android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="22sp"
             android:translationX="-100dp" />
@@ -63,7 +63,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="right"
-            android:text="Button"
+            android:text="X"
             android:translationX="-10dp" />
 
     </androidx.cardview.widget.CardView>

@@ -1,7 +1,6 @@
-package com.example.trainingapp.view.Adapter;
+package com.example.trainingapp.view.EditSchedule.EditWorkout;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

@@ -1,4 +1,4 @@
-package com.example.trainingapp.view.Adapter;
+package com.example.trainingapp.view.History.HistoryExercise;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -17,8 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
-import com.example.trainingapp.view.EditScheduleActivity;
-import com.example.trainingapp.view.HistoryExercisesActivity;
+import com.example.trainingapp.view.History.HistoryExercisesActivity;
 import com.example.trainingapp.viewModel.HistoryViewModel;
 
 /**

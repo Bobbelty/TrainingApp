@@ -1,4 +1,4 @@
-package com.example.trainingapp.view;
+package com.example.trainingapp.view.EditSchedule.EditPlan;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentScheduleBinding;
 import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.view.Adapter.ScheduleRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.ScheduleViewModel;
 
 import java.util.ArrayList;

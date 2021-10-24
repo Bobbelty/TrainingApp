@@ -1,11 +1,9 @@
-package com.example.trainingapp.view.Adapter;
+package com.example.trainingapp.view.Workout.ActiveWorkout;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -14,13 +12,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
-import com.example.trainingapp.model.components.Exercise;
 import com.example.trainingapp.model.components.Plan;
 import com.example.trainingapp.model.components.Workout;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Adapter for the RecyclerView in the EditWorkoutActivity, provides the correct information for

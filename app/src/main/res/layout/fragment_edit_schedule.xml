@@ -65,7 +65,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/edit_container_view"
-        android:name="com.example.trainingapp.view.EditScheduleFragment"
+        android:name="com.example.trainingapp.view.EditSchedule.EditWorkout.EditScheduleFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints" />

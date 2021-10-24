@@ -1,4 +1,4 @@
-package com.example.trainingapp.view.Adapter;
+package com.example.trainingapp.view.History.HistoryWorkout;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;

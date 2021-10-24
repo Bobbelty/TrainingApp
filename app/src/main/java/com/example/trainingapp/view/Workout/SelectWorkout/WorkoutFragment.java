@@ -1,4 +1,4 @@
-package com.example.trainingapp.view;
+package com.example.trainingapp.view.Workout.SelectWorkout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.trainingapp.R;
 import com.example.trainingapp.databinding.FragmentWorkoutBinding;
 import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.view.Adapter.WorkoutRecyclerViewAdapter;
 import com.example.trainingapp.viewModel.ScheduleViewModel;
 
 import java.util.ArrayList;

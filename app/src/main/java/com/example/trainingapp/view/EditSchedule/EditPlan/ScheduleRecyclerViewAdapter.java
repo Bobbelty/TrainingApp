@@ -1,4 +1,4 @@
-package com.example.trainingapp.view.Adapter;
+package com.example.trainingapp.view.EditSchedule.EditPlan;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -14,15 +14,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
+import com.example.trainingapp.view.EditSchedule.EditScheduleActivity;
 import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.view.EditWorkoutActivity;
 import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 
 /**
- * Adapter for the RecyclerView in the WorkoutActivity, provides the correct information for
+ * Adapter for the RecyclerView in the ScheduleActivity, provides the correct information for
  * each list item
  */
-public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecyclerViewAdapter.ListViewHolder>  {
+public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRecyclerViewAdapter.ListViewHolder>  {
 
 
     private Plan plan;
@@ -37,15 +37,12 @@ public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecy
      * @param context the current state of the application
      * @param activity the current activity
      */
-    public WorkoutRecyclerViewAdapter(Plan plan, Context context, Activity activity) {
+    public ScheduleRecyclerViewAdapter(Plan plan, Context context, Activity activity) {
         this.plan = plan;
         this.context = context;
         this.activity = activity;
     }
 
-    /**
-     * Method for setting a new plan
-     */
     public void setNewPlan(Plan plan) { this.plan = plan; }
 
     @NonNull
@@ -53,7 +50,7 @@ public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecy
     public ListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         return new ListViewHolder(LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_workout_list_item, parent, false));
+                .inflate(R.layout.fragment_schedule_list_item, parent, false));
     }
 
     /**
@@ -66,16 +63,14 @@ public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecy
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.lblWorkoutName.setText(plan.getWorkoutList().get(position).getName());
-        // set list views
-        holder.btnWorkout.setOnClickListener(new View.OnClickListener() {
+        holder.btnEditWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick (View v) {
-
                 editWorkoutViewModel.setSelectedWorkout(plan.getWorkoutList().get(position));
                 editWorkoutViewModel.setSelectedPlan(plan);
 
                 activity.onBackPressed();
-                Intent openActivity = new Intent(context, EditWorkoutActivity.class);
+                Intent openActivity = new Intent(context, EditScheduleActivity.class);
                 context.startActivity(openActivity);
             }
         });
@@ -89,7 +84,7 @@ public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecy
     static class ListViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView lblWorkoutName;
-        private final Button btnWorkout;
+        private final Button btnEditWorkout;
 
         /**
          * Binds elements in layout file to the variables in the ViewHolder
@@ -100,8 +95,7 @@ public class WorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutRecy
             super(itemView);
 
             lblWorkoutName = itemView.findViewById(R.id.lblWorkoutName);
-            btnWorkout = itemView.findViewById(R.id.btnWorkout);
-
+            btnEditWorkout = itemView.findViewById(R.id.btnWorkout);
         }
     }
 }

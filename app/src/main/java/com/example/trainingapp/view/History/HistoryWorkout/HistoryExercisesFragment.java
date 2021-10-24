@@ -1,12 +1,9 @@
-package com.example.trainingapp.view;
+package com.example.trainingapp.view.History.HistoryWorkout;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -16,15 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.trainingapp.R;
 import com.example.trainingapp.model.activeComponents.ActiveWorkout;
-import com.example.trainingapp.model.components.Plan;
-import com.example.trainingapp.model.components.Workout;
-import com.example.trainingapp.view.Adapter.EditWorkoutRecyclerViewAdapter;
-import com.example.trainingapp.view.Adapter.HistoryExercisesRecyclerViewAdapter;
-import com.example.trainingapp.viewModel.EditWorkoutViewModel;
 import com.example.trainingapp.viewModel.HistoryViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HistoryExercisesFragment extends Fragment {
 

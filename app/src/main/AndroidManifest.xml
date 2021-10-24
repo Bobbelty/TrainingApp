@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.EditScheduleActivity"
+            android:name=".view.EditSchedule.EditScheduleActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.EditWorkoutActivity"
+            android:name=".view.Workout.EditWorkoutActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>
@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.HistoryExercisesActivity"
+            android:name=".view.History.HistoryExercisesActivity"
             android:exported="true"
             android:label="@string/app_name">
             <intent-filter>

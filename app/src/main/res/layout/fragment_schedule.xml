@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#393939"
-    tools:context=".view.ScheduleFragment">
+    tools:context=".view.EditSchedule.EditPlan.ScheduleFragment">
 
 
     <TextView

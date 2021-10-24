@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
-        android:name="com.example.trainingapp.view.HistoryExercisesFragment"
+        android:name="com.example.trainingapp.view.History.HistoryWorkout.HistoryExercisesFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

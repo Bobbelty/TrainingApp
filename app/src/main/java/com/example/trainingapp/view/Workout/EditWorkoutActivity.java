@@ -1,4 +1,4 @@
-package com.example.trainingapp.view;
+package com.example.trainingapp.view.Workout;
 
 import android.os.Bundle;
 
