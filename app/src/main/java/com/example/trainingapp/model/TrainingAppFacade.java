@@ -126,7 +126,7 @@ public class TrainingAppFacade {
      * @param planId in which plan
      * @param workoutId in which workout
      */
-    public void addExerciseToWorkout(String planId, String workoutId) throws NullPointerException {
+    public void createNewExercise(String planId, String workoutId) throws NullPointerException {
         mockDataBase.addExerciseToWorkout(PlanComponentFactory.createExercise(), planId, workoutId);
     }
 

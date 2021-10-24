@@ -121,7 +121,6 @@ public class Plan {
      * @return copy of the workoutMap
      */
     private LinkedHashMap<String, Workout> getWorkoutMap(){
-        //defensive copying?
         return new LinkedHashMap<>(workoutMap);
     }
 

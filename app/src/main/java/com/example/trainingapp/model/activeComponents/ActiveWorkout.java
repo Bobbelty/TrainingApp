@@ -1,8 +1,5 @@
 package com.example.trainingapp.model.activeComponents;
 
-import com.example.trainingapp.model.components.Exercise;
-
-import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,9 +25,9 @@ public class ActiveWorkout {
     private LinkedHashMap<String, ActiveExercise> activeExerciseMap = new LinkedHashMap<>();
 
     /**
-     * The time for the active workout, used for history
+     * The date is set when the workout is finished. Default 0
      */
-    private String currentTime;
+    private String finishedDate;
 
     /**
      * Class constructor setting workoutName
@@ -39,7 +36,7 @@ public class ActiveWorkout {
      */
     protected ActiveWorkout(String workoutName) {
         this.workoutName = workoutName;
-        currentTime = "0";
+        finishedDate = "0";
     }
 
     /**
@@ -50,7 +47,7 @@ public class ActiveWorkout {
     public ActiveWorkout(ActiveWorkout activeWorkout){
         this.workoutName = activeWorkout.workoutName;
         this.activeExerciseMap = new LinkedHashMap<>(activeWorkout.activeExerciseMap);
-        currentTime = "0";
+        finishedDate = "0";
     }
 
     /**
@@ -99,17 +96,17 @@ public class ActiveWorkout {
      *
      * @return the date of the active workout
      */
-    public String getTime() {
-        return currentTime;
+    public String getDate() {
+        return finishedDate;
     }
 
     /**
      * Sets the timestamp when an active workout is ended.
      *
-     * @param currentTime is set (YYYY-MM-DD) when the workout ends.
+     * @param finishedDate is set (YYYY-MM-DD) when the workout ends.
      */
-    public void setCurrentTime(String currentTime) {
-        this.currentTime = currentTime;
+    public void setFinishedDate(String finishedDate) {
+        this.finishedDate = finishedDate;
     }
 
     /**

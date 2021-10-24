@@ -179,7 +179,7 @@ public class TrainingAppFacadeTest {
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
         assertEquals(0, workout.getExerciseList().size());
 
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         Workout updatedWorkout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
         assertEquals(1, updatedWorkout.getExerciseList().size());
 
@@ -187,7 +187,7 @@ public class TrainingAppFacadeTest {
     @Test
     public void testAddExerciseToWorkoutWhenPlanIdDoesNotExist(){
         Exception exception = assertThrows(NullPointerException.class, () ->{
-            trainingAppFacade.addExerciseToWorkout("ThisIdDoesNotExist","ThisIdDoesNotExist2");
+            trainingAppFacade.createNewExercise("ThisIdDoesNotExist","ThisIdDoesNotExist2");
         });
 
         String expectedMessage = "No plan with this Id exists";
@@ -203,7 +203,7 @@ public class TrainingAppFacadeTest {
         Plan plan = trainingAppFacade.getSavedPlans().get(0);
         trainingAppFacade.createNewWorkout(plan.getId());
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         assertEquals(1, workout.getExerciseList().size());
 
         Exercise exercise = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0).getExerciseByIndex(0);
@@ -231,7 +231,7 @@ public class TrainingAppFacadeTest {
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
         assertEquals(0, workout.getExerciseList().size());
 
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         Workout updatedWorkout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
         assertEquals(1, updatedWorkout.getExerciseList().size());
 
@@ -264,7 +264,7 @@ public class TrainingAppFacadeTest {
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
         assertEquals(0, workout.getExerciseList().size());
 
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         Workout updatedWorkout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
         assertEquals(1, updatedWorkout.getExerciseList().size());
 
@@ -296,7 +296,7 @@ public class TrainingAppFacadeTest {
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
         assertEquals(0, workout.getExerciseList().size());
 
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         Workout updatedWorkout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
         assertEquals(1, updatedWorkout.getExerciseList().size());
 
@@ -326,11 +326,11 @@ public class TrainingAppFacadeTest {
         Plan plan = trainingAppFacade.getSavedPlans().get(0);
         trainingAppFacade.createNewWorkout(plan.getId());
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         Exercise exercise = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0).getExerciseByIndex(0);
         trainingAppFacade.updateExerciseSets(2, plan.getId(), workout.getId(), exercise.getId());
         trainingAppFacade.convertWorkoutToActive(plan.getId(), workout.getId());
-        assertEquals("0", trainingAppFacade.getActiveWorkout().getTime());
+        assertEquals("0", trainingAppFacade.getActiveWorkout().getDate());
         assertEquals(0, trainingAppFacade.getActiveWorkout().getExercise(0).getWeights(), 0.01);
     }
 
@@ -340,7 +340,7 @@ public class TrainingAppFacadeTest {
         Plan plan = trainingAppFacade.getSavedPlans().get(0);
         trainingAppFacade.createNewWorkout(plan.getId());
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         Exercise exercise = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0).getExerciseByIndex(0);
         trainingAppFacade.updateExerciseSets(2, plan.getId(), workout.getId(), exercise.getId());
         trainingAppFacade.convertWorkoutToActive(plan.getId(), workout.getId());
@@ -355,7 +355,7 @@ public class TrainingAppFacadeTest {
         Plan plan = trainingAppFacade.getSavedPlans().get(0);
         trainingAppFacade.createNewWorkout(plan.getId());
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         Exercise exercise = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0).getExerciseByIndex(0);
         trainingAppFacade.updateExerciseSets(2, plan.getId(), workout.getId(), exercise.getId());
         trainingAppFacade.convertWorkoutToActive(plan.getId(), workout.getId());
@@ -370,7 +370,7 @@ public class TrainingAppFacadeTest {
         Plan plan = trainingAppFacade.getSavedPlans().get(0);
         trainingAppFacade.createNewWorkout(plan.getId());
         Workout workout = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0);
-        trainingAppFacade.addExerciseToWorkout(plan.getId(), workout.getId());
+        trainingAppFacade.createNewExercise(plan.getId(), workout.getId());
         Exercise exercise = trainingAppFacade.getSavedPlans().get(0).getWorkoutList().get(0).getExerciseByIndex(0);
         trainingAppFacade.updateExerciseSets(2, plan.getId(), workout.getId(), exercise.getId());
         trainingAppFacade.convertWorkoutToActive(plan.getId(), workout.getId());

@@ -40,12 +40,6 @@ public class MockDatabase implements IDatabase {
     private final List<ActiveWorkout> completedWorkouts = new ArrayList<>();
 
     /**
-     * List containing personal bests (in terms of weight) in each completed exercise, used in
-     * PB part of application (not yet implemented)
-     */
-    List<ActiveExercise> currentPBs = new ArrayList<>();
-
-    /**
      * Class constructor is responsible for creating a number of mock Plan-objects. This is done
      * for UI presentation purposes.
      */
@@ -99,8 +93,8 @@ public class MockDatabase implements IDatabase {
 
         ActiveWorkout activeWorkout1 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout11);
         ActiveWorkout activeWorkout2 = activeWorkoutSession.convertWorkoutToActiveWorkout(exampleWorkout22);
-        activeWorkout1.setCurrentTime("2019-05-12");
-        activeWorkout2.setCurrentTime("2020-10-02");
+        activeWorkout1.setFinishedDate("2019-05-12");
+        activeWorkout2.setFinishedDate("2020-10-02");
         completedWorkouts.add(activeWorkout1);
         completedWorkouts.add(activeWorkout2);
 
@@ -139,8 +133,6 @@ public class MockDatabase implements IDatabase {
         Collections.reverse(temp);
         return temp;
     }
-
-    public void addToCompletedWorkouts(ActiveWorkout workout) {completedWorkouts.add(workout);}
 
     public void updateWorkoutName(String name, String planId, String workoutId) throws NullPointerException{
         getPlanFromMap(planId).updateWorkoutName(name, workoutId);
@@ -192,9 +184,9 @@ public class MockDatabase implements IDatabase {
     }
 
     public void endActiveWorkout(){
-        activeWorkout.setCurrentTime(activeWorkoutSession.getCurrentDate());
+        activeWorkout.setFinishedDate(activeWorkoutSession.getCurrentDate());
         completedWorkouts.add(activeWorkout);
-        activeWorkout = null; //How to remove the pointer? Maybe null is bad? /Valdemar
+        activeWorkout = null;
     }
 
     /**

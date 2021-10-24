@@ -34,13 +34,6 @@ public interface IDatabase {
     void removePlan(String planId);
 
     /**
-     * Method for adding an finished active workout to completed workouts
-     *
-     * @param workout the workout object to be added
-     */
-    void addToCompletedWorkouts(ActiveWorkout workout);
-
-    /**
      * Method for updating the plan name
      *
      * @param name the new name of the plan

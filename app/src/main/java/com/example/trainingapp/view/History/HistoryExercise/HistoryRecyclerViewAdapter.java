@@ -72,7 +72,7 @@ public class HistoryRecyclerViewAdapter extends RecyclerView.Adapter<HistoryRecy
     public void onBindViewHolder(@NonNull ListViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.lblActiveWorkoutName.setText(completedWorkouts.get(position).getName());
-        holder.lblActiveWorkoutDate.setText(completedWorkouts.get(position).getTime());
+        holder.lblActiveWorkoutDate.setText(completedWorkouts.get(position).getDate());
         holder.btnViewExercises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

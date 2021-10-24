@@ -121,7 +121,7 @@ public class EditWorkoutViewModel extends TrainingAppModelViewModel{
      * @param planId id of the plan
      */
     public void addExerciseToWorkout(String planId, String workoutId) {
-        trainingAppModel.addExerciseToWorkout(planId, workoutId);
+        trainingAppModel.createNewExercise(planId, workoutId);
     }
 
     /**
