@@ -11,7 +11,6 @@ This is the official Training App by AEY Investment Group
 
 3. To launch the App, an emulator needs to be configured. In Android Studio, use AVD manager 
    and press "Create virtual device..." in bottom left corner. Follow the wizard. 
-   Recommended device is Pixel 3a XL.
+   Recommended device is Pixel 4 XL.
    
 4. Profit!
-
